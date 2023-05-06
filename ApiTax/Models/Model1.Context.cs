@@ -13,10 +13,10 @@ namespace ApiTax.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class StoreTerminalSystemEntities : DbContext
+    public partial class dbEntities : DbContext
     {
-        public StoreTerminalSystemEntities()
-            : base("name=StoreTerminalSystemEntities")
+        public dbEntities()
+            : base("name=dbEntities")
         {
         }
     
@@ -25,39 +25,85 @@ namespace ApiTax.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Branch> Branches { get; set; }
-        public virtual DbSet<Client> Clients { get; set; }
-        public virtual DbSet<CompanyType> CompanyTypes { get; set; }
-        public virtual DbSet<ContactInPerson> ContactInPersons { get; set; }
-        public virtual DbSet<Curreny> Currenies { get; set; }
-        public virtual DbSet<ErrorCode> ErrorCodes { get; set; }
-        public virtual DbSet<ErrorType> ErrorTypes { get; set; }
-        public virtual DbSet<FieldPosition> FieldPositions { get; set; }
-        public virtual DbSet<ftType> ftTypes { get; set; }
-        public virtual DbSet<InPatern> InPaterns { get; set; }
-        public virtual DbSet<InsType> InsTypes { get; set; }
-        public virtual DbSet<InType> InTypes { get; set; }
-        public virtual DbSet<InvoiceBody> InvoiceBodies { get; set; }
-        public virtual DbSet<InvoiceField> InvoiceFields { get; set; }
-        public virtual DbSet<InvoiceHeader> InvoiceHeaders { get; set; }
-        public virtual DbSet<muType> muTypes { get; set; }
-        public virtual DbSet<OptionalMode> OptionalModes { get; set; }
+        public virtual DbSet<AbuseReport> AbuseReports { get; set; }
+        public virtual DbSet<Agency> Agencies { get; set; }
+        public virtual DbSet<AgencyRating> AgencyRatings { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<Bank> Banks { get; set; }
+        public virtual DbSet<BookingStatu> BookingStatus { get; set; }
+        public virtual DbSet<BookingTransaction> BookingTransactions { get; set; }
+        public virtual DbSet<BookingType> BookingTypes { get; set; }
+        public virtual DbSet<CheckoutType> CheckoutTypes { get; set; }
+        public virtual DbSet<CommentPost_TB> CommentPost_TB { get; set; }
+        public virtual DbSet<Comments_TB> Comments_TB { get; set; }
+        public virtual DbSet<CommissionSettlement> CommissionSettlements { get; set; }
+        public virtual DbSet<Coupon> Coupons { get; set; }
+        public virtual DbSet<Currency> Currencies { get; set; }
+        public virtual DbSet<Equipment> Equipments { get; set; }
+        public virtual DbSet<ErrorLog> ErrorLogs { get; set; }
+        public virtual DbSet<Facility> Facilities { get; set; }
+        public virtual DbSet<FacilityType> FacilityTypes { get; set; }
+        public virtual DbSet<fav_TB> fav_TB { get; set; }
+        public virtual DbSet<GlobalMeta> GlobalMetas { get; set; }
+        public virtual DbSet<Hardness> Hardnesses { get; set; }
+        public virtual DbSet<Hotel> Hotels { get; set; }
+        public virtual DbSet<HotelBooking> HotelBookings { get; set; }
+        public virtual DbSet<HotelComment> HotelComments { get; set; }
+        public virtual DbSet<HotelDateCost> HotelDateCosts { get; set; }
+        public virtual DbSet<HotelDiscount> HotelDiscounts { get; set; }
+        public virtual DbSet<HotelImage> HotelImages { get; set; }
+        public virtual DbSet<HotelPackage> HotelPackages { get; set; }
+        public virtual DbSet<HotelRoomType> HotelRoomTypes { get; set; }
+        public virtual DbSet<HotelService> HotelServices { get; set; }
+        public virtual DbSet<HotelSpec> HotelSpecs { get; set; }
+        public virtual DbSet<Language> Languages { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<LocationComment> LocationComments { get; set; }
+        public virtual DbSet<LocationGroup> LocationGroups { get; set; }
+        public virtual DbSet<LocationImage> LocationImages { get; set; }
+        public virtual DbSet<Locations_TB> Locations_TB { get; set; }
+        public virtual DbSet<LocationType> LocationTypes { get; set; }
+        public virtual DbSet<LocCity> LocCities { get; set; }
+        public virtual DbSet<LocCountry> LocCountries { get; set; }
+        public virtual DbSet<LocProvince> LocProvinces { get; set; }
+        public virtual DbSet<Log_TB> Log_TB { get; set; }
+        public virtual DbSet<Owner> Owners { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
-        public virtual DbSet<PersonType> PersonTypes { get; set; }
-        public virtual DbSet<pmtType> pmtTypes { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<ProductType> ProductTypes { get; set; }
-        public virtual DbSet<SpecialOrGeneral> SpecialOrGenerals { get; set; }
-        public virtual DbSet<TaxableOrFree> TaxableOrFrees { get; set; }
-        public virtual DbSet<tb_bank> tb_bank { get; set; }
-        public virtual DbSet<tb_check_send> tb_check_send { get; set; }
-        public virtual DbSet<tb_contact> tb_contact { get; set; }
-        public virtual DbSet<tb_degree> tb_degree { get; set; }
-        public virtual DbSet<tb_magor> tb_magor { get; set; }
-        public virtual DbSet<tb_marketing> tb_marketing { get; set; }
-        public virtual DbSet<tb_person> tb_person { get; set; }
-        public virtual DbSet<tb_send> tb_send { get; set; }
+        public virtual DbSet<PaymentResult> PaymentResults { get; set; }
+        public virtual DbSet<PaymentResultLog> PaymentResultLogs { get; set; }
+        public virtual DbSet<PlaceSpec> PlaceSpecs { get; set; }
+        public virtual DbSet<Post> Posts { get; set; }
+        public virtual DbSet<Post_TB> Post_TB { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<SmsAdminContact> SmsAdminContacts { get; set; }
+        public virtual DbSet<smsCode> smsCodes { get; set; }
+        public virtual DbSet<SmsCreditNotice> SmsCreditNotices { get; set; }
+        public virtual DbSet<SmsReadyToSend> SmsReadyToSends { get; set; }
+        public virtual DbSet<SmsSentArchive> SmsSentArchives { get; set; }
+        public virtual DbSet<SmsWebServiceSetting> SmsWebServiceSettings { get; set; }
+        public virtual DbSet<SpecType> SpecTypes { get; set; }
+        public virtual DbSet<Station> Stations { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<temp> temps { get; set; }
+        public virtual DbSet<Terminal> Terminals { get; set; }
+        public virtual DbSet<toor_TB> toor_TB { get; set; }
+        public virtual DbSet<Tour> Tours { get; set; }
+        public virtual DbSet<TourAgencyCost> TourAgencyCosts { get; set; }
+        public virtual DbSet<TourBooking> TourBookings { get; set; }
+        public virtual DbSet<TourBookingTripper> TourBookingTrippers { get; set; }
+        public virtual DbSet<TourCheckout> TourCheckouts { get; set; }
+        public virtual DbSet<TourStop> TourStops { get; set; }
+        public virtual DbSet<TourStopType> TourStopTypes { get; set; }
+        public virtual DbSet<TourType> TourTypes { get; set; }
+        public virtual DbSet<TransactionType> TransactionTypes { get; set; }
+        public virtual DbSet<TransportCompany> TransportCompanies { get; set; }
+        public virtual DbSet<TransportType> TransportTypes { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<UserBranch> UserBranches { get; set; }
+        public virtual DbSet<user_TB> user_TB { get; set; }
+        public virtual DbSet<UserSession> UserSessions { get; set; }
+        public virtual DbSet<UserType> UserTypes { get; set; }
     }
 }

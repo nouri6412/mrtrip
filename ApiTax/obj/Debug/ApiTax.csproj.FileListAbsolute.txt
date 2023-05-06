@@ -940,9 +940,9 @@ E:\git\mrtrip\ApiTax\bin\ru\Microsoft.VisualStudio.Validation.resources.dll
 E:\git\mrtrip\ApiTax\bin\tr\Microsoft.VisualStudio.Validation.resources.dll
 E:\git\mrtrip\ApiTax\bin\zh-Hans\Microsoft.VisualStudio.Validation.resources.dll
 E:\git\mrtrip\ApiTax\bin\zh-Hant\Microsoft.VisualStudio.Validation.resources.dll
-E:\git\mrtrip\ApiTax\obj\Debug\ApiTax.csproj.AssemblyReference.cache
 E:\git\mrtrip\ApiTax\obj\Debug\ApiTax.csproj.ResolveComReference.cache
 E:\git\mrtrip\ApiTax\obj\Debug\ApiTax.csproj.CoreCompileInputs.cache
 E:\git\mrtrip\ApiTax\obj\Debug\ApiTax.csproj.CopyComplete
 E:\git\mrtrip\ApiTax\obj\Debug\ApiTax.dll
 E:\git\mrtrip\ApiTax\obj\Debug\ApiTax.pdb
+E:\git\mrtrip\ApiTax\obj\Debug\ApiTax.csprojAssemblyReference.cache

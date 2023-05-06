@@ -23,9 +23,6 @@ namespace ApiTax.Controllers
    
         public ActionResult Index()
         {
-
-
-          
             return View();
         }
 
@@ -56,9 +53,9 @@ namespace ApiTax.Controllers
             //{
 
             func func = new func();
-            if (func.IsValid(userr.NationalCode, userr.PassWord))
+            if (func.IsValid(userr.Phone, userr.Password))
             {               
-                FormsAuthentication.SetAuthCookie(userr.NationalCode, true);
+                FormsAuthentication.SetAuthCookie(userr.Phone, true);
      
                     return RedirectToAction("Index", "Home");
             }
@@ -74,7 +71,5 @@ namespace ApiTax.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
-
-
     }
 }

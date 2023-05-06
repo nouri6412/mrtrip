@@ -14,18 +14,22 @@ namespace ApiTax.Models
     
     public partial class Payment
     {
-        public long pmtID { get; set; }
-        public Nullable<long> Taxid { get; set; }
-        public Nullable<System.DateTime> pdt { get; set; }
-        public Nullable<long> PaymentInstrumentID { get; set; }
-        public string Iinn { get; set; }
-        public string Acn { get; set; }
-        public string Trmn { get; set; }
-        public string Trn { get; set; }
-        public string Pcn { get; set; }
-        public string Pid { get; set; }
-        public Nullable<int> SetmID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Payment()
+        {
+            this.PaymentResults = new HashSet<PaymentResult>();
+        }
     
-        public virtual InvoiceHeader InvoiceHeader { get; set; }
+        public long Id { get; set; }
+        public long TransactionId { get; set; }
+        public long Amount { get; set; }
+        public bool IsPaid { get; set; }
+        public System.DateTime CreateDate { get; set; }
+        public System.DateTime PayDate { get; set; }
+        public bool InApp { get; set; }
+    
+        public virtual BookingTransaction BookingTransaction { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PaymentResult> PaymentResults { get; set; }
     }
 }

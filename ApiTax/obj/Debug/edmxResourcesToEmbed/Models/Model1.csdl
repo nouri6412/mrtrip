@@ -1,1095 +1,2586 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="StoreTerminalSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="Branch">
+<Schema Namespace="mrtripir_newdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AbuseReport">
     <Key>
-      <PropertyRef Name="BranchID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="BranchID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="BranchName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ManagerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ZipCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="BranchAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="ClientID" Type="Int64" />
-    <Property Name="BranchNum" Type="Int64" />
-    <NavigationProperty Name="Client" Relationship="Self.FK_Branch_Client" FromRole="Branch" ToRole="Client" />
-    <NavigationProperty Name="UserBranches" Relationship="Self.FK_UserBranch_Branch" FromRole="Branch" ToRole="UserBranch" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="HotelId" Type="Int64" />
+    <NavigationProperty Name="Hotel" Relationship="Self.FK_AbuseReport_Hotel" FromRole="AbuseReport" ToRole="Hotel" />
   </EntityType>
-  <EntityType Name="Client">
+  <EntityType Name="Agency">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ClientID" Type="String" MaxLength="6" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="PublicKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="PrivateKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Econo" Type="String" MaxLength="14" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ParticipationID" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
-    <Property Name="TraceCode" Type="Int64" />
-    <Property Name="Tins" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="PersonId" Type="Int64" />
-    <NavigationProperty Name="Branches" Relationship="Self.FK_Branch_Client" FromRole="Client" ToRole="Branch" />
-    <NavigationProperty Name="tb_person" Relationship="Self.FK_Client_tb_person" FromRole="Client" ToRole="tb_person" />
-    <NavigationProperty Name="tb_send" Relationship="Self.FK_tb_send_Client" FromRole="Client" ToRole="tb_send" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FullDiscount" Type="Int32" Nullable="false" />
+    <Property Name="UserDiscount" Type="Int32" Nullable="false" />
+    <Property Name="AffiliateDiscount" Type="Int32" Nullable="false" />
+    <Property Name="CityId" Type="Int32" />
+    <NavigationProperty Name="LocCity" Relationship="Self.FK_Agency_City" FromRole="Agency" ToRole="LocCity" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Agency_User" FromRole="Agency" ToRole="User" />
+    <NavigationProperty Name="AgencyRatings" Relationship="Self.FK_AgencyRating_Agency" FromRole="Agency" ToRole="AgencyRating" />
+    <NavigationProperty Name="TourAgencyCosts" Relationship="Self.FK_TourAgencyCost_Agency" FromRole="Agency" ToRole="TourAgencyCost" />
+    <NavigationProperty Name="Users" Relationship="Self.AgencySupervisor" FromRole="Agency" ToRole="User" />
   </EntityType>
-  <EntityType Name="CompanyType">
+  <EntityType Name="AgencyRating">
     <Key>
-      <PropertyRef Name="CompanyTypeId" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="CompanyTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CompanyTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="tb_person" Relationship="Self.FK_tb_person_CompanyType" FromRole="CompanyType" ToRole="tb_person" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AgancyId" Type="Int32" Nullable="false" />
+    <Property Name="TourId" Type="Int64" Nullable="false" />
+    <Property Name="Rating" Type="Int32" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Approved" Type="Boolean" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Agency" Relationship="Self.FK_AgencyRating_Agency" FromRole="AgencyRating" ToRole="Agency" />
+    <NavigationProperty Name="Tour" Relationship="Self.FK_AgencyRating_Tour" FromRole="AgencyRating" ToRole="Tour" />
+    <NavigationProperty Name="User" Relationship="Self.FK_AgencyRating_User" FromRole="AgencyRating" ToRole="User" />
   </EntityType>
-  <EntityType Name="ContactInPerson">
+  <EntityType Name="AspNetRole">
     <Key>
-      <PropertyRef Name="ContactInPersonID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="ContactInPersonID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="personID" Type="Int64" />
-    <Property Name="ContactID" Type="Int64" />
-    <NavigationProperty Name="tb_contact" Relationship="Self.FK_ContactInPerson_tb_contact" FromRole="ContactInPerson" ToRole="tb_contact" />
-    <NavigationProperty Name="tb_person" Relationship="Self.FK_ContactInPerson_tb_person" FromRole="ContactInPerson" ToRole="tb_person" />
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
   </EntityType>
-  <EntityType Name="Curreny">
+  <EntityType Name="AspNetUserClaim">
     <Key>
-      <PropertyRef Name="cut" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Code" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="cut" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="DecimalPlaces" Type="Decimal" Precision="5" Scale="2" />
-    <Property Name="Country" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="UseArea" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
   </EntityType>
-  <EntityType Name="ErrorCode">
+  <EntityType Name="AspNetUserLogin">
     <Key>
-      <PropertyRef Name="ErrorCodeID" />
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
     </Key>
-    <Property Name="ErrorCodeID" Type="Int32" Nullable="false" />
-    <Property Name="ErrorDetail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ErrorDetailPe" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="ErrorTypeID" Type="Int32" />
-    <NavigationProperty Name="ErrorType" Relationship="Self.FK_ErrorCode_ErrorType" FromRole="ErrorCode" ToRole="ErrorType" />
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
   </EntityType>
-  <EntityType Name="ErrorType">
+  <EntityType Name="AspNetUser">
     <Key>
-      <PropertyRef Name="ErrorTypeID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="ErrorTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="Bank">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TitleEn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LogoUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsBank" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Terminals" Relationship="Self.FK_Terminal_Bank" FromRole="Bank" ToRole="Terminal" />
+  </EntityType>
+  <EntityType Name="BookingStatu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="TitleFa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HotelBookings" Relationship="Self.FK_HotelBooking_BookingStatus" FromRole="BookingStatus" ToRole="HotelBooking" />
+  </EntityType>
+  <EntityType Name="BookingTransaction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Amount" Type="Int64" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="BookingTypeId" Type="Int32" Nullable="false" />
+    <Property Name="TransactionTypeId" Type="Int32" Nullable="false" />
+    <Property Name="TerminalId" Type="Int32" Nullable="false" />
+    <Property Name="InvoiceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Discount" Type="Int64" Nullable="false" />
+    <Property Name="CouponId" Type="Int32" />
+    <NavigationProperty Name="BookingType" Relationship="Self.FK_BookingTransaction_BookingType" FromRole="BookingTransaction" ToRole="BookingType" />
+    <NavigationProperty Name="Terminal" Relationship="Self.FK_BookingTransaction_Terminal" FromRole="BookingTransaction" ToRole="Terminal" />
+    <NavigationProperty Name="TransactionType" Relationship="Self.FK_BookingTransaction_TransactionType" FromRole="BookingTransaction" ToRole="TransactionType" />
+    <NavigationProperty Name="HotelBookings" Relationship="Self.FK_HotelBooking_BookingTransaction" FromRole="BookingTransaction" ToRole="HotelBooking" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK_Payment_BookingTransaction" FromRole="BookingTransaction" ToRole="Payment" />
+  </EntityType>
+  <EntityType Name="BookingType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="BookingTransactions" Relationship="Self.FK_BookingTransaction_BookingType" FromRole="BookingType" ToRole="BookingTransaction" />
+  </EntityType>
+  <EntityType Name="CheckoutType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CommissionSettlements" Relationship="Self.FK_CommissionSettlement_CheckoutType" FromRole="CheckoutType" ToRole="CommissionSettlement" />
+    <NavigationProperty Name="TourCheckouts" Relationship="Self.FK_TourCheckout_CheckoutType" FromRole="CheckoutType" ToRole="TourCheckout" />
+  </EntityType>
+  <EntityType Name="CommentPost_TB">
+    <Key>
+      <PropertyRef Name="comment_post_ID" />
+    </Key>
+    <Property Name="comment_post_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="matn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="userid" Type="Int64" />
+    <Property Name="postid" Type="Int64" />
+    <Property Name="act" Type="Boolean" />
+    <NavigationProperty Name="Post_TB" Relationship="Self.FK_CommentPost_TB_Post_TB" FromRole="CommentPost_TB" ToRole="Post_TB" />
+    <NavigationProperty Name="user_TB" Relationship="Self.FK_CommentPost_TB_user_TB" FromRole="CommentPost_TB" ToRole="user_TB" />
+  </EntityType>
+  <EntityType Name="Comments_TB">
+    <Key>
+      <PropertyRef Name="commentID" />
+    </Key>
+    <Property Name="commentID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userID" Type="Int64" />
+    <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LocID" Type="Int64" />
+    <Property Name="act" Type="Boolean" />
+    <NavigationProperty Name="Locations_TB" Relationship="Self.FK_Comments_TB_Locations_TB" FromRole="Comments_TB" ToRole="Locations_TB" />
+    <NavigationProperty Name="user_TB" Relationship="Self.FK_Comments_TB_user_TB" FromRole="Comments_TB" ToRole="user_TB" />
+  </EntityType>
+  <EntityType Name="CommissionSettlement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <Property Name="LastTransactionId" Type="Int64" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="TypeId" Type="Int32" Nullable="false" />
+    <Property Name="AccountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TrackingNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Receipt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FileUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CheckoutType" Relationship="Self.FK_CommissionSettlement_CheckoutType" FromRole="CommissionSettlement" ToRole="CheckoutType" />
+    <NavigationProperty Name="User" Relationship="Self.FK_CommissionSettlement_User" FromRole="CommissionSettlement" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Coupon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Coupon_User" FromRole="Coupon" ToRole="User" />
+    <NavigationProperty Name="Tours" Relationship="Self.TourCoupon" FromRole="Coupon" ToRole="Tour" />
+  </EntityType>
+  <EntityType Name="Currency">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="TourAgencyCosts" Relationship="Self.FK_TourStopCost_Currency" FromRole="Currency" ToRole="TourAgencyCost" />
+  </EntityType>
+  <EntityType Name="Equipment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="ErrorCodes" Relationship="Self.FK_ErrorCode_ErrorType" FromRole="ErrorType" ToRole="ErrorCode" />
+    <NavigationProperty Name="Tours" Relationship="Self.TourEquipment" FromRole="Equipment" ToRole="Tour" />
   </EntityType>
-  <EntityType Name="FieldPosition">
+  <EntityType Name="ErrorLog">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UserIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Facility">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IconUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TypeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Hotels" Relationship="Self.HotelFacilities" FromRole="Facility" ToRole="Hotel" />
+  </EntityType>
+  <EntityType Name="FacilityType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="fav_TB">
+    <Key>
+      <PropertyRef Name="favID" />
+    </Key>
+    <Property Name="favID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LocID" Type="Int64" />
+    <Property Name="userID" Type="Int64" />
+    <Property Name="balad" Type="Boolean" />
+    <NavigationProperty Name="Locations_TB" Relationship="Self.FK_fav_TB_Locations_TB" FromRole="fav_TB" ToRole="Locations_TB" />
+    <NavigationProperty Name="user_TB" Relationship="Self.FK_fav_TB_user_TB" FromRole="fav_TB" ToRole="user_TB" />
+  </EntityType>
+  <EntityType Name="GlobalMeta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="7" />
+    <Property Name="ModifyDate" Type="DateTime" Precision="7" />
+  </EntityType>
+  <EntityType Name="Hardness">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Tours" Relationship="Self.FK_Tour_Hardness" FromRole="Hardness" ToRole="Tour" />
   </EntityType>
-  <EntityType Name="ftType">
+  <EntityType Name="Hotel">
     <Key>
-      <PropertyRef Name="ftID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="ftID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LocationTypeId" Type="Int32" Nullable="false" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="Stars" Type="Int16" Nullable="false" />
+    <Property Name="ServiceId" Type="Int32" Nullable="false" />
+    <Property Name="Capacity" Type="Int32" Nullable="false" />
+    <Property Name="MaxCapacity" Type="Int32" Nullable="false" />
+    <Property Name="Rooms" Type="Int32" Nullable="false" />
+    <Property Name="Beds" Type="Int32" Nullable="false" />
+    <Property Name="LocationId" Type="Int64" />
+    <Property Name="LocationOnMap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Conditions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="OwnerId" Type="Int32" />
+    <Property Name="Tags" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Gravity" Type="Int32" Nullable="false" />
+    <Property Name="Cost" Type="Int64" Nullable="false" />
+    <Property Name="ExtraPersonCost" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="AbuseReports" Relationship="Self.FK_AbuseReport_Hotel" FromRole="Hotel" ToRole="AbuseReport" />
+    <NavigationProperty Name="HotelService" Relationship="Self.FK_Hotel_HotelService" FromRole="Hotel" ToRole="HotelService" />
+    <NavigationProperty Name="HotelBookings" Relationship="Self.FK_HotelBooking_Hotel" FromRole="Hotel" ToRole="HotelBooking" />
+    <NavigationProperty Name="HotelComments" Relationship="Self.FK_HotelComment_Hotel" FromRole="Hotel" ToRole="HotelComment" />
+    <NavigationProperty Name="HotelDateCosts" Relationship="Self.FK_HotelDateCost_Hotel" FromRole="Hotel" ToRole="HotelDateCost" />
+    <NavigationProperty Name="HotelDiscounts" Relationship="Self.FK_HotelDiscount_Hotel" FromRole="Hotel" ToRole="HotelDiscount" />
+    <NavigationProperty Name="HotelImages" Relationship="Self.FK_HotelImage_Hotel" FromRole="Hotel" ToRole="HotelImage" />
+    <NavigationProperty Name="HotelPackages" Relationship="Self.FK_HotelPackage_Hotel" FromRole="Hotel" ToRole="HotelPackage" />
+    <NavigationProperty Name="HotelSpecs" Relationship="Self.FK_HotelSpecs_Hotel" FromRole="Hotel" ToRole="HotelSpecs" />
+    <NavigationProperty Name="TourStops" Relationship="Self.FK_TourStop_Hotel" FromRole="Hotel" ToRole="TourStop" />
+    <NavigationProperty Name="Facilities" Relationship="Self.HotelFacilities" FromRole="Hotel" ToRole="Facility" />
+  </EntityType>
+  <EntityType Name="HotelBooking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HotelId" Type="Int64" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NationalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NationalCard" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TripperCount" Type="Int32" Nullable="false" />
+    <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="FromDateFa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ToDateFa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Amount" Type="Int64" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="StatusId" Type="Int32" />
+    <Property Name="IsPaid" Type="Boolean" Nullable="false" />
+    <Property Name="TransactionId" Type="Int64" />
+    <NavigationProperty Name="BookingStatu" Relationship="Self.FK_HotelBooking_BookingStatus" FromRole="HotelBooking" ToRole="BookingStatus" />
+    <NavigationProperty Name="BookingTransaction" Relationship="Self.FK_HotelBooking_BookingTransaction" FromRole="HotelBooking" ToRole="BookingTransaction" />
+    <NavigationProperty Name="Hotel" Relationship="Self.FK_HotelBooking_Hotel" FromRole="HotelBooking" ToRole="Hotel" />
+    <NavigationProperty Name="User" Relationship="Self.FK_HotelBooking_User" FromRole="HotelBooking" ToRole="User" />
+  </EntityType>
+  <EntityType Name="HotelComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HotelId" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Rating" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="Hotel" Relationship="Self.FK_HotelComment_Hotel" FromRole="HotelComment" ToRole="Hotel" />
+  </EntityType>
+  <EntityType Name="HotelDateCost">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HotelId" Type="Int64" Nullable="false" />
+    <Property Name="DateEn" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DateFa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Cost" Type="Int64" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Hotel" Relationship="Self.FK_HotelDateCost_Hotel" FromRole="HotelDateCost" ToRole="Hotel" />
+  </EntityType>
+  <EntityType Name="HotelDiscount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HotelId" Type="Int64" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Days" Type="Int32" Nullable="false" />
+    <Property Name="Discount" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Hotel" Relationship="Self.FK_HotelDiscount_Hotel" FromRole="HotelDiscount" ToRole="Hotel" />
+  </EntityType>
+  <EntityType Name="HotelImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HotelId" Type="Int64" Nullable="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Weight" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Hotel" Relationship="Self.FK_HotelImage_Hotel" FromRole="HotelImage" ToRole="Hotel" />
+  </EntityType>
+  <EntityType Name="HotelPackage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TourId" Type="Int64" />
+    <Property Name="PackageNumber" Type="Int32" />
+    <Property Name="HotelId" Type="Int64" />
+    <NavigationProperty Name="Hotel" Relationship="Self.FK_HotelPackage_Hotel" FromRole="HotelPackage" ToRole="Hotel" />
+    <NavigationProperty Name="Tour" Relationship="Self.FK_HotelPackage_Tour" FromRole="HotelPackage" ToRole="Tour" />
+  </EntityType>
+  <EntityType Name="HotelRoomType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="InvoiceHeaders" Relationship="Self.FK_Invoice_ftType" FromRole="ftType" ToRole="InvoiceHeader" />
+    <Property Name="Capacity" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="TourAgencyCosts" Relationship="Self.FK_TourStopCost_HotelRoomType" FromRole="HotelRoomType" ToRole="TourAgencyCost" />
   </EntityType>
-  <EntityType Name="InPatern">
+  <EntityType Name="HotelService">
     <Key>
-      <PropertyRef Name="InpID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="InpID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="InvoiceHeaders" Relationship="Self.FK_Invoice_inp" FromRole="InPatern" ToRole="InvoiceHeader" />
+    <Property Name="TitleEn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Hotels" Relationship="Self.FK_Hotel_HotelService" FromRole="HotelService" ToRole="Hotel" />
   </EntityType>
-  <EntityType Name="InsType">
+  <EntityType Name="HotelSpec">
     <Key>
-      <PropertyRef Name="Ins" />
+      <PropertyRef Name="HotelId" />
+      <PropertyRef Name="SpecId" />
     </Key>
-    <Property Name="Ins" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HotelId" Type="Int64" Nullable="false" />
+    <Property Name="SpecId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Hotel" Relationship="Self.FK_HotelSpecs_Hotel" FromRole="HotelSpecs" ToRole="Hotel" />
+    <NavigationProperty Name="PlaceSpec" Relationship="Self.FK_HotelSpecs_PlaceSpec" FromRole="HotelSpecs" ToRole="PlaceSpec" />
+    <NavigationProperty Name="SpecType" Relationship="Self.FK_HotelSpecs_SpecType" FromRole="HotelSpecs" ToRole="SpecType" />
+  </EntityType>
+  <EntityType Name="Language">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.UserLanguages" FromRole="Language" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Latitude" Type="Double" Nullable="false" />
+    <Property Name="Longitude" Type="Double" Nullable="false" />
+    <Property Name="TypeId" Type="Int32" Nullable="false" />
+    <Property Name="Weight" Type="Int32" Nullable="false" />
+    <Property Name="ProvinceId" Type="Int32" Nullable="false" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="Village" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Attractions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Facilities" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Accessibility" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="OldLocationId" Type="Int64" />
+    <NavigationProperty Name="LocCity" Relationship="Self.FK_Location_City" FromRole="Location" ToRole="LocCity" />
+    <NavigationProperty Name="LocationType" Relationship="Self.FK_Location_LocationType" FromRole="Location" ToRole="LocationType" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Location_User" FromRole="Location" ToRole="User" />
+    <NavigationProperty Name="LocationComments" Relationship="Self.FK_LocationComment_Location" FromRole="Location" ToRole="LocationComment" />
+    <NavigationProperty Name="LocationImages" Relationship="Self.FK_LocationImage_Location" FromRole="Location" ToRole="LocationImage" />
+    <NavigationProperty Name="TourStops" Relationship="Self.FK_TourStop_Location" FromRole="Location" ToRole="TourStop" />
+    <NavigationProperty Name="Users" Relationship="Self.LocationLeaders" FromRole="Location" ToRole="User" />
+  </EntityType>
+  <EntityType Name="LocationComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LocationId" Type="Int64" Nullable="false" />
+    <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="IsConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="ConfirmedBy" Type="Int32" />
+    <NavigationProperty Name="Location" Relationship="Self.FK_LocationComment_Location" FromRole="LocationComment" ToRole="Location" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Comment_User" FromRole="LocationComment" ToRole="User" />
+  </EntityType>
+  <EntityType Name="LocationGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="LocationTypes" Relationship="Self.FK_LocationType_LocationGroup" FromRole="LocationGroup" ToRole="LocationType" />
+  </EntityType>
+  <EntityType Name="LocationImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LocationId" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Location" Relationship="Self.FK_LocationImage_Location" FromRole="LocationImage" ToRole="Location" />
+  </EntityType>
+  <EntityType Name="Locations_TB">
+    <Key>
+      <PropertyRef Name="LocID" />
+    </Key>
+    <Property Name="LocID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="lat" Type="Double" />
+    <Property Name="lang" Type="Double" />
+    <Property Name="type_loc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="weight" Type="Int32" />
+    <Property Name="ostan" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="rusta" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="shakhesh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="emkanat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="dastrasi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="act" Type="Boolean" />
+    <Property Name="TypeId" Type="Int32" />
+    <Property Name="NewLocationId" Type="Int64" />
+    <Property Name="ProvinceId" Type="Int32" />
+    <Property Name="CityId" Type="Int32" />
+    <Property Name="AspUserId" Type="Int32" />
+    <NavigationProperty Name="Comments_TB" Relationship="Self.FK_Comments_TB_Locations_TB" FromRole="Locations_TB" ToRole="Comments_TB" />
+    <NavigationProperty Name="fav_TB" Relationship="Self.FK_fav_TB_Locations_TB" FromRole="Locations_TB" ToRole="fav_TB" />
+    <NavigationProperty Name="LocCity" Relationship="Self.FK_Locations_TB_City" FromRole="Locations_TB" ToRole="LocCity" />
+    <NavigationProperty Name="LocationType" Relationship="Self.FK_Locations_TB_LocationType" FromRole="Locations_TB" ToRole="LocationType" />
+    <NavigationProperty Name="toor_TB" Relationship="Self.FK_toor_TB_Locations_TB" FromRole="Locations_TB" ToRole="toor_TB" />
+  </EntityType>
+  <EntityType Name="LocationType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GroupId" Type="Int32" Nullable="false" />
+    <Property Name="Weight" Type="Int32" Nullable="false" />
+    <Property Name="IconURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Locations" Relationship="Self.FK_Location_LocationType" FromRole="LocationType" ToRole="Location" />
+    <NavigationProperty Name="LocationGroup" Relationship="Self.FK_LocationType_LocationGroup" FromRole="LocationType" ToRole="LocationGroup" />
+    <NavigationProperty Name="Locations_TB" Relationship="Self.FK_Locations_TB_LocationType" FromRole="LocationType" ToRole="Locations_TB" />
+  </EntityType>
+  <EntityType Name="LocCity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProvinceId" Type="Int32" Nullable="false" />
+    <Property Name="TitleEn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ThumbUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OnHome" Type="Boolean" />
+    <Property Name="Gravity" Type="Int32" />
+    <NavigationProperty Name="Agencies" Relationship="Self.FK_Agency_City" FromRole="LocCity" ToRole="Agency" />
+    <NavigationProperty Name="Locations" Relationship="Self.FK_Location_City" FromRole="LocCity" ToRole="Location" />
+    <NavigationProperty Name="Locations_TB" Relationship="Self.FK_Locations_TB_City" FromRole="LocCity" ToRole="Locations_TB" />
+    <NavigationProperty Name="LocProvince" Relationship="Self.FK_LocCity_LocProvince" FromRole="LocCity" ToRole="LocProvince" />
+    <NavigationProperty Name="Stations" Relationship="Self.FK_Station_LocCity" FromRole="LocCity" ToRole="Station" />
+    <NavigationProperty Name="Tours" Relationship="Self.FK_Tour_City" FromRole="LocCity" ToRole="Tour" />
+    <NavigationProperty Name="TourStops" Relationship="Self.FK_TourStop_LocCity" FromRole="LocCity" ToRole="TourStop" />
+  </EntityType>
+  <EntityType Name="LocCountry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="InvoiceHeaders" Relationship="Self.FK_Invoice_InsType" FromRole="InsType" ToRole="InvoiceHeader" />
+    <NavigationProperty Name="LocProvinces" Relationship="Self.FK_LocProvince_LocCountry" FromRole="LocCountry" ToRole="LocProvince" />
   </EntityType>
-  <EntityType Name="InType">
+  <EntityType Name="LocProvince">
     <Key>
-      <PropertyRef Name="Inty" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Inty" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CountryId" Type="Int32" />
+    <NavigationProperty Name="LocCities" Relationship="Self.FK_LocCity_LocProvince" FromRole="LocProvince" ToRole="LocCity" />
+    <NavigationProperty Name="LocCountry" Relationship="Self.FK_LocProvince_LocCountry" FromRole="LocProvince" ToRole="LocCountry" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_Province" FromRole="LocProvince" ToRole="User" />
   </EntityType>
-  <EntityType Name="InvoiceBody">
+  <EntityType Name="Log_TB">
     <Key>
-      <PropertyRef Name="InvoiceBodyID" />
+      <PropertyRef Name="logID" />
     </Key>
-    <Property Name="InvoiceBodyID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Taxid" Type="Int64" />
-    <Property Name="Sstid" Type="Int64" />
-    <Property Name="Am" Type="Decimal" Precision="21" Scale="8" />
-    <Property Name="Fee" Type="Decimal" Precision="26" Scale="8" />
-    <Property Name="Cfee" Type="Decimal" Precision="19" Scale="4" />
-    <Property Name="Cut" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
-    <Property Name="Exr" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="Prdis" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="Dis" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="Adis" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="Vra" Type="Decimal" Precision="5" Scale="2" />
-    <Property Name="Vam" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="Odt" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Odr" Type="Decimal" Precision="5" Scale="2" />
-    <Property Name="Odam" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="Olt" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Olr" Type="Decimal" Precision="5" Scale="2" />
-    <Property Name="Olam" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="Concfee" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="Spro" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="Bros" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="Tcpbs" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="Vop" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="Sstt" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="MuS" Type="Int32" />
-    <Property Name="Tsstam" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="Bsrn" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Cop" Type="Decimal" Precision="18" Scale="2" />
-    <NavigationProperty Name="InvoiceHeader" Relationship="Self.FK_InvoiceBody_InvoiceHeader" FromRole="InvoiceBody" ToRole="InvoiceHeader" />
+    <Property Name="logID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="InvoiceField">
+  <EntityType Name="Owner">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
-    <Property Name="InvoiceTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="FieldPositionID" Type="Int32" />
-    <Property Name="Field" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="InvoiceTitleEn" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="Inp11" Type="Int32" />
-    <Property Name="Inp12" Type="Int32" />
-    <Property Name="Inp13" Type="Int32" />
-    <Property Name="Inp14" Type="Int32" />
-    <Property Name="Inp15" Type="Int32" />
-    <Property Name="Inp16" Type="Int32" />
-    <Property Name="Inp17" Type="Int32" />
-    <Property Name="inp21" Type="Int32" />
-    <Property Name="inp22" Type="Int32" />
-    <Property Name="inp31" Type="Int32" />
-    <NavigationProperty Name="OptionalMode" Relationship="Self.FK_InvoiceField_FieldPosition" FromRole="InvoiceField" ToRole="OptionalMode" />
-    <NavigationProperty Name="OptionalMode1" Relationship="Self.FK_InvoiceField_OptionalMode" FromRole="InvoiceField" ToRole="OptionalMode" />
-    <NavigationProperty Name="OptionalMode2" Relationship="Self.FK_InvoiceField_OptionalMode1" FromRole="InvoiceField" ToRole="OptionalMode" />
-    <NavigationProperty Name="OptionalMode3" Relationship="Self.FK_InvoiceField_OptionalMode2" FromRole="InvoiceField" ToRole="OptionalMode" />
-    <NavigationProperty Name="OptionalMode4" Relationship="Self.FK_InvoiceField_OptionalMode3" FromRole="InvoiceField" ToRole="OptionalMode" />
-    <NavigationProperty Name="OptionalMode5" Relationship="Self.FK_InvoiceField_OptionalMode4" FromRole="InvoiceField" ToRole="OptionalMode" />
-    <NavigationProperty Name="OptionalMode6" Relationship="Self.FK_InvoiceField_OptionalMode5" FromRole="InvoiceField" ToRole="OptionalMode" />
-    <NavigationProperty Name="OptionalMode7" Relationship="Self.FK_InvoiceField_OptionalMode6" FromRole="InvoiceField" ToRole="OptionalMode" />
-    <NavigationProperty Name="OptionalMode8" Relationship="Self.FK_InvoiceField_OptionalMode7" FromRole="InvoiceField" ToRole="OptionalMode" />
-    <NavigationProperty Name="OptionalMode9" Relationship="Self.FK_InvoiceField_OptionalMode8" FromRole="InvoiceField" ToRole="OptionalMode" />
-  </EntityType>
-  <EntityType Name="InvoiceHeader">
-    <Key>
-      <PropertyRef Name="InvoiceID" />
-    </Key>
-    <Property Name="InvoiceID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Taxid" Type="String" MaxLength="22" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Inno" Type="Int64" Nullable="false" />
-    <Property Name="Irtaxid" Type="String" MaxLength="22" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Indatim" Type="Int64" Nullable="false" />
-    <Property Name="Indati2m" Type="Int64" />
-    <Property Name="Inp" Type="Int32" Nullable="false" />
-    <Property Name="Tins" Type="String" MaxLength="14" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="Ins" Type="Int32" Nullable="false" />
-    <Property Name="Sbc" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="Crn" Type="Int32" />
-    <Property Name="Scln" Type="Int64" />
-    <Property Name="Scc" Type="Int32" />
-    <Property Name="spc" Type="Int32" />
-    <Property Name="Tinb" Type="String" MaxLength="14" FixedLength="true" Unicode="true" />
-    <Property Name="Bid" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
-    <Property Name="Bbc" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Billid" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
-    <Property Name="Bpc" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="ft" Type="Int32" />
-    <Property Name="Bpn" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="Setm" Type="Int32" Nullable="false" />
-    <Property Name="Cap" Type="Decimal" Precision="20" Scale="2" />
-    <Property Name="Insp" Type="Decimal" Precision="20" Scale="2" />
-    <Property Name="tax17" Type="Decimal" Precision="20" Scale="2" />
-    <Property Name="Tvam" Type="Decimal" Precision="20" Scale="2" />
-    <Property Name="Tprdis" Type="Decimal" Precision="20" Scale="2" />
-    <Property Name="Tdis" Type="Decimal" Precision="20" Scale="2" />
-    <Property Name="Tadis" Type="Decimal" Precision="20" Scale="2" />
-    <Property Name="Todam" Type="Decimal" Precision="20" Scale="2" />
-    <Property Name="Tbill" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="tcpbs" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="tonw" Type="Decimal" Precision="19" Scale="3" />
-    <Property Name="torv" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="tocv" Type="Decimal" Precision="19" Scale="4" />
-    <Property Name="Tob" Type="Int32" />
-    <Property Name="uuid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Inty" Type="Int32" />
-    <Property Name="Tvop" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="Dpvb" Type="Int32" />
-    <Property Name="InpID" Type="Int32" />
-    <NavigationProperty Name="ftType" Relationship="Self.FK_Invoice_ftType" FromRole="InvoiceHeader" ToRole="ftType" />
-    <NavigationProperty Name="InPatern" Relationship="Self.FK_Invoice_inp" FromRole="InvoiceHeader" ToRole="InPatern" />
-    <NavigationProperty Name="InsType" Relationship="Self.FK_Invoice_InsType" FromRole="InvoiceHeader" ToRole="InsType" />
-    <NavigationProperty Name="InvoiceBodies" Relationship="Self.FK_InvoiceBody_InvoiceHeader" FromRole="InvoiceHeader" ToRole="InvoiceBody" />
-    <NavigationProperty Name="Payments" Relationship="Self.FK_Payment_InvoiceHeader" FromRole="InvoiceHeader" ToRole="Payment" />
-  </EntityType>
-  <EntityType Name="muType">
-    <Key>
-      <PropertyRef Name="mu" />
-    </Key>
-    <Property Name="mu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Products" Relationship="Self.FK_Product_muType" FromRole="muType" ToRole="Product" />
-  </EntityType>
-  <EntityType Name="OptionalMode">
-    <Key>
-      <PropertyRef Name="OptionalModeID" />
-    </Key>
-    <Property Name="OptionalModeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="InvoiceFields" Relationship="Self.FK_InvoiceField_FieldPosition" FromRole="OptionalMode" ToRole="InvoiceField" />
-    <NavigationProperty Name="InvoiceFields1" Relationship="Self.FK_InvoiceField_OptionalMode" FromRole="OptionalMode" ToRole="InvoiceField" />
-    <NavigationProperty Name="InvoiceFields2" Relationship="Self.FK_InvoiceField_OptionalMode1" FromRole="OptionalMode" ToRole="InvoiceField" />
-    <NavigationProperty Name="InvoiceFields3" Relationship="Self.FK_InvoiceField_OptionalMode2" FromRole="OptionalMode" ToRole="InvoiceField" />
-    <NavigationProperty Name="InvoiceFields4" Relationship="Self.FK_InvoiceField_OptionalMode3" FromRole="OptionalMode" ToRole="InvoiceField" />
-    <NavigationProperty Name="InvoiceFields5" Relationship="Self.FK_InvoiceField_OptionalMode4" FromRole="OptionalMode" ToRole="InvoiceField" />
-    <NavigationProperty Name="InvoiceFields6" Relationship="Self.FK_InvoiceField_OptionalMode5" FromRole="OptionalMode" ToRole="InvoiceField" />
-    <NavigationProperty Name="InvoiceFields7" Relationship="Self.FK_InvoiceField_OptionalMode6" FromRole="OptionalMode" ToRole="InvoiceField" />
-    <NavigationProperty Name="InvoiceFields8" Relationship="Self.FK_InvoiceField_OptionalMode7" FromRole="OptionalMode" ToRole="InvoiceField" />
-    <NavigationProperty Name="InvoiceFields9" Relationship="Self.FK_InvoiceField_OptionalMode8" FromRole="OptionalMode" ToRole="InvoiceField" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="NationalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DocumentUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="ConfirmByUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Owner_User2" FromRole="Owner" ToRole="User" />
   </EntityType>
   <EntityType Name="Payment">
     <Key>
-      <PropertyRef Name="pmtID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="pmtID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Taxid" Type="Int64" />
-    <Property Name="pdt" Type="DateTime" Precision="3" />
-    <Property Name="PaymentInstrumentID" Type="Int64" />
-    <Property Name="Iinn" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Acn" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Trmn" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Trn" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Pcn" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Pid" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="SetmID" Type="Int32" />
-    <NavigationProperty Name="InvoiceHeader" Relationship="Self.FK_Payment_InvoiceHeader" FromRole="Payment" ToRole="InvoiceHeader" />
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransactionId" Type="Int64" Nullable="false" />
+    <Property Name="Amount" Type="Int64" Nullable="false" />
+    <Property Name="IsPaid" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="PayDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="InApp" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BookingTransaction" Relationship="Self.FK_Payment_BookingTransaction" FromRole="Payment" ToRole="BookingTransaction" />
+    <NavigationProperty Name="PaymentResults" Relationship="Self.FK_PaymentResult_Payment" FromRole="Payment" ToRole="PaymentResult" />
   </EntityType>
-  <EntityType Name="PersonType">
+  <EntityType Name="PaymentResult">
     <Key>
-      <PropertyRef Name="PersonTypeID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="PersonTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaymentId" Type="Int64" Nullable="false" />
+    <Property Name="RefId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ResCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SaleOrderId" Type="Int64" />
+    <Property Name="SaleReferenceId" Type="Int64" />
+    <Property Name="CardHolderPAN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreditCardSaleResponseDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="Payment" Relationship="Self.FK_PaymentResult_Payment" FromRole="PaymentResult" ToRole="Payment" />
+  </EntityType>
+  <EntityType Name="PaymentResultLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaymentId" Type="Int64" />
+    <Property Name="Result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="7" />
+  </EntityType>
+  <EntityType Name="PlaceSpec">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TypeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="HotelSpecs" Relationship="Self.FK_HotelSpecs_PlaceSpec" FromRole="PlaceSpec" ToRole="HotelSpecs" />
+    <NavigationProperty Name="SpecType" Relationship="Self.FK_PlaceSpec_SpecType" FromRole="PlaceSpec" ToRole="SpecType" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="7" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Post_User" FromRole="Post" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Post_TB">
+    <Key>
+      <PropertyRef Name="postid" />
+    </Key>
+    <Property Name="postid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="matn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="userid" Type="Int64" />
+    <Property Name="act" Type="Boolean" />
+    <Property Name="CreateDate" Type="DateTime" Precision="7" />
+    <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CommentPost_TB" Relationship="Self.FK_CommentPost_TB_Post_TB" FromRole="Post_TB" ToRole="CommentPost_TB" />
+    <NavigationProperty Name="user_TB" Relationship="Self.FK_Post_TB_user_TB" FromRole="Post_TB" ToRole="user_TB" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.UserRoles" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="SmsAdminContact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="smsCode">
+    <Key>
+      <PropertyRef Name="smsID" />
+    </Key>
+    <Property Name="smsID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userid" Type="Int64" />
+    <NavigationProperty Name="user_TB" Relationship="Self.FK_smsCode_user_TB" FromRole="smsCode" ToRole="user_TB" />
+  </EntityType>
+  <EntityType Name="SmsCreditNotice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ArchiveId" Type="Int32" Nullable="false" />
+    <Property Name="NoticeLevel" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SmsReadyToSend">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SmsSentArchive">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsSentSuccessfully" Type="Boolean" Nullable="false" />
+    <Property Name="SendResult" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SmsWebServiceSetting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SpecType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="HotelSpecs" Relationship="Self.FK_HotelSpecs_SpecType" FromRole="SpecType" ToRole="HotelSpecs" />
+    <NavigationProperty Name="PlaceSpecs" Relationship="Self.FK_PlaceSpec_SpecType" FromRole="SpecType" ToRole="PlaceSpec" />
+  </EntityType>
+  <EntityType Name="Station">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IconUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="LocCity" Relationship="Self.FK_Station_LocCity" FromRole="Station" ToRole="LocCity" />
+    <NavigationProperty Name="TourStops" Relationship="Self.FK_TourStop_Station" FromRole="Station" ToRole="TourStop" />
+    <NavigationProperty Name="TourStops1" Relationship="Self.FK_TourStop_Station1" FromRole="Station" ToRole="TourStop" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="temp">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Terminal">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BankId" Type="Int32" Nullable="false" />
+    <Property Name="TerminalID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ReturnUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TerminalURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Field1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Field2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Field3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Field4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Bank" Relationship="Self.FK_Terminal_Bank" FromRole="Terminal" ToRole="Bank" />
+    <NavigationProperty Name="BookingTransactions" Relationship="Self.FK_BookingTransaction_Terminal" FromRole="Terminal" ToRole="BookingTransaction" />
+  </EntityType>
+  <EntityType Name="toor_TB">
+    <Key>
+      <PropertyRef Name="toorID" />
+    </Key>
+    <Property Name="toorID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="count_day" Type="Int32" />
+    <Property Name="date_start" Type="DateTime" Precision="0" />
+    <Property Name="date_end" Type="DateTime" Precision="0" />
+    <Property Name="userID" Type="Int64" />
+    <Property Name="cancel" Type="Int32" />
+    <Property Name="finish" Type="Int32" />
+    <Property Name="complete" Type="Int32" />
+    <Property Name="LocID" Type="Int64" />
+    <Property Name="makan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="saat_start" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="saat_end" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="sarparast" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="tajhizat" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="servis" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="tamas" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="zarfiyat" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="hazine" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="type_safar" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Locations_TB" Relationship="Self.FK_toor_TB_Locations_TB" FromRole="toor_TB" ToRole="Locations_TB" />
+    <NavigationProperty Name="user_TB" Relationship="Self.FK_toor_TB_user_TB" FromRole="toor_TB" ToRole="user_TB" />
+  </EntityType>
+  <EntityType Name="Tour">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TourTypeId" Type="Int32" Nullable="false" />
+    <Property Name="HardnessId" Type="Int32" Nullable="false" />
+    <Property Name="FromCityId" Type="Int32" Nullable="false" />
+    <Property Name="TransportTypeId" Type="Int32" Nullable="false" />
+    <Property Name="HasHotel" Type="Boolean" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Nights" Type="Int16" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Precision="7" />
+    <Property Name="EndDate" Type="DateTime" Precision="7" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Canceled" Type="Boolean" Nullable="false" />
+    <Property Name="Finished" Type="Boolean" Nullable="false" />
+    <Property Name="StartPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SupervisorId" Type="Int32" />
+    <Property Name="SupervisorName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Services" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Capacity" Type="Int32" Nullable="false" />
+    <Property Name="Budget" Type="Int64" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
+    <Property Name="DeleteDate" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="AgencyRatings" Relationship="Self.FK_AgencyRating_Tour" FromRole="Tour" ToRole="AgencyRating" />
+    <NavigationProperty Name="Hardness" Relationship="Self.FK_Tour_Hardness" FromRole="Tour" ToRole="Hardness" />
+    <NavigationProperty Name="HotelPackages" Relationship="Self.FK_HotelPackage_Tour" FromRole="Tour" ToRole="HotelPackage" />
+    <NavigationProperty Name="LocCity" Relationship="Self.FK_Tour_City" FromRole="Tour" ToRole="LocCity" />
+    <NavigationProperty Name="TourType" Relationship="Self.FK_Tour_TourType" FromRole="Tour" ToRole="TourType" />
+    <NavigationProperty Name="TransportType" Relationship="Self.FK_Tour_TransportType" FromRole="Tour" ToRole="TransportType" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Tour_User" FromRole="Tour" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_Tour_User1" FromRole="Tour" ToRole="User" />
+    <NavigationProperty Name="TourAgencyCosts" Relationship="Self.FK_TourAgencyCost_Tour" FromRole="Tour" ToRole="TourAgencyCost" />
+    <NavigationProperty Name="TourCheckouts" Relationship="Self.FK_TourCheckout_Tour" FromRole="Tour" ToRole="TourCheckout" />
+    <NavigationProperty Name="TourStops" Relationship="Self.FK_TourStop_Tour" FromRole="Tour" ToRole="TourStop" />
+    <NavigationProperty Name="Coupons" Relationship="Self.TourCoupon" FromRole="Tour" ToRole="Coupon" />
+    <NavigationProperty Name="Equipments" Relationship="Self.TourEquipment" FromRole="Tour" ToRole="Equipment" />
+  </EntityType>
+  <EntityType Name="TourAgencyCost">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TourId" Type="Int64" Nullable="false" />
+    <Property Name="AgencyId" Type="Int32" Nullable="false" />
+    <Property Name="RoomTypeId" Type="Int16" Nullable="false" />
+    <Property Name="Price" Type="Int64" Nullable="false" />
+    <Property Name="UserDiscount" Type="Int64" Nullable="false" />
+    <Property Name="AffiliateDiscount" Type="Int64" Nullable="false" />
+    <Property Name="FullDiscount" Type="Int64" Nullable="false" />
+    <Property Name="PackageNumber" Type="Int32" />
+    <Property Name="CurrencyId" Type="Int32" />
+    <Property Name="CurrencyPrice" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Agency" Relationship="Self.FK_TourAgencyCost_Agency" FromRole="TourAgencyCost" ToRole="Agency" />
+    <NavigationProperty Name="Currency" Relationship="Self.FK_TourStopCost_Currency" FromRole="TourAgencyCost" ToRole="Currency" />
+    <NavigationProperty Name="HotelRoomType" Relationship="Self.FK_TourStopCost_HotelRoomType" FromRole="TourAgencyCost" ToRole="HotelRoomType" />
+    <NavigationProperty Name="Tour" Relationship="Self.FK_TourAgencyCost_Tour" FromRole="TourAgencyCost" ToRole="Tour" />
+    <NavigationProperty Name="TourBookingTrippers" Relationship="Self.FK_TourBookingTripper_TourAgencyCost" FromRole="TourAgencyCost" ToRole="TourBookingTripper" />
+  </EntityType>
+  <EntityType Name="TourBooking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TourId" Type="Int64" Nullable="false" />
+    <Property Name="AgencyId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NationalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NationalCard" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TripperCount" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="IsPaid" Type="Boolean" Nullable="false" />
+    <Property Name="TransactionId" Type="Int64" />
+    <NavigationProperty Name="TourBookingTrippers" Relationship="Self.FK_TourBookingTripper_TourBooking" FromRole="TourBooking" ToRole="TourBookingTripper" />
+  </EntityType>
+  <EntityType Name="TourBookingTripper">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BookingId" Type="Int32" Nullable="false" />
+    <Property Name="ToutCostId" Type="Int64" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NationalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NationalCard" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TourAgencyCost" Relationship="Self.FK_TourBookingTripper_TourAgencyCost" FromRole="TourBookingTripper" ToRole="TourAgencyCost" />
+    <NavigationProperty Name="TourBooking" Relationship="Self.FK_TourBookingTripper_TourBooking" FromRole="TourBookingTripper" ToRole="TourBooking" />
+  </EntityType>
+  <EntityType Name="TourCheckout">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TourId" Type="Int64" Nullable="false" />
+    <Property Name="AgancyQuota" Type="Int64" Nullable="false" />
+    <Property Name="CompanyQuota" Type="Int64" Nullable="false" />
+    <Property Name="Amount" Type="Int64" Nullable="false" />
+    <Property Name="TypeId" Type="Int32" Nullable="false" />
+    <Property Name="AccountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TrackingNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Receipt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FileUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <NavigationProperty Name="CheckoutType" Relationship="Self.FK_TourCheckout_CheckoutType" FromRole="TourCheckout" ToRole="CheckoutType" />
+    <NavigationProperty Name="Tour" Relationship="Self.FK_TourCheckout_Tour" FromRole="TourCheckout" ToRole="Tour" />
+  </EntityType>
+  <EntityType Name="TourStop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TourId" Type="Int64" Nullable="false" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="LocationId" Type="Int64" />
+    <Property Name="StopTypeId" Type="Int16" Nullable="false" />
+    <Property Name="StopOrder" Type="Int16" Nullable="false" />
+    <Property Name="Nights" Type="Int16" Nullable="false" />
+    <Property Name="HotelId" Type="Int64" />
+    <Property Name="TransportCompanyId" Type="Int32" Nullable="false" />
+    <Property Name="DepartureDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="DepartureDateFa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DepartureTime" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="DepartureStationId" Type="Int32" />
+    <Property Name="ArrivalTime" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="ArrivalStationId" Type="Int32" />
+    <Property Name="Duration" Type="Time" Precision="7" />
+    <Property Name="WaitDuration" Type="Time" Precision="7" />
+    <NavigationProperty Name="Hotel" Relationship="Self.FK_TourStop_Hotel" FromRole="TourStop" ToRole="Hotel" />
+    <NavigationProperty Name="Location" Relationship="Self.FK_TourStop_Location" FromRole="TourStop" ToRole="Location" />
+    <NavigationProperty Name="LocCity" Relationship="Self.FK_TourStop_LocCity" FromRole="TourStop" ToRole="LocCity" />
+    <NavigationProperty Name="Station" Relationship="Self.FK_TourStop_Station" FromRole="TourStop" ToRole="Station" />
+    <NavigationProperty Name="Station1" Relationship="Self.FK_TourStop_Station1" FromRole="TourStop" ToRole="Station" />
+    <NavigationProperty Name="Tour" Relationship="Self.FK_TourStop_Tour" FromRole="TourStop" ToRole="Tour" />
+    <NavigationProperty Name="TourStopType" Relationship="Self.FK_TourStop_TourStopType" FromRole="TourStop" ToRole="TourStopType" />
+    <NavigationProperty Name="TransportCompany" Relationship="Self.FK_TourStop_TransportCompany" FromRole="TourStop" ToRole="TransportCompany" />
+  </EntityType>
+  <EntityType Name="TourStopType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int16" Nullable="false" />
+    <Property Name="Titile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="TourStops" Relationship="Self.FK_TourStop_TourStopType" FromRole="TourStopType" ToRole="TourStop" />
+  </EntityType>
+  <EntityType Name="TourType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="tb_person" Relationship="Self.FK_Person_Person" FromRole="PersonType" ToRole="tb_person" />
+    <NavigationProperty Name="Tours" Relationship="Self.FK_Tour_TourType" FromRole="TourType" ToRole="Tour" />
   </EntityType>
-  <EntityType Name="pmtType">
+  <EntityType Name="TransactionType">
     <Key>
-      <PropertyRef Name="pmtID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="pmtID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sign" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BookingTransactions" Relationship="Self.FK_BookingTransaction_TransactionType" FromRole="TransactionType" ToRole="BookingTransaction" />
+  </EntityType>
+  <EntityType Name="TransportCompany">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TypeId" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SeatClass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Cargo" Type="Int16" />
+    <NavigationProperty Name="TourStops" Relationship="Self.FK_TourStop_TransportCompany" FromRole="TransportCompany" ToRole="TourStop" />
+    <NavigationProperty Name="TransportType" Relationship="Self.FK_TransportCompany_TransportType1" FromRole="TransportCompany" ToRole="TransportType" />
+  </EntityType>
+  <EntityType Name="TransportType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="Product">
-    <Key>
-      <PropertyRef Name="ProductID" />
-    </Key>
-    <Property Name="ProductID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="sstid" Type="Int64" Nullable="false" />
-    <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Vat" Type="Int32" />
-    <Property Name="VatCustomPurposes" Type="Int32" />
-    <Property Name="sstt" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
-    <Property Name="TypeID" Type="Int32" />
-    <Property Name="SpecialOrGeneralID" Type="Int32" />
-    <Property Name="TaxableOrFreeID" Type="Int32" />
-    <Property Name="mu" Type="Int32" />
-    <NavigationProperty Name="muType" Relationship="Self.FK_Product_muType" FromRole="Product" ToRole="muType" />
-    <NavigationProperty Name="ProductType" Relationship="Self.FK_Product_ProductType" FromRole="Product" ToRole="ProductType" />
-    <NavigationProperty Name="SpecialOrGeneral" Relationship="Self.FK_Product_SpecialOrGeneral" FromRole="Product" ToRole="SpecialOrGeneral" />
-    <NavigationProperty Name="TaxableOrFree" Relationship="Self.FK_Product_TaxableOrFree" FromRole="Product" ToRole="TaxableOrFree" />
-  </EntityType>
-  <EntityType Name="ProductType">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Products" Relationship="Self.FK_Product_ProductType" FromRole="ProductType" ToRole="Product" />
-  </EntityType>
-  <EntityType Name="SpecialOrGeneral">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Products" Relationship="Self.FK_Product_SpecialOrGeneral" FromRole="SpecialOrGeneral" ToRole="Product" />
-  </EntityType>
-  <EntityType Name="TaxableOrFree">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Products" Relationship="Self.FK_Product_TaxableOrFree" FromRole="TaxableOrFree" ToRole="Product" />
-  </EntityType>
-  <EntityType Name="tb_bank">
-    <Key>
-      <PropertyRef Name="BankID" />
-    </Key>
-    <Property Name="BankID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="ShabaPatern" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="tb_person" Relationship="Self.FK_tb_person_tb_bank" FromRole="tb_bank" ToRole="tb_person" />
-    <NavigationProperty Name="Users" Relationship="Self.FK_User_tb_bank" FromRole="tb_bank" ToRole="User" />
-  </EntityType>
-  <EntityType Name="tb_check_send">
-    <Key>
-      <PropertyRef Name="SendCheckId" />
-    </Key>
-    <Property Name="SendCheckId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Response" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="CheckResponse" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="CheckDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="SendId" Type="Int64" />
-    <Property Name="state" Type="Int32" />
-    <Property Name="UID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="ReferenceNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="invoiceData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="ResponseStatus" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="tb_send" Relationship="Self.FK_tb_check_send_tb_send" FromRole="tb_check_send" ToRole="tb_send" />
-  </EntityType>
-  <EntityType Name="tb_contact">
-    <Key>
-      <PropertyRef Name="ContactID" />
-    </Key>
-    <Property Name="ContactID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="NationalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="Fullname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="tel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="degreeID" Type="Int32" />
-    <Property Name="magorID" Type="Int32" />
-    <NavigationProperty Name="ContactInPerson" Relationship="Self.FK_ContactInPerson_tb_contact" FromRole="tb_contact" ToRole="ContactInPerson" />
-    <NavigationProperty Name="tb_degree" Relationship="Self.FK_tb_contact_tb_degree" FromRole="tb_contact" ToRole="tb_degree" />
-    <NavigationProperty Name="tb_magor" Relationship="Self.FK_tb_contact_tb_magor" FromRole="tb_contact" ToRole="tb_magor" />
-  </EntityType>
-  <EntityType Name="tb_degree">
-    <Key>
-      <PropertyRef Name="degreeID" />
-    </Key>
-    <Property Name="degreeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="tb_contact" Relationship="Self.FK_tb_contact_tb_degree" FromRole="tb_degree" ToRole="tb_contact" />
-  </EntityType>
-  <EntityType Name="tb_magor">
-    <Key>
-      <PropertyRef Name="magorID" />
-    </Key>
-    <Property Name="magorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="tb_contact" Relationship="Self.FK_tb_contact_tb_magor" FromRole="tb_magor" ToRole="tb_contact" />
-  </EntityType>
-  <EntityType Name="tb_marketing">
-    <Key>
-      <PropertyRef Name="MarketingID" />
-    </Key>
-    <Property Name="MarketingID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserID" Type="Int32" />
-    <Property Name="NationalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="RegDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="User" Relationship="Self.FK_tb_marketing_User" FromRole="tb_marketing" ToRole="User" />
-  </EntityType>
-  <EntityType Name="tb_person">
-    <Key>
-      <PropertyRef Name="PersonID" />
-    </Key>
-    <Property Name="PersonID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="NatioinalCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-    <Property Name="PersonTypeId" Type="Int32" />
-    <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="BirthDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="ComapnyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Zipcode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="RegisterationDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="CompanyTypeId" Type="Int32" />
-    <Property Name="RegisterNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="BankID" Type="Int32" />
-    <Property Name="Shaba" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Clients" Relationship="Self.FK_Client_tb_person" FromRole="tb_person" ToRole="Client" />
-    <NavigationProperty Name="CompanyType" Relationship="Self.FK_tb_person_CompanyType" FromRole="tb_person" ToRole="CompanyType" />
-    <NavigationProperty Name="ContactInPerson" Relationship="Self.FK_ContactInPerson_tb_person" FromRole="tb_person" ToRole="ContactInPerson" />
-    <NavigationProperty Name="PersonType" Relationship="Self.FK_Person_Person" FromRole="tb_person" ToRole="PersonType" />
-    <NavigationProperty Name="tb_bank" Relationship="Self.FK_tb_person_tb_bank" FromRole="tb_person" ToRole="tb_bank" />
-  </EntityType>
-  <EntityType Name="tb_send">
-    <Key>
-      <PropertyRef Name="SendId" />
-    </Key>
-    <Property Name="SendId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="InvoicePack" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="ResponcePack" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="CheckPack" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="SendDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="UserID" Type="Int32" />
-    <Property Name="state" Type="Int32" />
-    <Property Name="ClientID" Type="Int64" />
-    <NavigationProperty Name="Client" Relationship="Self.FK_tb_send_Client" FromRole="tb_send" ToRole="Client" />
-    <NavigationProperty Name="tb_check_send" Relationship="Self.FK_tb_check_send_tb_send" FromRole="tb_send" ToRole="tb_check_send" />
-    <NavigationProperty Name="User" Relationship="Self.FK_tb_send_User" FromRole="tb_send" ToRole="User" />
+    <NavigationProperty Name="Tours" Relationship="Self.FK_Tour_TransportType" FromRole="TransportType" ToRole="Tour" />
+    <NavigationProperty Name="TransportCompanies" Relationship="Self.FK_TransportCompany_TransportType1" FromRole="TransportType" ToRole="TransportCompany" />
   </EntityType>
   <EntityType Name="User">
     <Key>
-      <PropertyRef Name="UserID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="NationalCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-    <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Mobile" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
-    <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="PassWord" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="IsActive" Type="Boolean" />
-    <Property Name="StartActive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="EndActive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="isAdmin" Type="Boolean" />
-    <Property Name="user_type" Type="Int32" />
-    <Property Name="BankID" Type="Int32" />
-    <Property Name="Shaba" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="tb_bank" Relationship="Self.FK_User_tb_bank" FromRole="User" ToRole="tb_bank" />
-    <NavigationProperty Name="tb_marketing" Relationship="Self.FK_tb_marketing_User" FromRole="User" ToRole="tb_marketing" />
-    <NavigationProperty Name="tb_send" Relationship="Self.FK_tb_send_User" FromRole="User" ToRole="tb_send" />
-    <NavigationProperty Name="UserBranches" Relationship="Self.FK_UserBranch_User" FromRole="User" ToRole="UserBranch" />
+    <Property Name="TypeId" Type="Int32" Nullable="false" />
+    <Property Name="AgencyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PermitNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProvinceId" Type="Int32" />
+    <Property Name="IsMountainClimbingClub" Type="Boolean" />
+    <Property Name="PermitTypeA" Type="Boolean" />
+    <Property Name="PermitTypeB" Type="Boolean" />
+    <Property Name="PermitTypeP" Type="Boolean" />
+    <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GuideNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsLocalGuide" Type="Boolean" />
+    <Property Name="LocalGuideCardUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsCulturalGuide" Type="Boolean" />
+    <Property Name="CulturalGuideCardUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OtherLanguage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ConfirmationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OldUserId" Type="Int64" />
+    <Property Name="AgencyConfirmed" Type="Boolean" />
+    <Property Name="GuideConfirmed" Type="Boolean" />
+    <NavigationProperty Name="Agencies" Relationship="Self.FK_Agency_User" FromRole="User" ToRole="Agency" />
+    <NavigationProperty Name="AgencyRatings" Relationship="Self.FK_AgencyRating_User" FromRole="User" ToRole="AgencyRating" />
+    <NavigationProperty Name="CommissionSettlements" Relationship="Self.FK_CommissionSettlement_User" FromRole="User" ToRole="CommissionSettlement" />
+    <NavigationProperty Name="Coupons" Relationship="Self.FK_Coupon_User" FromRole="User" ToRole="Coupon" />
+    <NavigationProperty Name="HotelBookings" Relationship="Self.FK_HotelBooking_User" FromRole="User" ToRole="HotelBooking" />
+    <NavigationProperty Name="Locations" Relationship="Self.FK_Location_User" FromRole="User" ToRole="Location" />
+    <NavigationProperty Name="LocationComments" Relationship="Self.FK_Comment_User" FromRole="User" ToRole="LocationComment" />
+    <NavigationProperty Name="LocProvince" Relationship="Self.FK_User_Province" FromRole="User" ToRole="LocProvince" />
+    <NavigationProperty Name="Owners" Relationship="Self.FK_Owner_User2" FromRole="User" ToRole="Owner" />
+    <NavigationProperty Name="Posts" Relationship="Self.FK_Post_User" FromRole="User" ToRole="Post" />
+    <NavigationProperty Name="Tours" Relationship="Self.FK_Tour_User" FromRole="User" ToRole="Tour" />
+    <NavigationProperty Name="Tours1" Relationship="Self.FK_Tour_User1" FromRole="User" ToRole="Tour" />
+    <NavigationProperty Name="UserType" Relationship="Self.FK_User_UserType" FromRole="User" ToRole="UserType" />
+    <NavigationProperty Name="UserSessions" Relationship="Self.FK_UserSession_User" FromRole="User" ToRole="UserSession" />
+    <NavigationProperty Name="Agencies1" Relationship="Self.AgencySupervisor" FromRole="User" ToRole="Agency" />
+    <NavigationProperty Name="Locations1" Relationship="Self.LocationLeaders" FromRole="User" ToRole="Location" />
+    <NavigationProperty Name="Languages" Relationship="Self.UserLanguages" FromRole="User" ToRole="Language" />
+    <NavigationProperty Name="Roles" Relationship="Self.UserRoles" FromRole="User" ToRole="Role" />
   </EntityType>
-  <EntityType Name="UserBranch">
+  <EntityType Name="user_TB">
     <Key>
-      <PropertyRef Name="UserBranchId" />
+      <PropertyRef Name="userID" />
     </Key>
-    <Property Name="UserBranchId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserID" Type="Int32" />
-    <Property Name="BrancheID" Type="Int32" />
-    <NavigationProperty Name="Branch" Relationship="Self.FK_UserBranch_Branch" FromRole="UserBranch" ToRole="Branch" />
-    <NavigationProperty Name="User" Relationship="Self.FK_UserBranch_User" FromRole="UserBranch" ToRole="User" />
+    <Property Name="userID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GroupRasmi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="faaliyat" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="GroupName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="sabt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ostan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="semat" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="emtiyaz" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="dateCreated" Type="DateTime" Precision="0" />
+    <Property Name="act" Type="Boolean" />
+    <NavigationProperty Name="CommentPost_TB" Relationship="Self.FK_CommentPost_TB_user_TB" FromRole="user_TB" ToRole="CommentPost_TB" />
+    <NavigationProperty Name="Comments_TB" Relationship="Self.FK_Comments_TB_user_TB" FromRole="user_TB" ToRole="Comments_TB" />
+    <NavigationProperty Name="fav_TB" Relationship="Self.FK_fav_TB_user_TB" FromRole="user_TB" ToRole="fav_TB" />
+    <NavigationProperty Name="Post_TB" Relationship="Self.FK_Post_TB_user_TB" FromRole="user_TB" ToRole="Post_TB" />
+    <NavigationProperty Name="smsCodes" Relationship="Self.FK_smsCode_user_TB" FromRole="user_TB" ToRole="smsCode" />
+    <NavigationProperty Name="toor_TB" Relationship="Self.FK_toor_TB_user_TB" FromRole="user_TB" ToRole="toor_TB" />
   </EntityType>
-  <Association Name="FK_Branch_Client">
-    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
-    <End Role="Branch" Type="Self.Branch" Multiplicity="*" />
+  <EntityType Name="UserSession">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Tokan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UserSession_User" FromRole="UserSession" ToRole="User" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_UserType" FromRole="UserType" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_AbuseReport_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+    <End Role="AbuseReport" Type="Self.AbuseReport" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Client">
-        <PropertyRef Name="ID" />
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Branch">
-        <PropertyRef Name="ClientID" />
+      <Dependent Role="AbuseReport">
+        <PropertyRef Name="HotelId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UserBranch_Branch">
-    <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
-    <End Role="UserBranch" Type="Self.UserBranch" Multiplicity="*" />
+  <Association Name="FK_Agency_City">
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="0..1" />
+    <End Role="Agency" Type="Self.Agency" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Branch">
-        <PropertyRef Name="BranchID" />
+      <Principal Role="LocCity">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="UserBranch">
-        <PropertyRef Name="BrancheID" />
+      <Dependent Role="Agency">
+        <PropertyRef Name="CityId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Client_tb_person">
-    <End Role="tb_person" Type="Self.tb_person" Multiplicity="0..1" />
-    <End Role="Client" Type="Self.Client" Multiplicity="*" />
+  <Association Name="FK_Agency_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Agency" Type="Self.Agency" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="tb_person">
-        <PropertyRef Name="PersonID" />
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Client">
-        <PropertyRef Name="PersonId" />
+      <Dependent Role="Agency">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tb_send_Client">
-    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
-    <End Role="tb_send" Type="Self.tb_send" Multiplicity="*" />
+  <Association Name="FK_AgencyRating_Agency">
+    <End Role="Agency" Type="Self.Agency" Multiplicity="1" />
+    <End Role="AgencyRating" Type="Self.AgencyRating" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Client">
-        <PropertyRef Name="ID" />
+      <Principal Role="Agency">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="tb_send">
-        <PropertyRef Name="ClientID" />
+      <Dependent Role="AgencyRating">
+        <PropertyRef Name="AgancyId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tb_person_CompanyType">
-    <End Role="CompanyType" Type="Self.CompanyType" Multiplicity="0..1" />
-    <End Role="tb_person" Type="Self.tb_person" Multiplicity="*" />
+  <Association Name="FK_TourAgencyCost_Agency">
+    <End Role="Agency" Type="Self.Agency" Multiplicity="1" />
+    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="CompanyType">
-        <PropertyRef Name="CompanyTypeId" />
+      <Principal Role="Agency">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="tb_person">
-        <PropertyRef Name="CompanyTypeId" />
+      <Dependent Role="TourAgencyCost">
+        <PropertyRef Name="AgencyId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ContactInPerson_tb_contact">
-    <End Role="tb_contact" Type="Self.tb_contact" Multiplicity="1" />
-    <End Role="ContactInPerson" Type="Self.ContactInPerson" Multiplicity="0..1" />
+  <Association Name="FK_AgencyRating_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+    <End Role="AgencyRating" Type="Self.AgencyRating" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="tb_contact">
-        <PropertyRef Name="ContactID" />
+      <Principal Role="Tour">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="ContactInPerson">
-        <PropertyRef Name="ContactInPersonID" />
+      <Dependent Role="AgencyRating">
+        <PropertyRef Name="TourId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ContactInPerson_tb_person">
-    <End Role="tb_person" Type="Self.tb_person" Multiplicity="1" />
-    <End Role="ContactInPerson" Type="Self.ContactInPerson" Multiplicity="0..1" />
+  <Association Name="FK_AgencyRating_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="AgencyRating" Type="Self.AgencyRating" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="tb_person">
-        <PropertyRef Name="PersonID" />
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="ContactInPerson">
-        <PropertyRef Name="ContactInPersonID" />
+      <Dependent Role="AgencyRating">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ErrorCode_ErrorType">
-    <End Role="ErrorType" Type="Self.ErrorType" Multiplicity="0..1" />
-    <End Role="ErrorCode" Type="Self.ErrorCode" Multiplicity="*" />
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ErrorType">
-        <PropertyRef Name="ErrorTypeID" />
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="ErrorCode">
-        <PropertyRef Name="ErrorTypeID" />
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Invoice_ftType">
-    <End Role="ftType" Type="Self.ftType" Multiplicity="0..1" />
-    <End Role="InvoiceHeader" Type="Self.InvoiceHeader" Multiplicity="*" />
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ftType">
-        <PropertyRef Name="ftID" />
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="InvoiceHeader">
-        <PropertyRef Name="ft" />
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Invoice_inp">
-    <End Role="InPatern" Type="Self.InPatern" Multiplicity="1" />
-    <End Role="InvoiceHeader" Type="Self.InvoiceHeader" Multiplicity="*" />
+  <Association Name="FK_Terminal_Bank">
+    <End Role="Bank" Type="Self.Bank" Multiplicity="1" />
+    <End Role="Terminal" Type="Self.Terminal" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="InPatern">
-        <PropertyRef Name="InpID" />
+      <Principal Role="Bank">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="InvoiceHeader">
-        <PropertyRef Name="Inp" />
+      <Dependent Role="Terminal">
+        <PropertyRef Name="BankId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Invoice_InsType">
-    <End Role="InsType" Type="Self.InsType" Multiplicity="1" />
-    <End Role="InvoiceHeader" Type="Self.InvoiceHeader" Multiplicity="*" />
+  <Association Name="FK_HotelBooking_BookingStatus">
+    <End Role="BookingStatus" Type="Self.BookingStatu" Multiplicity="0..1" />
+    <End Role="HotelBooking" Type="Self.HotelBooking" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="InsType">
-        <PropertyRef Name="Ins" />
+      <Principal Role="BookingStatus">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="InvoiceHeader">
-        <PropertyRef Name="Ins" />
+      <Dependent Role="HotelBooking">
+        <PropertyRef Name="StatusId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_InvoiceBody_InvoiceHeader">
-    <End Role="InvoiceHeader" Type="Self.InvoiceHeader" Multiplicity="0..1" />
-    <End Role="InvoiceBody" Type="Self.InvoiceBody" Multiplicity="*" />
+  <Association Name="FK_BookingTransaction_BookingType">
+    <End Role="BookingType" Type="Self.BookingType" Multiplicity="1" />
+    <End Role="BookingTransaction" Type="Self.BookingTransaction" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="InvoiceHeader">
-        <PropertyRef Name="InvoiceID" />
+      <Principal Role="BookingType">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="InvoiceBody">
-        <PropertyRef Name="Taxid" />
+      <Dependent Role="BookingTransaction">
+        <PropertyRef Name="BookingTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_InvoiceField_FieldPosition">
-    <End Role="OptionalMode" Type="Self.OptionalMode" Multiplicity="0..1" />
-    <End Role="InvoiceField" Type="Self.InvoiceField" Multiplicity="*" />
+  <Association Name="FK_BookingTransaction_Terminal">
+    <End Role="Terminal" Type="Self.Terminal" Multiplicity="1" />
+    <End Role="BookingTransaction" Type="Self.BookingTransaction" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="OptionalMode">
-        <PropertyRef Name="OptionalModeID" />
+      <Principal Role="Terminal">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="InvoiceField">
-        <PropertyRef Name="Inp11" />
+      <Dependent Role="BookingTransaction">
+        <PropertyRef Name="TerminalId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_InvoiceField_OptionalMode">
-    <End Role="OptionalMode" Type="Self.OptionalMode" Multiplicity="0..1" />
-    <End Role="InvoiceField" Type="Self.InvoiceField" Multiplicity="*" />
+  <Association Name="FK_BookingTransaction_TransactionType">
+    <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="1" />
+    <End Role="BookingTransaction" Type="Self.BookingTransaction" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="OptionalMode">
-        <PropertyRef Name="OptionalModeID" />
+      <Principal Role="TransactionType">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="InvoiceField">
-        <PropertyRef Name="Inp12" />
+      <Dependent Role="BookingTransaction">
+        <PropertyRef Name="TransactionTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_InvoiceField_OptionalMode1">
-    <End Role="OptionalMode" Type="Self.OptionalMode" Multiplicity="0..1" />
-    <End Role="InvoiceField" Type="Self.InvoiceField" Multiplicity="*" />
+  <Association Name="FK_HotelBooking_BookingTransaction">
+    <End Role="BookingTransaction" Type="Self.BookingTransaction" Multiplicity="0..1" />
+    <End Role="HotelBooking" Type="Self.HotelBooking" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="OptionalMode">
-        <PropertyRef Name="OptionalModeID" />
+      <Principal Role="BookingTransaction">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="InvoiceField">
-        <PropertyRef Name="Inp13" />
+      <Dependent Role="HotelBooking">
+        <PropertyRef Name="TransactionId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_InvoiceField_OptionalMode2">
-    <End Role="OptionalMode" Type="Self.OptionalMode" Multiplicity="0..1" />
-    <End Role="InvoiceField" Type="Self.InvoiceField" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="OptionalMode">
-        <PropertyRef Name="OptionalModeID" />
-      </Principal>
-      <Dependent Role="InvoiceField">
-        <PropertyRef Name="Inp14" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_InvoiceField_OptionalMode3">
-    <End Role="OptionalMode" Type="Self.OptionalMode" Multiplicity="0..1" />
-    <End Role="InvoiceField" Type="Self.InvoiceField" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="OptionalMode">
-        <PropertyRef Name="OptionalModeID" />
-      </Principal>
-      <Dependent Role="InvoiceField">
-        <PropertyRef Name="Inp15" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_InvoiceField_OptionalMode4">
-    <End Role="OptionalMode" Type="Self.OptionalMode" Multiplicity="0..1" />
-    <End Role="InvoiceField" Type="Self.InvoiceField" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="OptionalMode">
-        <PropertyRef Name="OptionalModeID" />
-      </Principal>
-      <Dependent Role="InvoiceField">
-        <PropertyRef Name="Inp16" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_InvoiceField_OptionalMode5">
-    <End Role="OptionalMode" Type="Self.OptionalMode" Multiplicity="0..1" />
-    <End Role="InvoiceField" Type="Self.InvoiceField" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="OptionalMode">
-        <PropertyRef Name="OptionalModeID" />
-      </Principal>
-      <Dependent Role="InvoiceField">
-        <PropertyRef Name="Inp17" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_InvoiceField_OptionalMode6">
-    <End Role="OptionalMode" Type="Self.OptionalMode" Multiplicity="0..1" />
-    <End Role="InvoiceField" Type="Self.InvoiceField" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="OptionalMode">
-        <PropertyRef Name="OptionalModeID" />
-      </Principal>
-      <Dependent Role="InvoiceField">
-        <PropertyRef Name="inp21" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_InvoiceField_OptionalMode7">
-    <End Role="OptionalMode" Type="Self.OptionalMode" Multiplicity="0..1" />
-    <End Role="InvoiceField" Type="Self.InvoiceField" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="OptionalMode">
-        <PropertyRef Name="OptionalModeID" />
-      </Principal>
-      <Dependent Role="InvoiceField">
-        <PropertyRef Name="inp22" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_InvoiceField_OptionalMode8">
-    <End Role="OptionalMode" Type="Self.OptionalMode" Multiplicity="0..1" />
-    <End Role="InvoiceField" Type="Self.InvoiceField" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="OptionalMode">
-        <PropertyRef Name="OptionalModeID" />
-      </Principal>
-      <Dependent Role="InvoiceField">
-        <PropertyRef Name="inp31" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Payment_InvoiceHeader">
-    <End Role="InvoiceHeader" Type="Self.InvoiceHeader" Multiplicity="0..1" />
+  <Association Name="FK_Payment_BookingTransaction">
+    <End Role="BookingTransaction" Type="Self.BookingTransaction" Multiplicity="1" />
     <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="InvoiceHeader">
-        <PropertyRef Name="InvoiceID" />
+      <Principal Role="BookingTransaction">
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Payment">
-        <PropertyRef Name="Taxid" />
+        <PropertyRef Name="TransactionId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Product_muType">
-    <End Role="muType" Type="Self.muType" Multiplicity="0..1" />
-    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+  <Association Name="FK_CommissionSettlement_CheckoutType">
+    <End Role="CheckoutType" Type="Self.CheckoutType" Multiplicity="1" />
+    <End Role="CommissionSettlement" Type="Self.CommissionSettlement" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="muType">
-        <PropertyRef Name="mu" />
+      <Principal Role="CheckoutType">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Product">
-        <PropertyRef Name="mu" />
+      <Dependent Role="CommissionSettlement">
+        <PropertyRef Name="TypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Person_Person">
-    <End Role="PersonType" Type="Self.PersonType" Multiplicity="0..1" />
-    <End Role="tb_person" Type="Self.tb_person" Multiplicity="*" />
+  <Association Name="FK_TourCheckout_CheckoutType">
+    <End Role="CheckoutType" Type="Self.CheckoutType" Multiplicity="1" />
+    <End Role="TourCheckout" Type="Self.TourCheckout" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="PersonType">
-        <PropertyRef Name="PersonTypeID" />
+      <Principal Role="CheckoutType">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="tb_person">
-        <PropertyRef Name="PersonTypeId" />
+      <Dependent Role="TourCheckout">
+        <PropertyRef Name="TypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Product_ProductType">
-    <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
-    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+  <Association Name="FK_CommentPost_TB_Post_TB">
+    <End Role="Post_TB" Type="Self.Post_TB" Multiplicity="0..1" />
+    <End Role="CommentPost_TB" Type="Self.CommentPost_TB" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ProductType">
-        <PropertyRef Name="ID" />
+      <Principal Role="Post_TB">
+        <PropertyRef Name="postid" />
       </Principal>
-      <Dependent Role="Product">
-        <PropertyRef Name="TypeID" />
+      <Dependent Role="CommentPost_TB">
+        <PropertyRef Name="postid" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Product_SpecialOrGeneral">
-    <End Role="SpecialOrGeneral" Type="Self.SpecialOrGeneral" Multiplicity="0..1" />
-    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+  <Association Name="FK_CommentPost_TB_user_TB">
+    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
+    <End Role="CommentPost_TB" Type="Self.CommentPost_TB" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="SpecialOrGeneral">
-        <PropertyRef Name="ID" />
+      <Principal Role="user_TB">
+        <PropertyRef Name="userID" />
       </Principal>
-      <Dependent Role="Product">
-        <PropertyRef Name="SpecialOrGeneralID" />
+      <Dependent Role="CommentPost_TB">
+        <PropertyRef Name="userid" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Product_TaxableOrFree">
-    <End Role="TaxableOrFree" Type="Self.TaxableOrFree" Multiplicity="0..1" />
-    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+  <Association Name="FK_Comments_TB_Locations_TB">
+    <End Role="Locations_TB" Type="Self.Locations_TB" Multiplicity="0..1" />
+    <End Role="Comments_TB" Type="Self.Comments_TB" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="TaxableOrFree">
-        <PropertyRef Name="ID" />
+      <Principal Role="Locations_TB">
+        <PropertyRef Name="LocID" />
       </Principal>
-      <Dependent Role="Product">
-        <PropertyRef Name="TaxableOrFreeID" />
+      <Dependent Role="Comments_TB">
+        <PropertyRef Name="LocID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tb_person_tb_bank">
-    <End Role="tb_bank" Type="Self.tb_bank" Multiplicity="0..1" />
-    <End Role="tb_person" Type="Self.tb_person" Multiplicity="*" />
+  <Association Name="FK_Comments_TB_user_TB">
+    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
+    <End Role="Comments_TB" Type="Self.Comments_TB" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="tb_bank">
-        <PropertyRef Name="BankID" />
+      <Principal Role="user_TB">
+        <PropertyRef Name="userID" />
       </Principal>
-      <Dependent Role="tb_person">
-        <PropertyRef Name="BankID" />
+      <Dependent Role="Comments_TB">
+        <PropertyRef Name="userID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_User_tb_bank">
-    <End Role="tb_bank" Type="Self.tb_bank" Multiplicity="0..1" />
+  <Association Name="FK_CommissionSettlement_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="CommissionSettlement" Type="Self.CommissionSettlement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CommissionSettlement">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Coupon_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Coupon" Type="Self.Coupon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Coupon">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStopCost_Currency">
+    <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourAgencyCost">
+        <PropertyRef Name="CurrencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_fav_TB_Locations_TB">
+    <End Role="Locations_TB" Type="Self.Locations_TB" Multiplicity="0..1" />
+    <End Role="fav_TB" Type="Self.fav_TB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locations_TB">
+        <PropertyRef Name="LocID" />
+      </Principal>
+      <Dependent Role="fav_TB">
+        <PropertyRef Name="LocID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_fav_TB_user_TB">
+    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
+    <End Role="fav_TB" Type="Self.fav_TB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_TB">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="fav_TB">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tour_Hardness">
+    <End Role="Hardness" Type="Self.Hardness" Multiplicity="1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hardness">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="HardnessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hotel_HotelService">
+    <End Role="HotelService" Type="Self.HotelService" Multiplicity="1" />
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HotelService">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Hotel">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelBooking_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="HotelBooking" Type="Self.HotelBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelBooking">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelComment_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="HotelComment" Type="Self.HotelComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelComment">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelDateCost_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="HotelDateCost" Type="Self.HotelDateCost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelDateCost">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelDiscount_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="HotelDiscount" Type="Self.HotelDiscount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelDiscount">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelImage_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="HotelImage" Type="Self.HotelImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelImage">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelPackage_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+    <End Role="HotelPackage" Type="Self.HotelPackage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelPackage">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelSpecs_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="HotelSpecs" Type="Self.HotelSpec" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelSpecs">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelBooking_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="HotelBooking" Type="Self.HotelBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelBooking">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelPackage_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+    <End Role="HotelPackage" Type="Self.HotelPackage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelPackage">
+        <PropertyRef Name="TourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStopCost_HotelRoomType">
+    <End Role="HotelRoomType" Type="Self.HotelRoomType" Multiplicity="1" />
+    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HotelRoomType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourAgencyCost">
+        <PropertyRef Name="RoomTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelSpecs_PlaceSpec">
+    <End Role="PlaceSpec" Type="Self.PlaceSpec" Multiplicity="1" />
+    <End Role="HotelSpecs" Type="Self.HotelSpec" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlaceSpec">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelSpecs">
+        <PropertyRef Name="SpecId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelSpecs_SpecType">
+    <End Role="SpecType" Type="Self.SpecType" Multiplicity="1" />
+    <End Role="HotelSpecs" Type="Self.HotelSpec" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpecType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelSpecs">
+        <PropertyRef Name="SpecId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Location_City">
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="1" />
+    <End Role="Location" Type="Self.Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocCity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Location_LocationType">
+    <End Role="LocationType" Type="Self.LocationType" Multiplicity="1" />
+    <End Role="Location" Type="Self.Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocationType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Location_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Location" Type="Self.Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocationComment_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="LocationComment" Type="Self.LocationComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocationComment">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocationImage_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="LocationImage" Type="Self.LocationImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocationImage">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="LocationComment" Type="Self.LocationComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocationComment">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocationType_LocationGroup">
+    <End Role="LocationGroup" Type="Self.LocationGroup" Multiplicity="1" />
+    <End Role="LocationType" Type="Self.LocationType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocationGroup">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocationType">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Locations_TB_City">
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="0..1" />
+    <End Role="Locations_TB" Type="Self.Locations_TB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocCity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Locations_TB">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Locations_TB_LocationType">
+    <End Role="LocationType" Type="Self.LocationType" Multiplicity="0..1" />
+    <End Role="Locations_TB" Type="Self.Locations_TB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocationType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Locations_TB">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_toor_TB_Locations_TB">
+    <End Role="Locations_TB" Type="Self.Locations_TB" Multiplicity="0..1" />
+    <End Role="toor_TB" Type="Self.toor_TB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locations_TB">
+        <PropertyRef Name="LocID" />
+      </Principal>
+      <Dependent Role="toor_TB">
+        <PropertyRef Name="LocID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocCity_LocProvince">
+    <End Role="LocProvince" Type="Self.LocProvince" Multiplicity="1" />
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocProvince">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocCity">
+        <PropertyRef Name="ProvinceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Station_LocCity">
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="1" />
+    <End Role="Station" Type="Self.Station" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocCity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Station">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tour_City">
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocCity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="FromCityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_LocCity">
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocCity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocProvince_LocCountry">
+    <End Role="LocCountry" Type="Self.LocCountry" Multiplicity="0..1" />
+    <End Role="LocProvince" Type="Self.LocProvince" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocCountry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocProvince">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Province">
+    <End Role="LocProvince" Type="Self.LocProvince" Multiplicity="0..1" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="tb_bank">
-        <PropertyRef Name="BankID" />
+      <Principal Role="LocProvince">
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="User">
-        <PropertyRef Name="BankID" />
+        <PropertyRef Name="ProvinceId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tb_check_send_tb_send">
-    <End Role="tb_send" Type="Self.tb_send" Multiplicity="0..1" />
-    <End Role="tb_check_send" Type="Self.tb_check_send" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tb_send">
-        <PropertyRef Name="SendId" />
-      </Principal>
-      <Dependent Role="tb_check_send">
-        <PropertyRef Name="SendId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tb_contact_tb_degree">
-    <End Role="tb_degree" Type="Self.tb_degree" Multiplicity="0..1" />
-    <End Role="tb_contact" Type="Self.tb_contact" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tb_degree">
-        <PropertyRef Name="degreeID" />
-      </Principal>
-      <Dependent Role="tb_contact">
-        <PropertyRef Name="degreeID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tb_contact_tb_magor">
-    <End Role="tb_magor" Type="Self.tb_magor" Multiplicity="0..1" />
-    <End Role="tb_contact" Type="Self.tb_contact" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tb_magor">
-        <PropertyRef Name="magorID" />
-      </Principal>
-      <Dependent Role="tb_contact">
-        <PropertyRef Name="magorID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tb_marketing_User">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
-    <End Role="tb_marketing" Type="Self.tb_marketing" Multiplicity="*" />
+  <Association Name="FK_Owner_User2">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Owner" Type="Self.Owner" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
-        <PropertyRef Name="UserID" />
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="tb_marketing">
-        <PropertyRef Name="UserID" />
+      <Dependent Role="Owner">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tb_send_User">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
-    <End Role="tb_send" Type="Self.tb_send" Multiplicity="*" />
+  <Association Name="FK_PaymentResult_Payment">
+    <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
+    <End Role="PaymentResult" Type="Self.PaymentResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PaymentResult">
+        <PropertyRef Name="PaymentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlaceSpec_SpecType">
+    <End Role="SpecType" Type="Self.SpecType" Multiplicity="1" />
+    <End Role="PlaceSpec" Type="Self.PlaceSpec" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpecType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlaceSpec">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Post_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Post" Type="Self.Post" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
-        <PropertyRef Name="UserID" />
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="tb_send">
-        <PropertyRef Name="UserID" />
+      <Dependent Role="Post">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UserBranch_User">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
-    <End Role="UserBranch" Type="Self.UserBranch" Multiplicity="*" />
+  <Association Name="FK_Post_TB_user_TB">
+    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
+    <End Role="Post_TB" Type="Self.Post_TB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_TB">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Post_TB">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_smsCode_user_TB">
+    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
+    <End Role="smsCode" Type="Self.smsCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_TB">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="smsCode">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_Station">
+    <End Role="Station" Type="Self.Station" Multiplicity="0..1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Station">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="DepartureStationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_Station1">
+    <End Role="Station" Type="Self.Station" Multiplicity="0..1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Station">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="ArrivalStationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_toor_TB_user_TB">
+    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
+    <End Role="toor_TB" Type="Self.toor_TB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_TB">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="toor_TB">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tour_TourType">
+    <End Role="TourType" Type="Self.TourType" Multiplicity="1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TourType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="TourTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tour_TransportType">
+    <End Role="TransportType" Type="Self.TransportType" Multiplicity="1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransportType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="TransportTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tour_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
-        <PropertyRef Name="UserID" />
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="UserBranch">
-        <PropertyRef Name="UserID" />
+      <Dependent Role="Tour">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="StoreTerminalSystemEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Branches" EntityType="Self.Branch" />
-    <EntitySet Name="Clients" EntityType="Self.Client" />
-    <EntitySet Name="CompanyTypes" EntityType="Self.CompanyType" />
-    <EntitySet Name="ContactInPersons" EntityType="Self.ContactInPerson" />
-    <EntitySet Name="Currenies" EntityType="Self.Curreny" />
-    <EntitySet Name="ErrorCodes" EntityType="Self.ErrorCode" />
-    <EntitySet Name="ErrorTypes" EntityType="Self.ErrorType" />
-    <EntitySet Name="FieldPositions" EntityType="Self.FieldPosition" />
-    <EntitySet Name="ftTypes" EntityType="Self.ftType" />
-    <EntitySet Name="InPaterns" EntityType="Self.InPatern" />
-    <EntitySet Name="InsTypes" EntityType="Self.InsType" />
-    <EntitySet Name="InTypes" EntityType="Self.InType" />
-    <EntitySet Name="InvoiceBodies" EntityType="Self.InvoiceBody" />
-    <EntitySet Name="InvoiceFields" EntityType="Self.InvoiceField" />
-    <EntitySet Name="InvoiceHeaders" EntityType="Self.InvoiceHeader" />
-    <EntitySet Name="muTypes" EntityType="Self.muType" />
-    <EntitySet Name="OptionalModes" EntityType="Self.OptionalMode" />
+  <Association Name="FK_Tour_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="SupervisorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourAgencyCost_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourAgencyCost">
+        <PropertyRef Name="TourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourCheckout_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+    <End Role="TourCheckout" Type="Self.TourCheckout" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourCheckout">
+        <PropertyRef Name="TourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="TourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourBookingTripper_TourAgencyCost">
+    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="0..1" />
+    <End Role="TourBookingTripper" Type="Self.TourBookingTripper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TourAgencyCost">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourBookingTripper">
+        <PropertyRef Name="ToutCostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourBookingTripper_TourBooking">
+    <End Role="TourBooking" Type="Self.TourBooking" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TourBookingTripper" Type="Self.TourBookingTripper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TourBooking">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourBookingTripper">
+        <PropertyRef Name="BookingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_TourStopType">
+    <End Role="TourStopType" Type="Self.TourStopType" Multiplicity="1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TourStopType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="StopTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_TransportCompany">
+    <End Role="TransportCompany" Type="Self.TransportCompany" Multiplicity="1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransportCompany">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="TransportCompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportCompany_TransportType1">
+    <End Role="TransportType" Type="Self.TransportType" Multiplicity="1" />
+    <End Role="TransportCompany" Type="Self.TransportCompany" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransportType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportCompany">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_UserType">
+    <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserSession_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserSession" Type="Self.UserSession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserSession">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AgencySupervisor">
+    <End Role="Agency" Type="Self.Agency" Multiplicity="*" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+  </Association>
+  <Association Name="HotelFacilities">
+    <End Role="Facility" Type="Self.Facility" Multiplicity="*" />
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="*" />
+  </Association>
+  <Association Name="LocationLeaders">
+    <End Role="Location" Type="Self.Location" Multiplicity="*" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+  </Association>
+  <Association Name="TourCoupon">
+    <End Role="Coupon" Type="Self.Coupon" Multiplicity="*" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+  </Association>
+  <Association Name="TourEquipment">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+  </Association>
+  <Association Name="UserLanguages">
+    <End Role="Language" Type="Self.Language" Multiplicity="*" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+  </Association>
+  <Association Name="UserRoles">
+    <End Role="Role" Type="Self.Role" Multiplicity="*" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AbuseReports" EntityType="Self.AbuseReport" />
+    <EntitySet Name="Agencies" EntityType="Self.Agency" />
+    <EntitySet Name="AgencyRatings" EntityType="Self.AgencyRating" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="Banks" EntityType="Self.Bank" />
+    <EntitySet Name="BookingStatus" EntityType="Self.BookingStatu" />
+    <EntitySet Name="BookingTransactions" EntityType="Self.BookingTransaction" />
+    <EntitySet Name="BookingTypes" EntityType="Self.BookingType" />
+    <EntitySet Name="CheckoutTypes" EntityType="Self.CheckoutType" />
+    <EntitySet Name="CommentPost_TB" EntityType="Self.CommentPost_TB" />
+    <EntitySet Name="Comments_TB" EntityType="Self.Comments_TB" />
+    <EntitySet Name="CommissionSettlements" EntityType="Self.CommissionSettlement" />
+    <EntitySet Name="Coupons" EntityType="Self.Coupon" />
+    <EntitySet Name="Currencies" EntityType="Self.Currency" />
+    <EntitySet Name="Equipments" EntityType="Self.Equipment" />
+    <EntitySet Name="ErrorLogs" EntityType="Self.ErrorLog" />
+    <EntitySet Name="Facilities" EntityType="Self.Facility" />
+    <EntitySet Name="FacilityTypes" EntityType="Self.FacilityType" />
+    <EntitySet Name="fav_TB" EntityType="Self.fav_TB" />
+    <EntitySet Name="GlobalMetas" EntityType="Self.GlobalMeta" />
+    <EntitySet Name="Hardnesses" EntityType="Self.Hardness" />
+    <EntitySet Name="Hotels" EntityType="Self.Hotel" />
+    <EntitySet Name="HotelBookings" EntityType="Self.HotelBooking" />
+    <EntitySet Name="HotelComments" EntityType="Self.HotelComment" />
+    <EntitySet Name="HotelDateCosts" EntityType="Self.HotelDateCost" />
+    <EntitySet Name="HotelDiscounts" EntityType="Self.HotelDiscount" />
+    <EntitySet Name="HotelImages" EntityType="Self.HotelImage" />
+    <EntitySet Name="HotelPackages" EntityType="Self.HotelPackage" />
+    <EntitySet Name="HotelRoomTypes" EntityType="Self.HotelRoomType" />
+    <EntitySet Name="HotelServices" EntityType="Self.HotelService" />
+    <EntitySet Name="HotelSpecs" EntityType="Self.HotelSpec" />
+    <EntitySet Name="Languages" EntityType="Self.Language" />
+    <EntitySet Name="Locations" EntityType="Self.Location" />
+    <EntitySet Name="LocationComments" EntityType="Self.LocationComment" />
+    <EntitySet Name="LocationGroups" EntityType="Self.LocationGroup" />
+    <EntitySet Name="LocationImages" EntityType="Self.LocationImage" />
+    <EntitySet Name="Locations_TB" EntityType="Self.Locations_TB" />
+    <EntitySet Name="LocationTypes" EntityType="Self.LocationType" />
+    <EntitySet Name="LocCities" EntityType="Self.LocCity" />
+    <EntitySet Name="LocCountries" EntityType="Self.LocCountry" />
+    <EntitySet Name="LocProvinces" EntityType="Self.LocProvince" />
+    <EntitySet Name="Log_TB" EntityType="Self.Log_TB" />
+    <EntitySet Name="Owners" EntityType="Self.Owner" />
     <EntitySet Name="Payments" EntityType="Self.Payment" />
-    <EntitySet Name="PersonTypes" EntityType="Self.PersonType" />
-    <EntitySet Name="pmtTypes" EntityType="Self.pmtType" />
-    <EntitySet Name="Products" EntityType="Self.Product" />
-    <EntitySet Name="ProductTypes" EntityType="Self.ProductType" />
-    <EntitySet Name="SpecialOrGenerals" EntityType="Self.SpecialOrGeneral" />
-    <EntitySet Name="TaxableOrFrees" EntityType="Self.TaxableOrFree" />
-    <EntitySet Name="tb_bank" EntityType="Self.tb_bank" />
-    <EntitySet Name="tb_check_send" EntityType="Self.tb_check_send" />
-    <EntitySet Name="tb_contact" EntityType="Self.tb_contact" />
-    <EntitySet Name="tb_degree" EntityType="Self.tb_degree" />
-    <EntitySet Name="tb_magor" EntityType="Self.tb_magor" />
-    <EntitySet Name="tb_marketing" EntityType="Self.tb_marketing" />
-    <EntitySet Name="tb_person" EntityType="Self.tb_person" />
-    <EntitySet Name="tb_send" EntityType="Self.tb_send" />
+    <EntitySet Name="PaymentResults" EntityType="Self.PaymentResult" />
+    <EntitySet Name="PaymentResultLogs" EntityType="Self.PaymentResultLog" />
+    <EntitySet Name="PlaceSpecs" EntityType="Self.PlaceSpec" />
+    <EntitySet Name="Posts" EntityType="Self.Post" />
+    <EntitySet Name="Post_TB" EntityType="Self.Post_TB" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="SmsAdminContacts" EntityType="Self.SmsAdminContact" />
+    <EntitySet Name="smsCodes" EntityType="Self.smsCode" />
+    <EntitySet Name="SmsCreditNotices" EntityType="Self.SmsCreditNotice" />
+    <EntitySet Name="SmsReadyToSends" EntityType="Self.SmsReadyToSend" />
+    <EntitySet Name="SmsSentArchives" EntityType="Self.SmsSentArchive" />
+    <EntitySet Name="SmsWebServiceSettings" EntityType="Self.SmsWebServiceSetting" />
+    <EntitySet Name="SpecTypes" EntityType="Self.SpecType" />
+    <EntitySet Name="Stations" EntityType="Self.Station" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="temps" EntityType="Self.temp" />
+    <EntitySet Name="Terminals" EntityType="Self.Terminal" />
+    <EntitySet Name="toor_TB" EntityType="Self.toor_TB" />
+    <EntitySet Name="Tours" EntityType="Self.Tour" />
+    <EntitySet Name="TourAgencyCosts" EntityType="Self.TourAgencyCost" />
+    <EntitySet Name="TourBookings" EntityType="Self.TourBooking" />
+    <EntitySet Name="TourBookingTrippers" EntityType="Self.TourBookingTripper" />
+    <EntitySet Name="TourCheckouts" EntityType="Self.TourCheckout" />
+    <EntitySet Name="TourStops" EntityType="Self.TourStop" />
+    <EntitySet Name="TourStopTypes" EntityType="Self.TourStopType" />
+    <EntitySet Name="TourTypes" EntityType="Self.TourType" />
+    <EntitySet Name="TransactionTypes" EntityType="Self.TransactionType" />
+    <EntitySet Name="TransportCompanies" EntityType="Self.TransportCompany" />
+    <EntitySet Name="TransportTypes" EntityType="Self.TransportType" />
     <EntitySet Name="Users" EntityType="Self.User" />
-    <EntitySet Name="UserBranches" EntityType="Self.UserBranch" />
-    <AssociationSet Name="FK_Branch_Client" Association="Self.FK_Branch_Client">
-      <End Role="Client" EntitySet="Clients" />
-      <End Role="Branch" EntitySet="Branches" />
+    <EntitySet Name="user_TB" EntityType="Self.user_TB" />
+    <EntitySet Name="UserSessions" EntityType="Self.UserSession" />
+    <EntitySet Name="UserTypes" EntityType="Self.UserType" />
+    <AssociationSet Name="FK_AbuseReport_Hotel" Association="Self.FK_AbuseReport_Hotel">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="AbuseReport" EntitySet="AbuseReports" />
     </AssociationSet>
-    <AssociationSet Name="FK_UserBranch_Branch" Association="Self.FK_UserBranch_Branch">
-      <End Role="Branch" EntitySet="Branches" />
-      <End Role="UserBranch" EntitySet="UserBranches" />
+    <AssociationSet Name="FK_Agency_City" Association="Self.FK_Agency_City">
+      <End Role="LocCity" EntitySet="LocCities" />
+      <End Role="Agency" EntitySet="Agencies" />
     </AssociationSet>
-    <AssociationSet Name="FK_Client_tb_person" Association="Self.FK_Client_tb_person">
-      <End Role="tb_person" EntitySet="tb_person" />
-      <End Role="Client" EntitySet="Clients" />
+    <AssociationSet Name="FK_Agency_User" Association="Self.FK_Agency_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Agency" EntitySet="Agencies" />
     </AssociationSet>
-    <AssociationSet Name="FK_tb_send_Client" Association="Self.FK_tb_send_Client">
-      <End Role="Client" EntitySet="Clients" />
-      <End Role="tb_send" EntitySet="tb_send" />
+    <AssociationSet Name="FK_AgencyRating_Agency" Association="Self.FK_AgencyRating_Agency">
+      <End Role="Agency" EntitySet="Agencies" />
+      <End Role="AgencyRating" EntitySet="AgencyRatings" />
     </AssociationSet>
-    <AssociationSet Name="FK_tb_person_CompanyType" Association="Self.FK_tb_person_CompanyType">
-      <End Role="CompanyType" EntitySet="CompanyTypes" />
-      <End Role="tb_person" EntitySet="tb_person" />
+    <AssociationSet Name="FK_TourAgencyCost_Agency" Association="Self.FK_TourAgencyCost_Agency">
+      <End Role="Agency" EntitySet="Agencies" />
+      <End Role="TourAgencyCost" EntitySet="TourAgencyCosts" />
     </AssociationSet>
-    <AssociationSet Name="FK_ContactInPerson_tb_contact" Association="Self.FK_ContactInPerson_tb_contact">
-      <End Role="tb_contact" EntitySet="tb_contact" />
-      <End Role="ContactInPerson" EntitySet="ContactInPersons" />
+    <AssociationSet Name="FK_AgencyRating_Tour" Association="Self.FK_AgencyRating_Tour">
+      <End Role="Tour" EntitySet="Tours" />
+      <End Role="AgencyRating" EntitySet="AgencyRatings" />
     </AssociationSet>
-    <AssociationSet Name="FK_ContactInPerson_tb_person" Association="Self.FK_ContactInPerson_tb_person">
-      <End Role="tb_person" EntitySet="tb_person" />
-      <End Role="ContactInPerson" EntitySet="ContactInPersons" />
+    <AssociationSet Name="FK_AgencyRating_User" Association="Self.FK_AgencyRating_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="AgencyRating" EntitySet="AgencyRatings" />
     </AssociationSet>
-    <AssociationSet Name="FK_ErrorCode_ErrorType" Association="Self.FK_ErrorCode_ErrorType">
-      <End Role="ErrorType" EntitySet="ErrorTypes" />
-      <End Role="ErrorCode" EntitySet="ErrorCodes" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
     </AssociationSet>
-    <AssociationSet Name="FK_Invoice_ftType" Association="Self.FK_Invoice_ftType">
-      <End Role="ftType" EntitySet="ftTypes" />
-      <End Role="InvoiceHeader" EntitySet="InvoiceHeaders" />
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
     </AssociationSet>
-    <AssociationSet Name="FK_Invoice_inp" Association="Self.FK_Invoice_inp">
-      <End Role="InPatern" EntitySet="InPaterns" />
-      <End Role="InvoiceHeader" EntitySet="InvoiceHeaders" />
+    <AssociationSet Name="FK_Terminal_Bank" Association="Self.FK_Terminal_Bank">
+      <End Role="Bank" EntitySet="Banks" />
+      <End Role="Terminal" EntitySet="Terminals" />
     </AssociationSet>
-    <AssociationSet Name="FK_Invoice_InsType" Association="Self.FK_Invoice_InsType">
-      <End Role="InsType" EntitySet="InsTypes" />
-      <End Role="InvoiceHeader" EntitySet="InvoiceHeaders" />
+    <AssociationSet Name="FK_HotelBooking_BookingStatus" Association="Self.FK_HotelBooking_BookingStatus">
+      <End Role="BookingStatus" EntitySet="BookingStatus" />
+      <End Role="HotelBooking" EntitySet="HotelBookings" />
     </AssociationSet>
-    <AssociationSet Name="FK_InvoiceBody_InvoiceHeader" Association="Self.FK_InvoiceBody_InvoiceHeader">
-      <End Role="InvoiceHeader" EntitySet="InvoiceHeaders" />
-      <End Role="InvoiceBody" EntitySet="InvoiceBodies" />
+    <AssociationSet Name="FK_BookingTransaction_BookingType" Association="Self.FK_BookingTransaction_BookingType">
+      <End Role="BookingType" EntitySet="BookingTypes" />
+      <End Role="BookingTransaction" EntitySet="BookingTransactions" />
     </AssociationSet>
-    <AssociationSet Name="FK_InvoiceField_FieldPosition" Association="Self.FK_InvoiceField_FieldPosition">
-      <End Role="OptionalMode" EntitySet="OptionalModes" />
-      <End Role="InvoiceField" EntitySet="InvoiceFields" />
+    <AssociationSet Name="FK_BookingTransaction_Terminal" Association="Self.FK_BookingTransaction_Terminal">
+      <End Role="Terminal" EntitySet="Terminals" />
+      <End Role="BookingTransaction" EntitySet="BookingTransactions" />
     </AssociationSet>
-    <AssociationSet Name="FK_InvoiceField_OptionalMode" Association="Self.FK_InvoiceField_OptionalMode">
-      <End Role="OptionalMode" EntitySet="OptionalModes" />
-      <End Role="InvoiceField" EntitySet="InvoiceFields" />
+    <AssociationSet Name="FK_BookingTransaction_TransactionType" Association="Self.FK_BookingTransaction_TransactionType">
+      <End Role="TransactionType" EntitySet="TransactionTypes" />
+      <End Role="BookingTransaction" EntitySet="BookingTransactions" />
     </AssociationSet>
-    <AssociationSet Name="FK_InvoiceField_OptionalMode1" Association="Self.FK_InvoiceField_OptionalMode1">
-      <End Role="OptionalMode" EntitySet="OptionalModes" />
-      <End Role="InvoiceField" EntitySet="InvoiceFields" />
+    <AssociationSet Name="FK_HotelBooking_BookingTransaction" Association="Self.FK_HotelBooking_BookingTransaction">
+      <End Role="BookingTransaction" EntitySet="BookingTransactions" />
+      <End Role="HotelBooking" EntitySet="HotelBookings" />
     </AssociationSet>
-    <AssociationSet Name="FK_InvoiceField_OptionalMode2" Association="Self.FK_InvoiceField_OptionalMode2">
-      <End Role="OptionalMode" EntitySet="OptionalModes" />
-      <End Role="InvoiceField" EntitySet="InvoiceFields" />
-    </AssociationSet>
-    <AssociationSet Name="FK_InvoiceField_OptionalMode3" Association="Self.FK_InvoiceField_OptionalMode3">
-      <End Role="OptionalMode" EntitySet="OptionalModes" />
-      <End Role="InvoiceField" EntitySet="InvoiceFields" />
-    </AssociationSet>
-    <AssociationSet Name="FK_InvoiceField_OptionalMode4" Association="Self.FK_InvoiceField_OptionalMode4">
-      <End Role="OptionalMode" EntitySet="OptionalModes" />
-      <End Role="InvoiceField" EntitySet="InvoiceFields" />
-    </AssociationSet>
-    <AssociationSet Name="FK_InvoiceField_OptionalMode5" Association="Self.FK_InvoiceField_OptionalMode5">
-      <End Role="OptionalMode" EntitySet="OptionalModes" />
-      <End Role="InvoiceField" EntitySet="InvoiceFields" />
-    </AssociationSet>
-    <AssociationSet Name="FK_InvoiceField_OptionalMode6" Association="Self.FK_InvoiceField_OptionalMode6">
-      <End Role="OptionalMode" EntitySet="OptionalModes" />
-      <End Role="InvoiceField" EntitySet="InvoiceFields" />
-    </AssociationSet>
-    <AssociationSet Name="FK_InvoiceField_OptionalMode7" Association="Self.FK_InvoiceField_OptionalMode7">
-      <End Role="OptionalMode" EntitySet="OptionalModes" />
-      <End Role="InvoiceField" EntitySet="InvoiceFields" />
-    </AssociationSet>
-    <AssociationSet Name="FK_InvoiceField_OptionalMode8" Association="Self.FK_InvoiceField_OptionalMode8">
-      <End Role="OptionalMode" EntitySet="OptionalModes" />
-      <End Role="InvoiceField" EntitySet="InvoiceFields" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Payment_InvoiceHeader" Association="Self.FK_Payment_InvoiceHeader">
-      <End Role="InvoiceHeader" EntitySet="InvoiceHeaders" />
+    <AssociationSet Name="FK_Payment_BookingTransaction" Association="Self.FK_Payment_BookingTransaction">
+      <End Role="BookingTransaction" EntitySet="BookingTransactions" />
       <End Role="Payment" EntitySet="Payments" />
     </AssociationSet>
-    <AssociationSet Name="FK_Product_muType" Association="Self.FK_Product_muType">
-      <End Role="muType" EntitySet="muTypes" />
-      <End Role="Product" EntitySet="Products" />
+    <AssociationSet Name="FK_CommissionSettlement_CheckoutType" Association="Self.FK_CommissionSettlement_CheckoutType">
+      <End Role="CheckoutType" EntitySet="CheckoutTypes" />
+      <End Role="CommissionSettlement" EntitySet="CommissionSettlements" />
     </AssociationSet>
-    <AssociationSet Name="FK_Person_Person" Association="Self.FK_Person_Person">
-      <End Role="PersonType" EntitySet="PersonTypes" />
-      <End Role="tb_person" EntitySet="tb_person" />
+    <AssociationSet Name="FK_TourCheckout_CheckoutType" Association="Self.FK_TourCheckout_CheckoutType">
+      <End Role="CheckoutType" EntitySet="CheckoutTypes" />
+      <End Role="TourCheckout" EntitySet="TourCheckouts" />
     </AssociationSet>
-    <AssociationSet Name="FK_Product_ProductType" Association="Self.FK_Product_ProductType">
-      <End Role="ProductType" EntitySet="ProductTypes" />
-      <End Role="Product" EntitySet="Products" />
+    <AssociationSet Name="FK_CommentPost_TB_Post_TB" Association="Self.FK_CommentPost_TB_Post_TB">
+      <End Role="Post_TB" EntitySet="Post_TB" />
+      <End Role="CommentPost_TB" EntitySet="CommentPost_TB" />
     </AssociationSet>
-    <AssociationSet Name="FK_Product_SpecialOrGeneral" Association="Self.FK_Product_SpecialOrGeneral">
-      <End Role="SpecialOrGeneral" EntitySet="SpecialOrGenerals" />
-      <End Role="Product" EntitySet="Products" />
+    <AssociationSet Name="FK_CommentPost_TB_user_TB" Association="Self.FK_CommentPost_TB_user_TB">
+      <End Role="user_TB" EntitySet="user_TB" />
+      <End Role="CommentPost_TB" EntitySet="CommentPost_TB" />
     </AssociationSet>
-    <AssociationSet Name="FK_Product_TaxableOrFree" Association="Self.FK_Product_TaxableOrFree">
-      <End Role="TaxableOrFree" EntitySet="TaxableOrFrees" />
-      <End Role="Product" EntitySet="Products" />
+    <AssociationSet Name="FK_Comments_TB_Locations_TB" Association="Self.FK_Comments_TB_Locations_TB">
+      <End Role="Locations_TB" EntitySet="Locations_TB" />
+      <End Role="Comments_TB" EntitySet="Comments_TB" />
     </AssociationSet>
-    <AssociationSet Name="FK_tb_person_tb_bank" Association="Self.FK_tb_person_tb_bank">
-      <End Role="tb_bank" EntitySet="tb_bank" />
-      <End Role="tb_person" EntitySet="tb_person" />
+    <AssociationSet Name="FK_Comments_TB_user_TB" Association="Self.FK_Comments_TB_user_TB">
+      <End Role="user_TB" EntitySet="user_TB" />
+      <End Role="Comments_TB" EntitySet="Comments_TB" />
     </AssociationSet>
-    <AssociationSet Name="FK_User_tb_bank" Association="Self.FK_User_tb_bank">
-      <End Role="tb_bank" EntitySet="tb_bank" />
+    <AssociationSet Name="FK_CommissionSettlement_User" Association="Self.FK_CommissionSettlement_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="CommissionSettlement" EntitySet="CommissionSettlements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Coupon_User" Association="Self.FK_Coupon_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Coupon" EntitySet="Coupons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStopCost_Currency" Association="Self.FK_TourStopCost_Currency">
+      <End Role="Currency" EntitySet="Currencies" />
+      <End Role="TourAgencyCost" EntitySet="TourAgencyCosts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_fav_TB_Locations_TB" Association="Self.FK_fav_TB_Locations_TB">
+      <End Role="Locations_TB" EntitySet="Locations_TB" />
+      <End Role="fav_TB" EntitySet="fav_TB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_fav_TB_user_TB" Association="Self.FK_fav_TB_user_TB">
+      <End Role="user_TB" EntitySet="user_TB" />
+      <End Role="fav_TB" EntitySet="fav_TB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tour_Hardness" Association="Self.FK_Tour_Hardness">
+      <End Role="Hardness" EntitySet="Hardnesses" />
+      <End Role="Tour" EntitySet="Tours" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hotel_HotelService" Association="Self.FK_Hotel_HotelService">
+      <End Role="HotelService" EntitySet="HotelServices" />
+      <End Role="Hotel" EntitySet="Hotels" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelBooking_Hotel" Association="Self.FK_HotelBooking_Hotel">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="HotelBooking" EntitySet="HotelBookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelComment_Hotel" Association="Self.FK_HotelComment_Hotel">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="HotelComment" EntitySet="HotelComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelDateCost_Hotel" Association="Self.FK_HotelDateCost_Hotel">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="HotelDateCost" EntitySet="HotelDateCosts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelDiscount_Hotel" Association="Self.FK_HotelDiscount_Hotel">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="HotelDiscount" EntitySet="HotelDiscounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelImage_Hotel" Association="Self.FK_HotelImage_Hotel">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="HotelImage" EntitySet="HotelImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelPackage_Hotel" Association="Self.FK_HotelPackage_Hotel">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="HotelPackage" EntitySet="HotelPackages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelSpecs_Hotel" Association="Self.FK_HotelSpecs_Hotel">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="HotelSpecs" EntitySet="HotelSpecs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_Hotel" Association="Self.FK_TourStop_Hotel">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="TourStop" EntitySet="TourStops" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelBooking_User" Association="Self.FK_HotelBooking_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="HotelBooking" EntitySet="HotelBookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelPackage_Tour" Association="Self.FK_HotelPackage_Tour">
+      <End Role="Tour" EntitySet="Tours" />
+      <End Role="HotelPackage" EntitySet="HotelPackages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStopCost_HotelRoomType" Association="Self.FK_TourStopCost_HotelRoomType">
+      <End Role="HotelRoomType" EntitySet="HotelRoomTypes" />
+      <End Role="TourAgencyCost" EntitySet="TourAgencyCosts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelSpecs_PlaceSpec" Association="Self.FK_HotelSpecs_PlaceSpec">
+      <End Role="PlaceSpec" EntitySet="PlaceSpecs" />
+      <End Role="HotelSpecs" EntitySet="HotelSpecs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelSpecs_SpecType" Association="Self.FK_HotelSpecs_SpecType">
+      <End Role="SpecType" EntitySet="SpecTypes" />
+      <End Role="HotelSpecs" EntitySet="HotelSpecs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Location_City" Association="Self.FK_Location_City">
+      <End Role="LocCity" EntitySet="LocCities" />
+      <End Role="Location" EntitySet="Locations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Location_LocationType" Association="Self.FK_Location_LocationType">
+      <End Role="LocationType" EntitySet="LocationTypes" />
+      <End Role="Location" EntitySet="Locations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Location_User" Association="Self.FK_Location_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Location" EntitySet="Locations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocationComment_Location" Association="Self.FK_LocationComment_Location">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="LocationComment" EntitySet="LocationComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocationImage_Location" Association="Self.FK_LocationImage_Location">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="LocationImage" EntitySet="LocationImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_Location" Association="Self.FK_TourStop_Location">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="TourStop" EntitySet="TourStops" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="LocationComment" EntitySet="LocationComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocationType_LocationGroup" Association="Self.FK_LocationType_LocationGroup">
+      <End Role="LocationGroup" EntitySet="LocationGroups" />
+      <End Role="LocationType" EntitySet="LocationTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Locations_TB_City" Association="Self.FK_Locations_TB_City">
+      <End Role="LocCity" EntitySet="LocCities" />
+      <End Role="Locations_TB" EntitySet="Locations_TB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Locations_TB_LocationType" Association="Self.FK_Locations_TB_LocationType">
+      <End Role="LocationType" EntitySet="LocationTypes" />
+      <End Role="Locations_TB" EntitySet="Locations_TB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_toor_TB_Locations_TB" Association="Self.FK_toor_TB_Locations_TB">
+      <End Role="Locations_TB" EntitySet="Locations_TB" />
+      <End Role="toor_TB" EntitySet="toor_TB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocCity_LocProvince" Association="Self.FK_LocCity_LocProvince">
+      <End Role="LocProvince" EntitySet="LocProvinces" />
+      <End Role="LocCity" EntitySet="LocCities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Station_LocCity" Association="Self.FK_Station_LocCity">
+      <End Role="LocCity" EntitySet="LocCities" />
+      <End Role="Station" EntitySet="Stations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tour_City" Association="Self.FK_Tour_City">
+      <End Role="LocCity" EntitySet="LocCities" />
+      <End Role="Tour" EntitySet="Tours" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_LocCity" Association="Self.FK_TourStop_LocCity">
+      <End Role="LocCity" EntitySet="LocCities" />
+      <End Role="TourStop" EntitySet="TourStops" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocProvince_LocCountry" Association="Self.FK_LocProvince_LocCountry">
+      <End Role="LocCountry" EntitySet="LocCountries" />
+      <End Role="LocProvince" EntitySet="LocProvinces" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Province" Association="Self.FK_User_Province">
+      <End Role="LocProvince" EntitySet="LocProvinces" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
-    <AssociationSet Name="FK_tb_check_send_tb_send" Association="Self.FK_tb_check_send_tb_send">
-      <End Role="tb_send" EntitySet="tb_send" />
-      <End Role="tb_check_send" EntitySet="tb_check_send" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tb_contact_tb_degree" Association="Self.FK_tb_contact_tb_degree">
-      <End Role="tb_degree" EntitySet="tb_degree" />
-      <End Role="tb_contact" EntitySet="tb_contact" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tb_contact_tb_magor" Association="Self.FK_tb_contact_tb_magor">
-      <End Role="tb_magor" EntitySet="tb_magor" />
-      <End Role="tb_contact" EntitySet="tb_contact" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tb_marketing_User" Association="Self.FK_tb_marketing_User">
+    <AssociationSet Name="FK_Owner_User2" Association="Self.FK_Owner_User2">
       <End Role="User" EntitySet="Users" />
-      <End Role="tb_marketing" EntitySet="tb_marketing" />
+      <End Role="Owner" EntitySet="Owners" />
     </AssociationSet>
-    <AssociationSet Name="FK_tb_send_User" Association="Self.FK_tb_send_User">
-      <End Role="User" EntitySet="Users" />
-      <End Role="tb_send" EntitySet="tb_send" />
+    <AssociationSet Name="FK_PaymentResult_Payment" Association="Self.FK_PaymentResult_Payment">
+      <End Role="Payment" EntitySet="Payments" />
+      <End Role="PaymentResult" EntitySet="PaymentResults" />
     </AssociationSet>
-    <AssociationSet Name="FK_UserBranch_User" Association="Self.FK_UserBranch_User">
+    <AssociationSet Name="FK_PlaceSpec_SpecType" Association="Self.FK_PlaceSpec_SpecType">
+      <End Role="SpecType" EntitySet="SpecTypes" />
+      <End Role="PlaceSpec" EntitySet="PlaceSpecs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_User" Association="Self.FK_Post_User">
       <End Role="User" EntitySet="Users" />
-      <End Role="UserBranch" EntitySet="UserBranches" />
+      <End Role="Post" EntitySet="Posts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_TB_user_TB" Association="Self.FK_Post_TB_user_TB">
+      <End Role="user_TB" EntitySet="user_TB" />
+      <End Role="Post_TB" EntitySet="Post_TB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_smsCode_user_TB" Association="Self.FK_smsCode_user_TB">
+      <End Role="user_TB" EntitySet="user_TB" />
+      <End Role="smsCode" EntitySet="smsCodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_Station" Association="Self.FK_TourStop_Station">
+      <End Role="Station" EntitySet="Stations" />
+      <End Role="TourStop" EntitySet="TourStops" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_Station1" Association="Self.FK_TourStop_Station1">
+      <End Role="Station" EntitySet="Stations" />
+      <End Role="TourStop" EntitySet="TourStops" />
+    </AssociationSet>
+    <AssociationSet Name="FK_toor_TB_user_TB" Association="Self.FK_toor_TB_user_TB">
+      <End Role="user_TB" EntitySet="user_TB" />
+      <End Role="toor_TB" EntitySet="toor_TB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tour_TourType" Association="Self.FK_Tour_TourType">
+      <End Role="TourType" EntitySet="TourTypes" />
+      <End Role="Tour" EntitySet="Tours" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tour_TransportType" Association="Self.FK_Tour_TransportType">
+      <End Role="TransportType" EntitySet="TransportTypes" />
+      <End Role="Tour" EntitySet="Tours" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tour_User" Association="Self.FK_Tour_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Tour" EntitySet="Tours" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tour_User1" Association="Self.FK_Tour_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Tour" EntitySet="Tours" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourAgencyCost_Tour" Association="Self.FK_TourAgencyCost_Tour">
+      <End Role="Tour" EntitySet="Tours" />
+      <End Role="TourAgencyCost" EntitySet="TourAgencyCosts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourCheckout_Tour" Association="Self.FK_TourCheckout_Tour">
+      <End Role="Tour" EntitySet="Tours" />
+      <End Role="TourCheckout" EntitySet="TourCheckouts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_Tour" Association="Self.FK_TourStop_Tour">
+      <End Role="Tour" EntitySet="Tours" />
+      <End Role="TourStop" EntitySet="TourStops" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourBookingTripper_TourAgencyCost" Association="Self.FK_TourBookingTripper_TourAgencyCost">
+      <End Role="TourAgencyCost" EntitySet="TourAgencyCosts" />
+      <End Role="TourBookingTripper" EntitySet="TourBookingTrippers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourBookingTripper_TourBooking" Association="Self.FK_TourBookingTripper_TourBooking">
+      <End Role="TourBooking" EntitySet="TourBookings" />
+      <End Role="TourBookingTripper" EntitySet="TourBookingTrippers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_TourStopType" Association="Self.FK_TourStop_TourStopType">
+      <End Role="TourStopType" EntitySet="TourStopTypes" />
+      <End Role="TourStop" EntitySet="TourStops" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_TransportCompany" Association="Self.FK_TourStop_TransportCompany">
+      <End Role="TransportCompany" EntitySet="TransportCompanies" />
+      <End Role="TourStop" EntitySet="TourStops" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportCompany_TransportType1" Association="Self.FK_TransportCompany_TransportType1">
+      <End Role="TransportType" EntitySet="TransportTypes" />
+      <End Role="TransportCompany" EntitySet="TransportCompanies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_UserType" Association="Self.FK_User_UserType">
+      <End Role="UserType" EntitySet="UserTypes" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserSession_User" Association="Self.FK_UserSession_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserSession" EntitySet="UserSessions" />
+    </AssociationSet>
+    <AssociationSet Name="AgencySupervisor" Association="Self.AgencySupervisor">
+      <End Role="Agency" EntitySet="Agencies" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="HotelFacilities" Association="Self.HotelFacilities">
+      <End Role="Facility" EntitySet="Facilities" />
+      <End Role="Hotel" EntitySet="Hotels" />
+    </AssociationSet>
+    <AssociationSet Name="LocationLeaders" Association="Self.LocationLeaders">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="TourCoupon" Association="Self.TourCoupon">
+      <End Role="Coupon" EntitySet="Coupons" />
+      <End Role="Tour" EntitySet="Tours" />
+    </AssociationSet>
+    <AssociationSet Name="TourEquipment" Association="Self.TourEquipment">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="Tour" EntitySet="Tours" />
+    </AssociationSet>
+    <AssociationSet Name="UserLanguages" Association="Self.UserLanguages">
+      <End Role="Language" EntitySet="Languages" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="UserRoles" Association="Self.UserRoles">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

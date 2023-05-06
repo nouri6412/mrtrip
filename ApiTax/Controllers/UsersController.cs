@@ -13,7 +13,7 @@ namespace ApiTax.Controllers
  
     public class UsersController : Controller
     {
-        private StoreTerminalSystemEntities db = new StoreTerminalSystemEntities();
+        private dbEntities db = new dbEntities();
 
         // GET: Users
         public ActionResult Index()
@@ -53,7 +53,6 @@ namespace ApiTax.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
-            ViewBag.BankID = new SelectList(db.tb_bank, "BankID", "title");
             return View();
         }
 
@@ -67,8 +66,6 @@ namespace ApiTax.Controllers
 
             if (ModelState.IsValid)
             {
-                user.StartActive = DateTime.Now.Date.Year.ToString() + "-" + DateTime.Now.Date.Month.ToString() + "-" + DateTime.Now.Date.Day.ToString();
-                user.user_type = 2;
                 db.Users.Add(user);
                 db.SaveChanges();
 
@@ -84,7 +81,7 @@ namespace ApiTax.Controllers
                 }
 
             }
-            ViewBag.BankID = new SelectList(db.tb_bank, "BankID", "title",user.BankID);
+
             return View(user);
         }
 
@@ -107,7 +104,7 @@ namespace ApiTax.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BankID = new SelectList(db.tb_bank, "BankID", "title", user.BankID);
+       
             return View(user);
         }
 
@@ -131,7 +128,7 @@ namespace ApiTax.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.BankID = new SelectList(db.tb_bank, "BankID", "title", user.BankID);
+   
             return View(user);
         }
 

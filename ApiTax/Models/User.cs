@@ -17,33 +17,85 @@ namespace ApiTax.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            this.tb_marketing = new HashSet<tb_marketing>();
-            this.tb_send = new HashSet<tb_send>();
-            this.UserBranches = new HashSet<UserBranch>();
+            this.Agencies = new HashSet<Agency>();
+            this.AgencyRatings = new HashSet<AgencyRating>();
+            this.CommissionSettlements = new HashSet<CommissionSettlement>();
+            this.Coupons = new HashSet<Coupon>();
+            this.HotelBookings = new HashSet<HotelBooking>();
+            this.Locations = new HashSet<Location>();
+            this.LocationComments = new HashSet<LocationComment>();
+            this.Owners = new HashSet<Owner>();
+            this.Posts = new HashSet<Post>();
+            this.Tours = new HashSet<Tour>();
+            this.Tours1 = new HashSet<Tour>();
+            this.UserSessions = new HashSet<UserSession>();
+            this.Agencies1 = new HashSet<Agency>();
+            this.Locations1 = new HashSet<Location>();
+            this.Languages = new HashSet<Language>();
+            this.Roles = new HashSet<Role>();
         }
     
-        public int UserID { get; set; }
-        public string NationalCode { get; set; }
-        public string Fname { get; set; }
+        public int Id { get; set; }
+        public string Phone { get; set; }
+        public string Password { get; set; }
+        public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Mobile { get; set; }
-        public string FatherName { get; set; }
         public string Email { get; set; }
-        public string PassWord { get; set; }
-        public Nullable<bool> IsActive { get; set; }
-        public string StartActive { get; set; }
-        public string EndActive { get; set; }
-        public Nullable<bool> isAdmin { get; set; }
-        public Nullable<int> user_type { get; set; }
-        public Nullable<int> BankID { get; set; }
-        public string Shaba { get; set; }
+        public int TypeId { get; set; }
+        public string AgencyName { get; set; }
+        public string PermitNumber { get; set; }
+        public Nullable<int> ProvinceId { get; set; }
+        public Nullable<bool> IsMountainClimbingClub { get; set; }
+        public Nullable<bool> PermitTypeA { get; set; }
+        public Nullable<bool> PermitTypeB { get; set; }
+        public Nullable<bool> PermitTypeP { get; set; }
+        public string ImageUrl { get; set; }
+        public string GuideNumber { get; set; }
+        public Nullable<bool> IsLocalGuide { get; set; }
+        public string LocalGuideCardUrl { get; set; }
+        public Nullable<bool> IsCulturalGuide { get; set; }
+        public string CulturalGuideCardUrl { get; set; }
+        public string OtherLanguage { get; set; }
+        public bool IsActive { get; set; }
+        public System.DateTime CreateDate { get; set; }
+        public string ConfirmationCode { get; set; }
+        public Nullable<long> OldUserId { get; set; }
+        public Nullable<bool> AgencyConfirmed { get; set; }
+        public Nullable<bool> GuideConfirmed { get; set; }
     
-        public virtual tb_bank tb_bank { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tb_marketing> tb_marketing { get; set; }
+        public virtual ICollection<Agency> Agencies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tb_send> tb_send { get; set; }
+        public virtual ICollection<AgencyRating> AgencyRatings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserBranch> UserBranches { get; set; }
+        public virtual ICollection<CommissionSettlement> CommissionSettlements { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Coupon> Coupons { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HotelBooking> HotelBookings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Location> Locations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LocationComment> LocationComments { get; set; }
+        public virtual LocProvince LocProvince { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Owner> Owners { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Post> Posts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tour> Tours { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tour> Tours1 { get; set; }
+        public virtual UserType UserType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserSession> UserSessions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Agency> Agencies1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Location> Locations1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Language> Languages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Role> Roles { get; set; }
     }
 }
