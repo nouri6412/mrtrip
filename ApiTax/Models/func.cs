@@ -49,7 +49,16 @@ namespace ApiTax.Models
                     
                     var CurrentUser = db.Users.Where(r => r.Phone == username).FirstOrDefault();
 
-                 
+
+                    if(CurrentUser.UserType.Title=="admin")
+                    {
+                        GlobalUser.isAdmin = true;
+                    }
+                    else
+                    {
+                        GlobalUser.isAdmin = false;
+                    }
+
                     GlobalUser.isLogin = true;
 
                     GlobalUser.user_type = CurrentUser.TypeId;
