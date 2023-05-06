@@ -39,7 +39,7 @@ namespace ApiTax.Models
                 }
                 if (User.Identity.IsAuthenticated || username !="")
                 {
-                    StoreTerminalSystemEntities db = new StoreTerminalSystemEntities();
+                    dbEntities db = new dbEntities();
                  
 
                     if(User.Identity.IsAuthenticated)
@@ -47,22 +47,15 @@ namespace ApiTax.Models
                         username = User.Identity.Name;
                     }
                     
-                    var CurrentUser = db.Users.Where(r => r.NationalCode == username).FirstOrDefault();
+                    var CurrentUser = db.Users.Where(r => r.Phone == username).FirstOrDefault();
 
                  
                     GlobalUser.isLogin = true;
 
-                    GlobalUser.user_type = CurrentUser.user_type;
+                    GlobalUser.user_type = CurrentUser.TypeId;
                     GlobalUser._ObjectUser = _user;
 
-                    if (CurrentUser.isAdmin == true)
-                    {
-                        GlobalUser.isAdmin = true;
-                    }
-                    else
-                    {
-                        GlobalUser.isAdmin = false;
-                    }
+                
                     GlobalUser.CurrentUser = CurrentUser;
                 }
                 else
@@ -82,13 +75,13 @@ namespace ApiTax.Models
     {
         public bool IsValid(string email, string password)
         {
-            StoreTerminalSystemEntities db = new StoreTerminalSystemEntities();
+            dbEntities db = new dbEntities();
             bool IsValid = false;
 
-            var user = db.Users.FirstOrDefault(u => u.NationalCode == email);
+            var user = db.Users.FirstOrDefault(u => u.Phone == email);
             if (user != null)
             {
-                if (user.PassWord == password)
+                if (user.Password == password)
                 {
                     IsValid = true;
                 }
