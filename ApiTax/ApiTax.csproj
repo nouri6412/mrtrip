@@ -298,6 +298,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ToursController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Models\AbuseReport.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -6016,7 +6017,10 @@
     <Content Include="Content\fonts\webfonts\fa-solid-900.svg" />
     <Content Include="Content\fonts\Yekan.svg" />
     <Content Include="Content\json-viewer.css" />
+    <Content Include="Content\MdBootstrapPersianDateTimePicker\jquery.Bootstrap-PersianDateTimePicker.css" />
+    <Content Include="Content\MdBootstrapPersianDateTimePicker\jquery.Bootstrap-PersianDateTimePicker.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\persian-datepicker.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -6931,7 +6935,14 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\json-viewer.js" />
     <Content Include="Scripts\jszip.js" />
+    <Content Include="Scripts\MdBootstrapPersianDateTimePicker\calendar.js" />
+    <Content Include="Scripts\MdBootstrapPersianDateTimePicker\calendar.min.js" />
+    <Content Include="Scripts\MdBootstrapPersianDateTimePicker\jalaali.js" />
+    <Content Include="Scripts\MdBootstrapPersianDateTimePicker\jquery.Bootstrap-PersianDateTimePicker.js" />
+    <Content Include="Scripts\MdBootstrapPersianDateTimePicker\jquery.Bootstrap-PersianDateTimePicker.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\persian-date.js" />
+    <Content Include="Scripts\persian-datepicker.js" />
     <Content Include="Scripts\xlsx.full.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -6954,6 +6965,11 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Shared\_Layout_New.cshtml" />
+    <Content Include="Views\Tours\Create.cshtml" />
+    <Content Include="Views\Tours\Delete.cshtml" />
+    <Content Include="Views\Tours\Details.cshtml" />
+    <Content Include="Views\Tours\Edit.cshtml" />
+    <Content Include="Views\Tours\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\sample\" />

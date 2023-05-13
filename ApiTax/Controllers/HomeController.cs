@@ -23,6 +23,12 @@ namespace ApiTax.Controllers
    
         public ActionResult Index()
         {
+            InitRequest InitRequest = new InitRequest();
+            InitRequest.init(User);
+            if(GlobalUser.isLogin == false)
+            {
+                return RedirectToAction("Login","Home",new { });
+            }
             return View();
         }
 
@@ -61,7 +67,7 @@ namespace ApiTax.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "Login details are wrong.");
+                ModelState.AddModelError("", "اطلاعات ورود اشتباه است");
             }
             return View(userr);
         }
@@ -69,7 +75,7 @@ namespace ApiTax.Controllers
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Home");
         }
     }
 }

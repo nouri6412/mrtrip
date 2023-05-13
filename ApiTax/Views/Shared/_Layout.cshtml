@@ -38,6 +38,8 @@
     <link href="~/Content/assets/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/assets/vendors/general/fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
 
+
+
     <!--end:: Global Optional Vendors -->
     <!--begin::Global Theme Styles(used by all pages) -->
     <link href="~/Content/assets/css/demo1/style.bundle.rtl.min.css" rel="stylesheet" type="text/css" />
@@ -48,6 +50,8 @@
     <link href="~/Content/assets/css/demo1/skins/header/menu/light.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/assets/css/demo1/skins/brand/dark.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/assets/css/demo1/skins/aside/dark.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="~/Content/persian-datepicker.css" />
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" href="~/Content/assets/media/logos/favicon.ico" />
 </head>
@@ -310,7 +314,7 @@
                                                     </div>
                                                     <div class="kt-notification__item-details">
                                                         <div class="kt-notification__item-title">
-                                                           اطلاع رسانی تست 1
+                                                            اطلاع رسانی تست 1
                                                         </div>
                                                         <div class="kt-notification__item-time">
                                                             2 روز پیش
@@ -327,7 +331,7 @@
                                                     </div>
                                                     <div class="kt-notification__item-details">
                                                         <div class="kt-notification__item-title">
-                                                           رویداد تست 1
+                                                            رویداد تست 1
                                                         </div>
                                                         <div class="kt-notification__item-time">
                                                             23 روز پیش
@@ -340,7 +344,7 @@
                                             <div class="kt-grid kt-grid--ver" style="min-height: 200px;">
                                                 <div class="kt-grid kt-grid--hor kt-grid__item kt-grid__item--fluid kt-grid__item--middle">
                                                     <div class="kt-grid__item kt-grid__item--middle kt-align-center">
-                                                       هیچ لاگی وجود ندارد
+                                                        هیچ لاگی وجود ندارد
                                                     </div>
                                                 </div>
                                             </div>
@@ -351,7 +355,6 @@
                         </div>
 
                         <!--end: Notifications -->
-
                         <!--begin: Quick panel toggler -->
                         <div class="kt-header__topbar-item kt-header__topbar-item--quick-panel" data-toggle="kt-tooltip" title="دسترسی سریع" data-placement="right">
                             <span class="kt-header__topbar-icon" id="kt_quick_panel_toggler_btn">
@@ -366,7 +369,6 @@
                         </div>
 
                         <!--end: Quick panel toggler -->
-
                         <!--begin: User Bar -->
                         <div class="kt-header__topbar-item kt-header__topbar-item--user">
                             <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="0px,0px">
@@ -422,7 +424,7 @@
                                                 پیام های من
                                             </div>
                                             <div class="kt-notification__item-time">
-                                               صندوق دریافت و ارسال پیام
+                                                صندوق دریافت و ارسال پیام
                                             </div>
                                         </div>
                                     </a>
@@ -435,7 +437,7 @@
                                                 فعالیت های من
                                             </div>
                                             <div class="kt-notification__item-time">
-                                               لاگ ها و اعلانات من
+                                                لاگ ها و اعلانات من
                                             </div>
                                         </div>
                                     </a>
@@ -448,12 +450,12 @@
                                                 مالی
                                             </div>
                                             <div class="kt-notification__item-time">
-                                               پرداخت ها <span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill kt-badge--rounded">2 در انتظار</span>
+                                                پرداخت ها <span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill kt-badge--rounded">2 در انتظار</span>
                                             </div>
                                         </div>
                                     </a>
                                     <div class="kt-notification__custom kt-space-between">
-                                        <a href="#" target="_blank" class="btn btn-label btn-label-brand btn-sm btn-bold">خروج از پنل</a>
+                                        <a href="~/Home/LogOut" class="btn btn-label btn-label-brand btn-sm btn-bold">خروج از پنل</a>
                                     </div>
                                 </div>
 
@@ -481,19 +483,28 @@
                                 <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
                                 <span class="kt-subheader__breadcrumbs-separator"></span>
                                 <a href="" class="kt-subheader__breadcrumbs-link">
-                                   داشبورد
+                                    داشبورد
                                 </a>
 
                                 <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Active link</span> -->
                             </div>
                         </div>
-                        
+
                     </div>
 
                     <!-- end:: Subheader -->
                     <!-- begin:: Content -->
+                    <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
+                        <div class="row">
+                            <div class="col-lg-12">
 
-                    @RenderBody()
+                                <!--begin::Portlet-->
+                                <div style="overflow: auto;" class="kt-portlet p-2">
+                                    @RenderBody()
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- end:: Content -->
                 </div>
 
@@ -541,7 +552,7 @@
                             </div>
                             <div class="kt-notification__item-details">
                                 <div class="kt-notification__item-title">
-                                   اعلان جدید تست
+                                    اعلان جدید تست
                                 </div>
                                 <div class="kt-notification__item-time">
                                     2 ساعت پیش
@@ -558,7 +569,7 @@
                             </div>
                             <div class="kt-notification-v2__itek-wrapper">
                                 <div class="kt-notification-v2__item-title">
-                                   لاگ جدید تست
+                                    لاگ جدید تست
                                 </div>
                                 <div class="kt-notification-v2__item-desc">
                                     جدید
@@ -686,7 +697,6 @@
     </div>
 
     <!-- end::Scrolltop -->
-
     <!-- begin::Demo Panel -->
     <div id="kt_demo_panel" class="kt-demo-panel">
         <div class="kt-demo-panel__head">
@@ -1064,7 +1074,7 @@
     </div>
 
 
-  
+
 
 
     <!-- begin::Global Config(global config for global JS sciprts) -->
@@ -1157,11 +1167,41 @@
     <!--end:: Global Optional Vendors -->
     <!--begin::Global Theme Bundle(used by all pages) -->
     <script src="~/Content/assets/js/demo1/scripts.bundle.js" type="text/javascript"></script>
+    <script src="~/Scripts/persian-date.js"></script>
+    <script src="~/Scripts/persian-datepicker.js"></script>
 
     <!--end::Global Theme Bundle -->
+    <script type="text/javascript">
+          $(document).ready(function() {
+
+              $('.persian-date').persianDatepicker({
+                  initialValueType: 'gregorian',
+                  observer: true,
+    format: 'YYYY/MM/DD',
+    altField: '.observer-example-alt'
+});
+  });
+    </script>
 
     @RenderSection("scripts", required: false)
     <style>
+        .check-True {
+            color: #43d74e;
+            font-size: 20px;
+        }
+
+            .check-True::before {
+                content: "\f00c";
+            }
+
+        .check-False {
+            color: red;
+            font-size: 20px;
+            background: red;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
     </style>
     <script>
 
