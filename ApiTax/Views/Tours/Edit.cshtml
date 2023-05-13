@@ -3,6 +3,15 @@
 @{
     ViewBag.Title = "ویرایش سفر";
     string error = ViewBag.ErrorMessage;
+    string type = ViewBag.type;
+    string active_1 = "active";
+    string active_2 = "";
+    string active_3= "";
+    if(type=="day")
+    {
+     active_1 = "";
+     active_2 = "active";
+    }
 }
 
 <div class="kt-portlet__head kt-portlet__head--lg">
@@ -20,10 +29,13 @@
 
 <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#" data-target="#kt_tabs_1_1">اطلاعات سفر</a>
+        <a class="nav-link @active_1" data-toggle="tab" href="#" data-target="#kt_tabs_1_1">اطلاعات سفر</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#kt_tabs_1_2">روزهای سفر</a>
+        <a class="nav-link @active_2" data-toggle="tab" href="#kt_tabs_1_2">روزهای سفر</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#kt_tabs_1_3">هزینه سفر</a>
     </li>
 </ul>
 <div class="tab-content">
@@ -227,7 +239,9 @@
         }
     </div>
     <div class="tab-pane" id="kt_tabs_1_2" role="tabpanel">
-        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        @Html.Action("index","TourStops",new {tour_id=Model.Id })
+    </div>
+    <div class="tab-pane" id="kt_tabs_1_3" role="tabpanel">
     </div>
 </div>
 

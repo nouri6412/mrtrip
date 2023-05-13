@@ -168,7 +168,7 @@ namespace ApiTax.Controllers
         }
 
         // GET: Tours/Edit/5
-        public ActionResult Edit(long? id)
+        public ActionResult Edit(long? id,string type="")
         {
             InitRequest InitRequest = new InitRequest();
             InitRequest.init(User);
@@ -209,6 +209,7 @@ namespace ApiTax.Controllers
                      select new { Id = br1.Id, Phone = br1.FirstName + " " + br1.LastName };
 
             ViewBag.SupervisorId = new SelectList(br, "Id", "Phone", tour.SupervisorId);
+            ViewBag.type = type;
             return View(tour);
         }
 
@@ -274,6 +275,7 @@ namespace ApiTax.Controllers
                      select new { Id = br1.Id, Phone = br1.FirstName + " " + br1.LastName };
 
             ViewBag.SupervisorId = new SelectList(br, "Id", "Phone", tour.SupervisorId);
+            ViewBag.type = "";
             return View(tour);
         }
 
