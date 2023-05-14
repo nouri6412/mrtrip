@@ -3,23 +3,29 @@
 @{
     ViewBag.Title = "اضافه کردن روز به سفر";
     long tour_id = ViewBag.tour_id;
+    string error = ViewBag.ErrorMessage;
 }
 
-    <div class="kt-portlet__head kt-portlet__head--lg">
-        <div class="kt-portlet__head-label">
-            <span class="kt-portlet__head-icon"><i :class="modelIcon"></i></span>
-            <h3 class="kt-portlet__head-title">
-               اضافه کردن روز به سفر
-            </h3>
-        </div>
+<div class="kt-portlet__head kt-portlet__head--lg">
+    <div class="kt-portlet__head-label">
+        <span class="kt-portlet__head-icon"><i :class="modelIcon"></i></span>
+        <h3 class="kt-portlet__head-title">
+            اضافه کردن روز به سفر
+        </h3>
     </div>
+</div>
 
-@using (Html.BeginForm()) 
+@if (error.Length > 0)
+{
+    <div class="alert alert-danger">@error</div>
+}
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-   <input id="TourId" name="TourId" value="@tour_id" type="hidden" />
+        <input id="TourId" name="TourId" value="@tour_id" type="hidden" />
 
         <div class="form-group">
             @Html.LabelFor(model => model.CityId, "شهر مقصد", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -46,7 +52,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.StopOrder,"ترتیب روز سفر", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.StopOrder, "ترتیب روز سفر", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.StopOrder, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.StopOrder, "", new { @class = "text-danger" })
@@ -54,7 +60,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Nights,"تعداد شب توقف", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Nights, "تعداد شب توقف", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Nights, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Nights, "", new { @class = "text-danger" })
@@ -78,15 +84,14 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DepartureDate,"تاریخ عزیمت", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DepartureDate, "تاریخ عزیمت", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input value="@DateTime.Now.ToShortDateString()" id="DepartureDate" name="DepartureDate" class="persian-date form-control" type="text" />
-                @Html.ValidationMessageFor(model => model.DepartureDate, "", new { @class = "text-danger" })
+                <input value="@DateTime.Now.ToShortDateString()" id="DepartureDatePersian" name="DepartureDatePersian" class="persian-date form-control" type="text" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DepartureTime,"ساعت حرکت", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DepartureTime, "ساعت حرکت", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DepartureTime, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })
@@ -94,7 +99,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DepartureStationId,"ایستگاه حرکت", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DepartureStationId, "ایستگاه حرکت", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("DepartureStationId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DepartureStationId, "", new { @class = "text-danger" })
@@ -102,7 +107,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ArrivalTime,"ساعت رسیدن", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ArrivalTime, "ساعت رسیدن", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ArrivalTime, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ArrivalTime, "", new { @class = "text-danger" })
@@ -110,7 +115,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ArrivalStationId,"ایستگاه رسیدن", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ArrivalStationId, "ایستگاه رسیدن", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ArrivalStationId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ArrivalStationId, "", new { @class = "text-danger" })
@@ -118,7 +123,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Duration,"مدت سفر", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Duration, "مدت سفر", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
@@ -126,9 +131,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.WaitDuration,"مدت انتظار", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.WaitDuration, "مدت انتظار", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.WaitDuration, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.WaitDuration, new { htmlAttributes = new { @class = "form-control" ,@type="time" } })
                 @Html.ValidationMessageFor(model => model.WaitDuration, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -142,5 +147,5 @@
 }
 
 <div>
-    @Html.ActionLink("بازگشت به سفر", "Edit","Tours",new {id=tour_id,type="day" },new {@class= "btn btn-outline-info" })
+    @Html.ActionLink("بازگشت به سفر", "Edit", "Tours", new { id = tour_id, type = "day" }, new { @class = "btn btn-outline-info" })
 </div>

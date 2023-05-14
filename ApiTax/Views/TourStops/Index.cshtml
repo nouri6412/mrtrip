@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<ApiTax.Models.TourStop>
+@using ApiTax.Models
 
 @{
     ViewBag.Title = "Index";
@@ -7,110 +8,111 @@
 }
 
 <p>
-    @Html.ActionLink("اضافه کردن روز", "Create","TourStops",new {tour_id=tour_id },new { })
+    @Html.ActionLink("اضافه کردن روز", "Create", "TourStops", new { tour_id = tour_id }, new { @class = "btn btn-info" })
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.StopOrder)
+           ترتیب
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nights)
+         تعداد شب
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DepartureDate)
+           تاریخ عزیمت
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DepartureDateFa)
+          ساعت عزیمت
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DepartureTime)
+            ساعت رسیدن
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ArrivalTime)
+            مدت سفر
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Duration)
+           مدت انتظار
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WaitDuration)
+            هتل محل
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Hotel.Title)
+            جاذبه محل
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Location.Title)
+            شهر
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LocCity.Title)
+           ایستگاه حرکت
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Station.Title)
+            ایستگاه رسیدن
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Station1.Title)
+           نوع روز سفر
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TourStopType.Titile)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TransportCompany.Title)
+           شرکت ترنسفر
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.StopOrder)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nights)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DepartureDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DepartureDateFa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DepartureTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ArrivalTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Duration)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WaitDuration)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hotel.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LocCity.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Station.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Station1.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TourStopType.Titile)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TransportCompany.Title)
-        </td>
-        <td>
-            @Html.ActionLink("ویرایش", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("حذف", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StopOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nights)
+            </td>
+            <td>
+                @utility.ToPersian(item.DepartureDate.ToShortDateString())
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WaitDuration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hotel.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocCity.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Station.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Station1.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TourStopType.Titile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransportCompany.Title)
+            </td>
+            <td>
+                <a href="~/TourStops/Edit/@item.Id"
+                   class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Edit">
+                    <i class="la la-edit"></i>
+                </a>
+                <a href="~/TourStops/Delete/@item.Id"
+                   class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Remove">
+                    <i class="la la-trash"></i>
+                </a>
+            </td>
+        </tr>
+    }
 
 </table>

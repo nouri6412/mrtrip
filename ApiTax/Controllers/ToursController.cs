@@ -151,7 +151,7 @@ namespace ApiTax.Controllers
             {
                 db.Tours.Add(tour);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", "Tours", new { id = tour.Id, type = "day" });
             }
             ViewBag.ErrorMessage = "";
             ViewBag.HardnessId = new SelectList(db.Hardnesses, "Id", "Title", tour.HardnessId);

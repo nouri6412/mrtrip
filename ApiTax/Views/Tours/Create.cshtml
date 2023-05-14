@@ -91,7 +91,7 @@
             <div class="col-md-10">
                 <input value="@DateTime.Now.ToShortDateString()" id="StartDatePersian" name="StartDatePersian" class="persian-date form-control" type="text" />
 
-                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+               
             </div>
         </div>
 
@@ -99,7 +99,7 @@
             @Html.LabelFor(model => model.EndDate, "تاریخ پایان سفر", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input value="@DateTime.Now.ToShortDateString()" id="EndDatePersian" name="EndDatePersian" class="persian-date form-control" type="text" />
-                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+              
             </div>
         </div>
 

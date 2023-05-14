@@ -48,6 +48,7 @@ namespace ApiTax.Controllers
             ViewBag.StopTypeId = new SelectList(db.TourStopTypes, "Id", "Titile");
             ViewBag.TransportCompanyId = new SelectList(db.TransportCompanies, "Id", "Title");
             ViewBag.tour_id = tour_id;
+            ViewBag.ErrorMessage = "";
             return View();
         }
 
@@ -58,12 +59,20 @@ namespace ApiTax.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,TourId,CityId,LocationId,StopTypeId,StopOrder,Nights,HotelId,TransportCompanyId,DepartureDate,DepartureDateFa,DepartureTime,DepartureStationId,ArrivalTime,ArrivalStationId,Duration,WaitDuration")] TourStop tourStop)
         {
+            try
+            {
+                var date = Request.Form["DepartureDatePersian"];
+                tourStop.DepartureDate = utility.ToMiladi(utility.toEnglishNumber(date.ToString()));
+            }
+            catch { }
             if (ModelState.IsValid)
             {
+                tourStop.DepartureDateFa = utility.ToPersian(tourStop.DepartureDate.ToShortDateString());
                 db.TourStops.Add(tourStop);
                 db.SaveChanges();
                 return RedirectToAction("Edit","Tours",new { id= tourStop.TourId,type="day"});
             }
+            ViewBag.ErrorMessage = "به خطاها توجه نمائید";
             ViewBag.tour_id = tourStop.TourId;
 
             ViewBag.HotelId = new SelectList(db.Hotels, "Id", "Title", tourStop.HotelId);
@@ -88,12 +97,12 @@ namespace ApiTax.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ErrorMessage = "";
             ViewBag.HotelId = new SelectList(db.Hotels, "Id", "Title", tourStop.HotelId);
             ViewBag.LocationId = new SelectList(db.Locations, "Id", "Title", tourStop.LocationId);
             ViewBag.CityId = new SelectList(db.LocCities, "Id", "Title", tourStop.CityId);
             ViewBag.DepartureStationId = new SelectList(db.Stations, "Id", "Title", tourStop.DepartureStationId);
             ViewBag.ArrivalStationId = new SelectList(db.Stations, "Id", "Title", tourStop.ArrivalStationId);
-            ViewBag.TourId = new SelectList(db.Tours, "Id", "Title", tourStop.TourId);
             ViewBag.StopTypeId = new SelectList(db.TourStopTypes, "Id", "Titile", tourStop.StopTypeId);
             ViewBag.TransportCompanyId = new SelectList(db.TransportCompanies, "Id", "Title", tourStop.TransportCompanyId);
             return View(tourStop);
@@ -106,12 +115,22 @@ namespace ApiTax.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,TourId,CityId,LocationId,StopTypeId,StopOrder,Nights,HotelId,TransportCompanyId,DepartureDate,DepartureDateFa,DepartureTime,DepartureStationId,ArrivalTime,ArrivalStationId,Duration,WaitDuration")] TourStop tourStop)
         {
+
+            try
+            {
+                var date = Request.Form["DepartureDatePersian"];
+                tourStop.DepartureDate = utility.ToMiladi(utility.toEnglishNumber(date.ToString()));
+            }
+            catch { }
+
             if (ModelState.IsValid)
             {
+                tourStop.DepartureDateFa = utility.ToPersian(tourStop.DepartureDate.ToShortDateString());
                 db.Entry(tourStop).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", "Tours", new { id = tourStop.TourId, type = "day" });
             }
+            ViewBag.ErrorMessage = "به خطاها توجه نمائید";
             ViewBag.HotelId = new SelectList(db.Hotels, "Id", "Title", tourStop.HotelId);
             ViewBag.LocationId = new SelectList(db.Locations, "Id", "Title", tourStop.LocationId);
             ViewBag.CityId = new SelectList(db.LocCities, "Id", "Title", tourStop.CityId);

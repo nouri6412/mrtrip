@@ -35,11 +35,11 @@
         <a class="nav-link @active_2" data-toggle="tab" href="#kt_tabs_1_2">روزهای سفر</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#kt_tabs_1_3">هزینه سفر</a>
+        <a class="nav-link @active_3" data-toggle="tab" href="#kt_tabs_1_3">هزینه سفر</a>
     </li>
 </ul>
 <div class="tab-content">
-    <div class="tab-pane active" id="kt_tabs_1_1" role="tabpanel">
+    <div class="tab-pane @active_1" id="kt_tabs_1_1" role="tabpanel">
         @using (Html.BeginForm("Edit", "Tours", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
@@ -118,7 +118,6 @@
                         }
                         <input value="@start_val" id="StartDatePersian" name="StartDatePersian" class="persian-date form-control" type="text" />
 
-                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -129,7 +128,6 @@
                             string end_val = Model.EndDate.HasValue ? Model.EndDate.Value.ToShortDateString() : DateTime.Now.ToShortDateString();
                         }
                         <input value="@end_val" id="EndDatePersian" name="EndDatePersian" class="persian-date form-control" type="text" />
-                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -236,15 +234,16 @@
                     </div>
                 </div>
             </div>
+            <div>
+                @Html.ActionLink("بازگشت به لیست", "Index", new { }, new { @class = "btn btn-outline-info" })
+            </div>
         }
     </div>
-    <div class="tab-pane" id="kt_tabs_1_2" role="tabpanel">
+    <div class="tab-pane @active_2" id="kt_tabs_1_2" role="tabpanel">
         @Html.Action("index","TourStops",new {tour_id=Model.Id })
     </div>
     <div class="tab-pane" id="kt_tabs_1_3" role="tabpanel">
     </div>
 </div>
 
-<div>
-    @Html.ActionLink("بازگشت به لیست", "Index", new { }, new { @class = "btn btn-outline-info" })
-</div>
+
