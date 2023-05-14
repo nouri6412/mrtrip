@@ -93,8 +93,18 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DepartureTime, "ساعت حرکت", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DepartureTime, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })
+                @{ 
+
+                }
+                <div  class="input-group timepicker">
+                    <input class="form-control" id="DepartureTime" name="DepartureTime" value="" readonly placeholder="" type="text" />
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <i class="la la-clock-o"></i>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
 
