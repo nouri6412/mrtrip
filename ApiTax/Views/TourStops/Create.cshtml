@@ -1,4 +1,4 @@
-﻿@model ApiTax.Models.TourStop
+﻿\\\@model ApiTax.Models.TourStop
 
 @{
     ViewBag.Title = "اضافه کردن روز به سفر";
@@ -80,7 +80,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DepartureDate,"تاریخ عزیمت", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DepartureDate, new { htmlAttributes = new { @class = "form-control" } })
+                <input value="@DateTime.Now.ToShortDateString()" id="DepartureDate" name="DepartureDate" class="persian-date form-control" type="text" />
                 @Html.ValidationMessageFor(model => model.DepartureDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -94,7 +94,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DepartureStationId,"ایستگاه حرکت", "DepartureStationId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DepartureStationId,"ایستگاه حرکت", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("DepartureStationId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DepartureStationId, "", new { @class = "text-danger" })
@@ -110,7 +110,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ArrivalStationId,"ایستگاه رسیدن", "ArrivalStationId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ArrivalStationId,"ایستگاه رسیدن", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ArrivalStationId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ArrivalStationId, "", new { @class = "text-danger" })
@@ -135,12 +135,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="ذخیره روز سفر" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("بازگشت به سفر", "Edit","Tours",new {id=tour_id,type="day" },new { })
+    @Html.ActionLink("بازگشت به سفر", "Edit","Tours",new {id=tour_id,type="day" },new {@class= "btn btn-outline-info" })
 </div>
