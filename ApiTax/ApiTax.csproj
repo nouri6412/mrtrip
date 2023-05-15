@@ -298,6 +298,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\TourAgencyCostsController.cs" />
     <Compile Include="Controllers\ToursController.cs" />
     <Compile Include="Controllers\TourStopsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -6976,6 +6977,11 @@
     <Content Include="Views\TourStops\Details.cshtml" />
     <Content Include="Views\TourStops\Edit.cshtml" />
     <Content Include="Views\TourStops\Index.cshtml" />
+    <Content Include="Views\TourAgencyCosts\Create.cshtml" />
+    <Content Include="Views\TourAgencyCosts\Delete.cshtml" />
+    <Content Include="Views\TourAgencyCosts\Details.cshtml" />
+    <Content Include="Views\TourAgencyCosts\Edit.cshtml" />
+    <Content Include="Views\TourAgencyCosts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\sample\" />

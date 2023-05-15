@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ApiTax.Models.TourAgencyCost>
+
+@{
+    ViewBag.Title = "Index";
+    long tour_id = ViewBag.tour_id;
+    Layout = null;
+}
+
+<p>
+    @Html.ActionLink("اضافه کردن هزینه سفر", "Create", "TourAgencyCosts", new { tour_id = tour_id }, new { @class = "btn btn-info" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            هزینه
+        </th>
+        <th>
+           تخفیف کاربر
+        </th>
+        <th>
+            تخفیف فروشنده
+        </th>
+        <th>
+           جمع تخفیفات
+        </th>
+        <th>
+       ترتیب
+        </th>
+        <th>
+           مبلغ ارزی سفر
+        </th>
+        <th>
+          آزانس برگزار کننده
+        </th>
+        <th>
+           نوع ارز
+        </th>
+        <th>
+           نوع اتاق
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserDiscount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AffiliateDiscount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullDiscount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PackageNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrencyPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Agency.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Currency.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HotelRoomType.Title)
+        </td>
+
+        <td>
+            <a href="~/TourAgencyCosts/Edit/@item.Id"
+               class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Edit">
+                <i class="la la-edit"></i>
+            </a>
+            <a href="~/TourAgencyCosts/Delete/@item.Id"
+               class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Remove">
+                <i class="la la-trash"></i>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>

@@ -4,6 +4,13 @@ var KTBootstrapTimepicker = function () {
     
     // Private functions
     var demos = function () {
+        $('.form-timepicker').timepicker({
+            minuteStep: 1,
+            defaultTime: '',
+            showSeconds: true,
+            showMeridian: false,
+            snapToStep: true
+        });
         // minimum setup
         $('#kt_timepicker_1, #kt_timepicker_1_modal').timepicker();
 

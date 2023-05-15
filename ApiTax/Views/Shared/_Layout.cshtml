@@ -148,8 +148,8 @@
                                 <div class="kt-menu__submenu ">
                                     <span class="kt-menu__arrow"></span>
                                     <ul class="kt-menu__subnav">
-                                        <li class="kt-menu__item " aria-haspopup="true"><a href="#" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">ثبت سفر</span></a></li>
-                                        <li class="kt-menu__item " aria-haspopup="true"><a href="#" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">سفرهای من</span></a></li>
+                                        <li class="kt-menu__item " aria-haspopup="true"><a href="~/Tours/Create" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">ثبت سفر</span></a></li>
+                                        <li class="kt-menu__item " aria-haspopup="true"><a href="~/Tours" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">سفرهای من</span></a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -196,7 +196,7 @@
                                     <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
                                         <ul class="kt-menu__subnav">
                                             <li class="kt-menu__item " aria-haspopup="true">
-                                                <a href="javascript:;" class="kt-menu__link ">
+                                                <a href="~/Tours/Create" class="kt-menu__link ">
                                                     <span class="kt-menu__link-icon">
                                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
                                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -209,7 +209,7 @@
                                                 </a>
                                             </li>
                                             <li class="kt-menu__item " aria-haspopup="true">
-                                                <a href="javascript:;" class="kt-menu__link ">
+                                                <a href="~/Tours" class="kt-menu__link ">
                                                     <span class="kt-menu__link-icon">
                                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
                                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -1208,6 +1208,12 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
+        }
+        .bootstrap-timepicker-widget.dropdown-menu.open{
+            border: 1px solid #000 !important;
+        }
+        .form-horizontal{
+            padding:15px;
         }
     </style>
     <script>

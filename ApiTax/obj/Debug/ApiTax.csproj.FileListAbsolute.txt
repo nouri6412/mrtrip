@@ -945,4 +945,4 @@ E:\git\mrtrip\ApiTax\obj\Debug\ApiTax.csproj.CoreCompileInputs.cache
 E:\git\mrtrip\ApiTax\obj\Debug\ApiTax.csproj.CopyComplete
 E:\git\mrtrip\ApiTax\obj\Debug\ApiTax.dll
 E:\git\mrtrip\ApiTax\obj\Debug\ApiTax.pdb
-E:\git\mrtrip\ApiTax\obj\Debug\ApiTax.csproj.AssemblyReference.cache
+E:\git\mrtrip\ApiTax\obj\Debug\ApiTax.csprojAssemblyReference.cache

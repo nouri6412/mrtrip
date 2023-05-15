@@ -58,8 +58,11 @@ namespace ApiTax.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+
             Tour tour = db.Tours.Find(id);
-            if (tour == null)
+
+            if (tour == null || (tour.UserId != GlobalUser.CurrentUser.Id && GlobalUser.isAdmin == false))
             {
                 return HttpNotFound();
             }
@@ -182,7 +185,8 @@ namespace ApiTax.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Tour tour = db.Tours.Find(id);
-            if (tour == null || tour.UserId != GlobalUser.CurrentUser.Id)
+
+            if (tour == null || (tour.UserId != GlobalUser.CurrentUser.Id && GlobalUser.isAdmin == false))
             {
                 return HttpNotFound();
             }
@@ -227,7 +231,7 @@ namespace ApiTax.Controllers
                 return RedirectToAction("Login", "Home", new { });
             }
             Tour tour1 = db.Tours.Find(tour.Id);
-            if (tour1 == null || tour1.UserId != GlobalUser.CurrentUser.Id)
+            if (tour1 == null || (tour1.UserId != GlobalUser.CurrentUser.Id && GlobalUser.isAdmin == false))
             {
                 return HttpNotFound();
             }
@@ -294,7 +298,7 @@ namespace ApiTax.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Tour tour = db.Tours.Find(id);
-            if (tour == null || tour.UserId != GlobalUser.CurrentUser.Id)
+            if (tour == null || (tour.UserId != GlobalUser.CurrentUser.Id && GlobalUser.isAdmin == false))
             {
                 return HttpNotFound();
             }
@@ -314,7 +318,7 @@ namespace ApiTax.Controllers
             }
 
             Tour tour = db.Tours.Find(id);
-            if (tour == null || tour.UserId != GlobalUser.CurrentUser.Id)
+            if (tour == null || (tour.UserId != GlobalUser.CurrentUser.Id && GlobalUser.isAdmin == false))
             {
                 return HttpNotFound();
             }
