@@ -4,149 +4,25 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>TourStop</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.StopOrder)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StopOrder)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nights)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nights)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DepartureDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DepartureDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DepartureDateFa)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DepartureDateFa)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DepartureTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DepartureTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ArrivalTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ArrivalTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Duration)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Duration)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.WaitDuration)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.WaitDuration)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Hotel.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Hotel.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Location.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LocCity.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LocCity.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Station.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Station.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Station1.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Station1.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tour.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tour.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TourStopType.Titile)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TourStopType.Titile)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TransportCompany.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TransportCompany.Title)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+<div class="kt-portlet__head kt-portlet__head--lg">
+    <div class="kt-portlet__head-label">
+        <span class="kt-portlet__head-icon"><i :class="modelIcon"></i></span>
+        <h3 class="kt-portlet__head-title">
+            حذف روز سفر
+        </h3>
+    </div>
 </div>
+<hr />
+<div class="alert alert-warning">آیا از حذف روز سفر اطمینان دارید؟</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="بلی حذف کن" class="btn btn-danger" /> |
+        @Html.ActionLink("انصراف", "Edit", "Tours", new { id = Model.TourId, type = "day" }, new { @class = "btn btn-outline-info" })
+
+    </div>
+
+}
