@@ -17,13 +17,13 @@ namespace ApiTax.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Equipment()
         {
-            this.Tours = new HashSet<Tour>();
+            this.TourEquipments = new HashSet<TourEquipment>();
         }
     
         public int Id { get; set; }
         public string Title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tour> Tours { get; set; }
+        public virtual ICollection<TourEquipment> TourEquipments { get; set; }
     }
 }

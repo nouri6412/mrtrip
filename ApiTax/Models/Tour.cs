@@ -21,9 +21,9 @@ namespace ApiTax.Models
             this.HotelPackages = new HashSet<HotelPackage>();
             this.TourAgencyCosts = new HashSet<TourAgencyCost>();
             this.TourCheckouts = new HashSet<TourCheckout>();
+            this.TourEquipments = new HashSet<TourEquipment>();
             this.TourStops = new HashSet<TourStop>();
             this.Coupons = new HashSet<Coupon>();
-            this.Equipments = new HashSet<Equipment>();
         }
     
         public long Id { get; set; }
@@ -68,10 +68,10 @@ namespace ApiTax.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TourCheckout> TourCheckouts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TourEquipment> TourEquipments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TourStop> TourStops { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Coupon> Coupons { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Equipment> Equipments { get; set; }
     }
 }

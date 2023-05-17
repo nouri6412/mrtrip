@@ -4,88 +4,89 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="053fed992fa94651ab97cc546e26e643" Name="Diagram1">
-        <EntityTypeShape EntityType="mrtripir_newdbModel.AbuseReport" Width="1.5" PointX="15.75" PointY="45.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Agency" Width="1.5" PointX="15.75" PointY="26.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.AgencyRating" Width="1.5" PointX="20.25" PointY="29.125" IsExpanded="true" />
+      <Diagram DiagramId="eede8643ddc34d0ab33cfc871571a926" Name="Diagram1">
+        <EntityTypeShape EntityType="mrtripir_newdbModel.AbuseReport" Width="1.5" PointX="15.75" PointY="45.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Agency" Width="1.5" PointX="15.75" PointY="26.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.AgencyRating" Width="1.5" PointX="20.25" PointY="29.5" IsExpanded="true" />
         <EntityTypeShape EntityType="mrtripir_newdbModel.AspNetRole" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
         <EntityTypeShape EntityType="mrtripir_newdbModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="mrtripir_newdbModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="mrtripir_newdbModel.AspNetUser" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Bank" Width="1.5" PointX="9" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.BookingStatu" Width="1.5" PointX="13.5" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.BookingTransaction" Width="1.5" PointX="13.5" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.BookingType" Width="1.5" PointX="11.25" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.CheckoutType" Width="1.5" PointX="10.5" PointY="20" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.CommentPost_TB" Width="1.5" PointX="15.75" PointY="61.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Comments_TB" Width="1.5" PointX="10.5" PointY="37.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.CommissionSettlement" Width="1.5" PointX="12.75" PointY="21.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Coupon" Width="1.5" PointX="12.75" PointY="25.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Currency" Width="1.5" PointX="18" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Equipment" Width="1.5" PointX="15.75" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Bank" Width="1.5" PointX="9" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.BookingStatu" Width="1.5" PointX="13.5" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.BookingTransaction" Width="1.5" PointX="13.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.BookingType" Width="1.5" PointX="11.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.CheckoutType" Width="1.5" PointX="10.5" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.CommentPost_TB" Width="1.5" PointX="15.75" PointY="62.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Comments_TB" Width="1.5" PointX="10.5" PointY="38" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.CommissionSettlement" Width="1.5" PointX="12.75" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Coupon" Width="1.5" PointX="12.75" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Currency" Width="1.5" PointX="21" PointY="34.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Equipment" Width="1.5" PointX="18" PointY="20.375" IsExpanded="true" />
         <EntityTypeShape EntityType="mrtripir_newdbModel.ErrorLog" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Facility" Width="1.5" PointX="11.25" PointY="50.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Facility" Width="1.5" PointX="11.25" PointY="50.875" IsExpanded="true" />
         <EntityTypeShape EntityType="mrtripir_newdbModel.FacilityType" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.fav_TB" Width="1.5" PointX="13.5" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.fav_TB" Width="1.5" PointX="13.5" PointY="29.125" IsExpanded="true" />
         <EntityTypeShape EntityType="mrtripir_newdbModel.GlobalMeta" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Hardness" Width="1.5" PointX="15.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Hotel" Width="1.5" PointX="13.5" PointY="49.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.HotelBooking" Width="1.5" PointX="15.75" PointY="19.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.HotelComment" Width="1.5" PointX="15.75" PointY="48.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.HotelDateCost" Width="1.5" PointX="15.75" PointY="51.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.HotelDiscount" Width="1.5" PointX="15.75" PointY="55.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.HotelImage" Width="1.5" PointX="15.75" PointY="58.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.HotelPackage" Width="1.5" PointX="20.25" PointY="25.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.HotelRoomType" Width="1.5" PointX="18" PointY="17.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.HotelService" Width="1.5" PointX="11.25" PointY="53.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.HotelSpec" Width="1.5" PointX="21.75" PointY="33.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Language" Width="1.5" PointX="8.25" PointY="24.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Location" Width="1.5" PointX="5.25" PointY="32" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.LocationComment" Width="1.5" PointX="10.5" PointY="33.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.LocationGroup" Width="1.5" PointX="0.75" PointY="34.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.LocationImage" Width="1.5" PointX="7.5" PointY="38.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Locations_TB" Width="1.5" PointX="8.25" PointY="32" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.LocationType" Width="1.5" PointX="3" PointY="33.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.LocCity" Width="1.5" PointX="3" PointY="28.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.LocCountry" Width="1.5" PointX="1.5" PointY="25.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.LocProvince" Width="1.5" PointX="0.75" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Hardness" Width="1.5" PointX="15.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Hotel" Width="1.5" PointX="13.5" PointY="49.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.HotelBooking" Width="1.5" PointX="15.75" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.HotelComment" Width="1.5" PointX="15.75" PointY="48.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.HotelDateCost" Width="1.5" PointX="15.75" PointY="52.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.HotelDiscount" Width="1.5" PointX="15.75" PointY="55.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.HotelImage" Width="1.5" PointX="15.75" PointY="58.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.HotelPackage" Width="1.5" PointX="20.25" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.HotelRoomType" Width="1.5" PointX="21" PointY="36.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.HotelService" Width="1.5" PointX="11.25" PointY="53.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.HotelSpec" Width="1.5" PointX="22.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Language" Width="1.5" PointX="8.25" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Location" Width="1.5" PointX="5.25" PointY="32.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.LocationComment" Width="1.5" PointX="10.5" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.LocationGroup" Width="1.5" PointX="0.75" PointY="34.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.LocationImage" Width="1.5" PointX="7.5" PointY="38.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Locations_TB" Width="1.5" PointX="8.25" PointY="32.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.LocationType" Width="1.5" PointX="3" PointY="34" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.LocCity" Width="1.5" PointX="3" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.LocCountry" Width="1.5" PointX="1.5" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.LocProvince" Width="1.5" PointX="0.75" PointY="29.625" IsExpanded="true" />
         <EntityTypeShape EntityType="mrtripir_newdbModel.Log_TB" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Owner" Width="1.5" PointX="12.75" PointY="39" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Payment" Width="1.5" PointX="15.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.PaymentResult" Width="1.5" PointX="18" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Owner" Width="1.5" PointX="12.75" PointY="39.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Payment" Width="1.5" PointX="15.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.PaymentResult" Width="1.5" PointX="18" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="mrtripir_newdbModel.PaymentResultLog" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="mrtripir_newdbModel.PlaceSpec" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Post" Width="1.5" PointX="12.75" PointY="42.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Post_TB" Width="1.5" PointX="13.5" PointY="63.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Role" Width="1.5" PointX="8.25" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Post" Width="1.5" PointX="12.75" PointY="43" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Post_TB" Width="1.5" PointX="13.5" PointY="63.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Role" Width="1.5" PointX="8.25" PointY="27.375" IsExpanded="true" />
         <EntityTypeShape EntityType="mrtripir_newdbModel.SmsAdminContact" Width="1.5" PointX="7.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.smsCode" Width="1.5" PointX="13.5" PointY="66.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.SmsCreditNotice" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.SmsReadyToSend" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.SmsSentArchive" Width="1.5" PointX="2.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.SmsWebServiceSetting" Width="1.5" PointX="4.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.smsCode" Width="1.5" PointX="13.5" PointY="67.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.SmsCreditNotice" Width="1.5" PointX="9.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.SmsReadyToSend" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.SmsSentArchive" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.SmsWebServiceSetting" Width="1.5" PointX="13.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="mrtripir_newdbModel.SpecType" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Station" Width="1.5" PointX="11.25" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.sysdiagram" Width="1.5" PointX="6.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.temp" Width="1.5" PointX="15.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Terminal" Width="1.5" PointX="11.25" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.toor_TB" Width="1.5" PointX="16.5" PointY="32.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.Tour" Width="1.5" PointX="18" PointY="22.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.TourAgencyCost" Width="1.5" PointX="20.25" PointY="20.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.TourBooking" Width="1.5" PointX="20.25" PointY="16" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.TourBookingTripper" Width="1.5" PointX="22.5" PointY="21.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.TourCheckout" Width="1.5" PointX="23.25" PointY="25.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.TourStop" Width="1.5" PointX="13.5" PointY="31.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.TourStopLocation" Width="1.5" PointX="18.75" PointY="33.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.TourStopType" Width="1.5" PointX="11.25" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.TourType" Width="1.5" PointX="15.75" PointY="39.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.TransactionType" Width="1.5" PointX="11.25" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.TransportCompany" Width="1.5" PointX="11.25" PointY="56.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.TransportType" Width="1.5" PointX="15.75" PointY="41.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.User" Width="1.5" PointX="10.5" PointY="23" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.user_TB" Width="1.5" PointX="11.25" PointY="60.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.UserSession" Width="1.5" PointX="12.75" PointY="46" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrtripir_newdbModel.UserType" Width="1.5" PointX="8.25" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Station" Width="1.5" PointX="11.25" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.sysdiagram" Width="1.5" PointX="2.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.temp" Width="1.5" PointX="4.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Terminal" Width="1.5" PointX="11.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.toor_TB" Width="1.5" PointX="16.5" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.Tour" Width="1.5" PointX="18" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.TourAgencyCost" Width="1.5" PointX="23.25" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.TourBooking" Width="1.5" PointX="23.25" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.TourBookingTripper" Width="1.5" PointX="25.5" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.TourCheckout" Width="1.5" PointX="23.25" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.TourEquipment" Width="1.5" PointX="20.25" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.TourStop" Width="1.5" PointX="13.5" PointY="32.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.TourStopLocation" Width="1.5" PointX="18.75" PointY="34.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.TourStopType" Width="1.5" PointX="11.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.TourType" Width="1.5" PointX="15.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.TransactionType" Width="1.5" PointX="11.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.TransportCompany" Width="1.5" PointX="11.25" PointY="56.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.TransportType" Width="1.5" PointX="15.75" PointY="39.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.User" Width="1.5" PointX="10.5" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.user_TB" Width="1.5" PointX="11.25" PointY="60.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.UserSession" Width="1.5" PointX="12.75" PointY="46.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mrtripir_newdbModel.UserType" Width="1.5" PointX="8.25" PointY="29.75" IsExpanded="true" />
         <AssociationConnector Association="mrtripir_newdbModel.FK_AbuseReport_Hotel" ManuallyRouted="false" />
         <AssociationConnector Association="mrtripir_newdbModel.FK_Agency_City" ManuallyRouted="false" />
         <AssociationConnector Association="mrtripir_newdbModel.FK_Agency_User" ManuallyRouted="false" />
@@ -111,6 +112,7 @@
         <AssociationConnector Association="mrtripir_newdbModel.FK_CommissionSettlement_User" ManuallyRouted="false" />
         <AssociationConnector Association="mrtripir_newdbModel.FK_Coupon_User" ManuallyRouted="false" />
         <AssociationConnector Association="mrtripir_newdbModel.FK_TourStopCost_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="mrtripir_newdbModel.FK_TourEquipment_Equipment1" ManuallyRouted="false" />
         <AssociationConnector Association="mrtripir_newdbModel.FK_fav_TB_Locations_TB" ManuallyRouted="false" />
         <AssociationConnector Association="mrtripir_newdbModel.FK_fav_TB_user_TB" ManuallyRouted="false" />
         <AssociationConnector Association="mrtripir_newdbModel.FK_Tour_Hardness" ManuallyRouted="false" />
@@ -161,6 +163,7 @@
         <AssociationConnector Association="mrtripir_newdbModel.FK_Tour_User1" ManuallyRouted="false" />
         <AssociationConnector Association="mrtripir_newdbModel.FK_TourAgencyCost_Tour" ManuallyRouted="false" />
         <AssociationConnector Association="mrtripir_newdbModel.FK_TourCheckout_Tour" ManuallyRouted="false" />
+        <AssociationConnector Association="mrtripir_newdbModel.FK_TourEquipment_Tour1" ManuallyRouted="false" />
         <AssociationConnector Association="mrtripir_newdbModel.FK_TourStop_Tour" ManuallyRouted="false" />
         <AssociationConnector Association="mrtripir_newdbModel.FK_TourBookingTripper_TourAgencyCost" ManuallyRouted="false" />
         <AssociationConnector Association="mrtripir_newdbModel.FK_TourBookingTripper_TourBooking" ManuallyRouted="false" />
@@ -175,7 +178,6 @@
         <AssociationConnector Association="mrtripir_newdbModel.HotelFacilities" ManuallyRouted="false" />
         <AssociationConnector Association="mrtripir_newdbModel.LocationLeaders" ManuallyRouted="false" />
         <AssociationConnector Association="mrtripir_newdbModel.TourCoupon" ManuallyRouted="false" />
-        <AssociationConnector Association="mrtripir_newdbModel.TourEquipment" ManuallyRouted="false" />
         <AssociationConnector Association="mrtripir_newdbModel.UserLanguages" ManuallyRouted="false" />
         <AssociationConnector Association="mrtripir_newdbModel.UserRoles" ManuallyRouted="false" />
       </Diagram>

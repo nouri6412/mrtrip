@@ -849,9 +849,9 @@
   </EntityType>
   <EntityType Name="TourEquipment">
     <Key>
-      <PropertyRef Name="TourId" />
-      <PropertyRef Name="EquipmentId" />
+      <PropertyRef Name="Id" />
     </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TourId" Type="bigint" Nullable="false" />
     <Property Name="EquipmentId" Type="int" Nullable="false" />
   </EntityType>

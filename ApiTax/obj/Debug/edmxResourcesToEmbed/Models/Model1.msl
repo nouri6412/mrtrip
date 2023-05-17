@@ -875,6 +875,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TourEquipments">
+      <EntityTypeMapping TypeName="mrtripir_newdbModel.TourEquipment">
+        <MappingFragment StoreEntitySet="TourEquipment">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TourId" ColumnName="TourId" />
+          <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="TourStops">
       <EntityTypeMapping TypeName="mrtripir_newdbModel.TourStop">
         <MappingFragment StoreEntitySet="TourStop">
@@ -1061,14 +1070,6 @@
     <AssociationSetMapping Name="TourCoupon" TypeName="mrtripir_newdbModel.TourCoupon" StoreEntitySet="TourCoupon">
       <EndProperty Name="Coupon">
         <ScalarProperty Name="Id" ColumnName="CouponId" />
-      </EndProperty>
-      <EndProperty Name="Tour">
-        <ScalarProperty Name="Id" ColumnName="TourId" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="TourEquipment" TypeName="mrtripir_newdbModel.TourEquipment" StoreEntitySet="TourEquipment">
-      <EndProperty Name="Equipment">
-        <ScalarProperty Name="Id" ColumnName="EquipmentId" />
       </EndProperty>
       <EndProperty Name="Tour">
         <ScalarProperty Name="Id" ColumnName="TourId" />

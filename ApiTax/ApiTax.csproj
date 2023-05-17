@@ -536,6 +536,9 @@
     <Compile Include="Models\TourCheckout.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TourEquipment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TourStop.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

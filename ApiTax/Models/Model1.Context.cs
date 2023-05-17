@@ -95,6 +95,7 @@ namespace ApiTax.Models
         public virtual DbSet<TourBooking> TourBookings { get; set; }
         public virtual DbSet<TourBookingTripper> TourBookingTrippers { get; set; }
         public virtual DbSet<TourCheckout> TourCheckouts { get; set; }
+        public virtual DbSet<TourEquipment> TourEquipments { get; set; }
         public virtual DbSet<TourStop> TourStops { get; set; }
         public virtual DbSet<TourStopLocation> TourStopLocations { get; set; }
         public virtual DbSet<TourStopType> TourStopTypes { get; set; }

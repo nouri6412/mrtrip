@@ -217,7 +217,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Tours" Relationship="Self.TourEquipment" FromRole="Equipment" ToRole="Tour" />
+    <NavigationProperty Name="TourEquipments" Relationship="Self.FK_TourEquipment_Equipment1" FromRole="Equipment" ToRole="TourEquipment" />
   </EntityType>
   <EntityType Name="ErrorLog">
     <Key>
@@ -871,9 +871,9 @@
     <NavigationProperty Name="User1" Relationship="Self.FK_Tour_User1" FromRole="Tour" ToRole="User" />
     <NavigationProperty Name="TourAgencyCosts" Relationship="Self.FK_TourAgencyCost_Tour" FromRole="Tour" ToRole="TourAgencyCost" />
     <NavigationProperty Name="TourCheckouts" Relationship="Self.FK_TourCheckout_Tour" FromRole="Tour" ToRole="TourCheckout" />
+    <NavigationProperty Name="TourEquipments" Relationship="Self.FK_TourEquipment_Tour1" FromRole="Tour" ToRole="TourEquipment" />
     <NavigationProperty Name="TourStops" Relationship="Self.FK_TourStop_Tour" FromRole="Tour" ToRole="TourStop" />
     <NavigationProperty Name="Coupons" Relationship="Self.TourCoupon" FromRole="Tour" ToRole="Coupon" />
-    <NavigationProperty Name="Equipments" Relationship="Self.TourEquipment" FromRole="Tour" ToRole="Equipment" />
   </EntityType>
   <EntityType Name="TourAgencyCost">
     <Key>
@@ -946,6 +946,16 @@
     <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
     <NavigationProperty Name="CheckoutType" Relationship="Self.FK_TourCheckout_CheckoutType" FromRole="TourCheckout" ToRole="CheckoutType" />
     <NavigationProperty Name="Tour" Relationship="Self.FK_TourCheckout_Tour" FromRole="TourCheckout" ToRole="Tour" />
+  </EntityType>
+  <EntityType Name="TourEquipment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TourId" Type="Int64" Nullable="false" />
+    <Property Name="EquipmentId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Equipment" Relationship="Self.FK_TourEquipment_Equipment1" FromRole="TourEquipment" ToRole="Equipment" />
+    <NavigationProperty Name="Tour" Relationship="Self.FK_TourEquipment_Tour1" FromRole="TourEquipment" ToRole="Tour" />
   </EntityType>
   <EntityType Name="TourStop">
     <Key>
@@ -1432,6 +1442,18 @@
       </Principal>
       <Dependent Role="TourAgencyCost">
         <PropertyRef Name="CurrencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourEquipment_Equipment1">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+    <End Role="TourEquipment" Type="Self.TourEquipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourEquipment">
+        <PropertyRef Name="EquipmentId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2035,6 +2057,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TourEquipment_Tour1">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+    <End Role="TourEquipment" Type="Self.TourEquipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourEquipment">
+        <PropertyRef Name="TourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_TourStop_Tour">
     <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
     <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
@@ -2165,10 +2199,6 @@
     <End Role="Coupon" Type="Self.Coupon" Multiplicity="*" />
     <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
   </Association>
-  <Association Name="TourEquipment">
-    <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
-    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
-  </Association>
   <Association Name="UserLanguages">
     <End Role="Language" Type="Self.Language" Multiplicity="*" />
     <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -2248,6 +2278,7 @@
     <EntitySet Name="TourBookings" EntityType="Self.TourBooking" />
     <EntitySet Name="TourBookingTrippers" EntityType="Self.TourBookingTripper" />
     <EntitySet Name="TourCheckouts" EntityType="Self.TourCheckout" />
+    <EntitySet Name="TourEquipments" EntityType="Self.TourEquipment" />
     <EntitySet Name="TourStops" EntityType="Self.TourStop" />
     <EntitySet Name="TourStopLocations" EntityType="Self.TourStopLocation" />
     <EntitySet Name="TourStopTypes" EntityType="Self.TourStopType" />
@@ -2358,6 +2389,10 @@
     <AssociationSet Name="FK_TourStopCost_Currency" Association="Self.FK_TourStopCost_Currency">
       <End Role="Currency" EntitySet="Currencies" />
       <End Role="TourAgencyCost" EntitySet="TourAgencyCosts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourEquipment_Equipment1" Association="Self.FK_TourEquipment_Equipment1">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="TourEquipment" EntitySet="TourEquipments" />
     </AssociationSet>
     <AssociationSet Name="FK_fav_TB_Locations_TB" Association="Self.FK_fav_TB_Locations_TB">
       <End Role="Locations_TB" EntitySet="Locations_TB" />
@@ -2559,6 +2594,10 @@
       <End Role="Tour" EntitySet="Tours" />
       <End Role="TourCheckout" EntitySet="TourCheckouts" />
     </AssociationSet>
+    <AssociationSet Name="FK_TourEquipment_Tour1" Association="Self.FK_TourEquipment_Tour1">
+      <End Role="Tour" EntitySet="Tours" />
+      <End Role="TourEquipment" EntitySet="TourEquipments" />
+    </AssociationSet>
     <AssociationSet Name="FK_TourStop_Tour" Association="Self.FK_TourStop_Tour">
       <End Role="Tour" EntitySet="Tours" />
       <End Role="TourStop" EntitySet="TourStops" />
@@ -2613,10 +2652,6 @@
     </AssociationSet>
     <AssociationSet Name="TourCoupon" Association="Self.TourCoupon">
       <End Role="Coupon" EntitySet="Coupons" />
-      <End Role="Tour" EntitySet="Tours" />
-    </AssociationSet>
-    <AssociationSet Name="TourEquipment" Association="Self.TourEquipment">
-      <End Role="Equipment" EntitySet="Equipments" />
       <End Role="Tour" EntitySet="Tours" />
     </AssociationSet>
     <AssociationSet Name="UserLanguages" Association="Self.UserLanguages">

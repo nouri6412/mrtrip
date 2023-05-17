@@ -83,6 +83,9 @@ namespace ApiTax.Controllers
             ViewBag.FromCityId = new SelectList(db.LocCities, "Id", "Title");
             ViewBag.TourTypeId = new SelectList(db.TourTypes, "Id", "Title");
             ViewBag.TransportTypeId = new SelectList(db.TransportTypes, "Id", "Title");
+            ViewBag.EquipmentsId = new SelectList(db.Equipments.OrderBy(r=>r.Title), "Id", "Title");
+
+            ViewBag.TourEquipmentValue = new List<TourEquipment>();
 
             var br = from br1 in db.Users.Where(r=>r.UserType.Id==3)
                      select new { Id = br1.Id, Phone = br1.FirstName + " " + br1.LastName };
@@ -151,10 +154,56 @@ namespace ApiTax.Controllers
 
 
             tour.UserId = GlobalUser.CurrentUser.Id;
+
+            var TourEquipmentList = new List<TourEquipment>();
+            var TourEquipmentValue = Request.Form["TourEquipmentValue"];
+            var sp = TourEquipmentValue.ToString().Split(',');
+
+            try
+            {
+                foreach (var it in sp)
+                {
+                    int id = int.Parse(it);
+                    var eq = new TourEquipment()
+                    {
+                          EquipmentId=id
+                    };
+                    TourEquipmentList.Add(eq);
+                }
+            }
+            catch { }
+
+            ViewBag.TourEquipmentValue = TourEquipmentList;
+
             if (ModelState.IsValid)
             {
                 db.Tours.Add(tour);
                 db.SaveChanges();
+
+
+                try
+                {
+                    dbEntities db1 = new dbEntities();
+                    foreach (var it in sp)
+                    {
+                        int id = int.Parse(it);
+                        var eq = new TourEquipment()
+                        {
+                            TourId=tour.Id,
+                             EquipmentId=id
+                        };
+                        db1.TourEquipments.Add(eq);
+                        db1.SaveChanges();
+
+                    }
+                    db1.Dispose();
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+
                 return RedirectToAction("Edit", "Tours", new { id = tour.Id, type = "day" });
             }
             ViewBag.ErrorMessage = "";
@@ -162,6 +211,7 @@ namespace ApiTax.Controllers
             ViewBag.FromCityId = new SelectList(db.LocCities, "Id", "Title", tour.FromCityId);
             ViewBag.TourTypeId = new SelectList(db.TourTypes, "Id", "Title", tour.TourTypeId);
             ViewBag.TransportTypeId = new SelectList(db.TransportTypes, "Id", "Title", tour.TransportTypeId);
+            ViewBag.EquipmentsId = new SelectList(db.Equipments.OrderBy(r => r.Title), "Id", "Title");
             ViewBag.ErrorMessage = "به خطاها توجه نمائید";
 
            var br = from br1 in db.Users.Where(r => r.UserType.Id == 3)
@@ -209,6 +259,8 @@ namespace ApiTax.Controllers
             ViewBag.FromCityId = new SelectList(db.LocCities, "Id", "Title", tour.FromCityId);
             ViewBag.TourTypeId = new SelectList(db.TourTypes, "Id", "Title", tour.TourTypeId);
             ViewBag.TransportTypeId = new SelectList(db.TransportTypes, "Id", "Title", tour.TransportTypeId);
+            ViewBag.EquipmentsId = new SelectList(db.Equipments.OrderBy(r => r.Title), "Id", "Title");
+            ViewBag.TourEquipmentValue = db.TourEquipments.Where(r=>r.TourId==tour.Id).ToList();
             ViewBag.ErrorMessage = "";
             var br = from br1 in db.Users.Where(r => r.UserType.Id == 3)
                      select new { Id = br1.Id, Phone = br1.FirstName + " " + br1.LastName };
@@ -236,6 +288,26 @@ namespace ApiTax.Controllers
             {
                 return HttpNotFound();
             }
+
+            var TourEquipmentList = new List<TourEquipment>();
+            var TourEquipmentValue = Request.Form["TourEquipmentValue"];
+            var sp = TourEquipmentValue.ToString().Split(',');
+
+            try
+            {
+                foreach (var it in sp)
+                {
+                    int id = int.Parse(it);
+                    var eq = new TourEquipment()
+                    {
+                        EquipmentId = id
+                    };
+                    TourEquipmentList.Add(eq);
+                }
+            }
+            catch { }
+
+            ViewBag.TourEquipmentValue = TourEquipmentList;
 
             tour.ImageUrl = tour1.ImageUrl;
             HttpPostedFileBase file = Request.Files["Image"];
@@ -268,6 +340,34 @@ namespace ApiTax.Controllers
             {
                 db.Entry(tour).State = EntityState.Modified;
                 db.SaveChanges();
+
+                try
+                {
+                    dbEntities db1 = new dbEntities();
+
+                    var rts = db.TourEquipments.Where(r => r.TourId == tour.Id);
+                    db1.TourEquipments.RemoveRange(rts);
+                    db1.SaveChanges();
+                    foreach (var it in sp)
+                    {
+                        int id = int.Parse(it);
+                        var eq = new TourEquipment()
+                        {
+                            TourId = tour.Id,
+                            EquipmentId = id
+                        };
+                        db1.TourEquipments.Add(eq);
+                        db1.SaveChanges();
+
+                    }
+                    db1.Dispose();
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+
                 return RedirectToAction("Index");
             }
             ViewBag.ErrorMessage = "به خطاها توجه نمائید";
@@ -275,6 +375,8 @@ namespace ApiTax.Controllers
             ViewBag.FromCityId = new SelectList(db.LocCities, "Id", "Title", tour.FromCityId);
             ViewBag.TourTypeId = new SelectList(db.TourTypes, "Id", "Title", tour.TourTypeId);
             ViewBag.TransportTypeId = new SelectList(db.TransportTypes, "Id", "Title", tour.TransportTypeId);
+            ViewBag.EquipmentsId = new SelectList(db.Equipments.OrderBy(r => r.Title), "Id", "Title");
+
 
             var br = from br1 in db.Users.Where(r => r.UserType.Id == 3)
                      select new { Id = br1.Id, Phone = br1.FirstName + " " + br1.LastName };
