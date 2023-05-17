@@ -175,12 +175,18 @@ namespace ApiTax.Controllers
 
             ViewBag.TourEquipmentValue = TourEquipmentList;
 
+            Boolean added = false;
+
             if (ModelState.IsValid)
             {
                 db.Tours.Add(tour);
                 db.SaveChanges();
+                added = true;
 
+            }
 
+            if(added)
+            {
                 try
                 {
                     dbEntities db1 = new dbEntities();
@@ -189,8 +195,8 @@ namespace ApiTax.Controllers
                         int id = int.Parse(it);
                         var eq = new TourEquipment()
                         {
-                            TourId=tour.Id,
-                             EquipmentId=id
+                            TourId = tour.Id,
+                            EquipmentId = id
                         };
                         db1.TourEquipments.Add(eq);
                         db1.SaveChanges();
@@ -198,13 +204,13 @@ namespace ApiTax.Controllers
                     }
                     db1.Dispose();
 
+                    return RedirectToAction("Edit", "Tours", new { id = tour.Id, type = "day" });
+
                 }
                 catch (Exception ex)
                 {
 
                 }
-
-                return RedirectToAction("Edit", "Tours", new { id = tour.Id, type = "day" });
             }
             ViewBag.ErrorMessage = "";
             ViewBag.HardnessId = new SelectList(db.Hardnesses, "Id", "Title", tour.HardnessId);
@@ -241,19 +247,7 @@ namespace ApiTax.Controllers
             {
                 return HttpNotFound();
             }
-            try
-            {
-                var date = Request.Form["StartDatePersian"];
-                tour.CreateDate = utility.ToMiladi(utility.toEnglishNumber(date.ToString()));
-            }
-            catch { }
 
-            try
-            {
-                var date = Request.Form["EndDatePersian"];
-                tour.EndDate = utility.ToMiladi(utility.toEnglishNumber(date.ToString()));
-            }
-            catch { }
 
             ViewBag.HardnessId = new SelectList(db.Hardnesses, "Id", "Title", tour.HardnessId);
             ViewBag.FromCityId = new SelectList(db.LocCities, "Id", "Title", tour.FromCityId);
@@ -283,7 +277,9 @@ namespace ApiTax.Controllers
             {
                 return RedirectToAction("Login", "Home", new { });
             }
-            Tour tour1 = db.Tours.Find(tour.Id);
+            dbEntities db1 = new dbEntities();
+
+            Tour tour1 = db1.Tours.Find(tour.Id);
             if (tour1 == null || (tour1.UserId != GlobalUser.CurrentUser.Id && GlobalUser.isAdmin == false))
             {
                 return HttpNotFound();
@@ -308,6 +304,20 @@ namespace ApiTax.Controllers
             catch { }
 
             ViewBag.TourEquipmentValue = TourEquipmentList;
+
+            try
+            {
+                var date = Request.Form["StartDatePersian"];
+                tour.CreateDate = utility.ToMiladi(utility.toEnglishNumber(date.ToString()));
+            }
+            catch { }
+
+            try
+            {
+                var date = Request.Form["EndDatePersian"];
+                tour.EndDate = utility.ToMiladi(utility.toEnglishNumber(date.ToString()));
+            }
+            catch { }
 
             tour.ImageUrl = tour1.ImageUrl;
             HttpPostedFileBase file = Request.Files["Image"];
@@ -336,18 +346,32 @@ namespace ApiTax.Controllers
                 ViewBag.Message = "You have not specified a file.";
             }
             tour.UserId = tour1.UserId;
+
+            Boolean edited = false;
             if (ModelState.IsValid)
             {
                 db.Entry(tour).State = EntityState.Modified;
+       //         UpdateModel(tour);
                 db.SaveChanges();
+                edited = true;
 
+            }
+
+            if(edited)
+            {
                 try
                 {
-                    dbEntities db1 = new dbEntities();
 
-                    var rts = db.TourEquipments.Where(r => r.TourId == tour.Id);
-                    db1.TourEquipments.RemoveRange(rts);
-                    db1.SaveChanges();
+
+                    var rts = db1.TourEquipments.Where(r => r.TourId == tour.Id).ToList();
+
+                    foreach (var item in rts)
+                    {
+                        var t1 = db1.TourEquipments.Find(item.Id);
+                        db1.TourEquipments.Remove(t1);
+                        db1.SaveChanges();
+                    }
+
                     foreach (var it in sp)
                     {
                         int id = int.Parse(it);
@@ -360,16 +384,18 @@ namespace ApiTax.Controllers
                         db1.SaveChanges();
 
                     }
+
                     db1.Dispose();
 
+                    return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
 
                 }
-
-                return RedirectToAction("Index");
             }
+
+
             ViewBag.ErrorMessage = "به خطاها توجه نمائید";
             ViewBag.HardnessId = new SelectList(db.Hardnesses, "Id", "Title", tour.HardnessId);
             ViewBag.FromCityId = new SelectList(db.LocCities, "Id", "Title", tour.FromCityId);
@@ -383,6 +409,7 @@ namespace ApiTax.Controllers
 
             ViewBag.SupervisorId = new SelectList(br, "Id", "Phone", tour.SupervisorId);
             ViewBag.type = "";
+            db1.Dispose();
             return View(tour);
         }
 
