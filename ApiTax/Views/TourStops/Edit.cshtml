@@ -1,15 +1,17 @@
 ﻿@model ApiTax.Models.TourStop
-
+@using ApiTax.Models;
 @{
     ViewBag.Title = "Edit";
     string error = ViewBag.ErrorMessage;
+    SelectList LocId = ViewBag.LocationId;
+    var locs = ViewBag.LocationIdOthers as List<TourStopLocation>;
 }
 
 <div class="kt-portlet__head kt-portlet__head--lg">
     <div class="kt-portlet__head-label">
         <span class="kt-portlet__head-icon"><i :class="modelIcon"></i></span>
         <h3 class="kt-portlet__head-title">
-           ویرایش روز سفر
+            ویرایش روز سفر
         </h3>
     </div>
 </div>
@@ -23,174 +25,195 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal row">
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.Id)
-    @Html.HiddenFor(model => model.TourId)
+    <div class="form-horizontal row">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.TourId)
 
 
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.CityId, "شهر مقصد", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.DropDownList("CityId", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.LocationId, "جاذبه مقصد", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.DropDownList("LocationId", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.LocationId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.StopTypeId, "نوع روز سفر", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.DropDownList("StopTypeId", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.StopTypeId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.StopOrder, "ترتیب روز سفر", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.StopOrder, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.StopOrder, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.Nights, "تعداد شب توقف", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Nights, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Nights, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.HotelId, "هتل محل اقامت", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.DropDownList("HotelId", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.HotelId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.TransportCompanyId, "شرکت ترانسفر کننده", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.DropDownList("TransportCompanyId", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.TransportCompanyId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.DepartureDate, "تاریخ عزیمت", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            <input value="@DateTime.Now.ToShortDateString()" id="DepartureDatePersian" name="DepartureDatePersian" class="persian-date form-control" type="text" />
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.DepartureTime, "ساعت حرکت", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @{
-                var timespan = new TimeSpan(0, 0, 0);
-                timespan = Model != null ? Model.DepartureTime : new TimeSpan(0, 0, 0);
-            }
-            <div class="input-group timepicker">
-                <input class="form-control form-timepicker" id="DepartureTime" name="DepartureTime" value="@timespan.ToString()" readonly placeholder="" type="text" />
-                <div class="input-group-append">
-                    <span class="input-group-text">
-                        <i class="la la-clock-o"></i>
-                    </span>
-                </div>
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.CityId, "شهر مقصد", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.DropDownList("CityId", null, htmlAttributes: new { @class = "form-control my-multi-select" })
+                @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
             </div>
         </div>
-    </div>
 
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.DepartureStationId, "ایستگاه حرکت", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.DropDownList("DepartureStationId", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.DepartureStationId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.ArrivalTime, "ساعت رسیدن", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @{
-                timespan = Model != null ? Model.ArrivalTime : new TimeSpan(0, 0, 0);
-            }
-            <div class="input-group timepicker">
-                <input class="form-control form-timepicker" id="ArrivalTime" name="ArrivalTime" value="@timespan.ToString()" readonly placeholder="" type="text" />
-                <div class="input-group-append">
-                    <span class="input-group-text">
-                        <i class="la la-clock-o"></i>
-                    </span>
-                </div>
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.LocationId, "جاذبه مقصد", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.DropDownList("LocationId", null, htmlAttributes: new { @class = "form-control my-multi-select" })
+                @Html.ValidationMessageFor(model => model.LocationId, "", new { @class = "text-danger" })
             </div>
         </div>
-    </div>
 
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.ArrivalStationId, "ایستگاه رسیدن", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.DropDownList("ArrivalStationId", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.ArrivalStationId, "", new { @class = "text-danger" })
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.LocationId, "سایر جازبه ها", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                <select id="LocationIdOthers" name="LocationIdOthers" class="form-control kt-select2 my-multi-select" multiple="multiple">
+                    @foreach (var item in LocId)
+                    {
+                        var ex = locs.FirstOrDefault(r => r.LocationID == long.Parse(item.Value));
+                        if (ex != null)
+                        {
+                            <option selected value="@item.Value">@item.Text</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+
+                    }
+                </select>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.Duration, "مدت سفر", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @{
-                timespan = new TimeSpan(0, 0, 0);
-                if (Model != null)
-                {
-                    timespan = Model.Duration.HasValue ? Model.Duration.Value : new TimeSpan(0, 0, 0);
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.StopTypeId, "نوع روز سفر", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.DropDownList("StopTypeId", null, htmlAttributes: new { @class = "form-control my-multi-select" })
+                @Html.ValidationMessageFor(model => model.StopTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.StopOrder, "ترتیب روز سفر", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StopOrder, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StopOrder, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.Nights, "تعداد شب توقف", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nights, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nights, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.HotelId, "هتل محل اقامت", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.DropDownList("HotelId", null, htmlAttributes: new { @class = "form-control my-multi-select" })
+                @Html.ValidationMessageFor(model => model.HotelId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.TransportCompanyId, "شرکت ترانسفر کننده", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.DropDownList("TransportCompanyId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TransportCompanyId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.DepartureDate, "تاریخ عزیمت", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                <input value="@DateTime.Now.ToShortDateString()" id="DepartureDatePersian" name="DepartureDatePersian" class="persian-date form-control" type="text" />
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.DepartureTime, "ساعت حرکت", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @{
+                    var timespan = new TimeSpan(0, 0, 0);
+                    timespan = Model != null ? Model.DepartureTime : new TimeSpan(0, 0, 0);
                 }
-            }
-            <div class="input-group timepicker">
-                <input class="form-control form-timepicker" id="Duration" name="Duration" value="@timespan.ToString()" readonly placeholder="" type="text" />
-                <div class="input-group-append">
-                    <span class="input-group-text">
-                        <i class="la la-clock-o"></i>
-                    </span>
+                <div class="input-group timepicker">
+                    <input class="form-control form-timepicker" id="DepartureTime" name="DepartureTime" value="@timespan.ToString()" readonly placeholder="" type="text" />
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <i class="la la-clock-o"></i>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.WaitDuration, "مدت انتظار", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @{
-                timespan = new TimeSpan(0, 0, 0);
-                if (Model != null)
-                {
-                    timespan = Model.WaitDuration.HasValue ? Model.WaitDuration.Value : new TimeSpan(0, 0, 0);
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.DepartureStationId, "ایستگاه حرکت", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.DropDownList("DepartureStationId", null,"انتخاب کنید", htmlAttributes: new { @class = "form-control my-multi-select" })
+                @Html.ValidationMessageFor(model => model.DepartureStationId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.ArrivalTime, "ساعت رسیدن", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @{
+                    timespan = Model != null ? Model.ArrivalTime : new TimeSpan(0, 0, 0);
                 }
-            }
-            <div class="input-group timepicker">
-                <input class="form-control form-timepicker" id="WaitDuration" name="WaitDuration" value="@timespan.ToString()" readonly placeholder="" type="text" />
-                <div class="input-group-append">
-                    <span class="input-group-text">
-                        <i class="la la-clock-o"></i>
-                    </span>
+                <div class="input-group timepicker">
+                    <input class="form-control form-timepicker" id="ArrivalTime" name="ArrivalTime" value="@timespan.ToString()" readonly placeholder="" type="text" />
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <i class="la la-clock-o"></i>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="form-group col-md-12">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="ذخیره تغییرات روز سفر" class="btn btn-primary" />
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.ArrivalStationId, "ایستگاه رسیدن", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.DropDownList("ArrivalStationId", null,"انتخاب کنید", htmlAttributes: new { @class = "form-control my-multi-select" })
+                @Html.ValidationMessageFor(model => model.ArrivalStationId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.Duration, "مدت سفر", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @{
+                    timespan = new TimeSpan(0, 0, 0);
+                    if (Model != null)
+                    {
+                        timespan = Model.Duration.HasValue ? Model.Duration.Value : new TimeSpan(0, 0, 0);
+                    }
+                }
+                <div class="input-group timepicker">
+                    <input class="form-control form-timepicker" id="Duration" name="Duration" value="@timespan.ToString()" readonly placeholder="" type="text" />
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <i class="la la-clock-o"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.WaitDuration, "مدت انتظار", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @{
+                    timespan = new TimeSpan(0, 0, 0);
+                    if (Model != null)
+                    {
+                        timespan = Model.WaitDuration.HasValue ? Model.WaitDuration.Value : new TimeSpan(0, 0, 0);
+                    }
+                }
+                <div class="input-group timepicker">
+                    <input class="form-control form-timepicker" id="WaitDuration" name="WaitDuration" value="@timespan.ToString()" readonly placeholder="" type="text" />
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <i class="la la-clock-o"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ذخیره تغییرات روز سفر" class="btn btn-primary" />
+            </div>
         </div>
     </div>
-</div>
 }
 
 <div>

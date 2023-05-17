@@ -898,6 +898,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TourStopLocations">
+      <EntityTypeMapping TypeName="mrtripir_newdbModel.TourStopLocation">
+        <MappingFragment StoreEntitySet="TourStopLocation">
+          <ScalarProperty Name="TourLocationID" ColumnName="TourLocationID" />
+          <ScalarProperty Name="TourStopId" ColumnName="TourStopId" />
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="TourStopTypes">
       <EntityTypeMapping TypeName="mrtripir_newdbModel.TourStopType">
         <MappingFragment StoreEntitySet="TourStopType">

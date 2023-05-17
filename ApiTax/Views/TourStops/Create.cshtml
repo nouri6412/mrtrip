@@ -1,9 +1,13 @@
 ﻿@model ApiTax.Models.TourStop
-
+@using System.Collections.Generic;
+@using ApiTax.Models;
 @{
     ViewBag.Title = "اضافه کردن روز به سفر";
     long tour_id = ViewBag.tour_id;
     string error = ViewBag.ErrorMessage;
+    SelectList LocId = ViewBag.LocationId;
+
+   var locs= ViewBag.LocationIdOthers as List<TourStopLocation>;
 }
 
 <div class="kt-portlet__head kt-portlet__head--lg">
@@ -29,7 +33,7 @@
         <div class="form-group col-md-4">
             @Html.LabelFor(model => model.CityId, "شهر مقصد", htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-10">
-                @Html.DropDownList("CityId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("CityId", null, htmlAttributes: new { @class = "form-control my-multi-select" })
                 @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -37,8 +41,29 @@
         <div class="form-group col-md-4">
             @Html.LabelFor(model => model.LocationId, "جاذبه مقصد", htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-10">
-                @Html.DropDownList("LocationId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("LocationId", null, htmlAttributes: new { @class = "form-control my-multi-select" })
                 @Html.ValidationMessageFor(model => model.LocationId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.LocationId, "سایر جازبه ها", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                <select id="LocationIdOthers" name="LocationIdOthers" class="form-control kt-select2 my-multi-select" multiple="multiple">
+                    @foreach (var item in LocId)
+                    {
+                        var ex = locs.FirstOrDefault(r => r.LocationID == long.Parse(item.Value));
+                        if (ex != null)
+                        {
+                            <option selected value="@item.Value">@item.Text</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+
+                    }
+                </select>
             </div>
         </div>
 
@@ -69,7 +94,7 @@
         <div class="form-group col-md-4">
             @Html.LabelFor(model => model.HotelId, "هتل محل اقامت", htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-10">
-                @Html.DropDownList("HotelId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("HotelId", null, htmlAttributes: new { @class = "form-control my-multi-select" })
                 @Html.ValidationMessageFor(model => model.HotelId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -77,7 +102,7 @@
         <div class="form-group col-md-4">
             @Html.LabelFor(model => model.TransportCompanyId, "شرکت ترانسفر کننده", htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-10">
-                @Html.DropDownList("TransportCompanyId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("TransportCompanyId", null, htmlAttributes: new { @class = "form-control my-multi-select" })
                 @Html.ValidationMessageFor(model => model.TransportCompanyId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -110,7 +135,7 @@
         <div class="form-group col-md-4">
             @Html.LabelFor(model => model.DepartureStationId, "ایستگاه حرکت", htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-10">
-                @Html.DropDownList("DepartureStationId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("DepartureStationId", null,"انتخاب کنید", htmlAttributes: new { @class = "form-control my-multi-select" })
                 @Html.ValidationMessageFor(model => model.DepartureStationId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -135,7 +160,7 @@
         <div class="form-group col-md-4">
             @Html.LabelFor(model => model.ArrivalStationId, "ایستگاه رسیدن", htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-10">
-                @Html.DropDownList("ArrivalStationId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("ArrivalStationId", null,"انتخاب کنید", htmlAttributes: new { @class = "form-control my-multi-select" })
                 @Html.ValidationMessageFor(model => model.ArrivalStationId, "", new { @class = "text-danger" })
             </div>
         </div>

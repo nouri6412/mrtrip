@@ -20,6 +20,7 @@ namespace ApiTax.Models
             this.LocationComments = new HashSet<LocationComment>();
             this.LocationImages = new HashSet<LocationImage>();
             this.TourStops = new HashSet<TourStop>();
+            this.TourStopLocations = new HashSet<TourStopLocation>();
             this.Users = new HashSet<User>();
         }
     
@@ -50,6 +51,8 @@ namespace ApiTax.Models
         public virtual ICollection<LocationImage> LocationImages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TourStop> TourStops { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TourStopLocation> TourStopLocations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }
     }

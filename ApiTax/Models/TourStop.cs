@@ -14,6 +14,12 @@ namespace ApiTax.Models
     
     public partial class TourStop
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TourStop()
+        {
+            this.TourStopLocations = new HashSet<TourStopLocation>();
+        }
+    
         public long Id { get; set; }
         public long TourId { get; set; }
         public int CityId { get; set; }
@@ -40,5 +46,7 @@ namespace ApiTax.Models
         public virtual Tour Tour { get; set; }
         public virtual TourStopType TourStopType { get; set; }
         public virtual TransportCompany TransportCompany { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TourStopLocation> TourStopLocations { get; set; }
     }
 }

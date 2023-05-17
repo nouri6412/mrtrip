@@ -81,6 +81,15 @@ namespace ApiTax.Controllers
                 return HttpNotFound();
             }
 
+            if (GlobalUser.isAdmin==false)
+            {
+                var ag = db.Agencies.FirstOrDefault(r=>r.UserId== GlobalUser.CurrentUser.Id);
+                if(ag != null)
+                {
+                    tourAgencyCost.AgencyId = ag.Id;
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 db.TourAgencyCosts.Add(tourAgencyCost);
@@ -139,6 +148,16 @@ namespace ApiTax.Controllers
             if (tour == null || (tour.UserId != GlobalUser.CurrentUser.Id && GlobalUser.isAdmin == false))
             {
                 return HttpNotFound();
+            }
+
+
+            if (GlobalUser.isAdmin == false)
+            {
+                var ag = db.Agencies.FirstOrDefault(r => r.UserId == GlobalUser.CurrentUser.Id);
+                if (ag != null)
+                {
+                    tourAgencyCost.AgencyId = ag.Id;
+                }
             }
 
             if (ModelState.IsValid)

@@ -882,6 +882,14 @@
           <Property Name="Duration" Type="time" Precision="7" />
           <Property Name="WaitDuration" Type="time" Precision="7" />
         </EntityType>
+        <EntityType Name="TourStopLocation">
+          <Key>
+            <PropertyRef Name="TourLocationID" />
+          </Key>
+          <Property Name="TourLocationID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TourStopId" Type="bigint" />
+          <Property Name="LocationID" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityType Name="TourStopType">
           <Key>
             <PropertyRef Name="Id" />
@@ -2098,6 +2106,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TourStopLocation_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="TourStopLocation" Type="Self.TourStopLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TourStopLocation">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TourStopLocation_TourStop">
+          <End Role="TourStop" Type="Self.TourStop" Multiplicity="0..1" />
+          <End Role="TourStopLocation" Type="Self.TourStopLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TourStop">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TourStopLocation">
+              <PropertyRef Name="TourStopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TransportCompany_TransportType1">
           <End Role="TransportType" Type="Self.TransportType" Multiplicity="1" />
           <End Role="TransportCompany" Type="Self.TransportCompany" Multiplicity="*" />
@@ -2272,6 +2304,7 @@
           <EntitySet Name="TourCoupon" EntityType="Self.TourCoupon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TourEquipment" EntityType="Self.TourEquipment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TourStop" EntityType="Self.TourStop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TourStopLocation" EntityType="Self.TourStopLocation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TourStopType" EntityType="Self.TourStopType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TourType" EntityType="Self.TourType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="dbo" store:Type="Tables" />
@@ -2642,6 +2675,14 @@
           <AssociationSet Name="FK_TourStopCost_HotelRoomType" Association="Self.FK_TourStopCost_HotelRoomType">
             <End Role="HotelRoomType" EntitySet="HotelRoomType" />
             <End Role="TourAgencyCost" EntitySet="TourAgencyCost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TourStopLocation_Location" Association="Self.FK_TourStopLocation_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="TourStopLocation" EntitySet="TourStopLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TourStopLocation_TourStop" Association="Self.FK_TourStopLocation_TourStop">
+            <End Role="TourStop" EntitySet="TourStop" />
+            <End Role="TourStopLocation" EntitySet="TourStopLocation" />
           </AssociationSet>
           <AssociationSet Name="FK_TransportCompany_TransportType1" Association="Self.FK_TransportCompany_TransportType1">
             <End Role="TransportType" EntitySet="TransportType" />
@@ -3147,6 +3188,7 @@
           <NavigationProperty Name="LocationComments" Relationship="Self.FK_LocationComment_Location" FromRole="Location" ToRole="LocationComment" />
           <NavigationProperty Name="LocationImages" Relationship="Self.FK_LocationImage_Location" FromRole="Location" ToRole="LocationImage" />
           <NavigationProperty Name="TourStops" Relationship="Self.FK_TourStop_Location" FromRole="Location" ToRole="TourStop" />
+          <NavigationProperty Name="TourStopLocations" Relationship="Self.FK_TourStopLocation_Location" FromRole="Location" ToRole="TourStopLocation" />
           <NavigationProperty Name="Users" Relationship="Self.LocationLeaders" FromRole="Location" ToRole="User" />
         </EntityType>
         <EntityType Name="LocationComment">
@@ -3656,6 +3698,17 @@
           <NavigationProperty Name="Tour" Relationship="Self.FK_TourStop_Tour" FromRole="TourStop" ToRole="Tour" />
           <NavigationProperty Name="TourStopType" Relationship="Self.FK_TourStop_TourStopType" FromRole="TourStop" ToRole="TourStopType" />
           <NavigationProperty Name="TransportCompany" Relationship="Self.FK_TourStop_TransportCompany" FromRole="TourStop" ToRole="TransportCompany" />
+          <NavigationProperty Name="TourStopLocations" Relationship="Self.FK_TourStopLocation_TourStop" FromRole="TourStop" ToRole="TourStopLocation" />
+        </EntityType>
+        <EntityType Name="TourStopLocation">
+          <Key>
+            <PropertyRef Name="TourLocationID" />
+          </Key>
+          <Property Name="TourLocationID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TourStopId" Type="Int64" />
+          <Property Name="LocationID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_TourStopLocation_Location" FromRole="TourStopLocation" ToRole="Location" />
+          <NavigationProperty Name="TourStop" Relationship="Self.FK_TourStopLocation_TourStop" FromRole="TourStopLocation" ToRole="TourStop" />
         </EntityType>
         <EntityType Name="TourStopType">
           <Key>
@@ -4380,6 +4433,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TourStopLocation_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="TourStopLocation" Type="Self.TourStopLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TourStopLocation">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Comment_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="LocationComment" Type="Self.LocationComment" Multiplicity="*" />
@@ -4754,6 +4819,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TourStopLocation_TourStop">
+          <End Role="TourStop" Type="Self.TourStop" Multiplicity="0..1" />
+          <End Role="TourStopLocation" Type="Self.TourStopLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TourStop">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TourStopLocation">
+              <PropertyRef Name="TourStopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TransportCompany_TransportType1">
           <End Role="TransportType" Type="Self.TransportType" Multiplicity="1" />
           <End Role="TransportCompany" Type="Self.TransportCompany" Multiplicity="*" />
@@ -4894,6 +4971,7 @@
           <EntitySet Name="TourBookingTrippers" EntityType="Self.TourBookingTripper" />
           <EntitySet Name="TourCheckouts" EntityType="Self.TourCheckout" />
           <EntitySet Name="TourStops" EntityType="Self.TourStop" />
+          <EntitySet Name="TourStopLocations" EntityType="Self.TourStopLocation" />
           <EntitySet Name="TourStopTypes" EntityType="Self.TourStopType" />
           <EntitySet Name="TourTypes" EntityType="Self.TourType" />
           <EntitySet Name="TransactionTypes" EntityType="Self.TransactionType" />
@@ -5095,6 +5173,10 @@
             <End Role="Location" EntitySet="Locations" />
             <End Role="TourStop" EntitySet="TourStops" />
           </AssociationSet>
+          <AssociationSet Name="FK_TourStopLocation_Location" Association="Self.FK_TourStopLocation_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="TourStopLocation" EntitySet="TourStopLocations" />
+          </AssociationSet>
           <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
             <End Role="User" EntitySet="Users" />
             <End Role="LocationComment" EntitySet="LocationComments" />
@@ -5218,6 +5300,10 @@
           <AssociationSet Name="FK_TourStop_TransportCompany" Association="Self.FK_TourStop_TransportCompany">
             <End Role="TransportCompany" EntitySet="TransportCompanies" />
             <End Role="TourStop" EntitySet="TourStops" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TourStopLocation_TourStop" Association="Self.FK_TourStopLocation_TourStop">
+            <End Role="TourStop" EntitySet="TourStops" />
+            <End Role="TourStopLocation" EntitySet="TourStopLocations" />
           </AssociationSet>
           <AssociationSet Name="FK_TransportCompany_TransportType1" Association="Self.FK_TransportCompany_TransportType1">
             <End Role="TransportType" EntitySet="TransportTypes" />
@@ -6164,6 +6250,15 @@
                 <ScalarProperty Name="ArrivalStationId" ColumnName="ArrivalStationId" />
                 <ScalarProperty Name="Duration" ColumnName="Duration" />
                 <ScalarProperty Name="WaitDuration" ColumnName="WaitDuration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TourStopLocations">
+            <EntityTypeMapping TypeName="mrtripir_newdbModel.TourStopLocation">
+              <MappingFragment StoreEntitySet="TourStopLocation">
+                <ScalarProperty Name="TourLocationID" ColumnName="TourLocationID" />
+                <ScalarProperty Name="TourStopId" ColumnName="TourStopId" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -3,6 +3,8 @@
 @using ApiTax.Models
 
 @{
+    /**/
+
     ViewBag.Title = "لیست سفر ها";
     int page1 = ViewBag.page_index;
     int index = (page1 - 1) * 15;
@@ -116,7 +118,7 @@
                 }
             </td>
             <td>
-                <i class="fa check-@item.IsActive.ToString()"></i>
+                <a href="~/Tours/SetCheck?TourId=@item.Id&prop=HasHotel&page=@page1"><i class="fa check-@item.HasHotel.ToString()"></i></a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nights)
@@ -128,13 +130,13 @@
                 @utility.ToPersian(item.EndDate.HasValue ? item.EndDate.Value.ToShortDateString() : "")
             </td>
             <td>
-                <i class="fa check-@item.IsActive.ToString()"></i>
+                <a href="~/Tours/SetCheck?TourId=@item.Id&prop=IsActive&page=@page1"><i class="fa check-@item.IsActive.ToString()"></i></a>
             </td>
             <td>
-                <i class="fa check-@item.Canceled.ToString()"></i>
+                <a href="~/Tours/SetCheck?TourId=@item.Id&prop=Canceled&page=@page1"><i class="fa check-@item.Canceled.ToString()"></i></a>
             </td>
             <td>
-                <i class="fa check-@item.Finished.ToString()"></i>
+                <a href="~/Tours/SetCheck?TourId=@item.Id&prop=Finished&page=@page1"><i class="fa check-@item.Finished.ToString()"></i></a>
             </td>
             @*<td>
                     @Html.DisplayFor(modelItem => item.SupervisorName)
@@ -160,7 +162,7 @@
                     <i class="fa check-@item.Deleted.ToString()"></i>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DeleteDate)
+                    @utility.ToPersian(item.DeleteDate.HasValue ? item.DeleteDate.Value.ToShortDateString() : "")
                 </td>
             }
             <td>

@@ -55,7 +55,7 @@
         <div class="form-group col-md-4">
             @Html.LabelFor(model => model.FromCityId, "شهر مبدا", htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-10">
-                @Html.DropDownList("FromCityId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("FromCityId", null, htmlAttributes: new { @class = "form-control my-multi-select" })
                 @Html.ValidationMessageFor(model => model.FromCityId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -156,7 +156,7 @@
         <div class="form-group col-md-4">
             @Html.LabelFor(model => model.SupervisorId, "راهنمای سفر", htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-10">
-                @Html.DropDownList("SupervisorId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("SupervisorId", null, htmlAttributes: new { @class = "form-control my-multi-select" })
                 @Html.ValidationMessageFor(model => model.SupervisorId, "", new { @class = "text-danger" })
             </div>
         </div>

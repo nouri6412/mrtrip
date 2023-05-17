@@ -285,7 +285,7 @@
                                 <form>
 
                                     <!--begin: Head -->
-                                    <div class="kt-head kt-head--skin-dark kt-head--fit-x kt-head--fit-b" style="background-image: url(/Content/assets/media/misc/bg-1.jpg)">
+                                    <div class="kt-head kt-head--skin-dark kt-head--fit-x kt-head--fit-b" style="        background-image: url(/Content/assets/media/misc/bg-1.jpg)">
                                         <h3 class="kt-head__title">
                                             اعلانات کاربر
                                             &nbsp;
@@ -341,7 +341,7 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="topbar_notifications_logs" role="tabpanel">
-                                            <div class="kt-grid kt-grid--ver" style="min-height: 200px;">
+                                            <div class="kt-grid kt-grid--ver" style="        min-height: 200px;">
                                                 <div class="kt-grid kt-grid--hor kt-grid__item kt-grid__item--fluid kt-grid__item--middle">
                                                     <div class="kt-grid__item kt-grid__item--middle kt-align-center">
                                                         هیچ لاگی وجود ندارد
@@ -384,7 +384,7 @@
                             <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
 
                                 <!--begin: Head -->
-                                <div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" style="background-image: url(/Content/assets/media/misc/bg-1.jpg)">
+                                <div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" style="        background-image: url(/Content/assets/media/misc/bg-1.jpg)">
                                     <div class="kt-user-card__avatar">
                                         <img class="kt-hidden" alt="Pic" src="~/Content/assets/media/users/300_25.jpg" />
 
@@ -499,7 +499,7 @@
                             <div class="col-lg-12">
 
                                 <!--begin::Portlet-->
-                                <div style="overflow: auto;" class="kt-portlet p-2">
+                                <div style="        overflow: auto;" class="kt-portlet p-2">
                                     @RenderBody()
                                 </div>
                             </div>
@@ -885,7 +885,7 @@
                         <div class="kt-portlet__foot">
                             <div class="kt-chat__input">
                                 <div class="kt-chat__editor">
-                                    <textarea placeholder="Type here..." style="height: 50px"></textarea>
+                                    <textarea placeholder="Type here..." style="        height: 50px"></textarea>
                                 </div>
                                 <div class="kt-chat__toolbar">
                                     <div class="kt_chat__tools">
@@ -1014,39 +1014,105 @@
                 format: 'YYYY/MM/DD',
                 altField: '.observer-example-alt'
             });
+           $('.my-multi-select').select2({
+            placeholder: "انتخاب کنید",
+        });
         });
     </script>
 
     @RenderSection("scripts", required: false)
     <style>
-        .bootstrap-timepicker-widget table {
-            width: 100%;
-            margin: 0;
-            direction: ltr;
-        }
-        .check-True {
-            color: #43d74e;
-            font-size: 20px;
+    .pagination {
+    }
+
+        .pagination ul {
         }
 
-            .check-True::before {
-                content: "\f00c";
+            .pagination ul li {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                margin-right: 0.5rem;
+                border-radius: 4px;
             }
 
-        .check-False {
-            color: red;
-            font-size: 20px;
-            background: red;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
+                .pagination ul li a {
+                    font-weight: 600;
+                    color: #a7abc3;
+                    font-size: 1.3rem;
+                    padding: 0 0.2rem;
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -ms-flex-wrap: wrap;
+                    flex-wrap: wrap;
+                    -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                    justify-content: center;
+                    -webkit-box-align: center;
+                    -ms-flex-align: center;
+                    align-items: center;
+                    min-width: 30px;
+                    min-height: 30px;
+                    margin: 0;
+                }
+
+                .pagination-container{
+                    margin-right:25px;
+                }
+
+              .pagination  .PagedList-skipToNext,.pagination  .PagedList-skipToPrevious{
+                  background: rgba(93, 120, 255, 0.1);
+              }
+
+
+
+                .pagination ul li.active a {
+                    color: #ffffff;
+                }
+
+                .pagination ul li.active {
+                    background: #5d78ff;
+                }
+
+    .bootstrap-timepicker-widget table {
+        width: 100%;
+        margin: 0;
+        direction: ltr;
+    }
+
+    .check-True {
+        color: #43d74e;
+        font-size: 20px;
+    }
+
+        .check-True::before {
+            content: "\f00c";
         }
-        .bootstrap-timepicker-widget.dropdown-menu.open{
-            border: 1px solid #000 !important;
-        }
-        .form-horizontal{
-            padding:15px;
-        }
+
+    .check-False {
+        color: red;
+        font-size: 20px;
+        background: red;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+
+    .bootstrap-timepicker-widget.dropdown-menu.open {
+        border: 1px solid #000 !important;
+    }
+
+    .form-horizontal {
+        padding: 15px;
+    }
+
     </style>
     <script>
 

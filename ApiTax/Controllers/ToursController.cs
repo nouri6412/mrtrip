@@ -89,7 +89,8 @@ namespace ApiTax.Controllers
 
             ViewBag.SupervisorId = new SelectList(br, "Id", "Phone");
             ViewBag.ErrorMessage = "";
-            return View();
+            Tour tour = new Tour() { IsActive=true};
+            return View(tour);
         }
 
         // POST: Tours/Create
@@ -305,6 +306,44 @@ namespace ApiTax.Controllers
             return View(tour);
         }
 
+
+        public ActionResult SetCheck(long TourId,string prop,int page=1)
+        {
+            InitRequest InitRequest = new InitRequest();
+            InitRequest.init(User);
+            if (GlobalUser.isLogin == false)
+            {
+                return RedirectToAction("Login", "Home", new { });
+            }
+
+            Tour tour = db.Tours.Find(TourId);
+            if (tour == null || (tour.UserId != GlobalUser.CurrentUser.Id && GlobalUser.isAdmin == false))
+            {
+                return HttpNotFound();
+            }
+            if(prop== "HasHotel")
+            {
+                tour.HasHotel = !tour.HasHotel;
+            }
+            else if (prop == "IsActive")
+            {
+                tour.IsActive = !tour.IsActive;
+            }
+            else if (prop == "Canceled")
+            {
+                tour.Canceled = !tour.Canceled;
+            }
+            else if (prop == "Finished")
+            {
+                tour.Finished = !tour.Finished;
+            }
+
+            db.Entry(tour).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index",new { page=page});
+        }
+
         // POST: Tours/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -322,8 +361,20 @@ namespace ApiTax.Controllers
             {
                 return HttpNotFound();
             }
-            db.Tours.Remove(tour);
-            db.SaveChanges();
+
+            if(GlobalUser.isAdmin)
+            {
+                db.Tours.Remove(tour);
+                db.SaveChanges();
+            }
+            else
+            {
+                tour.Deleted = true;
+                tour.DeleteDate = DateTime.Now;
+                db.Entry(tour).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+          
             return RedirectToAction("Index");
         }
 

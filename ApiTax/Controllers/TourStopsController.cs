@@ -53,13 +53,15 @@ namespace ApiTax.Controllers
             InitRequest.init(User);
 
             ViewBag.HotelId = new SelectList(db.Hotels, "Id", "Title");
-            ViewBag.LocationId = new SelectList(db.Locations, "Id", "Title");
+            ViewBag.LocationId = new SelectList(db.Locations.OrderBy(r => r.Title), "Id", "Title");
             ViewBag.CityId = new SelectList(db.LocCities, "Id", "Title");
             ViewBag.DepartureStationId = new SelectList(db.Stations, "Id", "Title");
             ViewBag.ArrivalStationId = new SelectList(db.Stations, "Id", "Title");
             ViewBag.StopTypeId = new SelectList(db.TourStopTypes, "Id", "Titile");
             ViewBag.TransportCompanyId = new SelectList(db.TransportCompanies, "Id", "Title");
             ViewBag.tour_id = tour_id;
+
+            ViewBag.LocationIdOthers = new List<TourStopLocation>();
 
             Tour tour = db.Tours.Find(tour_id);
             if (tour == null || (tour.UserId != GlobalUser.CurrentUser.Id && GlobalUser.isAdmin == false))
@@ -75,7 +77,6 @@ namespace ApiTax.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,TourId,CityId,LocationId,StopTypeId,StopOrder,Nights,HotelId,TransportCompanyId,DepartureDate,DepartureDateFa,DepartureTime,DepartureStationId,ArrivalTime,ArrivalStationId,Duration,WaitDuration")] TourStop tourStop)
         {
             InitRequest InitRequest = new InitRequest();
@@ -88,6 +89,28 @@ namespace ApiTax.Controllers
             }
             catch { }
 
+          
+            var listLocationIdOthers = new List<TourStopLocation>();
+            var LocationIdOthers = Request.Form["LocationIdOthers"];
+            var sp = LocationIdOthers.ToString().Split(',');
+
+            try
+            {
+                foreach (var it in sp)
+                {
+                    long location_id = long.Parse(it);
+                    var tour_stop_othe = new TourStopLocation()
+                    {
+                        LocationID = location_id
+                    };
+                    listLocationIdOthers.Add(tour_stop_othe);
+                }
+            }
+            catch { }
+
+            ViewBag.LocationIdOthers = listLocationIdOthers;
+
+
             Tour tour = db.Tours.Find(tourStop.TourId);
             if (tour == null || (tour.UserId != GlobalUser.CurrentUser.Id && GlobalUser.isAdmin == false))
             {
@@ -99,13 +122,36 @@ namespace ApiTax.Controllers
                 tourStop.DepartureDateFa = utility.ToPersian(tourStop.DepartureDate.ToShortDateString());
                 db.TourStops.Add(tourStop);
                 db.SaveChanges();
+
+                try
+                {
+                    dbEntities db1 = new dbEntities();
+                    foreach (var it in sp)
+                    {
+                        long location_id = long.Parse(it);
+                        var tour_stop_othe = new TourStopLocation()
+                        {
+                            LocationID = location_id,
+                            TourStopId = tourStop.Id
+                        };
+                        db1.TourStopLocations.Add(tour_stop_othe);
+                        db1.SaveChanges();
+                       
+                    }
+                    db1.Dispose();
+
+                }
+                catch(Exception ex) {
+
+                }
                 return RedirectToAction("Edit","Tours",new { id= tourStop.TourId,type="day"});
             }
             ViewBag.ErrorMessage = "به خطاها توجه نمائید";
             ViewBag.tour_id = tourStop.TourId;
 
+
             ViewBag.HotelId = new SelectList(db.Hotels, "Id", "Title", tourStop.HotelId);
-            ViewBag.LocationId = new SelectList(db.Locations, "Id", "Title", tourStop.LocationId);
+            ViewBag.LocationId = new SelectList(db.Locations.OrderBy(r => r.Title), "Id", "Title", tourStop.LocationId);
             ViewBag.CityId = new SelectList(db.LocCities, "Id", "Title", tourStop.CityId);
             ViewBag.DepartureStationId = new SelectList(db.Stations, "Id", "Title", tourStop.DepartureStationId);
             ViewBag.ArrivalStationId = new SelectList(db.Stations, "Id", "Title", tourStop.ArrivalStationId);
@@ -136,9 +182,11 @@ namespace ApiTax.Controllers
                 return HttpNotFound();
             }
 
+            ViewBag.LocationIdOthers = db.TourStopLocations.Where(r=>r.TourStopId==id).ToList();
+
             ViewBag.ErrorMessage = "";
             ViewBag.HotelId = new SelectList(db.Hotels, "Id", "Title", tourStop.HotelId);
-            ViewBag.LocationId = new SelectList(db.Locations, "Id", "Title", tourStop.LocationId);
+            ViewBag.LocationId = new SelectList(db.Locations.OrderBy(r=>r.Title), "Id", "Title", tourStop.LocationId);
             ViewBag.CityId = new SelectList(db.LocCities, "Id", "Title", tourStop.CityId);
             ViewBag.DepartureStationId = new SelectList(db.Stations, "Id", "Title", tourStop.DepartureStationId);
             ViewBag.ArrivalStationId = new SelectList(db.Stations, "Id", "Title", tourStop.ArrivalStationId);
@@ -176,9 +224,10 @@ namespace ApiTax.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Edit", "Tours", new { id = tourStop.TourId, type = "day" });
             }
+            ViewBag.LocationIdOthers = db.TourStopLocations.Where(r => r.TourStopId == tourStop.Id).ToList();
             ViewBag.ErrorMessage = "به خطاها توجه نمائید";
             ViewBag.HotelId = new SelectList(db.Hotels, "Id", "Title", tourStop.HotelId);
-            ViewBag.LocationId = new SelectList(db.Locations, "Id", "Title", tourStop.LocationId);
+            ViewBag.LocationId = new SelectList(db.Locations.OrderBy(r => r.Title), "Id", "Title", tourStop.LocationId);
             ViewBag.CityId = new SelectList(db.LocCities, "Id", "Title", tourStop.CityId);
             ViewBag.DepartureStationId = new SelectList(db.Stations, "Id", "Title", tourStop.DepartureStationId);
             ViewBag.ArrivalStationId = new SelectList(db.Stations, "Id", "Title", tourStop.ArrivalStationId);
