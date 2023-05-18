@@ -157,7 +157,23 @@ namespace ApiTax.Controllers
 
             var TourEquipmentList = new List<TourEquipment>();
             var TourEquipmentValue = Request.Form["TourEquipmentValue"];
-            var sp = TourEquipmentValue.ToString().Split(',');
+
+            string[] sp = new string[10];
+
+            try
+            {
+                if(TourEquipmentValue !=null)
+                {
+                    sp = TourEquipmentValue.ToString().Split(',');
+                }
+                else
+                {
+                    sp = new string[0];
+                }
+            }
+            catch {
+                sp = new string[0];
+            }
 
             try
             {
@@ -287,7 +303,24 @@ namespace ApiTax.Controllers
 
             var TourEquipmentList = new List<TourEquipment>();
             var TourEquipmentValue = Request.Form["TourEquipmentValue"];
-            var sp = TourEquipmentValue.ToString().Split(',');
+
+            string[] sp = new string[10];
+
+            try
+            {
+                if (TourEquipmentValue != null)
+                {
+                    sp = TourEquipmentValue.ToString().Split(',');
+                }
+                else
+                {
+                    sp = new string[0];
+                }
+            }
+            catch
+            {
+                sp = new string[0];
+            }
 
             try
             {

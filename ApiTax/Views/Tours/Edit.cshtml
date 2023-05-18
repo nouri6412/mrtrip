@@ -155,7 +155,7 @@
                 <div class="form-group col-md-4">
                     <label class="control-label col-md-12">لوازم مورد نیاز</label>
                     <div class="col-md-10">
-                        <select id="TourEquipmentValue" name="TourEquipmentValue" class="form-control kt-select2 my-multi-select" multiple="multiple">
+                        <select style="width:100%" id="TourEquipmentValue" name="TourEquipmentValue" class="form-control kt-select2 my-multi-select" multiple="multiple">
                             @foreach (var item in LocId)
                             {
                                 var ex = locs.FirstOrDefault(r => r.EquipmentId == long.Parse(item.Value));

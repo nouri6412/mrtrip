@@ -87,7 +87,20 @@ namespace ApiTax.Controllers
                 if(ag != null)
                 {
                     tourAgencyCost.AgencyId = ag.Id;
+
+                    try
+                    {
+                        tourAgencyCost.UserDiscount = (ag.UserDiscount * tourAgencyCost.Price) / 100;
+                        tourAgencyCost.AffiliateDiscount = (ag.UserDiscount * tourAgencyCost.Price) / 100;
+                        tourAgencyCost.FullDiscount = tourAgencyCost.UserDiscount + tourAgencyCost.AffiliateDiscount;
+                    }
+                    catch { }
                 }
+            }
+
+            if (GlobalUser.isAdmin == false)
+            {
+
             }
 
             if (ModelState.IsValid)
@@ -131,6 +144,7 @@ namespace ApiTax.Controllers
             ViewBag.CurrencyId = new SelectList(db.Currencies, "Id", "Title", tourAgencyCost.CurrencyId);
             ViewBag.RoomTypeId = new SelectList(db.HotelRoomTypes, "Id", "Title", tourAgencyCost.RoomTypeId);
             ViewBag.TourId = new SelectList(db.Tours, "Id", "Title", tourAgencyCost.TourId);
+            ViewBag.tour_id = tourAgencyCost.TourId;
             return View(tourAgencyCost);
         }
 
@@ -157,6 +171,14 @@ namespace ApiTax.Controllers
                 if (ag != null)
                 {
                     tourAgencyCost.AgencyId = ag.Id;
+
+                    try
+                    {
+                        tourAgencyCost.UserDiscount = (ag.UserDiscount * tourAgencyCost.Price) / 100;
+                        tourAgencyCost.AffiliateDiscount = (ag.UserDiscount * tourAgencyCost.Price) / 100;
+                        tourAgencyCost.FullDiscount = tourAgencyCost.UserDiscount + tourAgencyCost.AffiliateDiscount;
+                    }
+                    catch { }
                 }
             }
 
@@ -171,6 +193,7 @@ namespace ApiTax.Controllers
             ViewBag.CurrencyId = new SelectList(db.Currencies, "Id", "Title", tourAgencyCost.CurrencyId);
             ViewBag.RoomTypeId = new SelectList(db.HotelRoomTypes, "Id", "Title", tourAgencyCost.RoomTypeId);
             ViewBag.TourId = new SelectList(db.Tours, "Id", "Title", tourAgencyCost.TourId);
+            ViewBag.tour_id = tourAgencyCost.TourId;
             return View(tourAgencyCost);
         }
 
@@ -224,8 +247,31 @@ namespace ApiTax.Controllers
         [HttpPost]
         public JsonResult GetDiscount(FormCollection formCollection)
         {
-            var AgId = formCollection["id"];
-            var Price = formCollection["price"];
+            InitRequest InitRequest = new InitRequest();
+            InitRequest.init(User);
+
+            long AgId = 0;
+
+            if (GlobalUser.isAdmin == false)
+            {
+                var ag1 = db.Agencies.FirstOrDefault(r => r.UserId == GlobalUser.CurrentUser.Id);
+                if (ag1 != null)
+                {
+                    AgId = ag1.Id;
+                }
+            }
+
+          
+            var PriceStr = formCollection["price"];
+
+            decimal price = 0;
+
+            try
+            {
+                price = decimal.Parse(PriceStr);
+            }
+            catch { }
+             
 
             long id = 0;
             try
@@ -237,11 +283,13 @@ namespace ApiTax.Controllers
             var ag = db.Agencies.Find(id);
 
             var CheckDiscountModel = new CheckDiscountModel() { AgDiscount=0 , FullDiscount=0 , UserDiscount=0 };
-            if(ag != null)
+            if(ag != null && GlobalUser.isAdmin == false)
             {
                 try
                 {
-                    CheckDiscountModel.UserDiscount = ag.UserDiscount;
+                    CheckDiscountModel.UserDiscount =Math.Round( (ag.UserDiscount * price)/100);
+                    CheckDiscountModel.AgDiscount = Math.Round((ag.UserDiscount * price) / 100);
+                    CheckDiscountModel.FullDiscount = CheckDiscountModel.UserDiscount+ CheckDiscountModel.AgDiscount;
                 }
                 catch { }
             }
@@ -260,8 +308,8 @@ namespace ApiTax.Controllers
     }
     public class CheckDiscountModel
     {
-        public long UserDiscount { get; set; }
-        public long AgDiscount { get; set; }
-        public long FullDiscount { get; set; }
+        public decimal UserDiscount { get; set; }
+        public decimal AgDiscount { get; set; }
+        public decimal FullDiscount { get; set; }
     }
 }

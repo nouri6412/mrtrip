@@ -50,7 +50,7 @@
         <div class="form-group col-md-4">
             @Html.LabelFor(model => model.LocationId, "سایر جازبه ها", htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-10">
-                <select id="LocationIdOthers" name="LocationIdOthers" class="form-control kt-select2 my-multi-select" multiple="multiple">
+                <select style="width:100%" id="LocationIdOthers" name="LocationIdOthers" class="form-control kt-select2 my-multi-select" multiple="multiple">
                     @foreach (var item in LocId)
                     {
                         var ex = locs.FirstOrDefault(r => r.LocationID == long.Parse(item.Value));

@@ -93,7 +93,24 @@ namespace ApiTax.Controllers
 
             var listLocationIdOthers = new List<TourStopLocation>();
             var LocationIdOthers = Request.Form["LocationIdOthers"];
-            var sp = LocationIdOthers.ToString().Split(',');
+            string[] sp =new string[10];
+
+            try
+            {
+                if (LocationIdOthers != null)
+                {
+                    sp = LocationIdOthers.ToString().Split(',');
+                }
+                else
+                {
+                    sp = new string[0];
+                }
+            }
+            catch
+            {
+                sp = new string[0];
+            }
+
 
             try
             {
@@ -222,7 +239,24 @@ namespace ApiTax.Controllers
 
             var listLocationIdOthers = new List<TourStopLocation>();
             var LocationIdOthers = Request.Form["LocationIdOthers"];
-            var sp = LocationIdOthers.ToString().Split(',');
+
+            string[] sp = new string[10];
+
+            try
+            {
+                if (LocationIdOthers != null)
+                {
+                    sp = LocationIdOthers.ToString().Split(',');
+                }
+                else
+                {
+                    sp = new string[0];
+                }
+            }
+            catch
+            {
+                sp = new string[0];
+            }
 
             dbEntities db1 = new dbEntities();
 
