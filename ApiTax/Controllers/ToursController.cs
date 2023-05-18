@@ -126,6 +126,57 @@ namespace ApiTax.Controllers
             }
             catch { }
 
+            ViewBag.HardnessId = new SelectList(db.Hardnesses, "Id", "Title", tour.HardnessId);
+            ViewBag.FromCityId = new SelectList(db.LocCities, "Id", "Title", tour.FromCityId);
+            ViewBag.TourTypeId = new SelectList(db.TourTypes, "Id", "Title", tour.TourTypeId);
+            ViewBag.TransportTypeId = new SelectList(db.TransportTypes, "Id", "Title", tour.TransportTypeId);
+            ViewBag.EquipmentsId = new SelectList(db.Equipments.OrderBy(r => r.Title), "Id", "Title");
+
+
+            var br = from br1 in db.Users.Where(r => r.UserType.Id == 3)
+                     select new { Id = br1.Id, Phone = br1.FirstName + " " + br1.LastName };
+
+            ViewBag.SupervisorId = new SelectList(br, "Id", "Phone", tour.SupervisorId);
+
+            tour.UserId = GlobalUser.CurrentUser.Id;
+
+            var TourEquipmentList = new List<TourEquipment>();
+            var TourEquipmentValue = Request.Form["TourEquipmentValue"];
+
+            string[] sp = new string[10];
+
+            try
+            {
+                if (TourEquipmentValue != null)
+                {
+                    sp = TourEquipmentValue.ToString().Split(',');
+                }
+                else
+                {
+                    sp = new string[0];
+                }
+            }
+            catch
+            {
+                sp = new string[0];
+            }
+
+            try
+            {
+                foreach (var it in sp)
+                {
+                    int id = int.Parse(it);
+                    var eq = new TourEquipment()
+                    {
+                        EquipmentId = id
+                    };
+                    TourEquipmentList.Add(eq);
+                }
+            }
+            catch { }
+
+            ViewBag.TourEquipmentValue = TourEquipmentList;
+
             HttpPostedFileBase file = Request.Files["Image"];
             if (file != null && file.ContentLength > 0)
                 try
@@ -133,6 +184,7 @@ namespace ApiTax.Controllers
                     if(file.ContentLength > 110000)
                     {
                         ViewBag.ErrorMessage = "حجم تصویر نباید بیشتر از 100 کیلوبایت باشد";
+                      
                         return View(tour);
                     }
                     string new_name = Guid.NewGuid() + "-" + file.FileName;
@@ -144,6 +196,7 @@ namespace ApiTax.Controllers
                 }
                 catch (Exception ex)
                 {
+                
                     ViewBag.ErrorMessage = "ERROR:" + ex.Message.ToString();
                     return View(tour);
                 }
@@ -153,43 +206,7 @@ namespace ApiTax.Controllers
             }
 
 
-            tour.UserId = GlobalUser.CurrentUser.Id;
 
-            var TourEquipmentList = new List<TourEquipment>();
-            var TourEquipmentValue = Request.Form["TourEquipmentValue"];
-
-            string[] sp = new string[10];
-
-            try
-            {
-                if(TourEquipmentValue !=null)
-                {
-                    sp = TourEquipmentValue.ToString().Split(',');
-                }
-                else
-                {
-                    sp = new string[0];
-                }
-            }
-            catch {
-                sp = new string[0];
-            }
-
-            try
-            {
-                foreach (var it in sp)
-                {
-                    int id = int.Parse(it);
-                    var eq = new TourEquipment()
-                    {
-                          EquipmentId=id
-                    };
-                    TourEquipmentList.Add(eq);
-                }
-            }
-            catch { }
-
-            ViewBag.TourEquipmentValue = TourEquipmentList;
 
             Boolean added = false;
 
@@ -228,18 +245,8 @@ namespace ApiTax.Controllers
 
                 }
             }
-            ViewBag.ErrorMessage = "";
-            ViewBag.HardnessId = new SelectList(db.Hardnesses, "Id", "Title", tour.HardnessId);
-            ViewBag.FromCityId = new SelectList(db.LocCities, "Id", "Title", tour.FromCityId);
-            ViewBag.TourTypeId = new SelectList(db.TourTypes, "Id", "Title", tour.TourTypeId);
-            ViewBag.TransportTypeId = new SelectList(db.TransportTypes, "Id", "Title", tour.TransportTypeId);
-            ViewBag.EquipmentsId = new SelectList(db.Equipments.OrderBy(r => r.Title), "Id", "Title");
             ViewBag.ErrorMessage = "به خطاها توجه نمائید";
-
-           var br = from br1 in db.Users.Where(r => r.UserType.Id == 3)
-                     select new { Id = br1.Id, Phone = br1.FirstName + " " + br1.LastName  };
-
-            ViewBag.SupervisorId = new SelectList(br, "Id", "Phone", tour.SupervisorId);
+     
             return View(tour);
         }
 
@@ -352,6 +359,19 @@ namespace ApiTax.Controllers
             }
             catch { }
 
+            ViewBag.HardnessId = new SelectList(db.Hardnesses, "Id", "Title", tour.HardnessId);
+            ViewBag.FromCityId = new SelectList(db.LocCities, "Id", "Title", tour.FromCityId);
+            ViewBag.TourTypeId = new SelectList(db.TourTypes, "Id", "Title", tour.TourTypeId);
+            ViewBag.TransportTypeId = new SelectList(db.TransportTypes, "Id", "Title", tour.TransportTypeId);
+            ViewBag.EquipmentsId = new SelectList(db.Equipments.OrderBy(r => r.Title), "Id", "Title");
+
+
+            var br = from br1 in db.Users.Where(r => r.UserType.Id == 3)
+                     select new { Id = br1.Id, Phone = br1.FirstName + " " + br1.LastName };
+
+            ViewBag.SupervisorId = new SelectList(br, "Id", "Phone", tour.SupervisorId);
+            ViewBag.type = "";
+
             tour.ImageUrl = tour1.ImageUrl;
             HttpPostedFileBase file = Request.Files["Image"];
             if (file != null && file.ContentLength > 0)
@@ -359,6 +379,7 @@ namespace ApiTax.Controllers
                 {
                     if (file.ContentLength > 110000)
                     {
+                        db1.Dispose();
                         ViewBag.ErrorMessage = "حجم تصویر نباید بیشتر از 100 کیلوبایت باشد";
                         return View(tour);
                     }
@@ -371,6 +392,7 @@ namespace ApiTax.Controllers
                 }
                 catch (Exception ex)
                 {
+                    db1.Dispose();
                     ViewBag.Message = "ERROR:" + ex.Message.ToString();
                     return View(tour);
                 }
@@ -430,21 +452,12 @@ namespace ApiTax.Controllers
 
 
             ViewBag.ErrorMessage = "به خطاها توجه نمائید";
-            ViewBag.HardnessId = new SelectList(db.Hardnesses, "Id", "Title", tour.HardnessId);
-            ViewBag.FromCityId = new SelectList(db.LocCities, "Id", "Title", tour.FromCityId);
-            ViewBag.TourTypeId = new SelectList(db.TourTypes, "Id", "Title", tour.TourTypeId);
-            ViewBag.TransportTypeId = new SelectList(db.TransportTypes, "Id", "Title", tour.TransportTypeId);
-            ViewBag.EquipmentsId = new SelectList(db.Equipments.OrderBy(r => r.Title), "Id", "Title");
 
-
-            var br = from br1 in db.Users.Where(r => r.UserType.Id == 3)
-                     select new { Id = br1.Id, Phone = br1.FirstName + " " + br1.LastName };
-
-            ViewBag.SupervisorId = new SelectList(br, "Id", "Phone", tour.SupervisorId);
-            ViewBag.type = "";
             db1.Dispose();
             return View(tour);
         }
+
+        
 
         // GET: Tours/Delete/5
         public ActionResult Delete(long? id)

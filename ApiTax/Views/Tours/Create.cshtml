@@ -221,7 +221,7 @@
     <div class="form-group col-md-8">
         @Html.LabelFor(model => model.Description, "توضیحات", htmlAttributes: new { @class = "control-label col-md-12" })
         <div class="col-md-10">
-            @Html.LabelFor(model => model.Description, "توضیحات", htmlAttributes: new { @class = "control-label col-md-12", @rows = "5" })
+            @Html.TextAreaFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-12", @rows = "5" })
             @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
         </div>
     </div>
