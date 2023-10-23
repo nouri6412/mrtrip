@@ -6,13 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ApiTax.Entities;
 using ApiTax.Models;
 
 namespace ApiTax.Controllers
 {
     public class TourStopsController : Controller
     {
-        private dbEntities db = new dbEntities();
+        private MrTripEntities db = new MrTripEntities();
 
         // GET: TourStops
         public ActionResult Index(long tour_id=0)
@@ -61,8 +62,6 @@ namespace ApiTax.Controllers
             ViewBag.TransportCompanyId = new SelectList(db.TransportCompanies, "Id", "Title");
             ViewBag.tour_id = tour_id;
 
-            ViewBag.LocationIdOthers = new List<TourStopLocation>();
-
             Tour tour = db.Tours.Find(tour_id);
             if (tour == null || (tour.UserId != GlobalUser.CurrentUser.Id && GlobalUser.isAdmin == false))
             {
@@ -89,89 +88,21 @@ namespace ApiTax.Controllers
             }
             catch { }
 
-            dbEntities db1 = new dbEntities();
-
-            var listLocationIdOthers = new List<TourStopLocation>();
-            var LocationIdOthers = Request.Form["LocationIdOthers"];
-            string[] sp =new string[10];
-
-            try
-            {
-                if (LocationIdOthers != null)
-                {
-                    sp = LocationIdOthers.ToString().Split(',');
-                }
-                else
-                {
-                    sp = new string[0];
-                }
-            }
-            catch
-            {
-                sp = new string[0];
-            }
-
-
-            try
-            {
-                foreach (var it in sp)
-                {
-                    long location_id = long.Parse(it);
-                    var tour_stop_othe = new TourStopLocation()
-                    {
-                        LocationID = location_id
-                    };
-                    listLocationIdOthers.Add(tour_stop_othe);
-                }
-            }
-            catch { }
-
-            ViewBag.LocationIdOthers = listLocationIdOthers;
-
-
-            Tour tour = db1.Tours.Find(tourStop.TourId);
+            Tour tour = db.Tours.Find(tourStop.TourId);
             if (tour == null || (tour.UserId != GlobalUser.CurrentUser.Id && GlobalUser.isAdmin == false))
             {
                 return HttpNotFound();
             }
-
-            Boolean added = false;
 
             if (ModelState.IsValid)
             {
                 tourStop.DepartureDateFa = utility.ToPersian(tourStop.DepartureDate.ToShortDateString());
                 db.TourStops.Add(tourStop);
                 db.SaveChanges();
-                added = true;
 
-            }
-
-            if(added)
-            {
-                try
-                {
-                    foreach (var it in sp)
-                    {
-                        long location_id = long.Parse(it);
-                        var tour_stop_othe = new TourStopLocation()
-                        {
-                            LocationID = location_id,
-                            TourStopId = tourStop.Id
-                        };
-                        db1.TourStopLocations.Add(tour_stop_othe);
-                        db1.SaveChanges();
-
-                    }
-                    db1.Dispose();
-
-                }
-                catch (Exception ex)
-                {
-
-                }
                 return RedirectToAction("Edit", "Tours", new { id = tourStop.TourId, type = "day" });
             }
-            db1.Dispose();
+
             ViewBag.ErrorMessage = "به خطاها توجه نمائید";
             ViewBag.tour_id = tourStop.TourId;
 
@@ -208,8 +139,6 @@ namespace ApiTax.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.LocationIdOthers = db.TourStopLocations.Where(r=>r.TourStopId==id).ToList();
-
             ViewBag.ErrorMessage = "";
             ViewBag.HotelId = new SelectList(db.Hotels, "Id", "Title", tourStop.HotelId);
             ViewBag.LocationId = new SelectList(db.Locations.OrderBy(r=>r.Title), "Id", "Title", tourStop.LocationId);
@@ -237,99 +166,20 @@ namespace ApiTax.Controllers
             }
             catch { }
 
-            var listLocationIdOthers = new List<TourStopLocation>();
-            var LocationIdOthers = Request.Form["LocationIdOthers"];
-
-            string[] sp = new string[10];
-
-            try
-            {
-                if (LocationIdOthers != null)
-                {
-                    sp = LocationIdOthers.ToString().Split(',');
-                }
-                else
-                {
-                    sp = new string[0];
-                }
-            }
-            catch
-            {
-                sp = new string[0];
-            }
-
-            dbEntities db1 = new dbEntities();
-
-            try
-            {
-              
-                foreach (var it in sp)
-                {
-                    long location_id = long.Parse(it);
-                    var tour_stop_othe = new TourStopLocation()
-                    {
-                        LocationID = location_id
-                    };
-                    listLocationIdOthers.Add(tour_stop_othe);
-                }
-            }
-            catch { }
-
-            ViewBag.LocationIdOthers = listLocationIdOthers;
-
-            Tour tour = db1.Tours.Find(tourStop.TourId);
+            Tour tour = db.Tours.Find(tourStop.TourId);
             if (tour == null || (tour.UserId != GlobalUser.CurrentUser.Id && GlobalUser.isAdmin == false))
             {
                 return HttpNotFound();
             }
 
-            Boolean edited = false;
             if (ModelState.IsValid)
             {
                 tourStop.DepartureDateFa = utility.ToPersian(tourStop.DepartureDate.ToShortDateString());
                 db.Entry(tourStop).State = EntityState.Modified;
                 db.SaveChanges();
-                edited = true;
-
-               
-            }
-
-            if(edited)
-            {
-                try
-                {
-                    var rts = db1.TourStopLocations.Where(r => r.TourStopId == tourStop.Id).ToList();
-
-                    foreach (var item in rts)
-                    {
-                        var t1 = db1.TourStopLocations.Find(item.TourLocationID);
-                        db1.TourStopLocations.Remove(t1);
-                        db1.SaveChanges();
-                    }
-
-                    foreach (var it in sp)
-                    {
-                        long location_id = long.Parse(it);
-                        var tour_stop_othe = new TourStopLocation()
-                        {
-                            LocationID = location_id,
-                            TourStopId = tourStop.Id
-                        };
-                        db1.TourStopLocations.Add(tour_stop_othe);
-                        db1.SaveChanges();
-
-                    }
-                    db1.Dispose();
-
-                }
-                catch (Exception ex)
-                {
-
-                }
 
                 return RedirectToAction("Edit", "Tours", new { id = tourStop.TourId, type = "day" });
             }
-            db1.Dispose();
             ViewBag.ErrorMessage = "به خطاها توجه نمائید";
             ViewBag.HotelId = new SelectList(db.Hotels, "Id", "Title", tourStop.HotelId);
             ViewBag.LocationId = new SelectList(db.Locations.OrderBy(r => r.Title), "Id", "Title", tourStop.LocationId);

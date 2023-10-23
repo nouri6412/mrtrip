@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ApiTax.Entities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,22 +15,22 @@ namespace ApiTax.Models
         public static Boolean isAdmin { get; set; }
         public static Boolean isLogin { get; set; }
         public static int? user_type { get; set; }
-        public static ObjectUser _ObjectUser { get; set; } 
+        public static ObjectUser _ObjectUser { get; set; }
     }
 
     public class InitRequest
     {
-        public void init(System.Security.Principal.IPrincipal User,string _userjson=null)
+        public void init(System.Security.Principal.IPrincipal User, string _userjson = null)
         {
             try
             {
-                ObjectUser _user=new ObjectUser() {  is_api=false};
+                ObjectUser _user = new ObjectUser() { is_api = false };
                 var username = "";
                 if (_userjson != null)
                 {
 
-                     _user = JsonConvert.DeserializeObject<ObjectUser>(_userjson);
-                    
+                    _user = JsonConvert.DeserializeObject<ObjectUser>(_userjson);
+
                     func func = new func();
                     if (func.IsValid(_user.username, _user.password))
                     {
@@ -37,20 +38,20 @@ namespace ApiTax.Models
                         _user.is_api = true;
                     }
                 }
-                if (User.Identity.IsAuthenticated || username !="")
+                if (User.Identity.IsAuthenticated || username != "")
                 {
-                    dbEntities db = new dbEntities();
-                 
+                    MrTripEntities db = new MrTripEntities();
 
-                    if(User.Identity.IsAuthenticated)
+
+                    if (User.Identity.IsAuthenticated)
                     {
                         username = User.Identity.Name;
                     }
-                    
+
                     var CurrentUser = db.Users.Where(r => r.Phone == username).FirstOrDefault();
 
 
-                    if(CurrentUser.UserType.Title=="admin")
+                    if (CurrentUser.UserType.Title == "admin")
                     {
                         GlobalUser.isAdmin = true;
                     }
@@ -64,7 +65,7 @@ namespace ApiTax.Models
                     GlobalUser.user_type = CurrentUser.TypeId;
                     GlobalUser._ObjectUser = _user;
 
-                
+
                     GlobalUser.CurrentUser = CurrentUser;
                 }
                 else
@@ -72,39 +73,45 @@ namespace ApiTax.Models
                     GlobalUser.user_type = 0;
                     GlobalUser.isLogin = false;
                     GlobalUser.isAdmin = false;
-                    GlobalUser.CurrentUser = new Models.User();
-                    
+                    GlobalUser.CurrentUser = new User();
+
                 }
 
             }
             catch { }
         }
     }
+
     public class func
     {
         public bool IsValid(string email, string password)
         {
-            dbEntities db = new dbEntities();
+            MrTripEntities db = new MrTripEntities();
             bool IsValid = false;
-
-            var user = db.Users.FirstOrDefault(u => u.Phone == email);
-            if (user != null)
+            try
             {
-                if (user.Password == password)
+                var user = db.Users.FirstOrDefault(u => u.Phone == email);
+                if (user != null)
                 {
-                    IsValid = true;
+                    if (user.Password == password)
+                    {
+                        IsValid = true;
+                    }
                 }
             }
-
+            catch (Exception ex)
+            {
+            }
             return IsValid;
         }
     }
+
     public class ObjectUser
     {
         public string username { get; set; }
         public string password { get; set; }
         public string clientID { get; set; }
         public string key { get; set; }
-        public  Boolean is_api { get; set; }
+        public Boolean is_api { get; set; }
     }
 }

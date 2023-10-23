@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ApiTax.Entities;
 using ApiTax.Models;
 
 namespace ApiTax.Controllers
@@ -13,7 +14,7 @@ namespace ApiTax.Controllers
  
     public class UsersController : Controller
     {
-        private dbEntities db = new dbEntities();
+        private MrTripEntities db = new MrTripEntities();
 
         // GET: Users
         public ActionResult Index()

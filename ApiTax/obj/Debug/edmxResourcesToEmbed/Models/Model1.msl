@@ -39,51 +39,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="AspNetRoles">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.AspNetRole">
-        <MappingFragment StoreEntitySet="AspNetRoles">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="AspNetUserClaims">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.AspNetUserClaim">
-        <MappingFragment StoreEntitySet="AspNetUserClaims">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
-          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="AspNetUserLogins">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.AspNetUserLogin">
-        <MappingFragment StoreEntitySet="AspNetUserLogins">
-          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
-          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="AspNetUsers">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.AspNetUser">
-        <MappingFragment StoreEntitySet="AspNetUsers">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Banks">
       <EntityTypeMapping TypeName="mrtripir_newdbModel.Bank">
         <MappingFragment StoreEntitySet="Bank">
@@ -138,28 +93,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CommentPost_TB">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.CommentPost_TB">
-        <MappingFragment StoreEntitySet="CommentPost_TB">
-          <ScalarProperty Name="comment_post_ID" ColumnName="comment_post_ID" />
-          <ScalarProperty Name="matn" ColumnName="matn" />
-          <ScalarProperty Name="userid" ColumnName="userid" />
-          <ScalarProperty Name="postid" ColumnName="postid" />
-          <ScalarProperty Name="act" ColumnName="act" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Comments_TB">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.Comments_TB">
-        <MappingFragment StoreEntitySet="Comments_TB">
-          <ScalarProperty Name="commentID" ColumnName="commentID" />
-          <ScalarProperty Name="userID" ColumnName="userID" />
-          <ScalarProperty Name="comment" ColumnName="comment" />
-          <ScalarProperty Name="LocID" ColumnName="LocID" />
-          <ScalarProperty Name="act" ColumnName="act" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="CommissionSettlements">
       <EntityTypeMapping TypeName="mrtripir_newdbModel.CommissionSettlement">
         <MappingFragment StoreEntitySet="CommissionSettlement">
@@ -201,16 +134,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ErrorLogs">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.ErrorLog">
-        <MappingFragment StoreEntitySet="ErrorLog">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Message" ColumnName="Message" />
-          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-          <ScalarProperty Name="UserIP" ColumnName="UserIP" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Facilities">
       <EntityTypeMapping TypeName="mrtripir_newdbModel.Facility">
         <MappingFragment StoreEntitySet="Facility">
@@ -226,16 +149,6 @@
         <MappingFragment StoreEntitySet="FacilityType">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="fav_TB">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.fav_TB">
-        <MappingFragment StoreEntitySet="fav_TB">
-          <ScalarProperty Name="favID" ColumnName="favID" />
-          <ScalarProperty Name="LocID" ColumnName="LocID" />
-          <ScalarProperty Name="userID" ColumnName="userID" />
-          <ScalarProperty Name="balad" ColumnName="balad" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -459,31 +372,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Locations_TB">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.Locations_TB">
-        <MappingFragment StoreEntitySet="Locations_TB">
-          <ScalarProperty Name="LocID" ColumnName="LocID" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="lat" ColumnName="lat" />
-          <ScalarProperty Name="lang" ColumnName="lang" />
-          <ScalarProperty Name="type_loc" ColumnName="type_loc" />
-          <ScalarProperty Name="weight" ColumnName="weight" />
-          <ScalarProperty Name="ostan" ColumnName="ostan" />
-          <ScalarProperty Name="city" ColumnName="city" />
-          <ScalarProperty Name="rusta" ColumnName="rusta" />
-          <ScalarProperty Name="shakhesh" ColumnName="shakhesh" />
-          <ScalarProperty Name="emkanat" ColumnName="emkanat" />
-          <ScalarProperty Name="dastrasi" ColumnName="dastrasi" />
-          <ScalarProperty Name="act" ColumnName="act" />
-          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
-          <ScalarProperty Name="NewLocationId" ColumnName="NewLocationId" />
-          <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
-          <ScalarProperty Name="CityId" ColumnName="CityId" />
-          <ScalarProperty Name="AspUserId" ColumnName="AspUserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="LocationTypes">
       <EntityTypeMapping TypeName="mrtripir_newdbModel.LocationType">
         <MappingFragment StoreEntitySet="LocationType">
@@ -524,15 +412,6 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Log_TB">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.Log_TB">
-        <MappingFragment StoreEntitySet="Log_TB">
-          <ScalarProperty Name="logID" ColumnName="logID" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="tel" ColumnName="tel" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -612,84 +491,11 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Post_TB">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.Post_TB">
-        <MappingFragment StoreEntitySet="Post_TB">
-          <ScalarProperty Name="postid" ColumnName="postid" />
-          <ScalarProperty Name="title" ColumnName="title" />
-          <ScalarProperty Name="matn" ColumnName="matn" />
-          <ScalarProperty Name="userid" ColumnName="userid" />
-          <ScalarProperty Name="act" ColumnName="act" />
-          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Roles">
       <EntityTypeMapping TypeName="mrtripir_newdbModel.Role">
         <MappingFragment StoreEntitySet="Role">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SmsAdminContacts">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.SmsAdminContact">
-        <MappingFragment StoreEntitySet="SmsAdminContacts">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="smsCodes">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.smsCode">
-        <MappingFragment StoreEntitySet="smsCode">
-          <ScalarProperty Name="smsID" ColumnName="smsID" />
-          <ScalarProperty Name="code" ColumnName="code" />
-          <ScalarProperty Name="userid" ColumnName="userid" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SmsCreditNotices">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.SmsCreditNotice">
-        <MappingFragment StoreEntitySet="SmsCreditNotices">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="ArchiveId" ColumnName="ArchiveId" />
-          <ScalarProperty Name="NoticeLevel" ColumnName="NoticeLevel" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SmsReadyToSends">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.SmsReadyToSend">
-        <MappingFragment StoreEntitySet="SmsReadyToSend">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Tel" ColumnName="Tel" />
-          <ScalarProperty Name="Message" ColumnName="Message" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SmsSentArchives">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.SmsSentArchive">
-        <MappingFragment StoreEntitySet="SmsSentArchives">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-          <ScalarProperty Name="Message" ColumnName="Message" />
-          <ScalarProperty Name="SentDate" ColumnName="SentDate" />
-          <ScalarProperty Name="IsSentSuccessfully" ColumnName="IsSentSuccessfully" />
-          <ScalarProperty Name="SendResult" ColumnName="SendResult" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SmsWebServiceSettings">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.SmsWebServiceSetting">
-        <MappingFragment StoreEntitySet="SmsWebServiceSettings">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="Number" ColumnName="Number" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -712,26 +518,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.sysdiagram">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="temps">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.temp">
-        <MappingFragment StoreEntitySet="temp">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Value" ColumnName="Value" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Terminals">
       <EntityTypeMapping TypeName="mrtripir_newdbModel.Terminal">
         <MappingFragment StoreEntitySet="Terminal">
@@ -747,65 +533,6 @@
           <ScalarProperty Name="Field3" ColumnName="Field3" />
           <ScalarProperty Name="Field4" ColumnName="Field4" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="toor_TB">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.toor_TB">
-        <MappingFragment StoreEntitySet="toor_TB">
-          <ScalarProperty Name="toorID" ColumnName="toorID" />
-          <ScalarProperty Name="title" ColumnName="title" />
-          <ScalarProperty Name="description" ColumnName="description" />
-          <ScalarProperty Name="count_day" ColumnName="count_day" />
-          <ScalarProperty Name="date_start" ColumnName="date_start" />
-          <ScalarProperty Name="date_end" ColumnName="date_end" />
-          <ScalarProperty Name="userID" ColumnName="userID" />
-          <ScalarProperty Name="cancel" ColumnName="cancel" />
-          <ScalarProperty Name="finish" ColumnName="finish" />
-          <ScalarProperty Name="complete" ColumnName="complete" />
-          <ScalarProperty Name="LocID" ColumnName="LocID" />
-          <ScalarProperty Name="makan" ColumnName="makan" />
-          <ScalarProperty Name="saat_start" ColumnName="saat_start" />
-          <ScalarProperty Name="saat_end" ColumnName="saat_end" />
-          <ScalarProperty Name="sarparast" ColumnName="sarparast" />
-          <ScalarProperty Name="tajhizat" ColumnName="tajhizat" />
-          <ScalarProperty Name="servis" ColumnName="servis" />
-          <ScalarProperty Name="tamas" ColumnName="tamas" />
-          <ScalarProperty Name="zarfiyat" ColumnName="zarfiyat" />
-          <ScalarProperty Name="hazine" ColumnName="hazine" />
-          <ScalarProperty Name="type_safar" ColumnName="type_safar" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Tours">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.Tour">
-        <MappingFragment StoreEntitySet="Tour">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="TourTypeId" ColumnName="TourTypeId" />
-          <ScalarProperty Name="HardnessId" ColumnName="HardnessId" />
-          <ScalarProperty Name="FromCityId" ColumnName="FromCityId" />
-          <ScalarProperty Name="TransportTypeId" ColumnName="TransportTypeId" />
-          <ScalarProperty Name="HasHotel" ColumnName="HasHotel" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Nights" ColumnName="Nights" />
-          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
-          <ScalarProperty Name="Canceled" ColumnName="Canceled" />
-          <ScalarProperty Name="Finished" ColumnName="Finished" />
-          <ScalarProperty Name="StartPlace" ColumnName="StartPlace" />
-          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
-          <ScalarProperty Name="SupervisorName" ColumnName="SupervisorName" />
-          <ScalarProperty Name="Services" ColumnName="Services" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
-          <ScalarProperty Name="Budget" ColumnName="Budget" />
-          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
-          <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -875,15 +602,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TourEquipments">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.TourEquipment">
-        <MappingFragment StoreEntitySet="TourEquipment">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="TourId" ColumnName="TourId" />
-          <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="TourStops">
       <EntityTypeMapping TypeName="mrtripir_newdbModel.TourStop">
         <MappingFragment StoreEntitySet="TourStop">
@@ -904,15 +622,6 @@
           <ScalarProperty Name="ArrivalStationId" ColumnName="ArrivalStationId" />
           <ScalarProperty Name="Duration" ColumnName="Duration" />
           <ScalarProperty Name="WaitDuration" ColumnName="WaitDuration" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TourStopLocations">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.TourStopLocation">
-        <MappingFragment StoreEntitySet="TourStopLocation">
-          <ScalarProperty Name="TourLocationID" ColumnName="TourLocationID" />
-          <ScalarProperty Name="TourStopId" ColumnName="TourStopId" />
-          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -995,29 +704,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="user_TB">
-      <EntityTypeMapping TypeName="mrtripir_newdbModel.user_TB">
-        <MappingFragment StoreEntitySet="user_TB">
-          <ScalarProperty Name="userID" ColumnName="userID" />
-          <ScalarProperty Name="username" ColumnName="username" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="tel" ColumnName="tel" />
-          <ScalarProperty Name="pass" ColumnName="pass" />
-          <ScalarProperty Name="type" ColumnName="type" />
-          <ScalarProperty Name="GroupRasmi" ColumnName="GroupRasmi" />
-          <ScalarProperty Name="faaliyat" ColumnName="faaliyat" />
-          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
-          <ScalarProperty Name="sabt" ColumnName="sabt" />
-          <ScalarProperty Name="ostan" ColumnName="ostan" />
-          <ScalarProperty Name="city" ColumnName="city" />
-          <ScalarProperty Name="semat" ColumnName="semat" />
-          <ScalarProperty Name="emtiyaz" ColumnName="emtiyaz" />
-          <ScalarProperty Name="address" ColumnName="address" />
-          <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
-          <ScalarProperty Name="act" ColumnName="act" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="UserSessions">
       <EntityTypeMapping TypeName="mrtripir_newdbModel.UserSession">
         <MappingFragment StoreEntitySet="UserSession">
@@ -1043,14 +729,6 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="AspNetUserRoles" TypeName="mrtripir_newdbModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-      <EndProperty Name="AspNetRoles">
-        <ScalarProperty Name="Id" ColumnName="RoleId" />
-      </EndProperty>
-      <EndProperty Name="AspNetUsers">
-        <ScalarProperty Name="Id" ColumnName="UserId" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="HotelFacilities" TypeName="mrtripir_newdbModel.HotelFacilities" StoreEntitySet="HotelFacilities">
       <EndProperty Name="Facility">
         <ScalarProperty Name="Id" ColumnName="FacilityId" />
@@ -1067,14 +745,6 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="TourCoupon" TypeName="mrtripir_newdbModel.TourCoupon" StoreEntitySet="TourCoupon">
-      <EndProperty Name="Coupon">
-        <ScalarProperty Name="Id" ColumnName="CouponId" />
-      </EndProperty>
-      <EndProperty Name="Tour">
-        <ScalarProperty Name="Id" ColumnName="TourId" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="UserLanguages" TypeName="mrtripir_newdbModel.UserLanguages" StoreEntitySet="UserLanguages">
       <EndProperty Name="Language">
         <ScalarProperty Name="Id" ColumnName="LanguageId" />
@@ -1089,6 +759,54 @@
       </EndProperty>
       <EndProperty Name="User">
         <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Tours">
+      <EntityTypeMapping TypeName="mrtripir_newdbModel.Tour">
+        <MappingFragment StoreEntitySet="Tour">
+          <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Budget" ColumnName="Budget" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Services" ColumnName="Services" />
+          <ScalarProperty Name="SupervisorName" ColumnName="SupervisorName" />
+          <ScalarProperty Name="SupervisorId" ColumnName="SupervisorId" />
+          <ScalarProperty Name="StartPlace" ColumnName="StartPlace" />
+          <ScalarProperty Name="Finished" ColumnName="Finished" />
+          <ScalarProperty Name="Canceled" ColumnName="Canceled" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="Nights" ColumnName="Nights" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="HasHotel" ColumnName="HasHotel" />
+          <ScalarProperty Name="TransportTypeId" ColumnName="TransportTypeId" />
+          <ScalarProperty Name="FromCityId" ColumnName="FromCityId" />
+          <ScalarProperty Name="HardnessId" ColumnName="HardnessId" />
+          <ScalarProperty Name="TourTypeId" ColumnName="TourTypeId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="TourCoupon" TypeName="mrtripir_newdbModel.TourCoupon" StoreEntitySet="TourCoupon">
+      <EndProperty Name="Tour">
+        <ScalarProperty Name="Id" ColumnName="TourId" />
+      </EndProperty>
+      <EndProperty Name="Coupon">
+        <ScalarProperty Name="Id" ColumnName="CouponId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TourEquipment" TypeName="mrtripir_newdbModel.TourEquipment" StoreEntitySet="TourEquipment">
+      <EndProperty Name="Tour">
+        <ScalarProperty Name="Id" ColumnName="TourId" />
+      </EndProperty>
+      <EndProperty Name="Equipment">
+        <ScalarProperty Name="Id" ColumnName="EquipmentId" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

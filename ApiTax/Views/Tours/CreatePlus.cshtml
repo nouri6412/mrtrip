@@ -1,0 +1,432 @@
+﻿@model ApiTax.Models.TourModel
+
+@{
+    ViewBag.Title = "ایجاد سفر پبشرفته";
+}
+
+<div class="kt-portlet__head kt-portlet__head--lg">
+    <div class="kt-portlet__head-label">
+        <span class="kt-portlet__head-icon"><i :class="modelIcon"></i></span>
+        <h3 class="kt-portlet__head-title">
+            @ViewBag.Title
+        </h3>
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+        <fieldset>
+            <legend>اطلاعات سفر</legend>
+            <div class="row">
+                <div class="form-group col-md-8">
+                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.TourTypeId, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.DropDownList("TourTypeId", null, htmlAttributes: new { @class = "form-control select-list" })
+                        @Html.ValidationMessageFor(model => model.TourTypeId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.FromCityId, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.DropDownList("FromCityId", null, htmlAttributes: new { @class = "form-control select-list" })
+                        @Html.ValidationMessageFor(model => model.FromCityId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.ToCityId, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.DropDownList("ToCityId", null, htmlAttributes: new { @class = "form-control select-list" })
+                        @Html.ValidationMessageFor(model => model.ToCityId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.TransportTypeId, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.DropDownList("TransportTypeId", null, htmlAttributes: new { @class = "form-control select-list" })
+                        @Html.ValidationMessageFor(model => model.TransportTypeId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.Nights, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Nights, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Nights, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.StartDateFa, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.StartDateFa, new { htmlAttributes = new { @class = "persian-date form-control" } })
+                        @Html.ValidationMessageFor(model => model.StartDateFa, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.EndDateFa, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.EndDateFa, new { htmlAttributes = new { @class = "persian-date form-control" } })
+                        @Html.ValidationMessageFor(model => model.EndDateFa, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.Capacity, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Capacity, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.HardnessId, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.DropDownList("HardnessId", null, htmlAttributes: new { @class = "form-control select-list" })
+                        @Html.ValidationMessageFor(model => model.HardnessId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.StartPlace, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.StartPlace, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.StartPlace, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.SupervisorId, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.DropDownList("SupervisorId", null, htmlAttributes: new { @class = "form-control select-list" })
+                        @Html.ValidationMessageFor(model => model.SupervisorId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.Budget, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Budget, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Budget, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.Equipments, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.ListBox("Equipments", null, htmlAttributes: new { @class = "form-control select-list" })
+                        @Html.ValidationMessageFor(model => model.Equipments, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>اطلاعات ترنسفر</legend>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.TransportCompanyId, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.DropDownList("TransportCompanyId", null, htmlAttributes: new { @class = "form-control select-list" })
+                        @Html.ValidationMessageFor(model => model.TransportCompanyId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.DepartureDateFa, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.DepartureDateFa, new { htmlAttributes = new { @class = "persian-date form-control" } })
+                        @Html.ValidationMessageFor(model => model.DepartureDateFa, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.DepartureTime, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @*@Html.EditorFor(model => model.DepartureTime, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @{ var departure = new TimeSpan(0, 0, 0);
+                            departure = Model != null ? Model.DepartureTime : new TimeSpan(0, 0, 0); }
+                        <div class="input-group timepicker">
+                            <input class="form-control form-timepicker" id="DepartureTime" name="DepartureTime" value="@departure.ToString()" readonly placeholder="" type="text" />
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="la la-clock-o"></i>
+                                </span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @{
+                            var duration = new TimeSpan(0, 0, 0);
+                            if (Model != null)
+                            {
+                                duration = Model.Duration.HasValue ? Model.Duration.Value : new TimeSpan(0, 0, 0);
+                            }
+                        }
+                        <div class="input-group timepicker">
+                            <input class="form-control form-timepicker" id="Duration" name="Duration" value="@duration.ToString()" readonly placeholder="" type="text" />
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="la la-clock-o"></i>
+                                </span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.DepartureStationId, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.DropDownList("DepartureStationId", null, htmlAttributes: new { @class = "form-control select-list" })
+                        @Html.ValidationMessageFor(model => model.DepartureStationId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.ArrivalTime, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @{ var arrival = Model != null ? Model.ArrivalTime : new TimeSpan(0, 0, 0); }
+                        <div class="input-group timepicker">
+                            <input class="form-control form-timepicker" id="ArrivalTime" name="ArrivalTime" value="@arrival.ToString()" readonly placeholder="" type="text" />
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="la la-clock-o"></i>
+                                </span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ArrivalTime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.ArrivalStationId, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.DropDownList("ArrivalStationId", null, htmlAttributes: new { @class = "form-control select-list" })
+                        @Html.ValidationMessageFor(model => model.ArrivalStationId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.WaitDuration, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @{ var waitDuration = new TimeSpan(0, 0, 0);
+                            if (Model != null)
+                            {
+                                waitDuration = Model.WaitDuration.HasValue ? Model.WaitDuration.Value : new TimeSpan(0, 0, 0);
+                            } }
+                        <div class="input-group timepicker">
+                            <input class="form-control form-timepicker" id="WaitDuration" name="WaitDuration" value="@waitDuration.ToString()" readonly placeholder="" type="text" />
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="la la-clock-o"></i>
+                                </span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.WaitDuration, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.LocationId, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.DropDownList("LocationId", null, htmlAttributes: new { @class = "form-control select-list" })
+                        @Html.ValidationMessageFor(model => model.LocationId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>اطلاعات اقامت</legend>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.HasHotel, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.HasHotel)
+                            @Html.ValidationMessageFor(model => model.HasHotel, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4 has-hotel">
+                    @Html.LabelFor(model => model.HotelId, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.DropDownList("HotelId", null, htmlAttributes: new { @class = "form-control select-list" })
+                        @Html.ValidationMessageFor(model => model.HotelId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4 has-hotel">
+                    @Html.LabelFor(model => model.HotelNights, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.HotelNights, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HotelNights, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="row">
+            @if (ApiTax.Models.GlobalUser.isAdmin)
+            {
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.AgencyId, htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-12">
+                        @Html.DropDownList("AgencyId", null, htmlAttributes: new { @class = "form-control select-list" })
+                        @Html.ValidationMessageFor(model => model.AgencyId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.RoomTypeId, htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-12">
+                    @Html.DropDownList("RoomTypeId", null, htmlAttributes: new { @class = "form-control select-list" })
+                    @Html.ValidationMessageFor(model => model.RoomTypeId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.CurrencyPrice, htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.CurrencyPrice, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CurrencyPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.CurrencyId, htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-12">
+                    @Html.DropDownList("CurrencyId", null, htmlAttributes: new { @class = "form-control select-list" })
+                    @Html.ValidationMessageFor(model => model.CurrencyId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-12">
+                    @Html.HiddenFor(model => model.ImageUrl)
+                    @if (Model != null && Model.ImageUrl != null && Model.ImageUrl != "")
+                    {
+                        <img style="width:100px" src="~/Uploads/@Model.ImageUrl" />
+                    }
+                    <input type="file" name="Image" id="Image" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Services, htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model.Services, new { @class = "form-control", Rows = 5 })
+                    @Html.ValidationMessageFor(model => model.Services, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", Rows = 5 })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                <div class="col-md-offset-2 col-md-12">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $('.select-list').select2({
+                placeholder: "انتخاب کنید",
+                allowClear: true,
+            });
+
+            $("#Duration, #DepartureTime").change(function () {
+                var duration = $("#Duration").val();
+                var startTime = $("#DepartureTime").val();
+
+                if (duration && startTime) {
+                    var da = duration.split(":");
+                    var sa = startTime.split(":");
+                    if (da && da.length > 0 && sa && sa.length > 0) {
+                        console.log(da);
+                        console.log(sa);
+
+                        var h = 0;
+                        var m = 0;
+                        var s = 0;
+
+                        s = parseInt(sa[2]) + parseInt(da[2]);
+                        while (s > 60) {
+                            m += 1;
+                            s -= 60;
+                        }
+
+                        m = m + parseInt(sa[1]) + parseInt(da[1]);
+                        while (m > 60) {
+                            h += 1;
+                            m -= 60;
+                        }
+
+                        $("#ArrivalTime").val(h + ":" + m + ":" + s);
+                    }
+                }
+            });
+        });
+    </script>
+}

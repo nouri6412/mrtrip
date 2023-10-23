@@ -85,3 +85,8 @@
 body {
     font-family: IRANSans !important;
 }
+
+
+.select2-container--default .select2-selection--multiple .select2-selection__clear{
+    float:left;
+}

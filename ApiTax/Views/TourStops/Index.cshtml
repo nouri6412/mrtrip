@@ -1,14 +1,14 @@
-﻿@model IEnumerable<ApiTax.Models.TourStop>
+﻿@model IEnumerable<ApiTax.Entities.TourStop>
 @using ApiTax.Models
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "جاذبه‌های تور";
     long tour_id = ViewBag.tour_id;
     Layout = null;
 }
 
 <p>
-    @Html.ActionLink("اضافه کردن روز", "Create", "TourStops", new { tour_id = tour_id }, new { @class = "btn btn-info" })
+    @Html.ActionLink("اضافه کردن جاذبه/ایستگاه", "Create", "TourStops", new { tour_id = tour_id }, new { @class = "btn btn-info" })
 </p>
 <table class="table">
     <tr>

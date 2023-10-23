@@ -15,6 +15,7 @@ using TaxCollectData.Library.Dto.Config;
 using TaxCollectData.Library.Dto.Content;
 using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
+using ApiTax.Entities;
 
 namespace ApiTax.Controllers
 {

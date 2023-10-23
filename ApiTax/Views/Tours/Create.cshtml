@@ -1,239 +1,234 @@
-﻿@model ApiTax.Models.Tour
-@using ApiTax.Models;
-    @{
-        ViewBag.Title = "ایجاد سفر";
-        string error = ViewBag.ErrorMessage;
+﻿@model ApiTax.Entities.Tour
+@using ApiTax.Entities;
 
-        SelectList LocId = ViewBag.EquipmentsId;
+@{ ViewBag.Title = "ایجاد سفر"; }
+@{  
+    string error = ViewBag.ErrorMessage;
+    SelectList LocId = ViewBag.EquipmentsId;
+    var locs = ViewBag.TourEquipmentValue as List<Equipment>; 
+}
 
-        var locs = ViewBag.TourEquipmentValue as List<TourEquipment>;
-    }
-
-    <div class="kt-portlet__head kt-portlet__head--lg">
-        <div class="kt-portlet__head-label">
-            <span class="kt-portlet__head-icon"><i :class="modelIcon"></i></span>
-            <h3 class="kt-portlet__head-title">
-                ایجاد سفر
-            </h3>
-        </div>
-    </div>
-    @if (error.Length > 0)
-    {
-        <div class="alert alert-danger">@error</div>
-    }
-    @using (Html.BeginForm("Create", "Tours", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
-
-        if (Model != null && Model.ImageUrl != null && Model.ImageUrl != "")
-        {
-            <input type="hidden" id="ImageUrl" name="ImageUrl" value="@Model.ImageUrl" />
-        }
-
-<div class="form-horizontal row">
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.Title, "عنوان سفر", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.TourTypeId, "نوع سفر", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.DropDownList("TourTypeId", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.TourTypeId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.HardnessId, "درجه سختی سفر", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.DropDownList("HardnessId", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.HardnessId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.FromCityId, "شهر مبدا", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.DropDownList("FromCityId", null, htmlAttributes: new { @class = "form-control my-multi-select" })
-            @Html.ValidationMessageFor(model => model.FromCityId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.TransportTypeId, "نوع نرنسفر", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.DropDownList("TransportTypeId", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.TransportTypeId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.HasHotel, "دارای اقامت", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.HasHotel)
-                @Html.ValidationMessageFor(model => model.HasHotel, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.Nights, "تعداد شب های اقامت", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Nights, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Nights, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.StartDate, "تاریخ شروع", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            <input value="@DateTime.Now.ToShortDateString()" id="StartDatePersian" name="StartDatePersian" class="persian-date form-control" type="text" />
-
-
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.EndDate, "تاریخ پایان سفر", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            <input value="@DateTime.Now.ToShortDateString()" id="EndDatePersian" name="EndDatePersian" class="persian-date form-control" type="text" />
-
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.IsActive, "فعال بودن سفر؟", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.IsActive)
-                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-       <label class = "control-label col-md-12">لوازم مورد نیاز</label>
-        <div class="col-md-10">
-            <select style="width:100%" id="TourEquipmentValue" name="TourEquipmentValue" class="form-control kt-select2 my-multi-select" multiple="multiple">
-                @foreach (var item in LocId)
-                {
-                    var ex = locs.FirstOrDefault(r => r.EquipmentId == long.Parse(item.Value));
-                    if (ex != null)
-                    {
-                        <option selected value="@item.Value">@item.Text</option>
-                    }
-                    else
-                    {
-                        <option value="@item.Value">@item.Text</option>
-                    }
-
-                }
-            </select>
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.ImageUrl, "تصویر سفر", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @if (Model != null && Model.ImageUrl != null && Model.ImageUrl != "")
-            {
-                <img style="width:100px" src="~/Uploads/@Model.ImageUrl" />
-            }
-            <input type="file" name="Image" id="Image" />
-
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.Canceled, "کنسل شده؟", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.Canceled)
-                @Html.ValidationMessageFor(model => model.Canceled, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.Finished, "تکمیل ظرفیت", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.Finished)
-                @Html.ValidationMessageFor(model => model.Finished, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.StartPlace, "محل سوار شدن", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.StartPlace, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.StartPlace, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.SupervisorId, "راهنمای سفر", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.DropDownList("SupervisorId", null, htmlAttributes: new { @class = "form-control my-multi-select" })
-            @Html.ValidationMessageFor(model => model.SupervisorId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.Services, "خدمات", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Services, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Services, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.PhoneNumber, " تلفن هماهنگی", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.Capacity, "ظرفیت", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Capacity, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-4">
-        @Html.LabelFor(model => model.Budget, "بودجه موردنیاز برای سفر", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Budget, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Budget, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-8">
-        @Html.LabelFor(model => model.Description, "توضیحات", htmlAttributes: new { @class = "control-label col-md-12" })
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-12", @rows = "5" })
-            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group col-md-12">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="ذخیره تغییرات" class="btn btn-success" />
-        </div>
+<div class="kt-portlet__head kt-portlet__head--lg">
+    <div class="kt-portlet__head-label">
+        <span class="kt-portlet__head-icon"><i :class="modelIcon"></i></span>
+        <h3 class="kt-portlet__head-title">
+            ایجاد سفر
+        </h3>
     </div>
 </div>
+
+@if (error.Length > 0)
+{
+    <div class="alert alert-danger">@error</div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken() 
+    if (Model != null && Model.ImageUrl != null && Model.ImageUrl != "")
+    {
+        <input type="hidden" id="ImageUrl" name="ImageUrl" value="@Model.ImageUrl" />
     }
 
-    <div>
-        @Html.ActionLink("بازگشت به لیست", "Index", new { }, new { @class = "btn btn-outline-info" })
+    <div class="form-horizontal row">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.Title, "عنوان سفر", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.TourTypeId, "نوع سفر", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.DropDownList("TourTypeId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TourTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.HardnessId, "درجه سختی سفر", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.DropDownList("HardnessId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.HardnessId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.FromCityId, "شهر مبدا", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.DropDownList("FromCityId", null, htmlAttributes: new { @class = "form-control my-multi-select" })
+                @Html.ValidationMessageFor(model => model.FromCityId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.TransportTypeId, "نوع نرنسفر", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.DropDownList("TransportTypeId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TransportTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.HasHotel, "دارای اقامت", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.HasHotel)
+                    @Html.ValidationMessageFor(model => model.HasHotel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.Nights, "تعداد شب های اقامت", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nights, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nights, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.StartDate, "تاریخ شروع", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                <input value="@DateTime.Now.ToShortDateString()" id="StartDatePersian" name="StartDatePersian" class="persian-date form-control" type="text" />
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.EndDate, "تاریخ پایان سفر", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                <input value="@DateTime.Now.ToShortDateString()" id="EndDatePersian" name="EndDatePersian" class="persian-date form-control" type="text" />
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.IsActive, "فعال بودن سفر؟", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsActive)
+                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            <label class="control-label col-md-12">لوازم مورد نیاز</label>
+            <div class="col-md-10">
+                <select style="width:100%" id="TourEquipmentValue" name="TourEquipmentValue" class="form-control kt-select2 my-multi-select" multiple="multiple">
+                    @foreach (var item in LocId)
+                    {
+                        var ex = locs.FirstOrDefault(r => r.Id == long.Parse(item.Value));
+                        if (ex != null)
+                        {
+                            <option selected value="@item.Value">@item.Text</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.ImageUrl, "تصویر سفر", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @if (Model != null && Model.ImageUrl != null && Model.ImageUrl != "")
+                {
+                    <img style="width:100px" src="~/Uploads/@Model.ImageUrl" />
+                }
+                <input type="file" name="Image" id="Image" />
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.Canceled, "کنسل شده؟", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Canceled)
+                    @Html.ValidationMessageFor(model => model.Canceled, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.Finished, "تکمیل ظرفیت", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Finished)
+                    @Html.ValidationMessageFor(model => model.Finished, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.StartPlace, "محل سوار شدن", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StartPlace, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StartPlace, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.SupervisorId, "راهنمای سفر", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.DropDownList("SupervisorId", null, htmlAttributes: new { @class = "form-control my-multi-select" })
+                @Html.ValidationMessageFor(model => model.SupervisorId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.Services, "خدمات", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Services, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Services, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.PhoneNumber, " تلفن هماهنگی", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.Capacity, "ظرفیت", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Capacity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.Budget, "بودجه موردنیاز برای سفر", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Budget, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Budget, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-8">
+            @Html.LabelFor(model => model.Description, "توضیحات", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-12", @rows = "5" })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ذخیره تغییرات" class="btn btn-success" />
+            </div>
+        </div>
     </div>
+}
+
+<div>
+    @Html.ActionLink("بازگشت به لیست", "Index", new { }, new { @class = "btn btn-outline-info" })
+</div>

@@ -1,5 +1,5 @@
-﻿@model ApiTax.Models.Tour
-@using ApiTax.Models;
+﻿@model ApiTax.Entities.Tour
+@using ApiTax.Entities;
 @{
     ViewBag.Title = "ویرایش سفر";
     string error = ViewBag.ErrorMessage;
@@ -19,9 +19,9 @@
         active_2 = "";
         active_3 = "active";
     }
-    SelectList LocId = ViewBag.EquipmentsId;
+    MultiSelectList LocId = ViewBag.EquipmentsId;
 
-    var locs = ViewBag.TourEquipmentValue as List<TourEquipment>;
+    var locs = ViewBag.TourEquipmentValue as List<Equipment>;
 
 }
 
@@ -43,7 +43,7 @@
         <a class="nav-link @active_1" data-toggle="tab" href="#" data-target="#kt_tabs_1_1">اطلاعات سفر</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link @active_2" data-toggle="tab" href="#kt_tabs_1_2">روزهای سفر</a>
+        <a class="nav-link @active_2" data-toggle="tab" href="#kt_tabs_1_2">جاذبه‌های سفر</a>
     </li>
     <li class="nav-item">
         <a class="nav-link @active_3" data-toggle="tab" href="#kt_tabs_1_3">هزینه سفر</a>
@@ -155,10 +155,11 @@
                 <div class="form-group col-md-4">
                     <label class="control-label col-md-12">لوازم مورد نیاز</label>
                     <div class="col-md-10">
-                        <select style="width:100%" id="TourEquipmentValue" name="TourEquipmentValue" class="form-control kt-select2 my-multi-select" multiple="multiple">
+                        @Html.ListBox("TourEquipmentValue", (MultiSelectList)ViewBag.EquipmentsId, new { @class = "form-control kt-select2 my-multi-select w-100" })
+                        @*<select style="width:100%" id="TourEquipmentValue" name="TourEquipmentValue" class="form-control kt-select2 my-multi-select" multiple="multiple">
                             @foreach (var item in LocId)
                             {
-                                var ex = locs.FirstOrDefault(r => r.EquipmentId == long.Parse(item.Value));
+                                var ex = locs.FirstOrDefault(r => r.Id == long.Parse(item.Value));
                                 if (ex != null)
                                 {
                                     <option selected value="@item.Value">@item.Text</option>
@@ -169,7 +170,7 @@
                                 }
 
                             }
-                        </select>
+                        </select>*@
                     </div>
                 </div>
 

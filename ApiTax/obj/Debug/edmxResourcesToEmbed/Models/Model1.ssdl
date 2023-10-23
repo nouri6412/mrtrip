@@ -43,57 +43,6 @@
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="AgencyId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="AspNetRoles">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
-  </EntityType>
-  <EntityType Name="AspNetUserClaims">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="ClaimType" Type="nvarchar(max)" />
-    <Property Name="ClaimValue" Type="nvarchar(max)" />
-  </EntityType>
-  <EntityType Name="AspNetUserLogins">
-    <Key>
-      <PropertyRef Name="LoginProvider" />
-      <PropertyRef Name="ProviderKey" />
-      <PropertyRef Name="UserId" />
-    </Key>
-    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-  </EntityType>
-  <EntityType Name="AspNetUserRoles">
-    <Key>
-      <PropertyRef Name="UserId" />
-      <PropertyRef Name="RoleId" />
-    </Key>
-    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
-  </EntityType>
-  <EntityType Name="AspNetUsers">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="Email" Type="nvarchar" MaxLength="256" />
-    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
-    <Property Name="PasswordHash" Type="nvarchar(max)" />
-    <Property Name="SecurityStamp" Type="nvarchar(max)" />
-    <Property Name="PhoneNumber" Type="nvarchar(max)" />
-    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
-    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
-    <Property Name="LockoutEndDateUtc" Type="datetime" />
-    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
-    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
-    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
-  </EntityType>
   <EntityType Name="Bank">
     <Key>
       <PropertyRef Name="Id" />
@@ -143,26 +92,6 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
-  <EntityType Name="CommentPost_TB">
-    <Key>
-      <PropertyRef Name="comment_post_ID" />
-    </Key>
-    <Property Name="comment_post_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="matn" Type="nvarchar(max)" />
-    <Property Name="userid" Type="bigint" />
-    <Property Name="postid" Type="bigint" />
-    <Property Name="act" Type="bit" />
-  </EntityType>
-  <EntityType Name="Comments_TB">
-    <Key>
-      <PropertyRef Name="commentID" />
-    </Key>
-    <Property Name="commentID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="userID" Type="bigint" />
-    <Property Name="comment" Type="nvarchar(max)" />
-    <Property Name="LocID" Type="bigint" />
-    <Property Name="act" Type="bit" />
-  </EntityType>
   <EntityType Name="CommissionSettlement">
     <Key>
       <PropertyRef Name="Id" />
@@ -200,15 +129,6 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="ErrorLog">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Message" Type="nvarchar(max)" />
-    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="UserIP" Type="nvarchar" MaxLength="50" />
-  </EntityType>
   <EntityType Name="Facility">
     <Key>
       <PropertyRef Name="Id" />
@@ -224,15 +144,6 @@
     </Key>
     <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-  </EntityType>
-  <EntityType Name="fav_TB">
-    <Key>
-      <PropertyRef Name="favID" />
-    </Key>
-    <Property Name="favID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="LocID" Type="bigint" />
-    <Property Name="userID" Type="bigint" />
-    <Property Name="balad" Type="bit" />
   </EntityType>
   <EntityType Name="GlobalMeta">
     <Key>
@@ -454,30 +365,6 @@
     <Property Name="LocationId" Type="bigint" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Locations_TB">
-    <Key>
-      <PropertyRef Name="LocID" />
-    </Key>
-    <Property Name="LocID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="500" />
-    <Property Name="Description" Type="nvarchar(max)" />
-    <Property Name="lat" Type="float" />
-    <Property Name="lang" Type="float" />
-    <Property Name="type_loc" Type="nvarchar" MaxLength="50" />
-    <Property Name="weight" Type="int" />
-    <Property Name="ostan" Type="nvarchar" MaxLength="200" />
-    <Property Name="city" Type="nvarchar" MaxLength="200" />
-    <Property Name="rusta" Type="nvarchar" MaxLength="200" />
-    <Property Name="shakhesh" Type="nvarchar(max)" />
-    <Property Name="emkanat" Type="nvarchar(max)" />
-    <Property Name="dastrasi" Type="nvarchar(max)" />
-    <Property Name="act" Type="bit" />
-    <Property Name="TypeId" Type="int" />
-    <Property Name="NewLocationId" Type="bigint" />
-    <Property Name="ProvinceId" Type="int" />
-    <Property Name="CityId" Type="int" />
-    <Property Name="AspUserId" Type="int" />
-  </EntityType>
   <EntityType Name="LocationType">
     <Key>
       <PropertyRef Name="Id" />
@@ -516,14 +403,6 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="CountryId" Type="int" />
-  </EntityType>
-  <EntityType Name="Log_TB">
-    <Key>
-      <PropertyRef Name="logID" />
-    </Key>
-    <Property Name="logID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="nvarchar" MaxLength="100" />
-    <Property Name="tel" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Owner">
     <Key>
@@ -595,78 +474,12 @@
     <Property Name="CreateDate" Type="datetime2" Precision="7" />
     <Property Name="UserId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Post_TB">
-    <Key>
-      <PropertyRef Name="postid" />
-    </Key>
-    <Property Name="postid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="title" Type="nvarchar" MaxLength="500" />
-    <Property Name="matn" Type="nvarchar(max)" />
-    <Property Name="userid" Type="bigint" />
-    <Property Name="act" Type="bit" />
-    <Property Name="CreateDate" Type="datetime2" Precision="7" />
-    <Property Name="ImageUrl" Type="nvarchar(max)" />
-  </EntityType>
   <EntityType Name="Role">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-  </EntityType>
-  <EntityType Name="SmsAdminContacts">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FirstName" Type="nvarchar(max)" />
-    <Property Name="LastName" Type="nvarchar(max)" />
-    <Property Name="PhoneNumber" Type="nvarchar(max)" />
-    <Property Name="IsActive" Type="bit" Nullable="false" />
-  </EntityType>
-  <EntityType Name="smsCode">
-    <Key>
-      <PropertyRef Name="smsID" />
-    </Key>
-    <Property Name="smsID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="code" Type="nvarchar" MaxLength="50" />
-    <Property Name="userid" Type="bigint" />
-  </EntityType>
-  <EntityType Name="SmsCreditNotices">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ArchiveId" Type="int" Nullable="false" />
-    <Property Name="NoticeLevel" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="SmsReadyToSend">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Tel" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Message" Type="nvarchar" MaxLength="1024" Nullable="false" />
-  </EntityType>
-  <EntityType Name="SmsSentArchives">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PhoneNumber" Type="nvarchar(max)" />
-    <Property Name="Message" Type="nvarchar(max)" />
-    <Property Name="SentDate" Type="datetime" Nullable="false" />
-    <Property Name="IsSentSuccessfully" Type="bit" Nullable="false" />
-    <Property Name="SendResult" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="SmsWebServiceSettings">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Username" Type="nvarchar(max)" />
-    <Property Name="Password" Type="nvarchar(max)" />
-    <Property Name="Number" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="SpecType">
     <Key>
@@ -685,24 +498,6 @@
     <Property Name="Code" Type="nvarchar" MaxLength="50" />
     <Property Name="CityId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
-  <EntityType Name="temp">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" />
-    <Property Name="Value" Type="nvarchar(max)" />
-  </EntityType>
   <EntityType Name="Terminal">
     <Key>
       <PropertyRef Name="Id" />
@@ -719,32 +514,6 @@
     <Property Name="Field3" Type="nvarchar(max)" />
     <Property Name="Field4" Type="nvarchar(max)" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
-  </EntityType>
-  <EntityType Name="toor_TB">
-    <Key>
-      <PropertyRef Name="toorID" />
-    </Key>
-    <Property Name="toorID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="title" Type="nvarchar" MaxLength="100" />
-    <Property Name="description" Type="nvarchar(max)" />
-    <Property Name="count_day" Type="int" />
-    <Property Name="date_start" Type="date" />
-    <Property Name="date_end" Type="date" />
-    <Property Name="userID" Type="bigint" />
-    <Property Name="cancel" Type="int" />
-    <Property Name="finish" Type="int" />
-    <Property Name="complete" Type="int" />
-    <Property Name="LocID" Type="bigint" />
-    <Property Name="makan" Type="nvarchar" MaxLength="500" />
-    <Property Name="saat_start" Type="nvarchar" MaxLength="100" />
-    <Property Name="saat_end" Type="nvarchar" MaxLength="100" />
-    <Property Name="sarparast" Type="nvarchar" MaxLength="100" />
-    <Property Name="tajhizat" Type="nvarchar" MaxLength="500" />
-    <Property Name="servis" Type="nvarchar" MaxLength="500" />
-    <Property Name="tamas" Type="nvarchar" MaxLength="100" />
-    <Property Name="zarfiyat" Type="nvarchar" MaxLength="100" />
-    <Property Name="hazine" Type="nvarchar" MaxLength="500" />
-    <Property Name="type_safar" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Tour">
     <Key>
@@ -849,9 +618,9 @@
   </EntityType>
   <EntityType Name="TourEquipment">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="TourId" />
+      <PropertyRef Name="EquipmentId" />
     </Key>
-    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TourId" Type="bigint" Nullable="false" />
     <Property Name="EquipmentId" Type="int" Nullable="false" />
   </EntityType>
@@ -876,14 +645,6 @@
     <Property Name="ArrivalStationId" Type="int" />
     <Property Name="Duration" Type="time" Precision="7" />
     <Property Name="WaitDuration" Type="time" Precision="7" />
-  </EntityType>
-  <EntityType Name="TourStopLocation">
-    <Key>
-      <PropertyRef Name="TourLocationID" />
-    </Key>
-    <Property Name="TourLocationID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TourStopId" Type="bigint" />
-    <Property Name="LocationID" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="TourStopType">
     <Key>
@@ -957,28 +718,6 @@
     <Property Name="OldUserId" Type="bigint" />
     <Property Name="AgencyConfirmed" Type="bit" />
     <Property Name="GuideConfirmed" Type="bit" />
-  </EntityType>
-  <EntityType Name="user_TB">
-    <Key>
-      <PropertyRef Name="userID" />
-    </Key>
-    <Property Name="userID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="username" Type="nvarchar" MaxLength="100" />
-    <Property Name="name" Type="nvarchar" MaxLength="200" />
-    <Property Name="tel" Type="nvarchar" MaxLength="50" />
-    <Property Name="pass" Type="nvarchar" MaxLength="50" />
-    <Property Name="type" Type="nvarchar" MaxLength="50" />
-    <Property Name="GroupRasmi" Type="nvarchar" MaxLength="100" />
-    <Property Name="faaliyat" Type="nvarchar" MaxLength="100" />
-    <Property Name="GroupName" Type="nvarchar" MaxLength="100" />
-    <Property Name="sabt" Type="nvarchar" MaxLength="50" />
-    <Property Name="ostan" Type="nvarchar" MaxLength="100" />
-    <Property Name="city" Type="nvarchar" MaxLength="100" />
-    <Property Name="semat" Type="nvarchar" MaxLength="100" />
-    <Property Name="emtiyaz" Type="nvarchar" MaxLength="100" />
-    <Property Name="address" Type="nvarchar" MaxLength="500" />
-    <Property Name="dateCreated" Type="date" />
-    <Property Name="act" Type="bit" />
   </EntityType>
   <EntityType Name="UserLanguages">
     <Key>
@@ -1155,54 +894,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CommentPost_TB_Post_TB">
-    <End Role="Post_TB" Type="Self.Post_TB" Multiplicity="0..1" />
-    <End Role="CommentPost_TB" Type="Self.CommentPost_TB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Post_TB">
-        <PropertyRef Name="postid" />
-      </Principal>
-      <Dependent Role="CommentPost_TB">
-        <PropertyRef Name="postid" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CommentPost_TB_user_TB">
-    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
-    <End Role="CommentPost_TB" Type="Self.CommentPost_TB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="user_TB">
-        <PropertyRef Name="userID" />
-      </Principal>
-      <Dependent Role="CommentPost_TB">
-        <PropertyRef Name="userid" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Comments_TB_Locations_TB">
-    <End Role="Locations_TB" Type="Self.Locations_TB" Multiplicity="0..1" />
-    <End Role="Comments_TB" Type="Self.Comments_TB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Locations_TB">
-        <PropertyRef Name="LocID" />
-      </Principal>
-      <Dependent Role="Comments_TB">
-        <PropertyRef Name="LocID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Comments_TB_user_TB">
-    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
-    <End Role="Comments_TB" Type="Self.Comments_TB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="user_TB">
-        <PropertyRef Name="userID" />
-      </Principal>
-      <Dependent Role="Comments_TB">
-        <PropertyRef Name="userID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_CommissionSettlement_CheckoutType">
     <End Role="CheckoutType" Type="Self.CheckoutType" Multiplicity="1" />
     <End Role="CommissionSettlement" Type="Self.CommissionSettlement" Multiplicity="*" />
@@ -1236,86 +927,6 @@
       </Principal>
       <Dependent Role="Coupon">
         <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserClaims">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserLogins">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetRoles">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserRoles">
-        <PropertyRef Name="RoleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserRoles">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_fav_TB_Locations_TB">
-    <End Role="Locations_TB" Type="Self.Locations_TB" Multiplicity="0..1" />
-    <End Role="fav_TB" Type="Self.fav_TB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Locations_TB">
-        <PropertyRef Name="LocID" />
-      </Principal>
-      <Dependent Role="fav_TB">
-        <PropertyRef Name="LocID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_fav_TB_user_TB">
-    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
-    <End Role="fav_TB" Type="Self.fav_TB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="user_TB">
-        <PropertyRef Name="userID" />
-      </Principal>
-      <Dependent Role="fav_TB">
-        <PropertyRef Name="userID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1595,30 +1206,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Locations_TB_City">
-    <End Role="LocCity" Type="Self.LocCity" Multiplicity="0..1" />
-    <End Role="Locations_TB" Type="Self.Locations_TB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LocCity">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Locations_TB">
-        <PropertyRef Name="CityId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Locations_TB_LocationType">
-    <End Role="LocationType" Type="Self.LocationType" Multiplicity="0..1" />
-    <End Role="Locations_TB" Type="Self.Locations_TB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LocationType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Locations_TB">
-        <PropertyRef Name="TypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_LocationType_LocationGroup">
     <End Role="LocationGroup" Type="Self.LocationGroup" Multiplicity="1" />
     <End Role="LocationType" Type="Self.LocationType" Multiplicity="*" />
@@ -1703,18 +1290,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Post_TB_user_TB">
-    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
-    <End Role="Post_TB" Type="Self.Post_TB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="user_TB">
-        <PropertyRef Name="userID" />
-      </Principal>
-      <Dependent Role="Post_TB">
-        <PropertyRef Name="userid" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Post_User">
     <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="Post" Type="Self.Post" Multiplicity="*" />
@@ -1724,18 +1299,6 @@
       </Principal>
       <Dependent Role="Post">
         <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_smsCode_user_TB">
-    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
-    <End Role="smsCode" Type="Self.smsCode" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="user_TB">
-        <PropertyRef Name="userID" />
-      </Principal>
-      <Dependent Role="smsCode">
-        <PropertyRef Name="userid" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1760,30 +1323,6 @@
       </Principal>
       <Dependent Role="Terminal">
         <PropertyRef Name="BankId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_toor_TB_Locations_TB">
-    <End Role="Locations_TB" Type="Self.Locations_TB" Multiplicity="0..1" />
-    <End Role="toor_TB" Type="Self.toor_TB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Locations_TB">
-        <PropertyRef Name="LocID" />
-      </Principal>
-      <Dependent Role="toor_TB">
-        <PropertyRef Name="LocID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_toor_TB_user_TB">
-    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
-    <End Role="toor_TB" Type="Self.toor_TB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="user_TB">
-        <PropertyRef Name="userID" />
-      </Principal>
-      <Dependent Role="toor_TB">
-        <PropertyRef Name="userID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2101,30 +1640,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_TourStopLocation_Location">
-    <End Role="Location" Type="Self.Location" Multiplicity="1" />
-    <End Role="TourStopLocation" Type="Self.TourStopLocation" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Location">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourStopLocation">
-        <PropertyRef Name="LocationID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourStopLocation_TourStop">
-    <End Role="TourStop" Type="Self.TourStop" Multiplicity="0..1" />
-    <End Role="TourStopLocation" Type="Self.TourStopLocation" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TourStop">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourStopLocation">
-        <PropertyRef Name="TourStopId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_TransportCompany_TransportType1">
     <End Role="TransportType" Type="Self.TransportType" Multiplicity="1" />
     <End Role="TransportCompany" Type="Self.TransportCompany" Multiplicity="*" />
@@ -2226,26 +1741,17 @@
     <EntitySet Name="Agency" EntityType="Self.Agency" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AgencyRating" EntityType="Self.AgencyRating" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AgencySupervisor" EntityType="Self.AgencySupervisor" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BookingStatus" EntityType="Self.BookingStatus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BookingTransaction" EntityType="Self.BookingTransaction" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BookingType" EntityType="Self.BookingType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CheckoutType" EntityType="Self.CheckoutType" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="CommentPost_TB" EntityType="Self.CommentPost_TB" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Comments_TB" EntityType="Self.Comments_TB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CommissionSettlement" EntityType="Self.CommissionSettlement" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ErrorLog" EntityType="Self.ErrorLog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Facility" EntityType="Self.Facility" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FacilityType" EntityType="Self.FacilityType" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="fav_TB" EntityType="Self.fav_TB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GlobalMeta" EntityType="Self.GlobalMeta" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Hardness" EntityType="Self.Hardness" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
@@ -2265,32 +1771,20 @@
     <EntitySet Name="LocationGroup" EntityType="Self.LocationGroup" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LocationImage" EntityType="Self.LocationImage" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LocationLeaders" EntityType="Self.LocationLeaders" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Locations_TB" EntityType="Self.Locations_TB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LocationType" EntityType="Self.LocationType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LocCity" EntityType="Self.LocCity" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LocCountry" EntityType="Self.LocCountry" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LocProvince" EntityType="Self.LocProvince" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Log_TB" EntityType="Self.Log_TB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Owner" EntityType="Self.Owner" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PaymentResult" EntityType="Self.PaymentResult" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PaymentResultLog" EntityType="Self.PaymentResultLog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PlaceSpec" EntityType="Self.PlaceSpec" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Post_TB" EntityType="Self.Post_TB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SmsAdminContacts" EntityType="Self.SmsAdminContacts" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="smsCode" EntityType="Self.smsCode" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SmsCreditNotices" EntityType="Self.SmsCreditNotices" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SmsReadyToSend" EntityType="Self.SmsReadyToSend" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SmsSentArchives" EntityType="Self.SmsSentArchives" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SmsWebServiceSettings" EntityType="Self.SmsWebServiceSettings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SpecType" EntityType="Self.SpecType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Station" EntityType="Self.Station" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="temp" EntityType="Self.temp" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Terminal" EntityType="Self.Terminal" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="toor_TB" EntityType="Self.toor_TB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tour" EntityType="Self.Tour" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TourAgencyCost" EntityType="Self.TourAgencyCost" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TourBooking" EntityType="Self.TourBooking" Schema="dbo" store:Type="Tables" />
@@ -2299,14 +1793,12 @@
     <EntitySet Name="TourCoupon" EntityType="Self.TourCoupon" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TourEquipment" EntityType="Self.TourEquipment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TourStop" EntityType="Self.TourStop" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TourStopLocation" EntityType="Self.TourStopLocation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TourStopType" EntityType="Self.TourStopType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TourType" EntityType="Self.TourType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TransportCompany" EntityType="Self.TransportCompany" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TransportType" EntityType="Self.TransportType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="user_TB" EntityType="Self.user_TB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserLanguages" EntityType="Self.UserLanguages" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserSession" EntityType="Self.UserSession" Schema="dbo" store:Type="Tables" />
@@ -2359,22 +1851,6 @@
       <End Role="User" EntitySet="User" />
       <End Role="LocationComment" EntitySet="LocationComment" />
     </AssociationSet>
-    <AssociationSet Name="FK_CommentPost_TB_Post_TB" Association="Self.FK_CommentPost_TB_Post_TB">
-      <End Role="Post_TB" EntitySet="Post_TB" />
-      <End Role="CommentPost_TB" EntitySet="CommentPost_TB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CommentPost_TB_user_TB" Association="Self.FK_CommentPost_TB_user_TB">
-      <End Role="user_TB" EntitySet="user_TB" />
-      <End Role="CommentPost_TB" EntitySet="CommentPost_TB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Comments_TB_Locations_TB" Association="Self.FK_Comments_TB_Locations_TB">
-      <End Role="Locations_TB" EntitySet="Locations_TB" />
-      <End Role="Comments_TB" EntitySet="Comments_TB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Comments_TB_user_TB" Association="Self.FK_Comments_TB_user_TB">
-      <End Role="user_TB" EntitySet="user_TB" />
-      <End Role="Comments_TB" EntitySet="Comments_TB" />
-    </AssociationSet>
     <AssociationSet Name="FK_CommissionSettlement_CheckoutType" Association="Self.FK_CommissionSettlement_CheckoutType">
       <End Role="CheckoutType" EntitySet="CheckoutType" />
       <End Role="CommissionSettlement" EntitySet="CommissionSettlement" />
@@ -2386,30 +1862,6 @@
     <AssociationSet Name="FK_Coupon_User" Association="Self.FK_Coupon_User">
       <End Role="User" EntitySet="User" />
       <End Role="Coupon" EntitySet="Coupon" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-    </AssociationSet>
-    <AssociationSet Name="FK_fav_TB_Locations_TB" Association="Self.FK_fav_TB_Locations_TB">
-      <End Role="Locations_TB" EntitySet="Locations_TB" />
-      <End Role="fav_TB" EntitySet="fav_TB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_fav_TB_user_TB" Association="Self.FK_fav_TB_user_TB">
-      <End Role="user_TB" EntitySet="user_TB" />
-      <End Role="fav_TB" EntitySet="fav_TB" />
     </AssociationSet>
     <AssociationSet Name="FK_Hotel_HotelService" Association="Self.FK_Hotel_HotelService">
       <End Role="HotelService" EntitySet="HotelService" />
@@ -2503,14 +1955,6 @@
       <End Role="User" EntitySet="User" />
       <End Role="LocationLeaders" EntitySet="LocationLeaders" />
     </AssociationSet>
-    <AssociationSet Name="FK_Locations_TB_City" Association="Self.FK_Locations_TB_City">
-      <End Role="LocCity" EntitySet="LocCity" />
-      <End Role="Locations_TB" EntitySet="Locations_TB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Locations_TB_LocationType" Association="Self.FK_Locations_TB_LocationType">
-      <End Role="LocationType" EntitySet="LocationType" />
-      <End Role="Locations_TB" EntitySet="Locations_TB" />
-    </AssociationSet>
     <AssociationSet Name="FK_LocationType_LocationGroup" Association="Self.FK_LocationType_LocationGroup">
       <End Role="LocationGroup" EntitySet="LocationGroup" />
       <End Role="LocationType" EntitySet="LocationType" />
@@ -2539,17 +1983,9 @@
       <End Role="SpecType" EntitySet="SpecType" />
       <End Role="PlaceSpec" EntitySet="PlaceSpec" />
     </AssociationSet>
-    <AssociationSet Name="FK_Post_TB_user_TB" Association="Self.FK_Post_TB_user_TB">
-      <End Role="user_TB" EntitySet="user_TB" />
-      <End Role="Post_TB" EntitySet="Post_TB" />
-    </AssociationSet>
     <AssociationSet Name="FK_Post_User" Association="Self.FK_Post_User">
       <End Role="User" EntitySet="User" />
       <End Role="Post" EntitySet="Post" />
-    </AssociationSet>
-    <AssociationSet Name="FK_smsCode_user_TB" Association="Self.FK_smsCode_user_TB">
-      <End Role="user_TB" EntitySet="user_TB" />
-      <End Role="smsCode" EntitySet="smsCode" />
     </AssociationSet>
     <AssociationSet Name="FK_Station_LocCity" Association="Self.FK_Station_LocCity">
       <End Role="LocCity" EntitySet="LocCity" />
@@ -2558,14 +1994,6 @@
     <AssociationSet Name="FK_Terminal_Bank" Association="Self.FK_Terminal_Bank">
       <End Role="Bank" EntitySet="Bank" />
       <End Role="Terminal" EntitySet="Terminal" />
-    </AssociationSet>
-    <AssociationSet Name="FK_toor_TB_Locations_TB" Association="Self.FK_toor_TB_Locations_TB">
-      <End Role="Locations_TB" EntitySet="Locations_TB" />
-      <End Role="toor_TB" EntitySet="toor_TB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_toor_TB_user_TB" Association="Self.FK_toor_TB_user_TB">
-      <End Role="user_TB" EntitySet="user_TB" />
-      <End Role="toor_TB" EntitySet="toor_TB" />
     </AssociationSet>
     <AssociationSet Name="FK_Tour_City" Association="Self.FK_Tour_City">
       <End Role="LocCity" EntitySet="LocCity" />
@@ -2670,14 +2098,6 @@
     <AssociationSet Name="FK_TourStopCost_HotelRoomType" Association="Self.FK_TourStopCost_HotelRoomType">
       <End Role="HotelRoomType" EntitySet="HotelRoomType" />
       <End Role="TourAgencyCost" EntitySet="TourAgencyCost" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TourStopLocation_Location" Association="Self.FK_TourStopLocation_Location">
-      <End Role="Location" EntitySet="Location" />
-      <End Role="TourStopLocation" EntitySet="TourStopLocation" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TourStopLocation_TourStop" Association="Self.FK_TourStopLocation_TourStop">
-      <End Role="TourStop" EntitySet="TourStop" />
-      <End Role="TourStopLocation" EntitySet="TourStopLocation" />
     </AssociationSet>
     <AssociationSet Name="FK_TransportCompany_TransportType1" Association="Self.FK_TransportCompany_TransportType1">
       <End Role="TransportType" EntitySet="TransportType" />

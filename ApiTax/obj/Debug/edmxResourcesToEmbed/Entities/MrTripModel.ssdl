@@ -1,0 +1,1045 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MrTripModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Agency">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="FullDiscount" Type="int" Nullable="false" />
+    <Property Name="UserDiscount" Type="int" Nullable="false" />
+    <Property Name="AffiliateDiscount" Type="int" Nullable="false" />
+    <Property Name="CityId" Type="int" />
+  </EntityType>
+  <EntityType Name="Coupon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="Currency">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="99" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Equipment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Facility">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IconUrl" Type="nvarchar(max)" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Hardness">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Hotel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LocationTypeId" Type="int" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="Stars" Type="smallint" Nullable="false" />
+    <Property Name="ServiceId" Type="int" Nullable="false" />
+    <Property Name="Capacity" Type="int" Nullable="false" />
+    <Property Name="MaxCapacity" Type="int" Nullable="false" />
+    <Property Name="Rooms" Type="int" Nullable="false" />
+    <Property Name="Beds" Type="int" Nullable="false" />
+    <Property Name="LocationId" Type="bigint" />
+    <Property Name="LocationOnMap" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="About" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Conditions" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="OwnerId" Type="int" />
+    <Property Name="Tags" Type="nvarchar(max)" />
+    <Property Name="Gravity" Type="int" Nullable="false" />
+    <Property Name="Cost" Type="bigint" Nullable="false" />
+    <Property Name="ExtraPersonCost" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HotelRoomType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Capacity" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+    <Property Name="Weight" Type="int" Nullable="false" />
+    <Property Name="ProvinceId" Type="int" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="Village" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attractions" Type="nvarchar(max)" />
+    <Property Name="Facilities" Type="nvarchar(max)" />
+    <Property Name="Accessibility" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="OldLocationId" Type="bigint" />
+  </EntityType>
+  <EntityType Name="LocationType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="GroupId" Type="int" Nullable="false" />
+    <Property Name="Weight" Type="int" Nullable="false" />
+    <Property Name="IconURL" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="LocCity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProvinceId" Type="int" Nullable="false" />
+    <Property Name="TitleEn" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" />
+    <Property Name="ThumbUrl" Type="nvarchar(max)" />
+    <Property Name="OnHome" Type="bit" />
+    <Property Name="Gravity" Type="int" />
+  </EntityType>
+  <EntityType Name="LocCountry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LocProvince">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CountryId" Type="int" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Station">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IconUrl" Type="nvarchar(max)" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tour">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TourTypeId" Type="int" Nullable="false" />
+    <Property Name="HardnessId" Type="int" Nullable="false" />
+    <Property Name="FromCityId" Type="int" Nullable="false" />
+    <Property Name="TransportTypeId" Type="int" Nullable="false" />
+    <Property Name="HasHotel" Type="bit" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Nights" Type="smallint" Nullable="false" />
+    <Property Name="StartDate" Type="datetime2" Precision="7" />
+    <Property Name="EndDate" Type="datetime2" Precision="7" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" />
+    <Property Name="Canceled" Type="bit" Nullable="false" />
+    <Property Name="Finished" Type="bit" Nullable="false" />
+    <Property Name="StartPlace" Type="nvarchar" MaxLength="50" />
+    <Property Name="SupervisorId" Type="int" />
+    <Property Name="SupervisorName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Services" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Capacity" Type="int" Nullable="false" />
+    <Property Name="Budget" Type="bigint" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="DeleteDate" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="TourAgencyCost">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TourId" Type="bigint" Nullable="false" />
+    <Property Name="AgencyId" Type="int" Nullable="false" />
+    <Property Name="RoomTypeId" Type="smallint" Nullable="false" />
+    <Property Name="Price" Type="bigint" Nullable="false" />
+    <Property Name="UserDiscount" Type="bigint" Nullable="false" />
+    <Property Name="AffiliateDiscount" Type="bigint" Nullable="false" />
+    <Property Name="FullDiscount" Type="bigint" Nullable="false" />
+    <Property Name="PackageNumber" Type="int" />
+    <Property Name="CurrencyId" Type="int" />
+    <Property Name="CurrencyPrice" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TourBooking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TourId" Type="bigint" Nullable="false" />
+    <Property Name="AgencyId" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="NationalCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NationalCard" Type="nvarchar(max)" />
+    <Property Name="TripperCount" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="IsPaid" Type="bit" Nullable="false" />
+    <Property Name="TransactionId" Type="bigint" />
+  </EntityType>
+  <EntityType Name="TourBookingTripper">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BookingId" Type="int" Nullable="false" />
+    <Property Name="ToutCostId" Type="bigint" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="NationalCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="NationalCard" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TourCheckout">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TourId" Type="bigint" Nullable="false" />
+    <Property Name="AgancyQuota" Type="bigint" Nullable="false" />
+    <Property Name="CompanyQuota" Type="bigint" Nullable="false" />
+    <Property Name="Amount" Type="bigint" Nullable="false" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+    <Property Name="AccountNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="TrackingNumber" Type="nvarchar(max)" />
+    <Property Name="Receipt" Type="nvarchar(max)" />
+    <Property Name="FileUrl" Type="nvarchar(max)" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TourCoupon">
+    <Key>
+      <PropertyRef Name="CouponId" />
+      <PropertyRef Name="TourId" />
+    </Key>
+    <Property Name="CouponId" Type="int" Nullable="false" />
+    <Property Name="TourId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TourEquipment">
+    <Key>
+      <PropertyRef Name="TourId" />
+      <PropertyRef Name="EquipmentId" />
+    </Key>
+    <Property Name="TourId" Type="bigint" Nullable="false" />
+    <Property Name="EquipmentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TourStop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TourId" Type="bigint" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="LocationId" Type="bigint" />
+    <Property Name="StopTypeId" Type="smallint" Nullable="false" />
+    <Property Name="StopOrder" Type="smallint" Nullable="false" />
+    <Property Name="Nights" Type="smallint" Nullable="false" />
+    <Property Name="HotelId" Type="bigint" />
+    <Property Name="TransportCompanyId" Type="int" Nullable="false" />
+    <Property Name="DepartureDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="DepartureDateFa" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DepartureTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="DepartureStationId" Type="int" />
+    <Property Name="ArrivalTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="ArrivalStationId" Type="int" />
+    <Property Name="Duration" Type="time" Precision="7" />
+    <Property Name="WaitDuration" Type="time" Precision="7" />
+  </EntityType>
+  <EntityType Name="TourStopType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="smallint" Nullable="false" />
+    <Property Name="Titile" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TourType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TransactionType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sign" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransportCompany">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Url" Type="nvarchar(max)" />
+    <Property Name="SeatClass" Type="nvarchar" MaxLength="50" />
+    <Property Name="Cargo" Type="smallint" />
+  </EntityType>
+  <EntityType Name="TransportType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+    <Property Name="AgencyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PermitNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProvinceId" Type="int" />
+    <Property Name="IsMountainClimbingClub" Type="bit" />
+    <Property Name="PermitTypeA" Type="bit" />
+    <Property Name="PermitTypeB" Type="bit" />
+    <Property Name="PermitTypeP" Type="bit" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" />
+    <Property Name="GuideNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsLocalGuide" Type="bit" />
+    <Property Name="LocalGuideCardUrl" Type="nvarchar(max)" />
+    <Property Name="IsCulturalGuide" Type="bit" />
+    <Property Name="CulturalGuideCardUrl" Type="nvarchar(max)" />
+    <Property Name="OtherLanguage" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ConfirmationCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OldUserId" Type="bigint" />
+    <Property Name="AgencyConfirmed" Type="bit" />
+    <Property Name="GuideConfirmed" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Agency_City">
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="0..1" />
+    <End Role="Agency" Type="Self.Agency" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocCity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Agency">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Agency_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Agency" Type="Self.Agency" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Agency">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Coupon_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Coupon" Type="Self.Coupon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Coupon">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Location_City">
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="1" />
+    <End Role="Location" Type="Self.Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocCity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Location_LocationType">
+    <End Role="LocationType" Type="Self.LocationType" Multiplicity="1" />
+    <End Role="Location" Type="Self.Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocationType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Location_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Location" Type="Self.Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocCity_LocProvince">
+    <End Role="LocProvince" Type="Self.LocProvince" Multiplicity="1" />
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocProvince">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocCity">
+        <PropertyRef Name="ProvinceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocProvince_LocCountry">
+    <End Role="LocCountry" Type="Self.LocCountry" Multiplicity="0..1" />
+    <End Role="LocProvince" Type="Self.LocProvince" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocCountry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocProvince">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Station_LocCity">
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="1" />
+    <End Role="Station" Type="Self.Station" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocCity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Station">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tour_City">
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocCity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="FromCityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tour_Hardness">
+    <End Role="Hardness" Type="Self.Hardness" Multiplicity="1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hardness">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="HardnessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tour_TourType">
+    <End Role="TourType" Type="Self.TourType" Multiplicity="1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TourType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="TourTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tour_TransportType">
+    <End Role="TransportType" Type="Self.TransportType" Multiplicity="1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransportType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="TransportTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tour_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tour_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="SupervisorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourAgencyCost_Agency">
+    <End Role="Agency" Type="Self.Agency" Multiplicity="1" />
+    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourAgencyCost">
+        <PropertyRef Name="AgencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourAgencyCost_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourAgencyCost">
+        <PropertyRef Name="TourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourBookingTripper_TourAgencyCost">
+    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="0..1" />
+    <End Role="TourBookingTripper" Type="Self.TourBookingTripper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TourAgencyCost">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourBookingTripper">
+        <PropertyRef Name="ToutCostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourBookingTripper_TourBooking">
+    <End Role="TourBooking" Type="Self.TourBooking" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TourBookingTripper" Type="Self.TourBookingTripper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TourBooking">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourBookingTripper">
+        <PropertyRef Name="BookingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourCheckout_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+    <End Role="TourCheckout" Type="Self.TourCheckout" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourCheckout">
+        <PropertyRef Name="TourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourCoupon_Coupon1">
+    <End Role="Coupon" Type="Self.Coupon" Multiplicity="1" />
+    <End Role="TourCoupon" Type="Self.TourCoupon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coupon">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourCoupon">
+        <PropertyRef Name="CouponId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourCoupon_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+    <End Role="TourCoupon" Type="Self.TourCoupon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourCoupon">
+        <PropertyRef Name="TourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourEquipment_Equipment1">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+    <End Role="TourEquipment" Type="Self.TourEquipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourEquipment">
+        <PropertyRef Name="EquipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourEquipment_Tour1">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+    <End Role="TourEquipment" Type="Self.TourEquipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourEquipment">
+        <PropertyRef Name="TourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_LocCity">
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocCity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_Station">
+    <End Role="Station" Type="Self.Station" Multiplicity="0..1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Station">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="DepartureStationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_Station1">
+    <End Role="Station" Type="Self.Station" Multiplicity="0..1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Station">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="ArrivalStationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="TourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_TourStopType">
+    <End Role="TourStopType" Type="Self.TourStopType" Multiplicity="1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TourStopType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="StopTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_TransportCompany">
+    <End Role="TransportCompany" Type="Self.TransportCompany" Multiplicity="1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransportCompany">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="TransportCompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStopCost_Currency">
+    <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourAgencyCost">
+        <PropertyRef Name="CurrencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStopCost_HotelRoomType">
+    <End Role="HotelRoomType" Type="Self.HotelRoomType" Multiplicity="1" />
+    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HotelRoomType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourAgencyCost">
+        <PropertyRef Name="RoomTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportCompany_TransportType1">
+    <End Role="TransportType" Type="Self.TransportType" Multiplicity="1" />
+    <End Role="TransportCompany" Type="Self.TransportCompany" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransportType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportCompany">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Province">
+    <End Role="LocProvince" Type="Self.LocProvince" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocProvince">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="ProvinceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_UserType">
+    <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MrTripModelStoreContainer">
+    <EntitySet Name="Agency" EntityType="Self.Agency" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Facility" EntityType="Self.Facility" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hardness" EntityType="Self.Hardness" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HotelRoomType" EntityType="Self.HotelRoomType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocationType" EntityType="Self.LocationType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocCity" EntityType="Self.LocCity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocCountry" EntityType="Self.LocCountry" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocProvince" EntityType="Self.LocProvince" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Station" EntityType="Self.Station" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tour" EntityType="Self.Tour" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourAgencyCost" EntityType="Self.TourAgencyCost" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourBooking" EntityType="Self.TourBooking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourBookingTripper" EntityType="Self.TourBookingTripper" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourCheckout" EntityType="Self.TourCheckout" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourCoupon" EntityType="Self.TourCoupon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourEquipment" EntityType="Self.TourEquipment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourStop" EntityType="Self.TourStop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourStopType" EntityType="Self.TourStopType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourType" EntityType="Self.TourType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransportCompany" EntityType="Self.TransportCompany" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransportType" EntityType="Self.TransportType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Agency_City" Association="Self.FK_Agency_City">
+      <End Role="LocCity" EntitySet="LocCity" />
+      <End Role="Agency" EntitySet="Agency" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Agency_User" Association="Self.FK_Agency_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Agency" EntitySet="Agency" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Coupon_User" Association="Self.FK_Coupon_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Coupon" EntitySet="Coupon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Location_City" Association="Self.FK_Location_City">
+      <End Role="LocCity" EntitySet="LocCity" />
+      <End Role="Location" EntitySet="Location" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Location_LocationType" Association="Self.FK_Location_LocationType">
+      <End Role="LocationType" EntitySet="LocationType" />
+      <End Role="Location" EntitySet="Location" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Location_User" Association="Self.FK_Location_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Location" EntitySet="Location" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocCity_LocProvince" Association="Self.FK_LocCity_LocProvince">
+      <End Role="LocProvince" EntitySet="LocProvince" />
+      <End Role="LocCity" EntitySet="LocCity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocProvince_LocCountry" Association="Self.FK_LocProvince_LocCountry">
+      <End Role="LocCountry" EntitySet="LocCountry" />
+      <End Role="LocProvince" EntitySet="LocProvince" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Station_LocCity" Association="Self.FK_Station_LocCity">
+      <End Role="LocCity" EntitySet="LocCity" />
+      <End Role="Station" EntitySet="Station" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tour_City" Association="Self.FK_Tour_City">
+      <End Role="LocCity" EntitySet="LocCity" />
+      <End Role="Tour" EntitySet="Tour" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tour_Hardness" Association="Self.FK_Tour_Hardness">
+      <End Role="Hardness" EntitySet="Hardness" />
+      <End Role="Tour" EntitySet="Tour" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tour_TourType" Association="Self.FK_Tour_TourType">
+      <End Role="TourType" EntitySet="TourType" />
+      <End Role="Tour" EntitySet="Tour" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tour_TransportType" Association="Self.FK_Tour_TransportType">
+      <End Role="TransportType" EntitySet="TransportType" />
+      <End Role="Tour" EntitySet="Tour" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tour_User" Association="Self.FK_Tour_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Tour" EntitySet="Tour" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tour_User1" Association="Self.FK_Tour_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Tour" EntitySet="Tour" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourAgencyCost_Agency" Association="Self.FK_TourAgencyCost_Agency">
+      <End Role="Agency" EntitySet="Agency" />
+      <End Role="TourAgencyCost" EntitySet="TourAgencyCost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourAgencyCost_Tour" Association="Self.FK_TourAgencyCost_Tour">
+      <End Role="Tour" EntitySet="Tour" />
+      <End Role="TourAgencyCost" EntitySet="TourAgencyCost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourBookingTripper_TourAgencyCost" Association="Self.FK_TourBookingTripper_TourAgencyCost">
+      <End Role="TourAgencyCost" EntitySet="TourAgencyCost" />
+      <End Role="TourBookingTripper" EntitySet="TourBookingTripper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourBookingTripper_TourBooking" Association="Self.FK_TourBookingTripper_TourBooking">
+      <End Role="TourBooking" EntitySet="TourBooking" />
+      <End Role="TourBookingTripper" EntitySet="TourBookingTripper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourCheckout_Tour" Association="Self.FK_TourCheckout_Tour">
+      <End Role="Tour" EntitySet="Tour" />
+      <End Role="TourCheckout" EntitySet="TourCheckout" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourCoupon_Coupon1" Association="Self.FK_TourCoupon_Coupon1">
+      <End Role="Coupon" EntitySet="Coupon" />
+      <End Role="TourCoupon" EntitySet="TourCoupon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourCoupon_Tour" Association="Self.FK_TourCoupon_Tour">
+      <End Role="Tour" EntitySet="Tour" />
+      <End Role="TourCoupon" EntitySet="TourCoupon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourEquipment_Equipment1" Association="Self.FK_TourEquipment_Equipment1">
+      <End Role="Equipment" EntitySet="Equipment" />
+      <End Role="TourEquipment" EntitySet="TourEquipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourEquipment_Tour1" Association="Self.FK_TourEquipment_Tour1">
+      <End Role="Tour" EntitySet="Tour" />
+      <End Role="TourEquipment" EntitySet="TourEquipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_Hotel" Association="Self.FK_TourStop_Hotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="TourStop" EntitySet="TourStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_Location" Association="Self.FK_TourStop_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="TourStop" EntitySet="TourStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_LocCity" Association="Self.FK_TourStop_LocCity">
+      <End Role="LocCity" EntitySet="LocCity" />
+      <End Role="TourStop" EntitySet="TourStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_Station" Association="Self.FK_TourStop_Station">
+      <End Role="Station" EntitySet="Station" />
+      <End Role="TourStop" EntitySet="TourStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_Station1" Association="Self.FK_TourStop_Station1">
+      <End Role="Station" EntitySet="Station" />
+      <End Role="TourStop" EntitySet="TourStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_Tour" Association="Self.FK_TourStop_Tour">
+      <End Role="Tour" EntitySet="Tour" />
+      <End Role="TourStop" EntitySet="TourStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_TourStopType" Association="Self.FK_TourStop_TourStopType">
+      <End Role="TourStopType" EntitySet="TourStopType" />
+      <End Role="TourStop" EntitySet="TourStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_TransportCompany" Association="Self.FK_TourStop_TransportCompany">
+      <End Role="TransportCompany" EntitySet="TransportCompany" />
+      <End Role="TourStop" EntitySet="TourStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStopCost_Currency" Association="Self.FK_TourStopCost_Currency">
+      <End Role="Currency" EntitySet="Currency" />
+      <End Role="TourAgencyCost" EntitySet="TourAgencyCost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStopCost_HotelRoomType" Association="Self.FK_TourStopCost_HotelRoomType">
+      <End Role="HotelRoomType" EntitySet="HotelRoomType" />
+      <End Role="TourAgencyCost" EntitySet="TourAgencyCost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportCompany_TransportType1" Association="Self.FK_TransportCompany_TransportType1">
+      <End Role="TransportType" EntitySet="TransportType" />
+      <End Role="TransportCompany" EntitySet="TransportCompany" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Province" Association="Self.FK_User_Province">
+      <End Role="LocProvince" EntitySet="LocProvince" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_UserType" Association="Self.FK_User_UserType">
+      <End Role="UserType" EntitySet="UserType" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Role" Association="Self.FK_UserRoles_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_User" Association="Self.FK_UserRoles_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

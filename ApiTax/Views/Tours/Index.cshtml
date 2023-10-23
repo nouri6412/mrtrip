@@ -1,5 +1,5 @@
 ﻿@using PagedList.Mvc
-@model  PagedList.IPagedList<ApiTax.Models.Tour>
+@model  PagedList.IPagedList<ApiTax.Entities.Tour>
 @using ApiTax.Models
 
 @{
@@ -21,6 +21,7 @@
             <div class="kt-portlet__head-actions">
 
                 @Html.ActionLink("سفر جدید", "Create", new { }, new { @class = "btn btn-outline-success btn-elevate btn-icon-sm" })
+                @Html.ActionLink("سفر جدید پیشرفته", "CreatePlus", new { }, new { @class = "btn btn-outline-success btn-elevate btn-icon-sm" })
 
             </div>
         </div>

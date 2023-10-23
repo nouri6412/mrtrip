@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ApiTax.Entities;
 using ApiTax.Models;
 using PagedList;
 
@@ -14,10 +17,11 @@ namespace ApiTax.Controllers
 {
     public class ToursController : Controller
     {
-        private dbEntities db = new dbEntities();
+        //private dbEntities db = new dbEntities();
+        private readonly MrTripEntities db = new MrTripEntities();
 
         // GET: Tours
-        public ActionResult Index(int? page,string search="")
+        public ActionResult Index(int? page, string search = "")
         {
             InitRequest InitRequest = new InitRequest();
             InitRequest.init(User);
@@ -27,9 +31,9 @@ namespace ApiTax.Controllers
 
             pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
 
-            if (GlobalUser.isLogin==false)
+            if (GlobalUser.isLogin == false)
             {
-                return RedirectToAction("Login","Home",new { });
+                return RedirectToAction("Login", "Home", new { });
             }
             ViewBag.page_index = pageIndex;
             if (GlobalUser.isAdmin)
@@ -39,7 +43,7 @@ namespace ApiTax.Controllers
             }
             else
             {
-                var tours = db.Tours.Where(r=>r.Deleted!=true && r.UserId == GlobalUser.CurrentUser.Id).Include(t => t.Hardness).Include(t => t.LocCity).Include(t => t.TourType).Include(t => t.TransportType).Include(t => t.User).Include(t => t.User1);
+                var tours = db.Tours.Where(r => r.Deleted != true && r.UserId == GlobalUser.CurrentUser.Id).Include(t => t.Hardness).Include(t => t.LocCity).Include(t => t.TourType).Include(t => t.TransportType).Include(t => t.User).Include(t => t.User1);
                 return View(tours.OrderByDescending(r => r.Id).ToPagedList(pageIndex, pageSize));
             }
         }
@@ -83,16 +87,16 @@ namespace ApiTax.Controllers
             ViewBag.FromCityId = new SelectList(db.LocCities, "Id", "Title");
             ViewBag.TourTypeId = new SelectList(db.TourTypes, "Id", "Title");
             ViewBag.TransportTypeId = new SelectList(db.TransportTypes, "Id", "Title");
-            ViewBag.EquipmentsId = new SelectList(db.Equipments.OrderBy(r=>r.Title), "Id", "Title");
+            ViewBag.EquipmentsId = new SelectList(db.Equipments.OrderBy(r => r.Title), "Id", "Title");
 
-            ViewBag.TourEquipmentValue = new List<TourEquipment>();
+            ViewBag.TourEquipmentValue = new List<Equipment>();
 
-            var br = from br1 in db.Users.Where(r=>r.UserType.Id==3)
+            var br = from br1 in db.Users.Where(r => r.UserType.Id == 3)
                      select new { Id = br1.Id, Phone = br1.FirstName + " " + br1.LastName };
 
             ViewBag.SupervisorId = new SelectList(br, "Id", "Phone");
             ViewBag.ErrorMessage = "";
-            Tour tour = new Tour() { IsActive=true};
+            Tour tour = new Tour() { IsActive = true };
             return View(tour);
         }
 
@@ -110,12 +114,10 @@ namespace ApiTax.Controllers
                 return RedirectToAction("Login", "Home", new { });
             }
 
-      
-
             try
             {
                 var date = Request.Form["StartDatePersian"];
-                tour.CreateDate= utility.ToMiladi(utility.toEnglishNumber(date.ToString()));
+                tour.CreateDate = utility.ToMiladi(utility.toEnglishNumber(date.ToString()));
             }
             catch { }
 
@@ -140,7 +142,7 @@ namespace ApiTax.Controllers
 
             tour.UserId = GlobalUser.CurrentUser.Id;
 
-            var TourEquipmentList = new List<TourEquipment>();
+            var TourEquipmentList = new List<Equipment>();
             var TourEquipmentValue = Request.Form["TourEquipmentValue"];
 
             string[] sp = new string[10];
@@ -166,9 +168,9 @@ namespace ApiTax.Controllers
                 foreach (var it in sp)
                 {
                     int id = int.Parse(it);
-                    var eq = new TourEquipment()
+                    var eq = new Equipment()
                     {
-                        EquipmentId = id
+                        Id = id
                     };
                     TourEquipmentList.Add(eq);
                 }
@@ -181,10 +183,10 @@ namespace ApiTax.Controllers
             if (file != null && file.ContentLength > 0)
                 try
                 {
-                    if(file.ContentLength > 110000)
+                    if (file.ContentLength > 110000)
                     {
                         ViewBag.ErrorMessage = "حجم تصویر نباید بیشتر از 100 کیلوبایت باشد";
-                      
+
                         return View(tour);
                     }
                     string new_name = Guid.NewGuid() + "-" + file.FileName;
@@ -196,7 +198,7 @@ namespace ApiTax.Controllers
                 }
                 catch (Exception ex)
                 {
-                
+
                     ViewBag.ErrorMessage = "ERROR:" + ex.Message.ToString();
                     return View(tour);
                 }
@@ -204,9 +206,6 @@ namespace ApiTax.Controllers
             {
                 ViewBag.Message = "You have not specified a file.";
             }
-
-
-
 
             Boolean added = false;
 
@@ -218,23 +217,23 @@ namespace ApiTax.Controllers
 
             }
 
-            if(added)
+            if (added)
             {
                 try
                 {
-                    dbEntities db1 = new dbEntities();
+                    MrTripEntities db1 = new MrTripEntities();
                     foreach (var it in sp)
                     {
                         int id = int.Parse(it);
-                        var eq = new TourEquipment()
-                        {
-                            TourId = tour.Id,
-                            EquipmentId = id
-                        };
-                        db1.TourEquipments.Add(eq);
-                        db1.SaveChanges();
-
+                        //var eq = new TourEquipment()
+                        //{
+                        //    TourId = tour.Id,
+                        //    EquipmentId = id
+                        //};
+                        var eq = db1.Equipments.Find(id);
+                        tour.Equipments.Add(eq);
                     }
+                    db1.SaveChanges();
                     db1.Dispose();
 
                     return RedirectToAction("Edit", "Tours", new { id = tour.Id, type = "day" });
@@ -246,12 +245,12 @@ namespace ApiTax.Controllers
                 }
             }
             ViewBag.ErrorMessage = "به خطاها توجه نمائید";
-     
+
             return View(tour);
         }
 
         // GET: Tours/Edit/5
-        public ActionResult Edit(long? id,string type="")
+        public ActionResult Edit(long? id, string type = "")
         {
             InitRequest InitRequest = new InitRequest();
             InitRequest.init(User);
@@ -276,8 +275,8 @@ namespace ApiTax.Controllers
             ViewBag.FromCityId = new SelectList(db.LocCities, "Id", "Title", tour.FromCityId);
             ViewBag.TourTypeId = new SelectList(db.TourTypes, "Id", "Title", tour.TourTypeId);
             ViewBag.TransportTypeId = new SelectList(db.TransportTypes, "Id", "Title", tour.TransportTypeId);
-            ViewBag.EquipmentsId = new SelectList(db.Equipments.OrderBy(r => r.Title), "Id", "Title");
-            ViewBag.TourEquipmentValue = db.TourEquipments.Where(r=>r.TourId==tour.Id).ToList();
+            ViewBag.EquipmentsId = new MultiSelectList(db.Equipments.OrderBy(r => r.Title), "Id", "Title");
+            ViewBag.TourEquipmentValue = tour.Equipments.Select(x => x.Id).ToList();
             ViewBag.ErrorMessage = "";
             var br = from br1 in db.Users.Where(r => r.UserType.Id == 3)
                      select new { Id = br1.Id, Phone = br1.FirstName + " " + br1.LastName };
@@ -300,7 +299,7 @@ namespace ApiTax.Controllers
             {
                 return RedirectToAction("Login", "Home", new { });
             }
-            dbEntities db1 = new dbEntities();
+            MrTripEntities db1 = new MrTripEntities();
 
             Tour tour1 = db1.Tours.Find(tour.Id);
             if (tour1 == null || (tour1.UserId != GlobalUser.CurrentUser.Id && GlobalUser.isAdmin == false))
@@ -308,7 +307,7 @@ namespace ApiTax.Controllers
                 return HttpNotFound();
             }
 
-            var TourEquipmentList = new List<TourEquipment>();
+            var TourEquipmentList = new List<Equipment>();
             var TourEquipmentValue = Request.Form["TourEquipmentValue"];
 
             string[] sp = new string[10];
@@ -334,9 +333,9 @@ namespace ApiTax.Controllers
                 foreach (var it in sp)
                 {
                     int id = int.Parse(it);
-                    var eq = new TourEquipment()
+                    var eq = new Equipment()
                     {
-                        EquipmentId = id
+                        Id = id
                     };
                     TourEquipmentList.Add(eq);
                 }
@@ -406,40 +405,35 @@ namespace ApiTax.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(tour).State = EntityState.Modified;
-       //         UpdateModel(tour);
+                //         UpdateModel(tour);
                 db.SaveChanges();
                 edited = true;
 
             }
 
-            if(edited)
+            if (edited)
             {
                 try
                 {
 
 
-                    var rts = db1.TourEquipments.Where(r => r.TourId == tour.Id).ToList();
+                    var rts = tour.Equipments.ToList();
 
                     foreach (var item in rts)
                     {
-                        var t1 = db1.TourEquipments.Find(item.Id);
-                        db1.TourEquipments.Remove(t1);
-                        db1.SaveChanges();
+                        var t1 = db1.Equipments.Find(item.Id);
+                        tour1.Equipments.Remove(t1);
                     }
+                    //db1.SaveChanges();
 
                     foreach (var it in sp)
                     {
                         int id = int.Parse(it);
-                        var eq = new TourEquipment()
-                        {
-                            TourId = tour.Id,
-                            EquipmentId = id
-                        };
-                        db1.TourEquipments.Add(eq);
-                        db1.SaveChanges();
-
+                        var eq = db1.Equipments.Find(id);
+                        tour1.Equipments.Add(eq);
+                        db1.Entry(tour1).State = EntityState.Modified;
                     }
-
+                    db1.SaveChanges();
                     db1.Dispose();
 
                     return RedirectToAction("Index");
@@ -449,15 +443,11 @@ namespace ApiTax.Controllers
 
                 }
             }
-
-
             ViewBag.ErrorMessage = "به خطاها توجه نمائید";
 
             db1.Dispose();
             return View(tour);
         }
-
-        
 
         // GET: Tours/Delete/5
         public ActionResult Delete(long? id)
@@ -482,7 +472,7 @@ namespace ApiTax.Controllers
         }
 
 
-        public ActionResult SetCheck(long TourId,string prop,int page=1)
+        public ActionResult SetCheck(long TourId, string prop, int page = 1)
         {
             InitRequest InitRequest = new InitRequest();
             InitRequest.init(User);
@@ -496,7 +486,7 @@ namespace ApiTax.Controllers
             {
                 return HttpNotFound();
             }
-            if(prop== "HasHotel")
+            if (prop == "HasHotel")
             {
                 tour.HasHotel = !tour.HasHotel;
             }
@@ -516,7 +506,7 @@ namespace ApiTax.Controllers
             db.Entry(tour).State = EntityState.Modified;
             db.SaveChanges();
 
-            return RedirectToAction("Index",new { page=page});
+            return RedirectToAction("Index", new { page = page });
         }
 
         // POST: Tours/Delete/5
@@ -537,7 +527,7 @@ namespace ApiTax.Controllers
                 return HttpNotFound();
             }
 
-            if(GlobalUser.isAdmin)
+            if (GlobalUser.isAdmin)
             {
                 db.Tours.Remove(tour);
                 db.SaveChanges();
@@ -549,9 +539,249 @@ namespace ApiTax.Controllers
                 db.Entry(tour).State = EntityState.Modified;
                 db.SaveChanges();
             }
-          
+
             return RedirectToAction("Index");
         }
+
+
+        // GET: Tours/CreatePlus/5
+        [Authorize]
+        public ActionResult CreatePlus()
+        {
+            ViewBag.TourTypeId = new SelectList(db.TourTypes, "Id", "Title");
+            ViewBag.HardnessId = new SelectList(db.Hardnesses, "Id", "Title");
+            ViewBag.FromCityId = new SelectList(db.LocCities, "Id", "Title");
+            ViewBag.ToCityId = new SelectList(db.LocCities, "Id", "Title");
+            ViewBag.TransportTypeId = new SelectList(db.TransportTypes, "Id", "Title");
+            ViewBag.Equipments = new SelectList(db.Equipments.OrderBy(r => r.Title), "Id", "Title");
+
+            ViewBag.LocationId = new SelectList(db.Locations.Where(x => x.LocationType.GroupId == 1).OrderBy(r => r.Title), "Id", "Title");
+            ViewBag.TransportCompanyId = new SelectList(db.TransportCompanies, "Id", "Title");
+            ViewBag.DepartureStationId = new SelectList(db.Stations, "Id", "Title");
+            ViewBag.ArrivalStationId = new SelectList(db.Stations, "Id", "Title");
+            ViewBag.HotelId = new SelectList(db.Hotels, "Id", "Title");
+
+            ViewBag.AgencyId = new SelectList(db.Agencies, "Id", "Name");
+            ViewBag.CurrencyId = new SelectList(db.Currencies, "Id", "Title");
+            ViewBag.RoomTypeId = new SelectList(db.HotelRoomTypes, "Id", "Title");
+
+            var supervisors = db.Users.Where(r => r.UserType.Id == 3)
+                .Select(b => new { Id = b.Id, Name = b.FirstName + " " + b.LastName });
+
+            ViewBag.SupervisorId = new SelectList(supervisors, "Id", "Name");
+
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreatePlus(TourModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var tour = new Tour
+                    {
+                        Title = model.Title,
+                        TourTypeId = model.TourTypeId,
+                        FromCityId = model.FromCityId,
+                        TransportTypeId = model.TransportTypeId,
+                        Nights = model.Nights,
+                        StartDate = utility.ToMiladi(utility.toEnglishNumber(model.StartDateFa)),
+                        EndDate = utility.ToMiladi(utility.toEnglishNumber(model.EndDateFa)),
+                        Capacity = model.Capacity,
+                        HardnessId = model.HardnessId,
+                        StartPlace = model.StartPlace,
+                        SupervisorId = model.SupervisorId,
+                        PhoneNumber = model.PhoneNumber,
+                        Budget = model.Budget,
+                        ImageUrl = model.ImageUrl,
+                        Services = model.Services,
+                        Description = model.Description,
+                        IsActive = true,
+                        CreateDate = DateTime.Now,
+                        HasHotel = model.HasHotel,
+                        UserId = GlobalUser.CurrentUser.Id
+                    };
+
+                    foreach (var item in model.Equipments)
+                    {
+                        var eq = await db.Equipments.FindAsync(item);
+                        tour.Equipments.Add(eq);
+                    }
+
+                    var firstStop = new TourStop
+                    {
+                        TransportCompanyId = model.TransportCompanyId,
+                        DepartureDate = utility.ToMiladi(utility.toEnglishNumber(model.DepartureDateFa)),
+                        DepartureDateFa = model.DepartureDateFa,
+                        DepartureTime = model.DepartureTime,
+                        DepartureStationId = model.DepartureStationId,
+                        Duration = model.Duration,
+                        WaitDuration = model.WaitDuration,
+                        ArrivalTime = model.ArrivalTime,
+                        ArrivalStationId = model.ArrivalStationId,
+                        CityId = model.FromCityId,
+                        StopTypeId = (int)StopType.Start,
+                        StopOrder = 1,
+                    };
+                    tour.TourStops.Add(firstStop);
+
+                    var hotelStop = new TourStop
+                    {
+                        DepartureDate = utility.ToMiladi(utility.toEnglishNumber(model.DepartureDateFa)),
+                        DepartureDateFa = model.DepartureDateFa,
+                        DepartureTime = model.DepartureTime,
+                        TransportCompanyId = model.TransportCompanyId,
+                        CityId = model.ToCityId,
+                        StopTypeId = (int)StopType.Stayin,
+                        LocationId = model.LocationId,
+                        Nights = model.HotelNights,
+                        StopOrder = 2,
+                    };
+
+                    if (model.HasHotel)
+                        hotelStop.HotelId = model.HotelId;
+                    tour.TourStops.Add(hotelStop);
+
+
+                    var lastStop = new TourStop
+                    {
+                        TransportCompanyId = model.TransportCompanyId,
+                        DepartureDate = utility.ToMiladi(utility.toEnglishNumber(model.DepartureDateFa)),
+                        DepartureDateFa = model.DepartureDateFa,
+                        CityId = model.FromCityId,
+                        StopTypeId = (int)StopType.End,
+                        StopOrder = 10
+                    };
+                    tour.TourStops.Add(lastStop);
+
+                    var cost = new TourAgencyCost
+                    {
+                        AgencyId = model.AgencyId,
+                        RoomTypeId = model.RoomTypeId,
+                        Price = model.Price,
+                        PackageNumber = model.PackageNumber,
+                        CurrencyPrice = model.CurrencyPrice,
+                        CurrencyId = model.CurrencyId,
+                    };
+                    if (GlobalUser.isAdmin == false)
+                    {
+                        var ag = db.Agencies.FirstOrDefault(r => r.UserId == GlobalUser.CurrentUser.Id);
+                        if (ag != null)
+                        {
+                            cost.AgencyId = ag.Id;
+                            cost.UserDiscount = (ag.UserDiscount * cost.Price) / 100;
+                            cost.AffiliateDiscount = (ag.UserDiscount * cost.Price) / 100;
+                            cost.FullDiscount = cost.UserDiscount + cost.AffiliateDiscount;
+                        }
+                    }
+                    tour.TourAgencyCosts.Add(cost);
+
+                    if (Request.Files["Image"] != null && UploadImage(Request.Files["Image"], out string imageUrl, out string message))
+                    {
+                        ModelState.AddModelError("ImageUrl", message);
+                    }
+                    else
+                    {
+                        db.Tours.Add(tour);
+                        await db.SaveChangesAsync();
+
+                        return RedirectToAction("Edit", "Tours", new { id = tour.Id, type = "day" });
+                    }
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                var message = "";
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    message += String.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        message += String.Format("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                ModelState.AddModelError("", message);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+
+            ViewBag.TourTypeId = new SelectList(db.TourTypes, "Id", "Title", model.TourTypeId);
+            ViewBag.HardnessId = new SelectList(db.Hardnesses, "Id", "Title", model.HardnessId);
+            ViewBag.FromCityId = new SelectList(db.LocCities, "Id", "Title", model.FromCityId);
+            ViewBag.ToCityId = new SelectList(db.LocCities, "Id", "Title", model.ToCityId);
+            ViewBag.TransportTypeId = new SelectList(db.TransportTypes, "Id", "Title", model.TransportTypeId);
+            ViewBag.Equipments = new MultiSelectList(db.Equipments.OrderBy(r => r.Title), "Id", "Title", model.Equipments);
+
+            ViewBag.LocationId = new SelectList(db.Locations.Where(x => x.LocationType.GroupId == 1).OrderBy(r => r.Title), "Id", "Title", model.LocationId);
+            ViewBag.TransportCompanyId = new SelectList(db.TransportCompanies, "Id", "Title", model.TransportCompanyId);
+            ViewBag.DepartureStationId = new SelectList(db.Stations, "Id", "Title", model.DepartureStationId);
+            ViewBag.ArrivalStationId = new SelectList(db.Stations, "Id", "Title", model.ArrivalStationId);
+            ViewBag.HotelId = new SelectList(db.Hotels, "Id", "Title", model.HotelId);
+
+            ViewBag.AgencyId = new SelectList(db.Agencies, "Id", "Name", model.AgencyId);
+            ViewBag.CurrencyId = new SelectList(db.Currencies, "Id", "Title", model.CurrencyId);
+            ViewBag.RoomTypeId = new SelectList(db.HotelRoomTypes, "Id", "Title", model.RoomTypeId);
+
+            var supervisors = db.Users.Where(r => r.UserType.Id == 3)
+                .Select(b => new { Id = b.Id, Name = b.FirstName + " " + b.LastName });
+
+            ViewBag.SupervisorId = new SelectList(supervisors, "Id", "Name", model.SupervisorId);
+
+            return View(model);
+        }
+
+
+
+
+
+
+
+        public bool UploadImage(HttpPostedFileBase file, out string imageUrl, out string message)
+        {
+            imageUrl = "";
+            if (file != null && file.ContentLength > 0)
+                try
+                {
+                    if (file.ContentLength > 110000)
+                    {
+                        message = "حجم تصویر نباید بیشتر از 100 کیلوبایت باشد";
+                        return false;
+                    }
+                    string new_name = Guid.NewGuid() + "-" + file.FileName;
+                    string path = Path.Combine(Server.MapPath("~/Uploads"),
+                                               Path.GetFileName(new_name));
+                    file.SaveAs(path);
+                    imageUrl = new_name;
+                    message = "File uploaded successfully";
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    message = "ERROR:" + ex.Message.ToString();
+                    return false;
+                }
+            else
+            {
+                message = "You have not specified a file.";
+                return false;
+            }
+        }
+
+
+
+
+
+
+
+
 
         protected override void Dispose(bool disposing)
         {

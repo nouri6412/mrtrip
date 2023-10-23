@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ApiTax.Entities;
 using ApiTax.Models;
 using Newtonsoft.Json;
 
@@ -13,7 +14,7 @@ namespace ApiTax.Controllers
 {
     public class TourAgencyCostsController : Controller
     {
-        private dbEntities db = new dbEntities();
+        private MrTripEntities db = new MrTripEntities();
 
         // GET: TourAgencyCosts
         public ActionResult Index(long tour_id = 0)
