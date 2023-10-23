@@ -43,7 +43,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ContentFa, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ContentFa, new { htmlAttributes = new { @class = "form-control" } })
+                <textarea name="ContentFa" id="ContentFa" class="form-control" data-provide="markdown" rows="15"></textarea>
                 @Html.ValidationMessageFor(model => model.ContentFa, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -51,7 +51,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ContentEn, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ContentEn, new { htmlAttributes = new { @class = "form-control" } })
+                <textarea name="ContentEn" id="ContentEn" class="form-control" data-provide="markdown" rows="15"></textarea>
+
                 @Html.ValidationMessageFor(model => model.ContentEn, "", new { @class = "text-danger" })
             </div>
         </div>
