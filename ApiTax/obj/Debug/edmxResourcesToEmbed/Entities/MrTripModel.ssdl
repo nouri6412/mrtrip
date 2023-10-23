@@ -12,6 +12,34 @@
     <Property Name="AffiliateDiscount" Type="int" Nullable="false" />
     <Property Name="CityId" Type="int" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'mrtripir_newdb.dbo.Blog' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Blog">
+          <Property Name="BlogID" Type="int" />
+          <Property Name="BlogTagID" Type="int" />
+          <Property Name="TitleFa" Type="nvarchar" MaxLength="200" />
+          <Property Name="TitleEn" Type="nvarchar" MaxLength="200" />
+          <Property Name="ContentFa" Type="nvarchar(max)" />
+          <Property Name="ContentEn" Type="nvarchar(max)" />
+          <Property Name="Tag" Type="nvarchar(max)" />
+        </EntityType>-->
+  <EntityType Name="BlogCatagory">
+    <Key>
+      <PropertyRef Name="BlogCatagoryID" />
+    </Key>
+    <Property Name="BlogCatagoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TitleFa" Type="nvarchar" MaxLength="200" />
+    <Property Name="TitleEn" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="BlogTag">
+    <Key>
+      <PropertyRef Name="BlogTagID" />
+    </Key>
+    <Property Name="BlogTagID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BlogCatagoryID" Type="int" />
+    <Property Name="TitleFa" Type="nvarchar" MaxLength="200" />
+    <Property Name="TitleEn" Type="nvarchar" MaxLength="200" />
+  </EntityType>
   <EntityType Name="Coupon">
     <Key>
       <PropertyRef Name="Id" />
@@ -285,7 +313,7 @@
     <Property Name="StopOrder" Type="smallint" Nullable="false" />
     <Property Name="Nights" Type="smallint" Nullable="false" />
     <Property Name="HotelId" Type="bigint" />
-    <Property Name="TransportCompanyId" Type="int" Nullable="false" />
+    <Property Name="TransportCompanyId" Type="int" />
     <Property Name="DepartureDate" Type="datetime2" Precision="7" Nullable="false" />
     <Property Name="DepartureDateFa" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="DepartureTime" Type="time" Precision="7" Nullable="false" />
@@ -404,6 +432,18 @@
       </Principal>
       <Dependent Role="Agency">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BlogTagID_BlogCatagory">
+    <End Role="BlogCatagory" Type="Self.BlogCatagory" Multiplicity="0..1" />
+    <End Role="BlogTag" Type="Self.BlogTag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BlogCatagory">
+        <PropertyRef Name="BlogCatagoryID" />
+      </Principal>
+      <Dependent Role="BlogTag">
+        <PropertyRef Name="BlogCatagoryID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -734,7 +774,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_TourStop_Tour">
-    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Tour">
@@ -758,7 +800,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_TourStop_TransportCompany">
-    <End Role="TransportCompany" Type="Self.TransportCompany" Multiplicity="1" />
+    <End Role="TransportCompany" Type="Self.TransportCompany" Multiplicity="0..1" />
     <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="TransportCompany">
@@ -855,6 +897,8 @@
   </Association>
   <EntityContainer Name="MrTripModelStoreContainer">
     <EntitySet Name="Agency" EntityType="Self.Agency" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BlogCatagory" EntityType="Self.BlogCatagory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BlogTag" EntityType="Self.BlogTag" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
@@ -892,6 +936,10 @@
     <AssociationSet Name="FK_Agency_User" Association="Self.FK_Agency_User">
       <End Role="User" EntitySet="User" />
       <End Role="Agency" EntitySet="Agency" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BlogTagID_BlogCatagory" Association="Self.FK_BlogTagID_BlogCatagory">
+      <End Role="BlogCatagory" EntitySet="BlogCatagory" />
+      <End Role="BlogTag" EntitySet="BlogTag" />
     </AssociationSet>
     <AssociationSet Name="FK_Coupon_User" Association="Self.FK_Coupon_User">
       <End Role="User" EntitySet="User" />

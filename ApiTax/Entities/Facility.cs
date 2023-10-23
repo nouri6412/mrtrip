@@ -14,9 +14,18 @@ namespace ApiTax.Entities
     
     public partial class Facility
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Facility()
+        {
+            this.Hotels = new HashSet<Hotel>();
+        }
+    
         public int Id { get; set; }
         public string Title { get; set; }
         public string IconUrl { get; set; }
         public int TypeId { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Hotel> Hotels { get; set; }
     }
 }

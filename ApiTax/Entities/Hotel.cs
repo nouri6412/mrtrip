@@ -17,7 +17,16 @@ namespace ApiTax.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Hotel()
         {
+            this.AbuseReports = new HashSet<AbuseReport>();
+            this.HotelBookings = new HashSet<HotelBooking>();
+            this.HotelComments = new HashSet<HotelComment>();
+            this.HotelDateCosts = new HashSet<HotelDateCost>();
+            this.HotelDiscounts = new HashSet<HotelDiscount>();
+            this.HotelImages = new HashSet<HotelImage>();
+            this.HotelPackages = new HashSet<HotelPackage>();
+            this.HotelSpecs = new HashSet<HotelSpec>();
             this.TourStops = new HashSet<TourStop>();
+            this.Facilities = new HashSet<Facility>();
         }
     
         public long Id { get; set; }
@@ -45,6 +54,25 @@ namespace ApiTax.Entities
         public long ExtraPersonCost { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AbuseReport> AbuseReports { get; set; }
+        public virtual HotelService HotelService { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HotelBooking> HotelBookings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HotelComment> HotelComments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HotelDateCost> HotelDateCosts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HotelDiscount> HotelDiscounts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HotelImage> HotelImages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HotelPackage> HotelPackages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HotelSpec> HotelSpecs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TourStop> TourStops { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Facility> Facilities { get; set; }
     }
 }

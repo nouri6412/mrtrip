@@ -125,7 +125,7 @@
     <Property Name="StopOrder" Type="Int16" Nullable="false" />
     <Property Name="Nights" Type="Int16" Nullable="false" />
     <Property Name="HotelId" Type="Int64" />
-    <Property Name="TransportCompanyId" Type="Int32" Nullable="false" />
+    <Property Name="TransportCompanyId" Type="Int32" />
     <Property Name="DepartureDate" Type="DateTime" Nullable="false" Precision="7" />
     <Property Name="DepartureDateFa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="DepartureTime" Type="Time" Nullable="false" Precision="7" />
@@ -484,6 +484,12 @@
     <AssociationSet Name="FK_Location_LocationType" Association="MrTripModel.FK_Location_LocationType">
       <End Role="LocationType" EntitySet="LocationTypes" />
       <End Role="Location" EntitySet="Locations" />
+    </AssociationSet>
+    <EntitySet Name="BlogCatagories" EntityType="MrTripModel.BlogCatagory" />
+    <EntitySet Name="BlogTags" EntityType="MrTripModel.BlogTag" />
+    <AssociationSet Name="FK_BlogTagID_BlogCatagory" Association="MrTripModel.FK_BlogTagID_BlogCatagory">
+      <End Role="BlogCatagory" EntitySet="BlogCatagories" />
+      <End Role="BlogTag" EntitySet="BlogTags" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Location">
@@ -1012,6 +1018,37 @@
       </Principal>
       <Dependent Role="Location">
         <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BlogCatagory">
+    <Key>
+      <PropertyRef Name="BlogCatagoryID" />
+    </Key>
+    <Property Name="BlogCatagoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TitleFa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="TitleEn" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BlogTags" Relationship="MrTripModel.FK_BlogTagID_BlogCatagory" FromRole="BlogCatagory" ToRole="BlogTag" />
+  </EntityType>
+  <EntityType Name="BlogTag">
+    <Key>
+      <PropertyRef Name="BlogTagID" />
+    </Key>
+    <Property Name="BlogTagID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BlogCatagoryID" Type="Int32" />
+    <Property Name="TitleFa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="TitleEn" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BlogCatagory" Relationship="MrTripModel.FK_BlogTagID_BlogCatagory" FromRole="BlogTag" ToRole="BlogCatagory" />
+  </EntityType>
+  <Association Name="FK_BlogTagID_BlogCatagory">
+    <End Type="MrTripModel.BlogCatagory" Role="BlogCatagory" Multiplicity="0..1" />
+    <End Type="MrTripModel.BlogTag" Role="BlogTag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BlogCatagory">
+        <PropertyRef Name="BlogCatagoryID" />
+      </Principal>
+      <Dependent Role="BlogTag">
+        <PropertyRef Name="BlogCatagoryID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

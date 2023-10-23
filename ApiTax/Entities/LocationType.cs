@@ -18,6 +18,7 @@ namespace ApiTax.Entities
         public LocationType()
         {
             this.Locations = new HashSet<Location>();
+            this.Locations_TB = new HashSet<Locations_TB>();
         }
     
         public int Id { get; set; }
@@ -28,5 +29,8 @@ namespace ApiTax.Entities
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Location> Locations { get; set; }
+        public virtual LocationGroup LocationGroup { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Locations_TB> Locations_TB { get; set; }
     }
 }

@@ -17,7 +17,10 @@ namespace ApiTax.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Location()
         {
+            this.LocationComments = new HashSet<LocationComment>();
+            this.LocationImages = new HashSet<LocationImage>();
             this.TourStops = new HashSet<TourStop>();
+            this.Users = new HashSet<User>();
         }
     
         public long Id { get; set; }
@@ -39,9 +42,15 @@ namespace ApiTax.Entities
         public Nullable<long> OldLocationId { get; set; }
     
         public virtual LocCity LocCity { get; set; }
+        public virtual LocationType LocationType { get; set; }
+        public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LocationComment> LocationComments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LocationImage> LocationImages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TourStop> TourStops { get; set; }
-        public virtual User User { get; set; }
-        public virtual LocationType LocationType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }

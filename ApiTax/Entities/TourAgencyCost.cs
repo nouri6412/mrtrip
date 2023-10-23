@@ -32,11 +32,11 @@ namespace ApiTax.Entities
         public Nullable<int> CurrencyId { get; set; }
         public long CurrencyPrice { get; set; }
     
+        public virtual Agency Agency { get; set; }
+        public virtual Currency Currency { get; set; }
+        public virtual HotelRoomType HotelRoomType { get; set; }
         public virtual Tour Tour { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TourBookingTripper> TourBookingTrippers { get; set; }
-        public virtual Currency Currency { get; set; }
-        public virtual Agency Agency { get; set; }
-        public virtual HotelRoomType HotelRoomType { get; set; }
     }
 }

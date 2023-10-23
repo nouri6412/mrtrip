@@ -945,7 +945,6 @@ E:\git\mrtrip\ApiTax\obj\Debug\ApiTax.csproj.CoreCompileInputs.cache
 E:\git\mrtrip\ApiTax\obj\Debug\ApiTax.csproj.CopyComplete
 E:\git\mrtrip\ApiTax\obj\Debug\ApiTax.dll
 E:\git\mrtrip\ApiTax\obj\Debug\ApiTax.pdb
-E:\git\mrtrip\ApiTax\obj\Debug\ApiTax.csproj.AssemblyReference.cache
 D:\Projects\MrTrip\Panel-Agency\ApiTax\obj\Debug\ApiTax.csproj.AssemblyReference.cache
 D:\Projects\MrTrip\Panel-Agency\ApiTax\obj\Debug\ApiTax.csproj.ResolveComReference.cache
 D:\Projects\MrTrip\Panel-Agency\ApiTax\obj\Debug\ApiTax.csproj.CoreCompileInputs.cache

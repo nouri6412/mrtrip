@@ -17,6 +17,8 @@ namespace ApiTax.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tour()
         {
+            this.AgencyRatings = new HashSet<AgencyRating>();
+            this.HotelPackages = new HashSet<HotelPackage>();
             this.TourAgencyCosts = new HashSet<TourAgencyCost>();
             this.TourCheckouts = new HashSet<TourCheckout>();
             this.TourStops = new HashSet<TourStop>();
@@ -51,18 +53,22 @@ namespace ApiTax.Entities
         public bool Deleted { get; set; }
         public Nullable<System.DateTime> DeleteDate { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AgencyRating> AgencyRatings { get; set; }
+        public virtual Hardness Hardness { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HotelPackage> HotelPackages { get; set; }
+        public virtual LocCity LocCity { get; set; }
         public virtual TourType TourType { get; set; }
         public virtual TransportType TransportType { get; set; }
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TourAgencyCost> TourAgencyCosts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TourCheckout> TourCheckouts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TourStop> TourStops { get; set; }
-        public virtual LocCity LocCity { get; set; }
-        public virtual Hardness Hardness { get; set; }
-        public virtual User User { get; set; }
-        public virtual User User1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Coupon> Coupons { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -412,5 +412,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="BlogCatagories">
+      <EntityTypeMapping TypeName="MrTripModel.BlogCatagory">
+        <MappingFragment StoreEntitySet="BlogCatagory">
+          <ScalarProperty Name="TitleEn" ColumnName="TitleEn" />
+          <ScalarProperty Name="TitleFa" ColumnName="TitleFa" />
+          <ScalarProperty Name="BlogCatagoryID" ColumnName="BlogCatagoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BlogTags">
+      <EntityTypeMapping TypeName="MrTripModel.BlogTag">
+        <MappingFragment StoreEntitySet="BlogTag">
+          <ScalarProperty Name="TitleEn" ColumnName="TitleEn" />
+          <ScalarProperty Name="TitleFa" ColumnName="TitleFa" />
+          <ScalarProperty Name="BlogCatagoryID" ColumnName="BlogCatagoryID" />
+          <ScalarProperty Name="BlogTagID" ColumnName="BlogTagID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

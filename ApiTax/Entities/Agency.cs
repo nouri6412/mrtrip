@@ -17,7 +17,9 @@ namespace ApiTax.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Agency()
         {
+            this.AgencyRatings = new HashSet<AgencyRating>();
             this.TourAgencyCosts = new HashSet<TourAgencyCost>();
+            this.Users = new HashSet<User>();
         }
     
         public int Id { get; set; }
@@ -31,6 +33,10 @@ namespace ApiTax.Entities
         public virtual LocCity LocCity { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AgencyRating> AgencyRatings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TourAgencyCost> TourAgencyCosts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }
