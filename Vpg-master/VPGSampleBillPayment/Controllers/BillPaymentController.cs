@@ -23,13 +23,13 @@ namespace VPGSampleBillPayment.Controllers
         [HttpPost]
         public ActionResult Index(BatchPaymentRequest request)
         {
-            if (!ModelState.IsValid)
-                return View(request);
+            //if (!ModelState.IsValid)
+            //    return View(request);
             try
             {
                 long amount = Convert.ToInt64(request.PayRequests[0].PayId) / 100000;
                 amount *= 1000;
-
+                amount = 2000;
                 request.PayRequests[0].Amount = amount;
                 request.PayRequests[0].TransactionType = 3;
                 request.PayRequests[0].TerminalId = request.TerminalId;
