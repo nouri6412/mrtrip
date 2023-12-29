@@ -16,12 +16,19 @@ namespace ApiTax.Entities
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public string TitleEn { get; set; }
+        public string Summary { get; set; }
+        public string SummaryEn { get; set; }
         public string Body { get; set; }
+        public string BodyEn { get; set; }
+        public int CategoryId { get; set; }
+        public string Tags { get; set; }
         public string ImageUrl { get; set; }
         public bool IsActive { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public int UserId { get; set; }
     
+        public virtual PostCategory PostCategory { get; set; }
         public virtual User User { get; set; }
     }
 }

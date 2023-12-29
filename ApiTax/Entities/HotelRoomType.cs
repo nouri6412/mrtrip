@@ -23,6 +23,7 @@ namespace ApiTax.Entities
         public short Id { get; set; }
         public string Title { get; set; }
         public short Capacity { get; set; }
+        public Nullable<int> AgeGroupId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TourAgencyCost> TourAgencyCosts { get; set; }

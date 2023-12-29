@@ -33,6 +33,8 @@ namespace ApiTax.Entities
         public bool IsPaid { get; set; }
         public Nullable<long> TransactionId { get; set; }
     
+        public virtual BookingStatu BookingStatu { get; set; }
+        public virtual BookingTransaction BookingTransaction { get; set; }
         public virtual Hotel Hotel { get; set; }
         public virtual User User { get; set; }
     }

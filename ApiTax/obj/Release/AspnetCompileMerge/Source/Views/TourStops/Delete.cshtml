@@ -1,0 +1,28 @@
+﻿@model ApiTax.Entities.TourStop
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="kt-portlet__head kt-portlet__head--lg">
+    <div class="kt-portlet__head-label">
+        <span class="kt-portlet__head-icon"><i :class="modelIcon"></i></span>
+        <h3 class="kt-portlet__head-title">
+            حذف روز سفر
+        </h3>
+    </div>
+</div>
+<hr />
+<div class="alert alert-warning">آیا از حذف روز سفر اطمینان دارید؟</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="بلی حذف کن" class="btn btn-danger" /> |
+        @Html.ActionLink("انصراف", "Edit", "Tours", new { id = Model.TourId, type = "day" }, new { @class = "btn btn-outline-info" })
+
+    </div>
+
+}

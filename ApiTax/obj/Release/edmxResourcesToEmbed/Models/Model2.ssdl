@@ -1,0 +1,2842 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AbuseReport">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="HotelId" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Agency">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="FullDiscount" Type="int" Nullable="false" />
+    <Property Name="UserDiscount" Type="int" Nullable="false" />
+    <Property Name="AffiliateDiscount" Type="int" Nullable="false" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="NationalCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="500" />
+    <Property Name="PostalCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="BirthDate" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="AgencyBankAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="AgencyId" Type="int" />
+    <Property Name="BankId" Type="int" Nullable="false" />
+    <Property Name="AccountNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Shaba" Type="nvarchar" MaxLength="50" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="AgencyRating">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AgancyId" Type="int" Nullable="false" />
+    <Property Name="TourId" Type="bigint" Nullable="false" />
+    <Property Name="Rating" Type="int" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="Approved" Type="bit" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AgencySupervisor">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="AgencyId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="AgencyId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bank">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TitleEn" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LogoUrl" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="IsBank" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BookingStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="TitleFa" Type="nvarchar" MaxLength="50" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="BookingTransaction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="Amount" Type="bigint" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="0" Nullable="false" />
+    <Property Name="BookingTypeId" Type="int" Nullable="false" />
+    <Property Name="TransactionTypeId" Type="int" Nullable="false" />
+    <Property Name="TerminalId" Type="int" Nullable="false" />
+    <Property Name="InvoiceNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Discount" Type="bigint" Nullable="false" />
+    <Property Name="CouponId" Type="int" />
+  </EntityType>
+  <EntityType Name="BookingType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CheckoutType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CommentPost_TB">
+    <Key>
+      <PropertyRef Name="comment_post_ID" />
+    </Key>
+    <Property Name="comment_post_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="matn" Type="nvarchar(max)" />
+    <Property Name="userid" Type="bigint" />
+    <Property Name="postid" Type="bigint" />
+    <Property Name="act" Type="bit" />
+  </EntityType>
+  <EntityType Name="Comments_TB">
+    <Key>
+      <PropertyRef Name="commentID" />
+    </Key>
+    <Property Name="commentID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userID" Type="bigint" />
+    <Property Name="comment" Type="nvarchar(max)" />
+    <Property Name="LocID" Type="bigint" />
+    <Property Name="act" Type="bit" />
+  </EntityType>
+  <EntityType Name="CommissionSettlement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="int" Nullable="false" />
+    <Property Name="LastTransactionId" Type="bigint" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+    <Property Name="AccountNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="TrackingNumber" Type="nvarchar(max)" />
+    <Property Name="Receipt" Type="nvarchar(max)" />
+    <Property Name="FileUrl" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Coupon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="Currency">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="99" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Equipment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ErrorLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UserIP" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Facility">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IconUrl" Type="nvarchar(max)" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FacilityType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="fav_TB">
+    <Key>
+      <PropertyRef Name="favID" />
+    </Key>
+    <Property Name="favID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LocID" Type="bigint" />
+    <Property Name="userID" Type="bigint" />
+    <Property Name="balad" Type="bit" />
+  </EntityType>
+  <EntityType Name="GlobalMeta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Value" Type="nvarchar(max)" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" />
+    <Property Name="ModifyDate" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="Hardness">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Hotel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LocationTypeId" Type="int" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="Stars" Type="smallint" Nullable="false" />
+    <Property Name="ServiceId" Type="int" Nullable="false" />
+    <Property Name="Capacity" Type="int" Nullable="false" />
+    <Property Name="MaxCapacity" Type="int" Nullable="false" />
+    <Property Name="Rooms" Type="int" Nullable="false" />
+    <Property Name="Beds" Type="int" Nullable="false" />
+    <Property Name="LocationId" Type="bigint" />
+    <Property Name="LocationOnMap" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="About" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Conditions" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="OwnerId" Type="int" />
+    <Property Name="Tags" Type="nvarchar(max)" />
+    <Property Name="Gravity" Type="int" Nullable="false" />
+    <Property Name="Cost" Type="bigint" Nullable="false" />
+    <Property Name="ExtraPersonCost" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HotelBooking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HotelId" Type="bigint" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NationalCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="NationalCard" Type="nvarchar(max)" />
+    <Property Name="TripperCount" Type="int" Nullable="false" />
+    <Property Name="FromDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="FromDateFa" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ToDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ToDateFa" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Amount" Type="bigint" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="StatusId" Type="int" />
+    <Property Name="IsPaid" Type="bit" Nullable="false" />
+    <Property Name="TransactionId" Type="bigint" />
+  </EntityType>
+  <EntityType Name="HotelComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HotelId" Type="bigint" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Comment" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Rating" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="HotelDateCost">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HotelId" Type="bigint" Nullable="false" />
+    <Property Name="DateEn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="DateFa" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Cost" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HotelDiscount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HotelId" Type="bigint" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Days" Type="int" Nullable="false" />
+    <Property Name="Discount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HotelFacilities">
+    <Key>
+      <PropertyRef Name="HotelId" />
+      <PropertyRef Name="FacilityId" />
+    </Key>
+    <Property Name="HotelId" Type="bigint" Nullable="false" />
+    <Property Name="FacilityId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HotelImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HotelId" Type="bigint" Nullable="false" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FileName" Type="nvarchar(max)" />
+    <Property Name="Weight" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HotelPackage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TourId" Type="bigint" />
+    <Property Name="PackageNumber" Type="int" />
+    <Property Name="HotelId" Type="bigint" />
+  </EntityType>
+  <EntityType Name="HotelRoomType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Capacity" Type="smallint" Nullable="false" />
+    <Property Name="AgeGroupId" Type="int" />
+  </EntityType>
+  <EntityType Name="HotelService">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="TitleEn" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="HotelSpecs">
+    <Key>
+      <PropertyRef Name="HotelId" />
+      <PropertyRef Name="SpecId" />
+    </Key>
+    <Property Name="HotelId" Type="bigint" Nullable="false" />
+    <Property Name="SpecId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Language">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+    <Property Name="Weight" Type="int" Nullable="false" />
+    <Property Name="ProvinceId" Type="int" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="Village" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attractions" Type="nvarchar(max)" />
+    <Property Name="Facilities" Type="nvarchar(max)" />
+    <Property Name="Accessibility" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="OldLocationId" Type="bigint" />
+  </EntityType>
+  <EntityType Name="LocationComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LocationId" Type="bigint" Nullable="false" />
+    <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="IsConfirmed" Type="bit" Nullable="false" />
+    <Property Name="ConfirmedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="LocationGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocationImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LocationId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocationLeaders">
+    <Key>
+      <PropertyRef Name="LocationId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LocationId" Type="bigint" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Locations_TB">
+    <Key>
+      <PropertyRef Name="LocID" />
+    </Key>
+    <Property Name="LocID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="lat" Type="float" />
+    <Property Name="lang" Type="float" />
+    <Property Name="type_loc" Type="nvarchar" MaxLength="50" />
+    <Property Name="weight" Type="int" />
+    <Property Name="ostan" Type="nvarchar" MaxLength="200" />
+    <Property Name="city" Type="nvarchar" MaxLength="200" />
+    <Property Name="rusta" Type="nvarchar" MaxLength="200" />
+    <Property Name="shakhesh" Type="nvarchar(max)" />
+    <Property Name="emkanat" Type="nvarchar(max)" />
+    <Property Name="dastrasi" Type="nvarchar(max)" />
+    <Property Name="act" Type="bit" />
+    <Property Name="TypeId" Type="int" />
+    <Property Name="NewLocationId" Type="bigint" />
+    <Property Name="ProvinceId" Type="int" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="AspUserId" Type="int" />
+  </EntityType>
+  <EntityType Name="LocationType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="GroupId" Type="int" Nullable="false" />
+    <Property Name="Weight" Type="int" Nullable="false" />
+    <Property Name="IconURL" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="LocCity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProvinceId" Type="int" Nullable="false" />
+    <Property Name="TitleEn" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" />
+    <Property Name="ThumbUrl" Type="nvarchar(max)" />
+    <Property Name="OnHome" Type="bit" />
+    <Property Name="Gravity" Type="int" />
+  </EntityType>
+  <EntityType Name="LocCountry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LocProvince">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CountryId" Type="int" />
+  </EntityType>
+  <EntityType Name="Log_TB">
+    <Key>
+      <PropertyRef Name="logID" />
+    </Key>
+    <Property Name="logID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="100" />
+    <Property Name="tel" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Owner">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="NationalCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DocumentUrl" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IsConfirmed" Type="bit" Nullable="false" />
+    <Property Name="ConfirmByUserId" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransactionId" Type="bigint" Nullable="false" />
+    <Property Name="Amount" Type="bigint" Nullable="false" />
+    <Property Name="IsPaid" Type="bit" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="PayDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="InApp" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaymentResult">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaymentId" Type="bigint" Nullable="false" />
+    <Property Name="RefId" Type="nvarchar(max)" />
+    <Property Name="ResCode" Type="nvarchar(max)" />
+    <Property Name="SaleOrderId" Type="bigint" />
+    <Property Name="SaleReferenceId" Type="bigint" />
+    <Property Name="CardHolderPAN" Type="nvarchar(max)" />
+    <Property Name="CreditCardSaleResponseDetail" Type="nvarchar(max)" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="PaymentResultLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaymentId" Type="bigint" />
+    <Property Name="Result" Type="nvarchar(max)" />
+    <Property Name="Type" Type="nvarchar(max)" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="PersonAgeGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PlaceSpec">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TitleEn" Type="nvarchar" MaxLength="50" />
+    <Property Name="Summary" Type="nvarchar" MaxLength="200" />
+    <Property Name="SummaryEn" Type="nvarchar" MaxLength="200" />
+    <Property Name="Body" Type="nvarchar(max)" />
+    <Property Name="BodyEn" Type="nvarchar(max)" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="Tags" Type="nvarchar(max)" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Post_TB">
+    <Key>
+      <PropertyRef Name="postid" />
+    </Key>
+    <Property Name="postid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="500" />
+    <Property Name="matn" Type="nvarchar(max)" />
+    <Property Name="userid" Type="bigint" />
+    <Property Name="act" Type="bit" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="PostCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="TitleEn" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" />
+    <Property Name="ParentId" Type="int" />
+  </EntityType>
+  <EntityType Name="PostTag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" />
+    <Property Name="TitleEn" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SmsAdminContacts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" />
+    <Property Name="LastName" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="smsCode">
+    <Key>
+      <PropertyRef Name="smsID" />
+    </Key>
+    <Property Name="smsID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="nvarchar" MaxLength="50" />
+    <Property Name="userid" Type="bigint" />
+  </EntityType>
+  <EntityType Name="SmsCreditNotices">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ArchiveId" Type="int" Nullable="false" />
+    <Property Name="NoticeLevel" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SmsReadyToSend">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Message" Type="nvarchar" MaxLength="1024" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SmsSentArchives">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="SentDate" Type="datetime" Nullable="false" />
+    <Property Name="IsSentSuccessfully" Type="bit" Nullable="false" />
+    <Property Name="SendResult" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SmsWebServiceSettings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" />
+    <Property Name="Password" Type="nvarchar(max)" />
+    <Property Name="Number" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="SpecType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Station">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IconUrl" Type="nvarchar(max)" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="temp">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Value" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Terminal">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BankId" Type="int" Nullable="false" />
+    <Property Name="TerminalID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ReturnUrl" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TerminalURL" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Field1" Type="nvarchar(max)" />
+    <Property Name="Field2" Type="nvarchar(max)" />
+    <Property Name="Field3" Type="nvarchar(max)" />
+    <Property Name="Field4" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="toor_TB">
+    <Key>
+      <PropertyRef Name="toorID" />
+    </Key>
+    <Property Name="toorID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="100" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="count_day" Type="int" />
+    <Property Name="date_start" Type="date" />
+    <Property Name="date_end" Type="date" />
+    <Property Name="userID" Type="bigint" />
+    <Property Name="cancel" Type="int" />
+    <Property Name="finish" Type="int" />
+    <Property Name="complete" Type="int" />
+    <Property Name="LocID" Type="bigint" />
+    <Property Name="makan" Type="nvarchar" MaxLength="500" />
+    <Property Name="saat_start" Type="nvarchar" MaxLength="100" />
+    <Property Name="saat_end" Type="nvarchar" MaxLength="100" />
+    <Property Name="sarparast" Type="nvarchar" MaxLength="100" />
+    <Property Name="tajhizat" Type="nvarchar" MaxLength="500" />
+    <Property Name="servis" Type="nvarchar" MaxLength="500" />
+    <Property Name="tamas" Type="nvarchar" MaxLength="100" />
+    <Property Name="zarfiyat" Type="nvarchar" MaxLength="100" />
+    <Property Name="hazine" Type="nvarchar" MaxLength="500" />
+    <Property Name="type_safar" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Tour">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TourTypeId" Type="int" Nullable="false" />
+    <Property Name="HardnessId" Type="int" Nullable="false" />
+    <Property Name="FromCityId" Type="int" Nullable="false" />
+    <Property Name="TransportTypeId" Type="int" Nullable="false" />
+    <Property Name="HasHotel" Type="bit" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Nights" Type="smallint" Nullable="false" />
+    <Property Name="StartDate" Type="datetime2" Precision="7" />
+    <Property Name="EndDate" Type="datetime2" Precision="7" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" />
+    <Property Name="Canceled" Type="bit" Nullable="false" />
+    <Property Name="Finished" Type="bit" Nullable="false" />
+    <Property Name="StartPlace" Type="nvarchar" MaxLength="50" />
+    <Property Name="SupervisorId" Type="int" />
+    <Property Name="SupervisorName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Services" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Capacity" Type="int" Nullable="false" />
+    <Property Name="Budget" Type="bigint" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="DeleteDate" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="TourAgencyCost">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TourId" Type="bigint" Nullable="false" />
+    <Property Name="AgencyId" Type="int" Nullable="false" />
+    <Property Name="RoomTypeId" Type="smallint" Nullable="false" />
+    <Property Name="Price" Type="bigint" Nullable="false" />
+    <Property Name="UserDiscount" Type="bigint" Nullable="false" />
+    <Property Name="AffiliateDiscount" Type="bigint" Nullable="false" />
+    <Property Name="FullDiscount" Type="bigint" Nullable="false" />
+    <Property Name="PackageNumber" Type="int" />
+    <Property Name="CurrencyId" Type="int" />
+    <Property Name="CurrencyPrice" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TourBooking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TourId" Type="bigint" Nullable="false" />
+    <Property Name="AgencyId" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="NationalCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NationalCard" Type="nvarchar(max)" />
+    <Property Name="TripperCount" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="IsPaid" Type="bit" Nullable="false" />
+    <Property Name="TransactionId" Type="bigint" />
+  </EntityType>
+  <EntityType Name="TourBookingTripper">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BookingId" Type="int" Nullable="false" />
+    <Property Name="ToutCostId" Type="bigint" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="NationalCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="NationalCard" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TourCheckout">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TourId" Type="bigint" Nullable="false" />
+    <Property Name="AgancyQuota" Type="bigint" Nullable="false" />
+    <Property Name="CompanyQuota" Type="bigint" Nullable="false" />
+    <Property Name="Amount" Type="bigint" Nullable="false" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+    <Property Name="AccountNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="TrackingNumber" Type="nvarchar(max)" />
+    <Property Name="Receipt" Type="nvarchar(max)" />
+    <Property Name="FileUrl" Type="nvarchar(max)" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TourCoupon">
+    <Key>
+      <PropertyRef Name="CouponId" />
+      <PropertyRef Name="TourId" />
+    </Key>
+    <Property Name="CouponId" Type="int" Nullable="false" />
+    <Property Name="TourId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TourEquipment">
+    <Key>
+      <PropertyRef Name="TourId" />
+      <PropertyRef Name="EquipmentId" />
+    </Key>
+    <Property Name="TourId" Type="bigint" Nullable="false" />
+    <Property Name="EquipmentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TourStop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TourId" Type="bigint" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="LocationId" Type="bigint" />
+    <Property Name="StopTypeId" Type="smallint" Nullable="false" />
+    <Property Name="StopOrder" Type="smallint" Nullable="false" />
+    <Property Name="Nights" Type="smallint" Nullable="false" />
+    <Property Name="HotelId" Type="bigint" />
+    <Property Name="TransportCompanyId" Type="int" />
+    <Property Name="DepartureDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="DepartureDateFa" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DepartureTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="DepartureStationId" Type="int" />
+    <Property Name="ArrivalTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="ArrivalStationId" Type="int" />
+    <Property Name="Duration" Type="time" Precision="7" />
+    <Property Name="WaitDuration" Type="time" Precision="7" />
+  </EntityType>
+  <EntityType Name="TourStopType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="smallint" Nullable="false" />
+    <Property Name="Titile" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TourType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TransactionMultiplexing">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransactionId" Type="bigint" Nullable="false" />
+    <Property Name="FullAmount" Type="bigint" />
+    <Property Name="AgencyId" Type="int" Nullable="false" />
+    <Property Name="AgencyAccountId" Type="int" Nullable="false" />
+    <Property Name="AgencyShare" Type="bigint" Nullable="false" />
+    <Property Name="SiteShareOne" Type="bigint" Nullable="false" />
+    <Property Name="SiteShareTwo" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransactionType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sign" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransportCompany">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Url" Type="nvarchar(max)" />
+    <Property Name="SeatClass" Type="nvarchar" MaxLength="50" />
+    <Property Name="Cargo" Type="smallint" />
+  </EntityType>
+  <EntityType Name="TransportType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="TypeId" Type="int" Nullable="false" />
+    <Property Name="AgencyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PermitNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProvinceId" Type="int" />
+    <Property Name="IsMountainClimbingClub" Type="bit" />
+    <Property Name="PermitTypeA" Type="bit" />
+    <Property Name="PermitTypeB" Type="bit" />
+    <Property Name="PermitTypeP" Type="bit" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" />
+    <Property Name="GuideNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsLocalGuide" Type="bit" />
+    <Property Name="LocalGuideCardUrl" Type="nvarchar(max)" />
+    <Property Name="IsCulturalGuide" Type="bit" />
+    <Property Name="CulturalGuideCardUrl" Type="nvarchar(max)" />
+    <Property Name="OtherLanguage" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ConfirmationCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OldUserId" Type="bigint" />
+    <Property Name="AgencyConfirmed" Type="bit" />
+    <Property Name="GuideConfirmed" Type="bit" />
+  </EntityType>
+  <EntityType Name="user_TB">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="100" />
+    <Property Name="name" Type="nvarchar" MaxLength="200" />
+    <Property Name="tel" Type="nvarchar" MaxLength="50" />
+    <Property Name="pass" Type="nvarchar" MaxLength="50" />
+    <Property Name="type" Type="nvarchar" MaxLength="50" />
+    <Property Name="GroupRasmi" Type="nvarchar" MaxLength="100" />
+    <Property Name="faaliyat" Type="nvarchar" MaxLength="100" />
+    <Property Name="GroupName" Type="nvarchar" MaxLength="100" />
+    <Property Name="sabt" Type="nvarchar" MaxLength="50" />
+    <Property Name="ostan" Type="nvarchar" MaxLength="100" />
+    <Property Name="city" Type="nvarchar" MaxLength="100" />
+    <Property Name="semat" Type="nvarchar" MaxLength="100" />
+    <Property Name="emtiyaz" Type="nvarchar" MaxLength="100" />
+    <Property Name="address" Type="nvarchar" MaxLength="500" />
+    <Property Name="dateCreated" Type="date" />
+    <Property Name="act" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserLanguages">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="LanguageId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="LanguageId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserSession">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Tokan" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AbuseReport_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+    <End Role="AbuseReport" Type="Self.AbuseReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AbuseReport">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Agency_City">
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="0..1" />
+    <End Role="Agency" Type="Self.Agency" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocCity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Agency">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Agency_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Agency" Type="Self.Agency" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Agency">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgencyRating_Agency">
+    <End Role="Agency" Type="Self.Agency" Multiplicity="1" />
+    <End Role="AgencyRating" Type="Self.AgencyRating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AgencyRating">
+        <PropertyRef Name="AgancyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgencyRating_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+    <End Role="AgencyRating" Type="Self.AgencyRating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AgencyRating">
+        <PropertyRef Name="TourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgencyRating_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="AgencyRating" Type="Self.AgencyRating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AgencyRating">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgencySupervisor_Agency">
+    <End Role="Agency" Type="Self.Agency" Multiplicity="1" />
+    <End Role="AgencySupervisor" Type="Self.AgencySupervisor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AgencySupervisor">
+        <PropertyRef Name="AgencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgencySupervisor_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="AgencySupervisor" Type="Self.AgencySupervisor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AgencySupervisor">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingTransaction_BookingType">
+    <End Role="BookingType" Type="Self.BookingType" Multiplicity="1" />
+    <End Role="BookingTransaction" Type="Self.BookingTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookingTransaction">
+        <PropertyRef Name="BookingTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingTransaction_Terminal">
+    <End Role="Terminal" Type="Self.Terminal" Multiplicity="1" />
+    <End Role="BookingTransaction" Type="Self.BookingTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Terminal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookingTransaction">
+        <PropertyRef Name="TerminalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookingTransaction_TransactionType">
+    <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="1" />
+    <End Role="BookingTransaction" Type="Self.BookingTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransactionType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookingTransaction">
+        <PropertyRef Name="TransactionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="LocationComment" Type="Self.LocationComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocationComment">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CommentPost_TB_Post_TB">
+    <End Role="Post_TB" Type="Self.Post_TB" Multiplicity="0..1" />
+    <End Role="CommentPost_TB" Type="Self.CommentPost_TB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post_TB">
+        <PropertyRef Name="postid" />
+      </Principal>
+      <Dependent Role="CommentPost_TB">
+        <PropertyRef Name="postid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CommentPost_TB_user_TB">
+    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
+    <End Role="CommentPost_TB" Type="Self.CommentPost_TB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_TB">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="CommentPost_TB">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comments_TB_Locations_TB">
+    <End Role="Locations_TB" Type="Self.Locations_TB" Multiplicity="0..1" />
+    <End Role="Comments_TB" Type="Self.Comments_TB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locations_TB">
+        <PropertyRef Name="LocID" />
+      </Principal>
+      <Dependent Role="Comments_TB">
+        <PropertyRef Name="LocID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comments_TB_user_TB">
+    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
+    <End Role="Comments_TB" Type="Self.Comments_TB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_TB">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Comments_TB">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CommissionSettlement_CheckoutType">
+    <End Role="CheckoutType" Type="Self.CheckoutType" Multiplicity="1" />
+    <End Role="CommissionSettlement" Type="Self.CommissionSettlement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CheckoutType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CommissionSettlement">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CommissionSettlement_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="CommissionSettlement" Type="Self.CommissionSettlement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CommissionSettlement">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Coupon_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Coupon" Type="Self.Coupon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Coupon">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_fav_TB_Locations_TB">
+    <End Role="Locations_TB" Type="Self.Locations_TB" Multiplicity="0..1" />
+    <End Role="fav_TB" Type="Self.fav_TB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locations_TB">
+        <PropertyRef Name="LocID" />
+      </Principal>
+      <Dependent Role="fav_TB">
+        <PropertyRef Name="LocID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_fav_TB_user_TB">
+    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
+    <End Role="fav_TB" Type="Self.fav_TB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_TB">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="fav_TB">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hotel_HotelService">
+    <End Role="HotelService" Type="Self.HotelService" Multiplicity="1" />
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HotelService">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Hotel">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelBooking_BookingStatus">
+    <End Role="BookingStatus" Type="Self.BookingStatus" Multiplicity="0..1" />
+    <End Role="HotelBooking" Type="Self.HotelBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelBooking">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelBooking_BookingTransaction">
+    <End Role="BookingTransaction" Type="Self.BookingTransaction" Multiplicity="0..1" />
+    <End Role="HotelBooking" Type="Self.HotelBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingTransaction">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelBooking">
+        <PropertyRef Name="TransactionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelBooking_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="HotelBooking" Type="Self.HotelBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelBooking">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelBooking_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="HotelBooking" Type="Self.HotelBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelBooking">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelComment_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="HotelComment" Type="Self.HotelComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelComment">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelDateCost_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="HotelDateCost" Type="Self.HotelDateCost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelDateCost">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelDiscount_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="HotelDiscount" Type="Self.HotelDiscount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelDiscount">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelFacilities_Facility1">
+    <End Role="Facility" Type="Self.Facility" Multiplicity="1" />
+    <End Role="HotelFacilities" Type="Self.HotelFacilities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facility">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelFacilities">
+        <PropertyRef Name="FacilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelFacilities_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="HotelFacilities" Type="Self.HotelFacilities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelFacilities">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelImage_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="HotelImage" Type="Self.HotelImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelImage">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelPackage_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+    <End Role="HotelPackage" Type="Self.HotelPackage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelPackage">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelPackage_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+    <End Role="HotelPackage" Type="Self.HotelPackage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelPackage">
+        <PropertyRef Name="TourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelSpecs_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="HotelSpecs" Type="Self.HotelSpecs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelSpecs">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelSpecs_PlaceSpec">
+    <End Role="PlaceSpec" Type="Self.PlaceSpec" Multiplicity="1" />
+    <End Role="HotelSpecs" Type="Self.HotelSpecs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlaceSpec">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelSpecs">
+        <PropertyRef Name="SpecId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HotelSpecs_SpecType">
+    <End Role="SpecType" Type="Self.SpecType" Multiplicity="1" />
+    <End Role="HotelSpecs" Type="Self.HotelSpecs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpecType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HotelSpecs">
+        <PropertyRef Name="SpecId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Location_City">
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="1" />
+    <End Role="Location" Type="Self.Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocCity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Location_LocationType">
+    <End Role="LocationType" Type="Self.LocationType" Multiplicity="1" />
+    <End Role="Location" Type="Self.Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocationType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Location_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Location" Type="Self.Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocationComment_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="LocationComment" Type="Self.LocationComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocationComment">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocationImage_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="LocationImage" Type="Self.LocationImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocationImage">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocationLeaders_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="LocationLeaders" Type="Self.LocationLeaders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocationLeaders">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocationLeaders_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="LocationLeaders" Type="Self.LocationLeaders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocationLeaders">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Locations_TB_City">
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="0..1" />
+    <End Role="Locations_TB" Type="Self.Locations_TB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocCity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Locations_TB">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Locations_TB_LocationType">
+    <End Role="LocationType" Type="Self.LocationType" Multiplicity="0..1" />
+    <End Role="Locations_TB" Type="Self.Locations_TB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocationType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Locations_TB">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocationType_LocationGroup">
+    <End Role="LocationGroup" Type="Self.LocationGroup" Multiplicity="1" />
+    <End Role="LocationType" Type="Self.LocationType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocationGroup">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocationType">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocCity_LocProvince">
+    <End Role="LocProvince" Type="Self.LocProvince" Multiplicity="1" />
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocProvince">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocCity">
+        <PropertyRef Name="ProvinceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocProvince_LocCountry">
+    <End Role="LocCountry" Type="Self.LocCountry" Multiplicity="0..1" />
+    <End Role="LocProvince" Type="Self.LocProvince" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocCountry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocProvince">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Owner_User2">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Owner" Type="Self.Owner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Owner">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_BookingTransaction">
+    <End Role="BookingTransaction" Type="Self.BookingTransaction" Multiplicity="1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingTransaction">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="TransactionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentResult_Payment">
+    <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
+    <End Role="PaymentResult" Type="Self.PaymentResult" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PaymentResult">
+        <PropertyRef Name="PaymentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlaceSpec_SpecType">
+    <End Role="SpecType" Type="Self.SpecType" Multiplicity="1" />
+    <End Role="PlaceSpec" Type="Self.PlaceSpec" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpecType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlaceSpec">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Post_PostCategory">
+    <End Role="PostCategory" Type="Self.PostCategory" Multiplicity="1" />
+    <End Role="Post" Type="Self.Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PostCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Post_TB_user_TB">
+    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
+    <End Role="Post_TB" Type="Self.Post_TB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_TB">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Post_TB">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Post_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Post" Type="Self.Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostCategory_PostCategory1">
+    <End Role="PostCategory" Type="Self.PostCategory" Multiplicity="0..1" />
+    <End Role="PostCategory1" Type="Self.PostCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PostCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PostCategory1">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostTag_PostCategory">
+    <End Role="PostCategory" Type="Self.PostCategory" Multiplicity="0..1" />
+    <End Role="PostTag" Type="Self.PostTag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PostCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PostTag">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_smsCode_user_TB">
+    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
+    <End Role="smsCode" Type="Self.smsCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_TB">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="smsCode">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Station_LocCity">
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="1" />
+    <End Role="Station" Type="Self.Station" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocCity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Station">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Terminal_Bank">
+    <End Role="Bank" Type="Self.Bank" Multiplicity="1" />
+    <End Role="Terminal" Type="Self.Terminal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bank">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Terminal">
+        <PropertyRef Name="BankId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_toor_TB_Locations_TB">
+    <End Role="Locations_TB" Type="Self.Locations_TB" Multiplicity="0..1" />
+    <End Role="toor_TB" Type="Self.toor_TB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locations_TB">
+        <PropertyRef Name="LocID" />
+      </Principal>
+      <Dependent Role="toor_TB">
+        <PropertyRef Name="LocID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_toor_TB_user_TB">
+    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
+    <End Role="toor_TB" Type="Self.toor_TB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_TB">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="toor_TB">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tour_City">
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocCity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="FromCityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tour_Hardness">
+    <End Role="Hardness" Type="Self.Hardness" Multiplicity="1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hardness">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="HardnessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tour_TourType">
+    <End Role="TourType" Type="Self.TourType" Multiplicity="1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TourType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="TourTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tour_TransportType">
+    <End Role="TransportType" Type="Self.TransportType" Multiplicity="1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransportType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="TransportTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tour_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tour_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tour">
+        <PropertyRef Name="SupervisorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourAgencyCost_Agency">
+    <End Role="Agency" Type="Self.Agency" Multiplicity="1" />
+    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourAgencyCost">
+        <PropertyRef Name="AgencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourAgencyCost_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourAgencyCost">
+        <PropertyRef Name="TourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourBookingTripper_TourAgencyCost">
+    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="0..1" />
+    <End Role="TourBookingTripper" Type="Self.TourBookingTripper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TourAgencyCost">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourBookingTripper">
+        <PropertyRef Name="ToutCostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourBookingTripper_TourBooking">
+    <End Role="TourBooking" Type="Self.TourBooking" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TourBookingTripper" Type="Self.TourBookingTripper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TourBooking">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourBookingTripper">
+        <PropertyRef Name="BookingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourCheckout_CheckoutType">
+    <End Role="CheckoutType" Type="Self.CheckoutType" Multiplicity="1" />
+    <End Role="TourCheckout" Type="Self.TourCheckout" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CheckoutType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourCheckout">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourCheckout_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+    <End Role="TourCheckout" Type="Self.TourCheckout" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourCheckout">
+        <PropertyRef Name="TourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourCoupon_Coupon1">
+    <End Role="Coupon" Type="Self.Coupon" Multiplicity="1" />
+    <End Role="TourCoupon" Type="Self.TourCoupon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coupon">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourCoupon">
+        <PropertyRef Name="CouponId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourCoupon_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+    <End Role="TourCoupon" Type="Self.TourCoupon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourCoupon">
+        <PropertyRef Name="TourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourEquipment_Equipment1">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+    <End Role="TourEquipment" Type="Self.TourEquipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourEquipment">
+        <PropertyRef Name="EquipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourEquipment_Tour1">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+    <End Role="TourEquipment" Type="Self.TourEquipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourEquipment">
+        <PropertyRef Name="TourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_LocCity">
+    <End Role="LocCity" Type="Self.LocCity" Multiplicity="1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocCity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_Station">
+    <End Role="Station" Type="Self.Station" Multiplicity="0..1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Station">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="DepartureStationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_Station1">
+    <End Role="Station" Type="Self.Station" Multiplicity="0..1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Station">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="ArrivalStationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_Tour">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="TourId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_TourStopType">
+    <End Role="TourStopType" Type="Self.TourStopType" Multiplicity="1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TourStopType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="StopTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStop_TransportCompany">
+    <End Role="TransportCompany" Type="Self.TransportCompany" Multiplicity="0..1" />
+    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransportCompany">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourStop">
+        <PropertyRef Name="TransportCompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStopCost_Currency">
+    <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourAgencyCost">
+        <PropertyRef Name="CurrencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TourStopCost_HotelRoomType">
+    <End Role="HotelRoomType" Type="Self.HotelRoomType" Multiplicity="1" />
+    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HotelRoomType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TourAgencyCost">
+        <PropertyRef Name="RoomTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionMultiplexing_Agency">
+    <End Role="Agency" Type="Self.Agency" Multiplicity="1" />
+    <End Role="TransactionMultiplexing" Type="Self.TransactionMultiplexing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransactionMultiplexing">
+        <PropertyRef Name="AgencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionMultiplexing_AgencyBankAccount">
+    <End Role="AgencyBankAccount" Type="Self.AgencyBankAccount" Multiplicity="1" />
+    <End Role="TransactionMultiplexing" Type="Self.TransactionMultiplexing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AgencyBankAccount">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransactionMultiplexing">
+        <PropertyRef Name="AgencyAccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionMultiplexing_BookingTransaction">
+    <End Role="BookingTransaction" Type="Self.BookingTransaction" Multiplicity="1" />
+    <End Role="TransactionMultiplexing" Type="Self.TransactionMultiplexing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingTransaction">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransactionMultiplexing">
+        <PropertyRef Name="TransactionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransportCompany_TransportType1">
+    <End Role="TransportType" Type="Self.TransportType" Multiplicity="1" />
+    <End Role="TransportCompany" Type="Self.TransportCompany" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransportType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransportCompany">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Province">
+    <End Role="LocProvince" Type="Self.LocProvince" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocProvince">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="ProvinceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_UserType">
+    <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserLanguages_Language1">
+    <End Role="Language" Type="Self.Language" Multiplicity="1" />
+    <End Role="UserLanguages" Type="Self.UserLanguages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserLanguages">
+        <PropertyRef Name="LanguageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserLanguages_User1">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserLanguages" Type="Self.UserLanguages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserLanguages">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserSession_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserSession" Type="Self.UserSession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserSession">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="AbuseReport" EntityType="Self.AbuseReport" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Agency" EntityType="Self.Agency" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AgencyBankAccount" EntityType="Self.AgencyBankAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AgencyRating" EntityType="Self.AgencyRating" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AgencySupervisor" EntityType="Self.AgencySupervisor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookingStatus" EntityType="Self.BookingStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookingTransaction" EntityType="Self.BookingTransaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookingType" EntityType="Self.BookingType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CheckoutType" EntityType="Self.CheckoutType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CommentPost_TB" EntityType="Self.CommentPost_TB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comments_TB" EntityType="Self.Comments_TB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CommissionSettlement" EntityType="Self.CommissionSettlement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ErrorLog" EntityType="Self.ErrorLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Facility" EntityType="Self.Facility" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FacilityType" EntityType="Self.FacilityType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fav_TB" EntityType="Self.fav_TB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GlobalMeta" EntityType="Self.GlobalMeta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hardness" EntityType="Self.Hardness" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HotelBooking" EntityType="Self.HotelBooking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HotelComment" EntityType="Self.HotelComment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HotelDateCost" EntityType="Self.HotelDateCost" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HotelDiscount" EntityType="Self.HotelDiscount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HotelFacilities" EntityType="Self.HotelFacilities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HotelImage" EntityType="Self.HotelImage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HotelPackage" EntityType="Self.HotelPackage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HotelRoomType" EntityType="Self.HotelRoomType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HotelService" EntityType="Self.HotelService" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HotelSpecs" EntityType="Self.HotelSpecs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocationComment" EntityType="Self.LocationComment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocationGroup" EntityType="Self.LocationGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocationImage" EntityType="Self.LocationImage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocationLeaders" EntityType="Self.LocationLeaders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Locations_TB" EntityType="Self.Locations_TB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocationType" EntityType="Self.LocationType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocCity" EntityType="Self.LocCity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocCountry" EntityType="Self.LocCountry" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocProvince" EntityType="Self.LocProvince" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Log_TB" EntityType="Self.Log_TB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Owner" EntityType="Self.Owner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentResult" EntityType="Self.PaymentResult" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentResultLog" EntityType="Self.PaymentResultLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PersonAgeGroup" EntityType="Self.PersonAgeGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PlaceSpec" EntityType="Self.PlaceSpec" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Post_TB" EntityType="Self.Post_TB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PostCategory" EntityType="Self.PostCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PostTag" EntityType="Self.PostTag" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SmsAdminContacts" EntityType="Self.SmsAdminContacts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="smsCode" EntityType="Self.smsCode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SmsCreditNotices" EntityType="Self.SmsCreditNotices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SmsReadyToSend" EntityType="Self.SmsReadyToSend" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SmsSentArchives" EntityType="Self.SmsSentArchives" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SmsWebServiceSettings" EntityType="Self.SmsWebServiceSettings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SpecType" EntityType="Self.SpecType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Station" EntityType="Self.Station" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="temp" EntityType="Self.temp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Terminal" EntityType="Self.Terminal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="toor_TB" EntityType="Self.toor_TB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tour" EntityType="Self.Tour" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourAgencyCost" EntityType="Self.TourAgencyCost" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourBooking" EntityType="Self.TourBooking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourBookingTripper" EntityType="Self.TourBookingTripper" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourCheckout" EntityType="Self.TourCheckout" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourCoupon" EntityType="Self.TourCoupon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourEquipment" EntityType="Self.TourEquipment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourStop" EntityType="Self.TourStop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourStopType" EntityType="Self.TourStopType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TourType" EntityType="Self.TourType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransactionMultiplexing" EntityType="Self.TransactionMultiplexing" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransportCompany" EntityType="Self.TransportCompany" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransportType" EntityType="Self.TransportType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user_TB" EntityType="Self.user_TB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserLanguages" EntityType="Self.UserLanguages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserSession" EntityType="Self.UserSession" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AbuseReport_Hotel" Association="Self.FK_AbuseReport_Hotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="AbuseReport" EntitySet="AbuseReport" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Agency_City" Association="Self.FK_Agency_City">
+      <End Role="LocCity" EntitySet="LocCity" />
+      <End Role="Agency" EntitySet="Agency" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Agency_User" Association="Self.FK_Agency_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Agency" EntitySet="Agency" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgencyRating_Agency" Association="Self.FK_AgencyRating_Agency">
+      <End Role="Agency" EntitySet="Agency" />
+      <End Role="AgencyRating" EntitySet="AgencyRating" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgencyRating_Tour" Association="Self.FK_AgencyRating_Tour">
+      <End Role="Tour" EntitySet="Tour" />
+      <End Role="AgencyRating" EntitySet="AgencyRating" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgencyRating_User" Association="Self.FK_AgencyRating_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="AgencyRating" EntitySet="AgencyRating" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgencySupervisor_Agency" Association="Self.FK_AgencySupervisor_Agency">
+      <End Role="Agency" EntitySet="Agency" />
+      <End Role="AgencySupervisor" EntitySet="AgencySupervisor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgencySupervisor_User" Association="Self.FK_AgencySupervisor_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="AgencySupervisor" EntitySet="AgencySupervisor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingTransaction_BookingType" Association="Self.FK_BookingTransaction_BookingType">
+      <End Role="BookingType" EntitySet="BookingType" />
+      <End Role="BookingTransaction" EntitySet="BookingTransaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingTransaction_Terminal" Association="Self.FK_BookingTransaction_Terminal">
+      <End Role="Terminal" EntitySet="Terminal" />
+      <End Role="BookingTransaction" EntitySet="BookingTransaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookingTransaction_TransactionType" Association="Self.FK_BookingTransaction_TransactionType">
+      <End Role="TransactionType" EntitySet="TransactionType" />
+      <End Role="BookingTransaction" EntitySet="BookingTransaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="LocationComment" EntitySet="LocationComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CommentPost_TB_Post_TB" Association="Self.FK_CommentPost_TB_Post_TB">
+      <End Role="Post_TB" EntitySet="Post_TB" />
+      <End Role="CommentPost_TB" EntitySet="CommentPost_TB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CommentPost_TB_user_TB" Association="Self.FK_CommentPost_TB_user_TB">
+      <End Role="user_TB" EntitySet="user_TB" />
+      <End Role="CommentPost_TB" EntitySet="CommentPost_TB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comments_TB_Locations_TB" Association="Self.FK_Comments_TB_Locations_TB">
+      <End Role="Locations_TB" EntitySet="Locations_TB" />
+      <End Role="Comments_TB" EntitySet="Comments_TB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comments_TB_user_TB" Association="Self.FK_Comments_TB_user_TB">
+      <End Role="user_TB" EntitySet="user_TB" />
+      <End Role="Comments_TB" EntitySet="Comments_TB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CommissionSettlement_CheckoutType" Association="Self.FK_CommissionSettlement_CheckoutType">
+      <End Role="CheckoutType" EntitySet="CheckoutType" />
+      <End Role="CommissionSettlement" EntitySet="CommissionSettlement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CommissionSettlement_User" Association="Self.FK_CommissionSettlement_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="CommissionSettlement" EntitySet="CommissionSettlement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Coupon_User" Association="Self.FK_Coupon_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Coupon" EntitySet="Coupon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_fav_TB_Locations_TB" Association="Self.FK_fav_TB_Locations_TB">
+      <End Role="Locations_TB" EntitySet="Locations_TB" />
+      <End Role="fav_TB" EntitySet="fav_TB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_fav_TB_user_TB" Association="Self.FK_fav_TB_user_TB">
+      <End Role="user_TB" EntitySet="user_TB" />
+      <End Role="fav_TB" EntitySet="fav_TB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hotel_HotelService" Association="Self.FK_Hotel_HotelService">
+      <End Role="HotelService" EntitySet="HotelService" />
+      <End Role="Hotel" EntitySet="Hotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelBooking_BookingStatus" Association="Self.FK_HotelBooking_BookingStatus">
+      <End Role="BookingStatus" EntitySet="BookingStatus" />
+      <End Role="HotelBooking" EntitySet="HotelBooking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelBooking_BookingTransaction" Association="Self.FK_HotelBooking_BookingTransaction">
+      <End Role="BookingTransaction" EntitySet="BookingTransaction" />
+      <End Role="HotelBooking" EntitySet="HotelBooking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelBooking_Hotel" Association="Self.FK_HotelBooking_Hotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="HotelBooking" EntitySet="HotelBooking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelBooking_User" Association="Self.FK_HotelBooking_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="HotelBooking" EntitySet="HotelBooking" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelComment_Hotel" Association="Self.FK_HotelComment_Hotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="HotelComment" EntitySet="HotelComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelDateCost_Hotel" Association="Self.FK_HotelDateCost_Hotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="HotelDateCost" EntitySet="HotelDateCost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelDiscount_Hotel" Association="Self.FK_HotelDiscount_Hotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="HotelDiscount" EntitySet="HotelDiscount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelFacilities_Facility1" Association="Self.FK_HotelFacilities_Facility1">
+      <End Role="Facility" EntitySet="Facility" />
+      <End Role="HotelFacilities" EntitySet="HotelFacilities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelFacilities_Hotel" Association="Self.FK_HotelFacilities_Hotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="HotelFacilities" EntitySet="HotelFacilities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelImage_Hotel" Association="Self.FK_HotelImage_Hotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="HotelImage" EntitySet="HotelImage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelPackage_Hotel" Association="Self.FK_HotelPackage_Hotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="HotelPackage" EntitySet="HotelPackage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelPackage_Tour" Association="Self.FK_HotelPackage_Tour">
+      <End Role="Tour" EntitySet="Tour" />
+      <End Role="HotelPackage" EntitySet="HotelPackage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelSpecs_Hotel" Association="Self.FK_HotelSpecs_Hotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="HotelSpecs" EntitySet="HotelSpecs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelSpecs_PlaceSpec" Association="Self.FK_HotelSpecs_PlaceSpec">
+      <End Role="PlaceSpec" EntitySet="PlaceSpec" />
+      <End Role="HotelSpecs" EntitySet="HotelSpecs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HotelSpecs_SpecType" Association="Self.FK_HotelSpecs_SpecType">
+      <End Role="SpecType" EntitySet="SpecType" />
+      <End Role="HotelSpecs" EntitySet="HotelSpecs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Location_City" Association="Self.FK_Location_City">
+      <End Role="LocCity" EntitySet="LocCity" />
+      <End Role="Location" EntitySet="Location" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Location_LocationType" Association="Self.FK_Location_LocationType">
+      <End Role="LocationType" EntitySet="LocationType" />
+      <End Role="Location" EntitySet="Location" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Location_User" Association="Self.FK_Location_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Location" EntitySet="Location" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocationComment_Location" Association="Self.FK_LocationComment_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="LocationComment" EntitySet="LocationComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocationImage_Location" Association="Self.FK_LocationImage_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="LocationImage" EntitySet="LocationImage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocationLeaders_Location" Association="Self.FK_LocationLeaders_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="LocationLeaders" EntitySet="LocationLeaders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocationLeaders_User" Association="Self.FK_LocationLeaders_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="LocationLeaders" EntitySet="LocationLeaders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Locations_TB_City" Association="Self.FK_Locations_TB_City">
+      <End Role="LocCity" EntitySet="LocCity" />
+      <End Role="Locations_TB" EntitySet="Locations_TB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Locations_TB_LocationType" Association="Self.FK_Locations_TB_LocationType">
+      <End Role="LocationType" EntitySet="LocationType" />
+      <End Role="Locations_TB" EntitySet="Locations_TB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocationType_LocationGroup" Association="Self.FK_LocationType_LocationGroup">
+      <End Role="LocationGroup" EntitySet="LocationGroup" />
+      <End Role="LocationType" EntitySet="LocationType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocCity_LocProvince" Association="Self.FK_LocCity_LocProvince">
+      <End Role="LocProvince" EntitySet="LocProvince" />
+      <End Role="LocCity" EntitySet="LocCity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocProvince_LocCountry" Association="Self.FK_LocProvince_LocCountry">
+      <End Role="LocCountry" EntitySet="LocCountry" />
+      <End Role="LocProvince" EntitySet="LocProvince" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Owner_User2" Association="Self.FK_Owner_User2">
+      <End Role="User" EntitySet="User" />
+      <End Role="Owner" EntitySet="Owner" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_BookingTransaction" Association="Self.FK_Payment_BookingTransaction">
+      <End Role="BookingTransaction" EntitySet="BookingTransaction" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentResult_Payment" Association="Self.FK_PaymentResult_Payment">
+      <End Role="Payment" EntitySet="Payment" />
+      <End Role="PaymentResult" EntitySet="PaymentResult" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlaceSpec_SpecType" Association="Self.FK_PlaceSpec_SpecType">
+      <End Role="SpecType" EntitySet="SpecType" />
+      <End Role="PlaceSpec" EntitySet="PlaceSpec" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_PostCategory" Association="Self.FK_Post_PostCategory">
+      <End Role="PostCategory" EntitySet="PostCategory" />
+      <End Role="Post" EntitySet="Post" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_TB_user_TB" Association="Self.FK_Post_TB_user_TB">
+      <End Role="user_TB" EntitySet="user_TB" />
+      <End Role="Post_TB" EntitySet="Post_TB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_User" Association="Self.FK_Post_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Post" EntitySet="Post" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostCategory_PostCategory1" Association="Self.FK_PostCategory_PostCategory1">
+      <End Role="PostCategory" EntitySet="PostCategory" />
+      <End Role="PostCategory1" EntitySet="PostCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostTag_PostCategory" Association="Self.FK_PostTag_PostCategory">
+      <End Role="PostCategory" EntitySet="PostCategory" />
+      <End Role="PostTag" EntitySet="PostTag" />
+    </AssociationSet>
+    <AssociationSet Name="FK_smsCode_user_TB" Association="Self.FK_smsCode_user_TB">
+      <End Role="user_TB" EntitySet="user_TB" />
+      <End Role="smsCode" EntitySet="smsCode" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Station_LocCity" Association="Self.FK_Station_LocCity">
+      <End Role="LocCity" EntitySet="LocCity" />
+      <End Role="Station" EntitySet="Station" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Terminal_Bank" Association="Self.FK_Terminal_Bank">
+      <End Role="Bank" EntitySet="Bank" />
+      <End Role="Terminal" EntitySet="Terminal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_toor_TB_Locations_TB" Association="Self.FK_toor_TB_Locations_TB">
+      <End Role="Locations_TB" EntitySet="Locations_TB" />
+      <End Role="toor_TB" EntitySet="toor_TB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_toor_TB_user_TB" Association="Self.FK_toor_TB_user_TB">
+      <End Role="user_TB" EntitySet="user_TB" />
+      <End Role="toor_TB" EntitySet="toor_TB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tour_City" Association="Self.FK_Tour_City">
+      <End Role="LocCity" EntitySet="LocCity" />
+      <End Role="Tour" EntitySet="Tour" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tour_Hardness" Association="Self.FK_Tour_Hardness">
+      <End Role="Hardness" EntitySet="Hardness" />
+      <End Role="Tour" EntitySet="Tour" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tour_TourType" Association="Self.FK_Tour_TourType">
+      <End Role="TourType" EntitySet="TourType" />
+      <End Role="Tour" EntitySet="Tour" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tour_TransportType" Association="Self.FK_Tour_TransportType">
+      <End Role="TransportType" EntitySet="TransportType" />
+      <End Role="Tour" EntitySet="Tour" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tour_User" Association="Self.FK_Tour_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Tour" EntitySet="Tour" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tour_User1" Association="Self.FK_Tour_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Tour" EntitySet="Tour" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourAgencyCost_Agency" Association="Self.FK_TourAgencyCost_Agency">
+      <End Role="Agency" EntitySet="Agency" />
+      <End Role="TourAgencyCost" EntitySet="TourAgencyCost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourAgencyCost_Tour" Association="Self.FK_TourAgencyCost_Tour">
+      <End Role="Tour" EntitySet="Tour" />
+      <End Role="TourAgencyCost" EntitySet="TourAgencyCost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourBookingTripper_TourAgencyCost" Association="Self.FK_TourBookingTripper_TourAgencyCost">
+      <End Role="TourAgencyCost" EntitySet="TourAgencyCost" />
+      <End Role="TourBookingTripper" EntitySet="TourBookingTripper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourBookingTripper_TourBooking" Association="Self.FK_TourBookingTripper_TourBooking">
+      <End Role="TourBooking" EntitySet="TourBooking" />
+      <End Role="TourBookingTripper" EntitySet="TourBookingTripper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourCheckout_CheckoutType" Association="Self.FK_TourCheckout_CheckoutType">
+      <End Role="CheckoutType" EntitySet="CheckoutType" />
+      <End Role="TourCheckout" EntitySet="TourCheckout" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourCheckout_Tour" Association="Self.FK_TourCheckout_Tour">
+      <End Role="Tour" EntitySet="Tour" />
+      <End Role="TourCheckout" EntitySet="TourCheckout" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourCoupon_Coupon1" Association="Self.FK_TourCoupon_Coupon1">
+      <End Role="Coupon" EntitySet="Coupon" />
+      <End Role="TourCoupon" EntitySet="TourCoupon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourCoupon_Tour" Association="Self.FK_TourCoupon_Tour">
+      <End Role="Tour" EntitySet="Tour" />
+      <End Role="TourCoupon" EntitySet="TourCoupon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourEquipment_Equipment1" Association="Self.FK_TourEquipment_Equipment1">
+      <End Role="Equipment" EntitySet="Equipment" />
+      <End Role="TourEquipment" EntitySet="TourEquipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourEquipment_Tour1" Association="Self.FK_TourEquipment_Tour1">
+      <End Role="Tour" EntitySet="Tour" />
+      <End Role="TourEquipment" EntitySet="TourEquipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_Hotel" Association="Self.FK_TourStop_Hotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="TourStop" EntitySet="TourStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_Location" Association="Self.FK_TourStop_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="TourStop" EntitySet="TourStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_LocCity" Association="Self.FK_TourStop_LocCity">
+      <End Role="LocCity" EntitySet="LocCity" />
+      <End Role="TourStop" EntitySet="TourStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_Station" Association="Self.FK_TourStop_Station">
+      <End Role="Station" EntitySet="Station" />
+      <End Role="TourStop" EntitySet="TourStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_Station1" Association="Self.FK_TourStop_Station1">
+      <End Role="Station" EntitySet="Station" />
+      <End Role="TourStop" EntitySet="TourStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_Tour" Association="Self.FK_TourStop_Tour">
+      <End Role="Tour" EntitySet="Tour" />
+      <End Role="TourStop" EntitySet="TourStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_TourStopType" Association="Self.FK_TourStop_TourStopType">
+      <End Role="TourStopType" EntitySet="TourStopType" />
+      <End Role="TourStop" EntitySet="TourStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStop_TransportCompany" Association="Self.FK_TourStop_TransportCompany">
+      <End Role="TransportCompany" EntitySet="TransportCompany" />
+      <End Role="TourStop" EntitySet="TourStop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStopCost_Currency" Association="Self.FK_TourStopCost_Currency">
+      <End Role="Currency" EntitySet="Currency" />
+      <End Role="TourAgencyCost" EntitySet="TourAgencyCost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TourStopCost_HotelRoomType" Association="Self.FK_TourStopCost_HotelRoomType">
+      <End Role="HotelRoomType" EntitySet="HotelRoomType" />
+      <End Role="TourAgencyCost" EntitySet="TourAgencyCost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionMultiplexing_Agency" Association="Self.FK_TransactionMultiplexing_Agency">
+      <End Role="Agency" EntitySet="Agency" />
+      <End Role="TransactionMultiplexing" EntitySet="TransactionMultiplexing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionMultiplexing_AgencyBankAccount" Association="Self.FK_TransactionMultiplexing_AgencyBankAccount">
+      <End Role="AgencyBankAccount" EntitySet="AgencyBankAccount" />
+      <End Role="TransactionMultiplexing" EntitySet="TransactionMultiplexing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionMultiplexing_BookingTransaction" Association="Self.FK_TransactionMultiplexing_BookingTransaction">
+      <End Role="BookingTransaction" EntitySet="BookingTransaction" />
+      <End Role="TransactionMultiplexing" EntitySet="TransactionMultiplexing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransportCompany_TransportType1" Association="Self.FK_TransportCompany_TransportType1">
+      <End Role="TransportType" EntitySet="TransportType" />
+      <End Role="TransportCompany" EntitySet="TransportCompany" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Province" Association="Self.FK_User_Province">
+      <End Role="LocProvince" EntitySet="LocProvince" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_UserType" Association="Self.FK_User_UserType">
+      <End Role="UserType" EntitySet="UserType" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserLanguages_Language1" Association="Self.FK_UserLanguages_Language1">
+      <End Role="Language" EntitySet="Language" />
+      <End Role="UserLanguages" EntitySet="UserLanguages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserLanguages_User1" Association="Self.FK_UserLanguages_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserLanguages" EntitySet="UserLanguages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Role" Association="Self.FK_UserRoles_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_User" Association="Self.FK_UserRoles_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserSession_User" Association="Self.FK_UserSession_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserSession" EntitySet="UserSession" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,98 @@
+﻿@model ApiTax.Entities.TourAgencyCost
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TourAgencyCost</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserDiscount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserDiscount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AffiliateDiscount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AffiliateDiscount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullDiscount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullDiscount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PackageNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PackageNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrencyPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrencyPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Agency.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Agency.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Currency.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Currency.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HotelRoomType.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HotelRoomType.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tour.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tour.Title)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

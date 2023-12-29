@@ -17,6 +17,8 @@ namespace ApiTax.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Locations_TB()
         {
+            this.Comments_TB = new HashSet<Comments_TB>();
+            this.fav_TB = new HashSet<fav_TB>();
             this.toor_TB = new HashSet<toor_TB>();
         }
     
@@ -40,6 +42,10 @@ namespace ApiTax.Entities
         public Nullable<int> CityId { get; set; }
         public Nullable<int> AspUserId { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comments_TB> Comments_TB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<fav_TB> fav_TB { get; set; }
         public virtual LocCity LocCity { get; set; }
         public virtual LocationType LocationType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

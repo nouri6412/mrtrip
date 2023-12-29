@@ -61,14 +61,14 @@
             اتمام ظرفیت
         </th>
         @*<th>
-                نام راهنمای
-            </th>*@
+            نام راهنمای
+        </th>*@
         @*<th>
-                خدمات
-            </th>*@
+            خدمات
+        </th>*@
         @*<th>
-                تلفن هماهنگی
-            </th>*@
+            تلفن هماهنگی
+        </th>*@
         <th>
             ظرفیت
         </th>
@@ -100,6 +100,7 @@
             ثبت کننده
         </th>
 
+        <th></th>
         <th></th>
     </tr>
 
@@ -188,6 +189,13 @@
                    class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Remove">
                     <i class="la la-trash"></i>
                 </a>
+            </td>
+            <td>
+                <a href="~/tours/IndexTrips?tour_id=@item.Id"
+                   class="btn btn-info" >
+                   لیست مسافران
+                </a>
+                
             </td>
         </tr>
     }

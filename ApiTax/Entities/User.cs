@@ -19,6 +19,7 @@ namespace ApiTax.Entities
         {
             this.Agencies = new HashSet<Agency>();
             this.AgencyRatings = new HashSet<AgencyRating>();
+            this.CommissionSettlements = new HashSet<CommissionSettlement>();
             this.Coupons = new HashSet<Coupon>();
             this.HotelBookings = new HashSet<HotelBooking>();
             this.Locations = new HashSet<Location>();
@@ -66,6 +67,8 @@ namespace ApiTax.Entities
         public virtual ICollection<Agency> Agencies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AgencyRating> AgencyRatings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CommissionSettlement> CommissionSettlements { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Coupon> Coupons { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

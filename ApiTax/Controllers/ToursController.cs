@@ -47,6 +47,21 @@ namespace ApiTax.Controllers
                 return View(tours.OrderByDescending(r => r.Id).ToPagedList(pageIndex, pageSize));
             }
         }
+        public ActionResult IndexTrips(int? tour_id)
+        {
+            InitRequest InitRequest = new InitRequest();
+            InitRequest.init(User);
+
+            Tour tour = db.Tours.Find(tour_id);
+            if (tour == null || (tour.UserId != GlobalUser.CurrentUser.Id && GlobalUser.isAdmin == false))
+            {
+                return HttpNotFound();
+            }
+
+            var tours = db.TourBookingTrippers.Where(r=>r.TourBooking.IsPaid==true && r.TourBooking.TourId== tour_id);
+             return View(tours.ToList());
+           
+        }
 
         // GET: Tours/Details/5
         public ActionResult Details(long? id)

@@ -19,6 +19,7 @@ namespace ApiTax.Entities
         {
             this.AgencyRatings = new HashSet<AgencyRating>();
             this.TourAgencyCosts = new HashSet<TourAgencyCost>();
+            this.TransactionMultiplexings = new HashSet<TransactionMultiplexing>();
             this.Users = new HashSet<User>();
         }
     
@@ -29,6 +30,11 @@ namespace ApiTax.Entities
         public int UserDiscount { get; set; }
         public int AffiliateDiscount { get; set; }
         public Nullable<int> CityId { get; set; }
+        public string NationalCode { get; set; }
+        public string Phone { get; set; }
+        public string Address { get; set; }
+        public string PostalCode { get; set; }
+        public string BirthDate { get; set; }
     
         public virtual LocCity LocCity { get; set; }
         public virtual User User { get; set; }
@@ -36,6 +42,8 @@ namespace ApiTax.Entities
         public virtual ICollection<AgencyRating> AgencyRatings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TourAgencyCost> TourAgencyCosts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TransactionMultiplexing> TransactionMultiplexings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }
     }

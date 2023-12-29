@@ -14,6 +14,12 @@ namespace ApiTax.Entities
     
     public partial class Terminal
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Terminal()
+        {
+            this.BookingTransactions = new HashSet<BookingTransaction>();
+        }
+    
         public int Id { get; set; }
         public int BankId { get; set; }
         public string TerminalID { get; set; }
@@ -28,5 +34,7 @@ namespace ApiTax.Entities
         public bool IsActive { get; set; }
     
         public virtual Bank Bank { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BookingTransaction> BookingTransactions { get; set; }
     }
 }

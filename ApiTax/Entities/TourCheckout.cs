@@ -26,6 +26,7 @@ namespace ApiTax.Entities
         public string FileUrl { get; set; }
         public System.DateTime CreateDate { get; set; }
     
+        public virtual CheckoutType CheckoutType { get; set; }
         public virtual Tour Tour { get; set; }
     }
 }

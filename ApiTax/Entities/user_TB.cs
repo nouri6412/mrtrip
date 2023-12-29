@@ -17,7 +17,11 @@ namespace ApiTax.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public user_TB()
         {
+            this.CommentPost_TB = new HashSet<CommentPost_TB>();
+            this.Comments_TB = new HashSet<Comments_TB>();
+            this.fav_TB = new HashSet<fav_TB>();
             this.Post_TB = new HashSet<Post_TB>();
+            this.smsCodes = new HashSet<smsCode>();
             this.toor_TB = new HashSet<toor_TB>();
         }
     
@@ -40,7 +44,15 @@ namespace ApiTax.Entities
         public Nullable<bool> act { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CommentPost_TB> CommentPost_TB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comments_TB> Comments_TB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<fav_TB> fav_TB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Post_TB> Post_TB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<smsCode> smsCodes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<toor_TB> toor_TB { get; set; }
     }

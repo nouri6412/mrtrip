@@ -28,6 +28,7 @@ namespace ApiTax.Entities
         public System.DateTime PayDate { get; set; }
         public bool InApp { get; set; }
     
+        public virtual BookingTransaction BookingTransaction { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PaymentResult> PaymentResults { get; set; }
     }

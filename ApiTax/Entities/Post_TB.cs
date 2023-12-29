@@ -14,6 +14,12 @@ namespace ApiTax.Entities
     
     public partial class Post_TB
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Post_TB()
+        {
+            this.CommentPost_TB = new HashSet<CommentPost_TB>();
+        }
+    
         public long postid { get; set; }
         public string title { get; set; }
         public string matn { get; set; }
@@ -22,6 +28,8 @@ namespace ApiTax.Entities
         public Nullable<System.DateTime> CreateDate { get; set; }
         public string ImageUrl { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CommentPost_TB> CommentPost_TB { get; set; }
         public virtual user_TB user_TB { get; set; }
     }
 }

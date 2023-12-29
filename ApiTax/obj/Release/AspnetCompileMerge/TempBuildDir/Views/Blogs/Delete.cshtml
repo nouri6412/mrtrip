@@ -1,0 +1,72 @@
+﻿@model ApiTax.Entities.Blog
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Blog</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogTagID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BlogTagID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TitleFa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TitleFa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TitleEn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TitleEn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContentFa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContentFa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContentEn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContentEn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tag)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
