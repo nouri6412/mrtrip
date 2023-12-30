@@ -1,0 +1,146 @@
+﻿@model ApiTax.Entities.TourStop
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TourStop</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StopOrder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StopOrder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nights)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nights)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartureDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartureDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartureDateFa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartureDateFa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartureTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartureTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArrivalTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArrivalTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WaitDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WaitDuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hotel.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hotel.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LocCity.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LocCity.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Station.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Station.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Station1.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Station1.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tour.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tour.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TourStopType.Titile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TourStopType.Titile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransportCompany.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransportCompany.Title)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

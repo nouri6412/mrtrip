@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ApiTax.Entities.Coupon>
+
+@{
+    ViewBag.Title = "Index";
+    long tour_id = ViewBag.tour_id;
+    Layout = null;
+}
+
+<p>
+    @Html.ActionLink("اضافه کردن تخفیف سفر", "Create", "TourCoupons", new { tour_id = tour_id }, new { @class = "btn btn-info" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            تخفیف
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Code)
+    </td>
+    <td>
+        <a href="~/TourCoupons/Delete?tour_id=@tour_id&coupon_id=@item.Id"
+           class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Remove">
+            <i class="la la-trash"></i>
+        </a>
+    </td>
+</tr>
+}
+
+</table>

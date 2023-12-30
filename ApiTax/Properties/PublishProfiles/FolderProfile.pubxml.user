@@ -20,16 +20,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/23/2023 19:54:19</publishTime>
     </File>
     <File Include="bin/ApiTax.dll">
-      <publishTime>12/28/2023 18:26:56</publishTime>
+      <publishTime>12/30/2023 22:09:30</publishTime>
     </File>
     <File Include="bin/ApiTax.pdb">
-      <publishTime>12/28/2023 18:26:56</publishTime>
+      <publishTime>12/30/2023 22:09:30</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>12/28/2023 18:29:03</publishTime>
+      <publishTime>12/30/2023 22:20:26</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>12/28/2023 18:29:02</publishTime>
+      <publishTime>12/30/2023 22:20:26</publishTime>
     </File>
     <File Include="bin/AutoMapper.dll">
       <publishTime>12/23/2023 19:54:19</publishTime>
@@ -59,10 +59,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/23/2023 19:54:20</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
-      <publishTime>12/23/2023 19:54:23</publishTime>
+      <publishTime>04/17/2020 00:08:42</publishTime>
     </File>
     <File Include="bin/EntityFramework.SqlServer.dll">
-      <publishTime>12/23/2023 19:54:22</publishTime>
+      <publishTime>04/17/2020 00:08:56</publishTime>
     </File>
     <File Include="bin/EPPlus.dll">
       <publishTime>12/23/2023 19:54:20</publishTime>
@@ -19438,6 +19438,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Entities/Model1.edmx.diagram">
       <publishTime>12/23/2023 19:54:16</publishTime>
     </File>
+    <File Include="Entities/Model3.edmx.diagram">
+      <publishTime>12/29/2023 21:03:51</publishTime>
+    </File>
     <File Include="Entities/MrTripModel.edmx.diagram">
       <publishTime>06/08/2023 20:07:01</publishTime>
     </File>
@@ -19466,7 +19469,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/06/2023 16:01:59</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>12/28/2023 18:28:00</publishTime>
+      <publishTime>12/30/2023 22:19:54</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>12/23/2023 19:54:17</publishTime>
@@ -19660,11 +19663,26 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/PersonTypes/Index.cshtml">
       <publishTime>04/04/2023 14:27:11</publishTime>
     </File>
+    <File Include="Views/Posts/Create.cshtml">
+      <publishTime>12/30/2023 22:07:06</publishTime>
+    </File>
+    <File Include="Views/Posts/Delete.cshtml">
+      <publishTime>12/30/2023 22:02:50</publishTime>
+    </File>
+    <File Include="Views/Posts/Details.cshtml">
+      <publishTime>12/30/2023 22:03:03</publishTime>
+    </File>
+    <File Include="Views/Posts/Edit.cshtml">
+      <publishTime>12/30/2023 22:08:26</publishTime>
+    </File>
+    <File Include="Views/Posts/Index.cshtml">
+      <publishTime>12/30/2023 22:03:28</publishTime>
+    </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>12/23/2023 19:54:17</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>12/23/2023 19:54:17</publishTime>
+      <publishTime>12/30/2023 22:11:29</publishTime>
     </File>
     <File Include="Views/Shared/_Layout_New.cshtml">
       <publishTime>12/23/2023 19:54:17</publishTime>
@@ -19759,6 +19777,15 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/TourAgencyCosts/Index.cshtml">
       <publishTime>12/23/2023 19:54:17</publishTime>
     </File>
+    <File Include="Views/TourCoupons/Create.cshtml">
+      <publishTime>12/29/2023 22:54:36</publishTime>
+    </File>
+    <File Include="Views/TourCoupons/Delete.cshtml">
+      <publishTime>12/29/2023 22:56:49</publishTime>
+    </File>
+    <File Include="Views/TourCoupons/Index.cshtml">
+      <publishTime>12/29/2023 22:55:59</publishTime>
+    </File>
     <File Include="Views/Tours/Create.cshtml">
       <publishTime>12/23/2023 19:54:17</publishTime>
     </File>
@@ -19772,10 +19799,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/23/2023 19:54:17</publishTime>
     </File>
     <File Include="Views/Tours/Edit.cshtml">
-      <publishTime>12/23/2023 19:54:17</publishTime>
+      <publishTime>12/29/2023 22:25:34</publishTime>
     </File>
     <File Include="Views/Tours/Index.cshtml">
-      <publishTime>12/23/2023 19:54:17</publishTime>
+      <publishTime>12/29/2023 23:12:21</publishTime>
+    </File>
+    <File Include="Views/Tours/IndexTrips.cshtml">
+      <publishTime>12/29/2023 23:08:51</publishTime>
     </File>
     <File Include="Views/TourStops/Create.cshtml">
       <publishTime>12/23/2023 19:54:17</publishTime>
@@ -19829,7 +19859,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/23/2023 19:54:17</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/28/2023 18:27:16</publishTime>
+      <publishTime>12/30/2023 22:19:38</publishTime>
     </File>
   </ItemGroup>
 </Project>

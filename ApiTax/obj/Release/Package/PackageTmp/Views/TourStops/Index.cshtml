@@ -1,0 +1,118 @@
+﻿@model IEnumerable<ApiTax.Entities.TourStop>
+@using ApiTax.Models
+
+@{
+    ViewBag.Title = "جاذبه‌های تور";
+    long tour_id = ViewBag.tour_id;
+    Layout = null;
+}
+
+<p>
+    @Html.ActionLink("اضافه کردن جاذبه/ایستگاه", "Create", "TourStops", new { tour_id = tour_id }, new { @class = "btn btn-info" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+           ترتیب
+        </th>
+        <th>
+         تعداد شب
+        </th>
+        <th>
+           تاریخ عزیمت
+        </th>
+        <th>
+          ساعت عزیمت
+        </th>
+        <th>
+            ساعت رسیدن
+        </th>
+        <th>
+            مدت سفر
+        </th>
+        <th>
+           مدت انتظار
+        </th>
+        <th>
+            هتل محل
+        </th>
+        <th>
+            جاذبه محل
+        </th>
+        <th>
+            شهر
+        </th>
+        <th>
+           ایستگاه حرکت
+        </th>
+        <th>
+            ایستگاه رسیدن
+        </th>
+        <th>
+           نوع روز سفر
+        </th>
+        <th>
+           شرکت ترنسفر
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StopOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nights)
+            </td>
+            <td>
+                @utility.ToPersian(item.DepartureDate.ToShortDateString())
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WaitDuration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hotel.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocCity.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Station.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Station1.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TourStopType.Titile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransportCompany.Title)
+            </td>
+            <td>
+                <a href="~/TourStops/Edit/@item.Id"
+                   class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Edit">
+                    <i class="la la-edit"></i>
+                </a>
+                <a href="~/TourStops/Delete/@item.Id"
+                   class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Remove">
+                    <i class="la la-trash"></i>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>

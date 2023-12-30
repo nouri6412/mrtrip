@@ -1,0 +1,66 @@
+﻿@model ApiTax.Entities.Blog
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Blog</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogTagID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BlogTagID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TitleFa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TitleFa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TitleEn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TitleEn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContentFa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContentFa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContentEn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContentEn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tag)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BlogID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,50 @@
+﻿@model TourCoupon
+|@using ApiTax.Models;
+@{
+    ViewBag.Title = "اضافه کردن تخفیف سفر";
+    long tour_id = ViewBag.tour_id;
+    string error = ViewBag.ErrorMessage;
+}
+
+<div class="kt-portlet__head kt-portlet__head--lg">
+    <div class="kt-portlet__head-label">
+        <span class="kt-portlet__head-icon"><i :class="modelIcon"></i></span>
+        <h3 class="kt-portlet__head-title">
+            اضافه کردن تخفیف
+        </h3>
+    </div>
+</div>
+
+
+@if (error.Length > 0)
+{
+    <div class="alert alert-danger">@error</div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <input id="TourId" name="TourId" value="@tour_id" type="hidden" />
+    <div class="form-horizontal row">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.CouponId, "تخفیف ", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-10">
+                @Html.DropDownList("CouponId", null, htmlAttributes: new { @class = "form-control my-multi-select" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ذخیره تخفیف سفر" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("بازگشت به سفر", "Edit", "Tours", new { id = tour_id, type = "coupon" }, new { @class = "btn btn-outline-info" })
+</div>
+

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ApiTax.Entities.TourBookingTripper>
+
+@{
+    ViewBag.Title = "لیست مسافران";
+ 
+}
+
+<table class="table">
+    <tr>
+        <th>
+            نام
+        </th>
+        <th>
+            نام خانوادگی
+        </th>
+        <th>
+            کد ملی
+        </th>
+        <th>
+            کد کارت
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.FirstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NationalCode)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NationalCard)
+    </td>
+
+</tr>
+}
+
+</table>

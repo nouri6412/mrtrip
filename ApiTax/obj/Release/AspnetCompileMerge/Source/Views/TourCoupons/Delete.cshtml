@@ -1,0 +1,31 @@
+﻿@model TourCoupon
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="kt-portlet__head kt-portlet__head--lg">
+    <div class="kt-portlet__head-label">
+        <span class="kt-portlet__head-icon"><i :class="modelIcon"></i></span>
+        <h3 class="kt-portlet__head-title">
+            حذف تخفیف سفر
+        </h3>
+    </div>
+</div>
+<hr />
+<div class="alert alert-warning">آیا از حذف تخفیف سفر اطمینان دارید؟</div>
+
+<form>
+    <input id="tour_id" name="tour_id" type="hidden" value="@Model.TourId" />
+    <input id="coupon_id" name="coupon_id" type="hidden" value="@Model.CouponId" />
+
+
+    <div class="form-actions no-color">
+        <input type="submit" value="بلی حذف کن" class="btn btn-danger" /> |
+        @Html.ActionLink("انصراف", "Edit", "Tours", new { id = Model.TourId, type = "coupon" }, new { @class = "btn btn-outline-info" })
+
+    </div>
+</form>
+
+
+

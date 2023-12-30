@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="78d5192e0c7841c0bae920b68a100109" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.AbuseReport" Width="1.5" PointX="15.75" PointY="55.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Agency" Width="1.5" PointX="12.75" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AgencyBankAccount" Width="1.5" PointX="15.75" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AgencyRating" Width="1.5" PointX="21.25" PointY="34" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetRole" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUser" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Bank" Width="1.5" PointX="9" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.BookingStatu" Width="1.5" PointX="13.5" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.BookingTransaction" Width="1.5" PointX="13.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.BookingType" Width="1.5" PointX="11.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CheckoutType" Width="1.5" PointX="13.5" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CommentPost_TB" Width="1.5" PointX="15.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Comments_TB" Width="1.5" PointX="10.5" PointY="43.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CommissionSettlement" Width="1.5" PointX="15.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Coupon" Width="1.5" PointX="12.75" PointY="44.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Currency" Width="1.5" PointX="22" PointY="31.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Equipment" Width="1.5" PointX="16.75" PointY="44.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ErrorLog" Width="1.5" PointX="2.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Facility" Width="1.5" PointX="11.25" PointY="60.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.FacilityType" Width="1.5" PointX="4.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.fav_TB" Width="1.5" PointX="13.5" PointY="34.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GlobalMeta" Width="1.5" PointX="5.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Hardness" Width="1.5" PointX="16.75" PointY="46.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Hotel" Width="1.5" PointX="13.5" PointY="58.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.HotelBooking" Width="1.5" PointX="15.75" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.HotelComment" Width="1.5" PointX="15.75" PointY="58" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.HotelDateCost" Width="1.5" PointX="15.75" PointY="61.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.HotelDiscount" Width="1.5" PointX="15.75" PointY="64.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.HotelImage" Width="1.5" PointX="15.75" PointY="67.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.HotelPackage" Width="1.5" PointX="21.25" PointY="38.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.HotelRoomType" Width="1.5" PointX="22" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.HotelService" Width="1.5" PointX="11.25" PointY="62.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.HotelSpec" Width="1.5" PointX="21.75" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Language" Width="1.5" PointX="8.25" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Location" Width="1.5" PointX="5.25" PointY="37.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LocationComment" Width="1.5" PointX="10.5" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LocationGroup" Width="1.5" PointX="0.75" PointY="39.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LocationImage" Width="1.5" PointX="7.5" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Locations_TB" Width="1.5" PointX="8.25" PointY="37.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LocationType" Width="1.5" PointX="3" PointY="39.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LocCity" Width="1.5" PointX="3" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LocCountry" Width="1.5" PointX="1.5" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LocProvince" Width="1.5" PointX="0.75" PointY="34.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Log_TB" Width="1.5" PointX="6.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Owner" Width="1.5" PointX="12.75" PointY="48.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Payment" Width="1.5" PointX="15.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PaymentResult" Width="1.5" PointX="18" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PaymentResultLog" Width="1.5" PointX="7.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PersonAgeGroup" Width="1.5" PointX="7.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PlaceSpec" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Post" Width="1.5" PointX="18.75" PointY="29.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Post_TB" Width="1.5" PointX="13.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PostCategory" Width="1.5" PointX="16.5" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PostTag" Width="1.5" PointX="18.75" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Role" Width="1.5" PointX="8.25" PointY="32.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SmsAdminContact" Width="1.5" PointX="7.75" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.smsCode" Width="1.5" PointX="13.5" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SmsCreditNotice" Width="1.5" PointX="13.75" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SmsReadyToSend" Width="1.5" PointX="0.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SmsSentArchive" Width="1.5" PointX="2.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SmsWebServiceSetting" Width="1.5" PointX="4.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SpecType" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Station" Width="1.5" PointX="11.25" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.sysdiagram" Width="1.5" PointX="15.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.temp" Width="1.5" PointX="9.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Terminal" Width="1.5" PointX="11.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.toor_TB" Width="1.5" PointX="16.5" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Tour" Width="1.5" PointX="19" PointY="34.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TourAgencyCost" Width="1.5" PointX="24.25" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TourBooking" Width="1.5" PointX="24.25" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TourBookingTripper" Width="1.5" PointX="26.5" PointY="34.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TourCheckout" Width="1.5" PointX="24.25" PointY="38.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TourStop" Width="1.5" PointX="13.5" PointY="37.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TourStopType" Width="1.5" PointX="11.25" PointY="52.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TourType" Width="1.5" PointX="16.75" PointY="48.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TransactionMultiplexing" Width="1.5" PointX="18" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TransactionType" Width="1.5" PointX="11.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TransportCompany" Width="1.5" PointX="11.25" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TransportType" Width="1.5" PointX="16.75" PointY="51.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="10.5" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.user_TB" Width="1.5" PointX="11.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.UserSession" Width="1.5" PointX="12.75" PointY="55.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.UserType" Width="1.5" PointX="8.25" PointY="35" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_AbuseReport_Hotel" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Agency_City" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Agency_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_AgencyRating_Agency" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TourAgencyCost_Agency" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TransactionMultiplexing_Agency" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TransactionMultiplexing_AgencyBankAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_AgencyRating_Tour" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_AgencyRating_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Terminal_Bank" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_HotelBooking_BookingStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_BookingTransaction_BookingType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_BookingTransaction_Terminal" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_BookingTransaction_TransactionType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_HotelBooking_BookingTransaction" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Payment_BookingTransaction" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TransactionMultiplexing_BookingTransaction" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CommissionSettlement_CheckoutType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TourCheckout_CheckoutType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CommentPost_TB_Post_TB" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CommentPost_TB_user_TB" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Comments_TB_Locations_TB" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Comments_TB_user_TB" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CommissionSettlement_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Coupon_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TourStopCost_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_fav_TB_Locations_TB" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_fav_TB_user_TB" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Tour_Hardness" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Hotel_HotelService" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_HotelBooking_Hotel" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_HotelComment_Hotel" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_HotelDateCost_Hotel" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_HotelDiscount_Hotel" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_HotelImage_Hotel" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_HotelPackage_Hotel" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_HotelSpecs_Hotel" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TourStop_Hotel" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_HotelBooking_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_HotelPackage_Tour" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TourStopCost_HotelRoomType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_HotelSpecs_PlaceSpec" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_HotelSpecs_SpecType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Location_City" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Location_LocationType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Location_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_LocationComment_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_LocationImage_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TourStop_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Comment_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_LocationType_LocationGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Locations_TB_City" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Locations_TB_LocationType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_toor_TB_Locations_TB" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_LocCity_LocProvince" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Station_LocCity" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Tour_City" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TourStop_LocCity" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_LocProvince_LocCountry" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_User_Province" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Owner_User2" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_PaymentResult_Payment" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_PlaceSpec_SpecType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Post_PostCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Post_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Post_TB_user_TB" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_PostCategory_PostCategory1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_PostTag_PostCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_smsCode_user_TB" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TourStop_Station" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TourStop_Station1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_toor_TB_user_TB" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Tour_TourType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Tour_TransportType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Tour_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Tour_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TourAgencyCost_Tour" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TourCheckout_Tour" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TourStop_Tour" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TourBookingTripper_TourAgencyCost" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TourBookingTripper_TourBooking" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TourStop_TourStopType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TourStop_TransportCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_TransportCompany_TransportType1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_User_UserType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_UserSession_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.AgencySupervisor" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.HotelFacilities" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.LocationLeaders" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TourCoupon" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TourEquipment" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.UserLanguages" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.UserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

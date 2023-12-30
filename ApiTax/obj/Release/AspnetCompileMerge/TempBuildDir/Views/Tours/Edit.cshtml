@@ -7,6 +7,7 @@
     string active_1 = "active";
     string active_2 = "";
     string active_3 = "";
+    string active_4 = "";
     if (type == "day")
     {
         active_1 = "";
@@ -18,6 +19,14 @@
         active_1 = "";
         active_2 = "";
         active_3 = "active";
+    }
+
+    if (type == "coupon")
+    {
+        active_1 = "";
+        active_2 = "";
+        active_3 = "";
+        active_4 = "active";
     }
     MultiSelectList LocId = ViewBag.EquipmentsId;
 
@@ -47,6 +56,9 @@
     </li>
     <li class="nav-item">
         <a class="nav-link @active_3" data-toggle="tab" href="#kt_tabs_1_3">هزینه سفر</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @active_4" data-toggle="tab" href="#kt_tabs_1_4">تخفیف سفر</a>
     </li>
 </ul>
 <div class="tab-content">
@@ -157,20 +169,20 @@
                     <div class="col-md-10">
                         @Html.ListBox("TourEquipmentValue", (MultiSelectList)ViewBag.EquipmentsId, new { @class = "form-control kt-select2 my-multi-select w-100" })
                         @*<select style="width:100%" id="TourEquipmentValue" name="TourEquipmentValue" class="form-control kt-select2 my-multi-select" multiple="multiple">
-                            @foreach (var item in LocId)
-                            {
-                                var ex = locs.FirstOrDefault(r => r.Id == long.Parse(item.Value));
-                                if (ex != null)
+                                @foreach (var item in LocId)
                                 {
-                                    <option selected value="@item.Value">@item.Text</option>
-                                }
-                                else
-                                {
-                                    <option value="@item.Value">@item.Text</option>
-                                }
+                                    var ex = locs.FirstOrDefault(r => r.Id == long.Parse(item.Value));
+                                    if (ex != null)
+                                    {
+                                        <option selected value="@item.Value">@item.Text</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
 
-                            }
-                        </select>*@
+                                }
+                            </select>*@
                     </div>
                 </div>
 
@@ -274,6 +286,11 @@
     </div>
     <div class="tab-pane @active_3" id="kt_tabs_1_3" role="tabpanel">
         @Html.Action("index", "TourAgencyCosts", new { tour_id = Model.Id })
+    </div>
+    <div class="tab-pane @active_4" id="kt_tabs_1_4" role="tabpanel">
+        <div style="padding:20px">
+            @Html.Action("index", "TourCoupons", new { tour_id = Model.Id })
+        </div>
     </div>
 </div>
 <div>
