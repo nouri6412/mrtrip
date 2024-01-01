@@ -9,7 +9,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Post</h4>
         <hr />
@@ -51,7 +51,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <textarea name="Body" id="Body" class="form-control" data-provide="markdown" rows="15">@Model.Body</textarea>
+                <textarea name="Body" id="Body" class="form-control" >@Model.Body</textarea>
 
                 @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
             </div>
@@ -60,7 +60,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.BodyEn, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <textarea name="BodyEn" id="BodyEn" class="form-control" data-provide="markdown" rows="15">@Model.BodyEn</textarea>
+                <textarea name="BodyEn" id="BodyEn" class="form-control" >@Model.BodyEn</textarea>
 
                 @Html.ValidationMessageFor(model => model.BodyEn, "", new { @class = "text-danger" })
             </div>
@@ -127,3 +127,11 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+@section scripts{
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('Body');
+        CKEDITOR.replace( 'BodyEn' );
+    </script>
+
+}

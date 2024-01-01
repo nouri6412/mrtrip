@@ -4,6 +4,8 @@
     ViewBag.Title = "Create";
 }
 
+
+
 <h2>Create</h2>
 
 @using (Html.BeginForm()) 
@@ -51,11 +53,11 @@
             <div class="col-md-10">
                  @if (Model != null)
                 {
-                    <textarea name="Body" id="ContBodyentFa" class="form-control" data-provide="markdown" rows="15">@Model.Body</textarea>
+                    <textarea name="Body" id="Body" class="form-control">@Model.Body</textarea>
                 }
                 else
                 {
-                    <textarea name="Body" id="Body" class="form-control" data-provide="markdown" rows="15"></textarea>
+                    <textarea name="Body" id="Body" class="form-control"  rows="15"></textarea>
                 }
                 @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
             </div>
@@ -66,11 +68,11 @@
             <div class="col-md-10">
                 @if (Model != null)
                 {
-                    <textarea name="BodyEn" id="BodyEn" class="form-control" data-provide="markdown" rows="15">@Model.BodyEn</textarea>
+                    <textarea name="BodyEn" id="BodyEn" class="form-control">@Model.BodyEn</textarea>
                 }
                 else
                 {
-                    <textarea name="BodyEn" id="BodyEn" class="form-control" data-provide="markdown" rows="15"></textarea>
+                    <textarea name="BodyEn" id="BodyEn" class="form-control"  rows="15"></textarea>
                 }
                 @Html.ValidationMessageFor(model => model.BodyEn, "", new { @class = "text-danger" })
             </div>
@@ -137,3 +139,12 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section scripts{
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('Body');
+        CKEDITOR.replace( 'BodyEn' );
+    </script>
+
+}

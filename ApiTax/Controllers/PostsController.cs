@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ApiTax.Entities;
+using ApiTax.Models;
 
 namespace ApiTax.Controllers
 {
@@ -47,10 +48,18 @@ namespace ApiTax.Controllers
         // POST: Posts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Title,TitleEn,Summary,SummaryEn,Body,BodyEn,CategoryId,Tags,ImageUrl,IsActive,CreateDate,UserId")] Post post)
         {
+            InitRequest InitRequest = new InitRequest();
+            InitRequest.init(User);
+
+
+            if (GlobalUser.isAdmin == false)
+            {
+                return HttpNotFound();
+            }
             if (ModelState.IsValid)
             {
                 db.Posts.Add(post);
@@ -83,10 +92,18 @@ namespace ApiTax.Controllers
         // POST: Posts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,TitleEn,Summary,SummaryEn,Body,BodyEn,CategoryId,Tags,ImageUrl,IsActive,CreateDate,UserId")] Post post)
         {
+            InitRequest InitRequest = new InitRequest();
+            InitRequest.init(User);
+
+
+            if (GlobalUser.isAdmin == false)
+            {
+                return HttpNotFound();
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(post).State = EntityState.Modified;
@@ -101,6 +118,14 @@ namespace ApiTax.Controllers
         // GET: Posts/Delete/5
         public ActionResult Delete(int? id)
         {
+            InitRequest InitRequest = new InitRequest();
+            InitRequest.init(User);
+
+
+            if (GlobalUser.isAdmin == false)
+            {
+                return HttpNotFound();
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -118,6 +143,14 @@ namespace ApiTax.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            InitRequest InitRequest = new InitRequest();
+            InitRequest.init(User);
+
+
+            if (GlobalUser.isAdmin == false)
+            {
+                return HttpNotFound();
+            }
             Post post = db.Posts.Find(id);
             db.Posts.Remove(post);
             db.SaveChanges();
