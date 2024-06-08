@@ -132,7 +132,7 @@ namespace ApiTax.Controllers
             try
             {
                 var date = Request.Form["StartDatePersian"];
-                tour.CreateDate = utility.ToMiladi(utility.toEnglishNumber(date.ToString()));
+                tour.StartDate = utility.ToMiladi(utility.toEnglishNumber(date.ToString()));
             }
             catch { }
 
@@ -247,6 +247,7 @@ namespace ApiTax.Controllers
                         //};
                         var eq = db1.Equipments.Find(id);
                         tour.Equipments.Add(eq);
+                        db1.Entry(tour).State = EntityState.Modified;
                     }
                     db1.SaveChanges();
                     db1.Dispose();
@@ -431,25 +432,26 @@ namespace ApiTax.Controllers
                 try
                 {
 
+                    MrTripEntities db2 = new MrTripEntities();
 
-                    var rts = tour.Equipments.ToList();
+                    var rts = tour1.Equipments.ToList();
 
                     foreach (var item in rts)
                     {
                         var t1 = db1.Equipments.Find(item.Id);
                         tour1.Equipments.Remove(t1);
                     }
-                    //db1.SaveChanges();
+                    db1.SaveChanges();
 
                     foreach (var it in sp)
                     {
                         int id = int.Parse(it);
-                        var eq = db1.Equipments.Find(id);
-                        tour1.Equipments.Add(eq);
-                        db1.Entry(tour1).State = EntityState.Modified;
+                        var eq = db2.Equipments.Find(id);
+                        tour.Equipments.Add(eq);
+                        db2.Entry(tour).State = EntityState.Modified;
                     }
-                    db1.SaveChanges();
-                    db1.Dispose();
+                    db2.SaveChanges();
+                    db2.Dispose();
 
                     return RedirectToAction("Index");
                 }
