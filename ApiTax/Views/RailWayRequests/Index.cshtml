@@ -1,0 +1,156 @@
+﻿@using PagedList.Mvc
+@model  PagedList.IPagedList<ApiTax.Entities.RailWayRequest>
+@using ApiTax.Models
+
+@{
+    ViewBag.Title = "Index";
+    int page1 = ViewBag.page_index;
+    int index = (page1 - 1) * 15;
+}
+
+<div class="kt-portlet__head kt-portlet__head--lg">
+    <div class="kt-portlet__head-label">
+        <span class="kt-portlet__head-icon"><i :class="modelIcon"></i></span>
+        <h3 class="kt-portlet__head-title">
+            RailWayRequest List
+        </h3>
+    </div>
+    <div class="kt-portlet__head-toolbar">
+        <div class="kt-portlet__head-wrapper">
+            <div class="kt-portlet__head-actions">
+
+                @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-outline-success btn-elevate btn-icon-sm" })
+
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            StartDate
+        </th>
+        <th>
+            EndDate
+        </th>
+        <th>
+            RationCode
+        </th>
+        <th>
+            TicketCount
+        </th>
+        <th>
+            CoupeDoor
+        </th>
+        <th>
+            Mobile
+        </th>
+        <th>
+            LimitTime
+        </th>
+        <th>
+            AlternativeSexCode
+        </th>
+        <th>
+            message
+        </th>
+        <th>
+            ParentRailWayRequestID
+        </th>
+        <th>
+            Done
+        </th>
+        <th>
+            RequestType
+        </th>
+        <th>
+            Sex
+        </th>
+        <th>
+            Start Station
+        </th>
+        <th>
+            End Station
+        </th>
+        <th>
+            TicketType
+        </th>
+        <th>
+            TripType
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @utility.ToPersian(item.StartDate.HasValue ? item.StartDate.Value.ToShortDateString() : "")
+            </td>
+            <td>
+                @utility.ToPersian(item.EndDate.HasValue ? item.EndDate.Value.ToShortDateString() : "")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RationCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoupeDoor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LimitTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlternativeSexCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.message)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParentRailWayRequestID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Done.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestType.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sex.SexName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RailWayStation.Station)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RailWayStation1.Station)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketType.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TripType.Title)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.RailWayRequestID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.RailWayRequestID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.RailWayRequestID })
+            </td>
+        </tr>
+    }
+
+</table>
+<hr />
+
+<div id="container" style="margin-left: 20px">
+    <p></p>
+    <p></p>
+    <div class="pagination" style="margin-left: 400px">
+        صفحه @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        از @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>
+</div>

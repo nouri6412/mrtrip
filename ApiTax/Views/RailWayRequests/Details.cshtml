@@ -1,0 +1,154 @@
+﻿@model ApiTax.Entities.RailWayRequest
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RailWayRequest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RationCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RationCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TicketCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TicketCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CoupeDoor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CoupeDoor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LimitTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LimitTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlternativeSexCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlternativeSexCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParentRailWayRequestID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParentRailWayRequestID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Done.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Done.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestType.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestType.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sex.SexName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sex.SexName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RailWayStation.Station)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RailWayStation.Station)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RailWayStation1.Station)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RailWayStation1.Station)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TicketType.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TicketType.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TripType.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TripType.Title)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RailWayRequestID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

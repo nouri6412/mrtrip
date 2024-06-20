@@ -300,7 +300,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\imageUrl.cs" />
+    <Compile Include="Controllers\PassengersController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\RailWayRequestsController.cs" />
+    <Compile Include="Controllers\RequestPassengersController.cs" />
+    <Compile Include="Controllers\RWsController.cs" />
+    <Compile Include="Controllers\RWWsController.cs" />
+    <Compile Include="Controllers\TicketDetailsController.cs" />
+    <Compile Include="Controllers\TicketInfoesController.cs" />
     <Compile Include="Controllers\TourCouponsController.cs" />
     <Compile Include="Controllers\TourAgencyCostsController.cs" />
     <Compile Include="Controllers\ToursController.cs" />
@@ -360,6 +367,9 @@
     <Compile Include="Entities\Currency.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Done.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Equipment.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
@@ -377,6 +387,9 @@
     </Compile>
     <Compile Include="Entities\GlobalMeta.cs">
       <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\GoReturn.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Hardness.cs">
       <DependentUpon>Model3.tt</DependentUpon>
@@ -444,6 +457,21 @@
     <Compile Include="Entities\Log_TB.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Model3.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -461,6 +489,12 @@
     </Compile>
     <Compile Include="Entities\Owner.cs">
       <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Passenger.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PassengerService.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Payment.cs">
       <DependentUpon>Model3.tt</DependentUpon>
@@ -489,8 +523,41 @@
     <Compile Include="Entities\Post_TB.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\RailWayBot.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RailWayRequest.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RailWayStation.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Ration.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RequestLog.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RequestPassenger.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RequestType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Role.cs">
       <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RW.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RWW.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Scheduling.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Sex.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\SmsAdminContact.cs">
       <DependentUpon>Model3.tt</DependentUpon>
@@ -516,14 +583,29 @@
     <Compile Include="Entities\Station.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\SWT.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\sysdiagram.cs">
       <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TariffCode.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\temp.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Terminal.cs">
       <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TicketDetail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TicketInfo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TicketType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\toor_TB.cs">
       <DependentUpon>Model3.tt</DependentUpon>
@@ -564,6 +646,9 @@
     <Compile Include="Entities\TransportType.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\TripType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\User.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
@@ -575,6 +660,9 @@
     </Compile>
     <Compile Include="Entities\user_TB.cs">
       <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Wagon.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\func.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -6043,6 +6131,16 @@
     <Content Include="Content\MdBootstrapPersianDateTimePicker\jquery.Bootstrap-PersianDateTimePicker.min.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\persian-datepicker.css" />
+    <Content Include="Entities\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
     <Content Include="Entities\Model3.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model3.edmx</DependentUpon>
@@ -6944,6 +7042,13 @@
     <Content Include="Entities\Model3.edmx.diagram">
       <DependentUpon>Model3.edmx</DependentUpon>
     </Content>
+    <EntityDeploy Include="Entities\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Entities\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -7017,6 +7122,41 @@
     <Content Include="Views\Posts\Details.cshtml" />
     <Content Include="Views\Posts\Edit.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
+    <Content Include="Views\RailWayRequests\Create.cshtml" />
+    <Content Include="Views\RailWayRequests\Delete.cshtml" />
+    <Content Include="Views\RailWayRequests\Details.cshtml" />
+    <Content Include="Views\RailWayRequests\Edit.cshtml" />
+    <Content Include="Views\RailWayRequests\Index.cshtml" />
+    <Content Include="Views\Passengers\Create.cshtml" />
+    <Content Include="Views\Passengers\Delete.cshtml" />
+    <Content Include="Views\Passengers\Details.cshtml" />
+    <Content Include="Views\Passengers\Edit.cshtml" />
+    <Content Include="Views\Passengers\Index.cshtml" />
+    <Content Include="Views\RequestPassengers\Create.cshtml" />
+    <Content Include="Views\RequestPassengers\Delete.cshtml" />
+    <Content Include="Views\RequestPassengers\Details.cshtml" />
+    <Content Include="Views\RequestPassengers\Edit.cshtml" />
+    <Content Include="Views\RequestPassengers\Index.cshtml" />
+    <Content Include="Views\RWs\Create.cshtml" />
+    <Content Include="Views\RWs\Delete.cshtml" />
+    <Content Include="Views\RWs\Details.cshtml" />
+    <Content Include="Views\RWs\Edit.cshtml" />
+    <Content Include="Views\RWs\Index.cshtml" />
+    <Content Include="Views\RWWs\Create.cshtml" />
+    <Content Include="Views\RWWs\Delete.cshtml" />
+    <Content Include="Views\RWWs\Details.cshtml" />
+    <Content Include="Views\RWWs\Edit.cshtml" />
+    <Content Include="Views\RWWs\Index.cshtml" />
+    <Content Include="Views\TicketDetails\Create.cshtml" />
+    <Content Include="Views\TicketDetails\Delete.cshtml" />
+    <Content Include="Views\TicketDetails\Details.cshtml" />
+    <Content Include="Views\TicketDetails\Edit.cshtml" />
+    <Content Include="Views\TicketDetails\Index.cshtml" />
+    <Content Include="Views\TicketInfoes\Create.cshtml" />
+    <Content Include="Views\TicketInfoes\Delete.cshtml" />
+    <Content Include="Views\TicketInfoes\Details.cshtml" />
+    <Content Include="Views\TicketInfoes\Edit.cshtml" />
+    <Content Include="Views\TicketInfoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Uploads\" />

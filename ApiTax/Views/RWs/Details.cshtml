@@ -1,0 +1,50 @@
+﻿@model ApiTax.Entities.RW
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RW</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Priority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Priority)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GoReturn.Ttitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GoReturn.Ttitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RailWayRequest.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RailWayRequest.Mobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Scheduling.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Scheduling.ID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

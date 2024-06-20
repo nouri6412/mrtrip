@@ -1,0 +1,42 @@
+﻿@model ApiTax.Entities.RequestPassenger
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RequestPassenger</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Passenger.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Passenger.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PassengerService.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PassengerService.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RailWayRequest.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RailWayRequest.Mobile)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RequestPassengerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

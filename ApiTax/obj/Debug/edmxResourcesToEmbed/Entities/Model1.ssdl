@@ -1,2196 +1,654 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="mrtripir_newdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="AbuseReport">
+<Schema Namespace="MrTripTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Done">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="UserId" Type="int" />
-    <Property Name="HotelId" Type="bigint" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="Agency">
+  <EntityType Name="GoReturn">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ttitle" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Passenger">
+    <Key>
+      <PropertyRef Name="PassengerID" />
+    </Key>
+    <Property Name="PassengerID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
-    <Property Name="FullDiscount" Type="int" Nullable="false" />
-    <Property Name="UserDiscount" Type="int" Nullable="false" />
-    <Property Name="AffiliateDiscount" Type="int" Nullable="false" />
-    <Property Name="CityId" Type="int" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BirthDate" Type="datetime" />
+    <Property Name="NationalCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="TariffCode" Type="int" />
   </EntityType>
-  <EntityType Name="AgencyRating">
+  <EntityType Name="PassengerService">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="serviceID" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="AgancyId" Type="int" Nullable="false" />
-    <Property Name="TourId" Type="bigint" Nullable="false" />
-    <Property Name="Rating" Type="int" Nullable="false" />
-    <Property Name="Comment" Type="nvarchar(max)" />
-    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="Approved" Type="bit" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="AgencySupervisor">
-    <Key>
-      <PropertyRef Name="UserId" />
-      <PropertyRef Name="AgencyId" />
-    </Key>
-    <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="AgencyId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Bank">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="TitleEn" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="LogoUrl" Type="nvarchar(max)" />
-    <Property Name="Description" Type="nvarchar(max)" />
-    <Property Name="IsBank" Type="bit" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Blog">
-    <Key>
-      <PropertyRef Name="BlogID" />
-    </Key>
-    <Property Name="BlogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="BlogTagID" Type="int" />
-    <Property Name="TitleFa" Type="nvarchar" MaxLength="200" />
-    <Property Name="TitleEn" Type="nvarchar" MaxLength="200" />
-    <Property Name="ContentFa" Type="nvarchar(max)" />
-    <Property Name="ContentEn" Type="nvarchar(max)" />
-    <Property Name="Tag" Type="nvarchar(max)" />
-  </EntityType>
-  <EntityType Name="BlogCatagory">
-    <Key>
-      <PropertyRef Name="BlogCatagoryID" />
-    </Key>
-    <Property Name="BlogCatagoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TitleFa" Type="nvarchar" MaxLength="200" />
-    <Property Name="TitleEn" Type="nvarchar" MaxLength="200" />
-  </EntityType>
-  <EntityType Name="BlogTag">
-    <Key>
-      <PropertyRef Name="BlogTagID" />
-    </Key>
-    <Property Name="BlogTagID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="BlogCatagoryID" Type="int" />
-    <Property Name="TitleFa" Type="nvarchar" MaxLength="200" />
-    <Property Name="TitleEn" Type="nvarchar" MaxLength="200" />
-  </EntityType>
-  <EntityType Name="Coupon">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="UserId" Type="int" />
-  </EntityType>
-  <EntityType Name="Currency">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="99" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Equipment">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="serviceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="Facility">
+  <EntityType Name="RailWayBot">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="IconUrl" Type="nvarchar(max)" />
-    <Property Name="TypeId" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Disconnect" Type="bit" Nullable="false" />
+    <Property Name="Stop" Type="bit" Nullable="false" />
+    <Property Name="RestartService" Type="bit" Nullable="false" />
+    <Property Name="CheckAnydesk" Type="bit" Nullable="false" />
   </EntityType>
-  <EntityType Name="FacilityType">
+  <EntityType Name="RailWayRequest">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="RailWayRequestID" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RailWayRequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StartStationID" Type="int" />
+    <Property Name="EndStationID" Type="int" />
+    <Property Name="TicketTypeID" Type="int" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="RationCode" Type="int" />
+    <Property Name="SexCode" Type="int" />
+    <Property Name="TicketCount" Type="int" />
+    <Property Name="CoupeDoor" Type="bit" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="11" />
+    <Property Name="DoneID" Type="int" />
+    <Property Name="LimitTime" Type="time" Precision="7" />
+    <Property Name="RequestTypeID" Type="int" />
+    <Property Name="TripTypeID" Type="int" />
+    <Property Name="AlternativeSexCode" Type="int" />
+    <Property Name="message" Type="nvarchar" MaxLength="100" />
+    <Property Name="ParentRailWayRequestID" Type="int" />
   </EntityType>
-  <EntityType Name="GlobalMeta">
+  <EntityType Name="RailWayStation">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="StationID" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Code" Type="nvarchar" MaxLength="50" />
-    <Property Name="Value" Type="nvarchar(max)" />
-    <Property Name="CreateDate" Type="datetime2" Precision="7" />
-    <Property Name="ModifyDate" Type="datetime2" Precision="7" />
+    <Property Name="StationID" Type="int" Nullable="false" />
+    <Property Name="Station" Type="nvarchar" MaxLength="100" />
+    <Property Name="AlternativeStationID" Type="int" />
   </EntityType>
-  <EntityType Name="Hardness">
+  <EntityType Name="Ration">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="RationCode" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RationCode" Type="int" Nullable="false" />
+    <Property Name="RationName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="RequestLog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RailWayRequestID" Type="int" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="RequestPassenger">
+    <Key>
+      <PropertyRef Name="RequestPassengerID" />
+    </Key>
+    <Property Name="RequestPassengerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PassengerID" Type="bigint" />
+    <Property Name="ServiceID" Type="int" />
+    <Property Name="RailWayRequestID" Type="int" />
+  </EntityType>
+  <EntityType Name="RequestType">
+    <Key>
+      <PropertyRef Name="RequestTypeID" />
+    </Key>
+    <Property Name="RequestTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="Hotel">
+  <EntityType Name="RWS">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="LocationTypeId" Type="int" Nullable="false" />
-    <Property Name="CityId" Type="int" Nullable="false" />
-    <Property Name="Stars" Type="smallint" Nullable="false" />
-    <Property Name="ServiceId" Type="int" Nullable="false" />
-    <Property Name="Capacity" Type="int" Nullable="false" />
-    <Property Name="MaxCapacity" Type="int" Nullable="false" />
-    <Property Name="Rooms" Type="int" Nullable="false" />
-    <Property Name="Beds" Type="int" Nullable="false" />
-    <Property Name="LocationId" Type="bigint" />
-    <Property Name="LocationOnMap" Type="nvarchar" MaxLength="50" />
-    <Property Name="Address" Type="nvarchar(max)" />
-    <Property Name="About" Type="nvarchar(max)" />
-    <Property Name="Description" Type="nvarchar(max)" />
-    <Property Name="Conditions" Type="nvarchar(max)" />
-    <Property Name="IsActive" Type="bit" Nullable="false" />
-    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="OwnerId" Type="int" />
-    <Property Name="Tags" Type="nvarchar(max)" />
-    <Property Name="Gravity" Type="int" Nullable="false" />
-    <Property Name="Cost" Type="bigint" Nullable="false" />
-    <Property Name="ExtraPersonCost" Type="bigint" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RailWayRequestID" Type="int" />
+    <Property Name="SchedulingID" Type="int" />
+    <Property Name="GoReturnID" Type="int" />
+    <Property Name="Priority" Type="int" />
   </EntityType>
-  <EntityType Name="HotelBooking">
+  <EntityType Name="RWW">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="WID" />
     </Key>
-    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="HotelId" Type="bigint" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="NationalCode" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="NationalCard" Type="nvarchar(max)" />
-    <Property Name="TripperCount" Type="int" Nullable="false" />
-    <Property Name="FromDate" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="FromDateFa" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="ToDate" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="ToDateFa" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Amount" Type="bigint" Nullable="false" />
-    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="StatusId" Type="int" />
-    <Property Name="IsPaid" Type="bit" Nullable="false" />
-    <Property Name="TransactionId" Type="bigint" />
+    <Property Name="WID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WRailWayRequestID" Type="int" />
+    <Property Name="WSchedulingID" Type="int" />
+    <Property Name="WWagonTypeID" Type="int" />
+    <Property Name="WPriority" Type="int" />
   </EntityType>
-  <EntityType Name="HotelComment">
+  <EntityType Name="Scheduling">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="HotelId" Type="bigint" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="Comment" Type="nchar" MaxLength="10" Nullable="false" />
-    <Property Name="Rating" Type="int" Nullable="false" />
-    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="UserId" Type="int" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StartStationID" Type="int" />
+    <Property Name="EndStationID" Type="int" />
+    <Property Name="StartStationMovingTime" Type="time" Precision="7" />
+    <Property Name="EndStationArrivalTime" Type="time" Precision="7" />
+    <Property Name="TrainNumber" Type="int" />
   </EntityType>
-  <EntityType Name="HotelDateCost">
+  <EntityType Name="Sex">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="SexCode" />
     </Key>
-    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="HotelId" Type="bigint" Nullable="false" />
-    <Property Name="DateEn" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="DateFa" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Cost" Type="bigint" Nullable="false" />
-    <Property Name="ModifiedDate" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="SexCode" Type="int" Nullable="false" />
+    <Property Name="SexName" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="HotelDiscount">
+  <EntityType Name="SWT">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="HotelId" Type="bigint" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Days" Type="int" Nullable="false" />
-    <Property Name="Discount" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WagonTypeID" Type="int" />
+    <Property Name="SchedulingID" Type="int" />
   </EntityType>
-  <EntityType Name="HotelFacilities">
+  <EntityType Name="TariffCode">
     <Key>
-      <PropertyRef Name="HotelId" />
-      <PropertyRef Name="FacilityId" />
+      <PropertyRef Name="TariffCode" />
     </Key>
-    <Property Name="HotelId" Type="bigint" Nullable="false" />
-    <Property Name="FacilityId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="HotelImage">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="HotelId" Type="bigint" Nullable="false" />
-    <Property Name="ImageUrl" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="FileName" Type="nvarchar(max)" />
-    <Property Name="Weight" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="HotelPackage">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TourId" Type="bigint" />
-    <Property Name="PackageNumber" Type="int" />
-    <Property Name="HotelId" Type="bigint" />
-  </EntityType>
-  <EntityType Name="HotelRoomType">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" />
-    <Property Name="Capacity" Type="smallint" Nullable="false" />
-  </EntityType>
-  <EntityType Name="HotelService">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Code" Type="nvarchar" MaxLength="50" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" />
-    <Property Name="TitleEn" Type="nvarchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="HotelSpecs">
-    <Key>
-      <PropertyRef Name="HotelId" />
-      <PropertyRef Name="SpecId" />
-    </Key>
-    <Property Name="HotelId" Type="bigint" Nullable="false" />
-    <Property Name="SpecId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Language">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Location">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" />
-    <Property Name="Latitude" Type="float" Nullable="false" />
-    <Property Name="Longitude" Type="float" Nullable="false" />
-    <Property Name="TypeId" Type="int" Nullable="false" />
-    <Property Name="Weight" Type="int" Nullable="false" />
-    <Property Name="ProvinceId" Type="int" Nullable="false" />
-    <Property Name="CityId" Type="int" Nullable="false" />
-    <Property Name="Village" Type="nvarchar" MaxLength="200" />
-    <Property Name="Attractions" Type="nvarchar(max)" />
-    <Property Name="Facilities" Type="nvarchar(max)" />
-    <Property Name="Accessibility" Type="nvarchar(max)" />
-    <Property Name="IsActive" Type="bit" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="OldLocationId" Type="bigint" />
-  </EntityType>
-  <EntityType Name="LocationComment">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="LocationId" Type="bigint" Nullable="false" />
-    <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="IsConfirmed" Type="bit" Nullable="false" />
-    <Property Name="ConfirmedBy" Type="int" />
-  </EntityType>
-  <EntityType Name="LocationGroup">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-  </EntityType>
-  <EntityType Name="LocationImage">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="LocationId" Type="bigint" Nullable="false" />
-  </EntityType>
-  <EntityType Name="LocationLeaders">
-    <Key>
-      <PropertyRef Name="LocationId" />
-      <PropertyRef Name="UserId" />
-    </Key>
-    <Property Name="LocationId" Type="bigint" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Locations_TB">
-    <Key>
-      <PropertyRef Name="LocID" />
-    </Key>
-    <Property Name="LocID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="500" />
-    <Property Name="Description" Type="nvarchar(max)" />
-    <Property Name="lat" Type="float" />
-    <Property Name="lang" Type="float" />
-    <Property Name="type_loc" Type="nvarchar" MaxLength="50" />
-    <Property Name="weight" Type="int" />
-    <Property Name="ostan" Type="nvarchar" MaxLength="200" />
-    <Property Name="city" Type="nvarchar" MaxLength="200" />
-    <Property Name="rusta" Type="nvarchar" MaxLength="200" />
-    <Property Name="shakhesh" Type="nvarchar(max)" />
-    <Property Name="emkanat" Type="nvarchar(max)" />
-    <Property Name="dastrasi" Type="nvarchar(max)" />
-    <Property Name="act" Type="bit" />
-    <Property Name="TypeId" Type="int" />
-    <Property Name="NewLocationId" Type="bigint" />
-    <Property Name="ProvinceId" Type="int" />
-    <Property Name="CityId" Type="int" />
-    <Property Name="AspUserId" Type="int" />
-  </EntityType>
-  <EntityType Name="LocationType">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="GroupId" Type="int" Nullable="false" />
-    <Property Name="Weight" Type="int" Nullable="false" />
-    <Property Name="IconURL" Type="nvarchar(max)" />
-  </EntityType>
-  <EntityType Name="LocCity">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="ProvinceId" Type="int" Nullable="false" />
-    <Property Name="TitleEn" Type="nvarchar" MaxLength="50" />
-    <Property Name="Description" Type="nvarchar(max)" />
-    <Property Name="ImageUrl" Type="nvarchar(max)" />
-    <Property Name="ThumbUrl" Type="nvarchar(max)" />
-    <Property Name="OnHome" Type="bit" />
-    <Property Name="Gravity" Type="int" />
-  </EntityType>
-  <EntityType Name="LocCountry">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TariffCode" Type="int" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="LocProvince">
+  <EntityType Name="TicketDetail">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="CountryId" Type="int" />
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RailWayRequestID" Type="int" />
+    <Property Name="SellSerial" Type="nvarchar" MaxLength="50" />
+    <Property Name="Row" Type="nvarchar" MaxLength="50" />
+    <Property Name="TrackId" Type="nvarchar" MaxLength="50" />
+    <Property Name="FromStationName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ExitDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="ExitDay" Type="nvarchar" MaxLength="50" />
+    <Property Name="TrainNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="ToStationName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PassengerName" Type="nvarchar" MaxLength="100" />
+    <Property Name="WagonName" Type="nvarchar" MaxLength="150" />
+    <Property Name="ExitTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="WagonNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="SeatNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="ArriveTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="TicketPrice" Type="nvarchar" MaxLength="50" />
+    <Property Name="DiscountAmount" Type="nvarchar" MaxLength="50" />
+    <Property Name="Issuer" Type="nvarchar" MaxLength="150" />
+    <Property Name="StationServices" Type="nvarchar" MaxLength="50" />
+    <Property Name="TotalPrice" Type="nvarchar" MaxLength="50" />
+    <Property Name="CancelRequest" Type="bit" />
+    <Property Name="IsCanceled" Type="bit" />
+    <Property Name="CancelDate" Type="datetime" />
   </EntityType>
-  <EntityType Name="Log_TB">
+  <EntityType Name="TicketInfo">
     <Key>
-      <PropertyRef Name="logID" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="logID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="nvarchar" MaxLength="100" />
-    <Property Name="tel" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RailWayRequestID" Type="int" />
+    <Property Name="SellSerial" Type="nvarchar" MaxLength="50" />
+    <Property Name="FromStationName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ToStationName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ShExiteDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="ExiteTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="Degree" Type="nvarchar" MaxLength="50" />
+    <Property Name="WagonNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompartmentNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="SexName" Type="nvarchar" MaxLength="50" />
+    <Property Name="TrainNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="WagonTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="RationName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+    <Property Name="TrackID" Type="uniqueidentifier" />
   </EntityType>
-  <EntityType Name="Owner">
+  <EntityType Name="TicketType">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="TicketTypeID" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="NationalCode" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="DocumentUrl" Type="nvarchar(max)" />
-    <Property Name="IsActive" Type="bit" Nullable="false" />
-    <Property Name="IsConfirmed" Type="bit" Nullable="false" />
-    <Property Name="ConfirmByUserId" Type="nvarchar" MaxLength="128" />
-  </EntityType>
-  <EntityType Name="Payment">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TransactionId" Type="bigint" Nullable="false" />
-    <Property Name="Amount" Type="bigint" Nullable="false" />
-    <Property Name="IsPaid" Type="bit" Nullable="false" />
-    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="PayDate" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="InApp" Type="bit" Nullable="false" />
-  </EntityType>
-  <EntityType Name="PaymentResult">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PaymentId" Type="bigint" Nullable="false" />
-    <Property Name="RefId" Type="nvarchar(max)" />
-    <Property Name="ResCode" Type="nvarchar(max)" />
-    <Property Name="SaleOrderId" Type="bigint" />
-    <Property Name="SaleReferenceId" Type="bigint" />
-    <Property Name="CardHolderPAN" Type="nvarchar(max)" />
-    <Property Name="CreditCardSaleResponseDetail" Type="nvarchar(max)" />
-    <Property Name="CreateDate" Type="datetime2" Precision="7" />
-  </EntityType>
-  <EntityType Name="PaymentResultLog">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PaymentId" Type="bigint" />
-    <Property Name="Result" Type="nvarchar(max)" />
-    <Property Name="Type" Type="nvarchar(max)" />
-    <Property Name="CreateDate" Type="datetime2" Precision="7" />
-  </EntityType>
-  <EntityType Name="PlaceSpec">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="TypeId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Post">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Body" Type="nvarchar(max)" />
-    <Property Name="ImageUrl" Type="nvarchar(max)" />
-    <Property Name="IsActive" Type="bit" Nullable="false" />
-    <Property Name="CreateDate" Type="datetime2" Precision="7" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Post_TB">
-    <Key>
-      <PropertyRef Name="postid" />
-    </Key>
-    <Property Name="postid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="title" Type="nvarchar" MaxLength="500" />
-    <Property Name="matn" Type="nvarchar(max)" />
-    <Property Name="userid" Type="bigint" />
-    <Property Name="act" Type="bit" />
-    <Property Name="CreateDate" Type="datetime2" Precision="7" />
-    <Property Name="ImageUrl" Type="nvarchar(max)" />
-  </EntityType>
-  <EntityType Name="Role">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-  </EntityType>
-  <EntityType Name="SpecType">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Station">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="IconUrl" Type="nvarchar(max)" />
-    <Property Name="Code" Type="nvarchar" MaxLength="50" />
-    <Property Name="CityId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
-  <EntityType Name="temp">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" />
-    <Property Name="Value" Type="nvarchar(max)" />
-  </EntityType>
-  <EntityType Name="Terminal">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="BankId" Type="int" Nullable="false" />
-    <Property Name="TerminalID" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ReturnUrl" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="TerminalURL" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Field1" Type="nvarchar(max)" />
-    <Property Name="Field2" Type="nvarchar(max)" />
-    <Property Name="Field3" Type="nvarchar(max)" />
-    <Property Name="Field4" Type="nvarchar(max)" />
-    <Property Name="IsActive" Type="bit" Nullable="false" />
-  </EntityType>
-  <EntityType Name="toor_TB">
-    <Key>
-      <PropertyRef Name="toorID" />
-    </Key>
-    <Property Name="toorID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="title" Type="nvarchar" MaxLength="100" />
-    <Property Name="description" Type="nvarchar(max)" />
-    <Property Name="count_day" Type="int" />
-    <Property Name="date_start" Type="date" />
-    <Property Name="date_end" Type="date" />
-    <Property Name="userID" Type="bigint" />
-    <Property Name="cancel" Type="int" />
-    <Property Name="finish" Type="int" />
-    <Property Name="complete" Type="int" />
-    <Property Name="LocID" Type="bigint" />
-    <Property Name="makan" Type="nvarchar" MaxLength="500" />
-    <Property Name="saat_start" Type="nvarchar" MaxLength="100" />
-    <Property Name="saat_end" Type="nvarchar" MaxLength="100" />
-    <Property Name="sarparast" Type="nvarchar" MaxLength="100" />
-    <Property Name="tajhizat" Type="nvarchar" MaxLength="500" />
-    <Property Name="servis" Type="nvarchar" MaxLength="500" />
-    <Property Name="tamas" Type="nvarchar" MaxLength="100" />
-    <Property Name="zarfiyat" Type="nvarchar" MaxLength="100" />
-    <Property Name="hazine" Type="nvarchar" MaxLength="500" />
-    <Property Name="type_safar" Type="nvarchar" MaxLength="100" />
-  </EntityType>
-  <EntityType Name="Tour">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="TourTypeId" Type="int" Nullable="false" />
-    <Property Name="HardnessId" Type="int" Nullable="false" />
-    <Property Name="FromCityId" Type="int" Nullable="false" />
-    <Property Name="TransportTypeId" Type="int" Nullable="false" />
-    <Property Name="HasHotel" Type="bit" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" />
-    <Property Name="Nights" Type="smallint" Nullable="false" />
-    <Property Name="StartDate" Type="datetime2" Precision="7" />
-    <Property Name="EndDate" Type="datetime2" Precision="7" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="IsActive" Type="bit" Nullable="false" />
-    <Property Name="ImageUrl" Type="nvarchar(max)" />
-    <Property Name="Canceled" Type="bit" Nullable="false" />
-    <Property Name="Finished" Type="bit" Nullable="false" />
-    <Property Name="StartPlace" Type="nvarchar" MaxLength="50" />
-    <Property Name="SupervisorId" Type="int" />
-    <Property Name="SupervisorName" Type="nvarchar" MaxLength="100" />
-    <Property Name="Services" Type="nvarchar(max)" />
-    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
-    <Property Name="Capacity" Type="int" Nullable="false" />
-    <Property Name="Budget" Type="bigint" Nullable="false" />
-    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="Deleted" Type="bit" Nullable="false" />
-    <Property Name="DeleteDate" Type="datetime2" Precision="7" />
-  </EntityType>
-  <EntityType Name="TourAgencyCost">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TourId" Type="bigint" Nullable="false" />
-    <Property Name="AgencyId" Type="int" Nullable="false" />
-    <Property Name="RoomTypeId" Type="smallint" Nullable="false" />
-    <Property Name="Price" Type="bigint" Nullable="false" />
-    <Property Name="UserDiscount" Type="bigint" Nullable="false" />
-    <Property Name="AffiliateDiscount" Type="bigint" Nullable="false" />
-    <Property Name="FullDiscount" Type="bigint" Nullable="false" />
-    <Property Name="PackageNumber" Type="int" />
-    <Property Name="CurrencyId" Type="int" />
-    <Property Name="CurrencyPrice" Type="bigint" Nullable="false" />
-  </EntityType>
-  <EntityType Name="TourBooking">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TourId" Type="bigint" Nullable="false" />
-    <Property Name="AgencyId" Type="int" />
-    <Property Name="UserId" Type="int" />
-    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="NationalCode" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="NationalCard" Type="nvarchar(max)" />
-    <Property Name="TripperCount" Type="int" Nullable="false" />
-    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="IsPaid" Type="bit" Nullable="false" />
-    <Property Name="TransactionId" Type="bigint" />
-  </EntityType>
-  <EntityType Name="TourBookingTripper">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="BookingId" Type="int" Nullable="false" />
-    <Property Name="ToutCostId" Type="bigint" />
-    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="NationalCode" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="NationalCard" Type="nvarchar(max)" />
-  </EntityType>
-  <EntityType Name="TourCheckout">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TourId" Type="bigint" Nullable="false" />
-    <Property Name="AgancyQuota" Type="bigint" Nullable="false" />
-    <Property Name="CompanyQuota" Type="bigint" Nullable="false" />
-    <Property Name="Amount" Type="bigint" Nullable="false" />
-    <Property Name="TypeId" Type="int" Nullable="false" />
-    <Property Name="AccountNumber" Type="nvarchar" MaxLength="50" />
-    <Property Name="TrackingNumber" Type="nvarchar(max)" />
-    <Property Name="Receipt" Type="nvarchar(max)" />
-    <Property Name="FileUrl" Type="nvarchar(max)" />
-    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
-  </EntityType>
-  <EntityType Name="TourCoupon">
-    <Key>
-      <PropertyRef Name="CouponId" />
-      <PropertyRef Name="TourId" />
-    </Key>
-    <Property Name="CouponId" Type="int" Nullable="false" />
-    <Property Name="TourId" Type="bigint" Nullable="false" />
-  </EntityType>
-  <EntityType Name="TourEquipment">
-    <Key>
-      <PropertyRef Name="TourId" />
-      <PropertyRef Name="EquipmentId" />
-    </Key>
-    <Property Name="TourId" Type="bigint" Nullable="false" />
-    <Property Name="EquipmentId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="TourStop">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TourId" Type="bigint" Nullable="false" />
-    <Property Name="CityId" Type="int" Nullable="false" />
-    <Property Name="LocationId" Type="bigint" />
-    <Property Name="StopTypeId" Type="smallint" Nullable="false" />
-    <Property Name="StopOrder" Type="smallint" Nullable="false" />
-    <Property Name="Nights" Type="smallint" Nullable="false" />
-    <Property Name="HotelId" Type="bigint" />
-    <Property Name="TransportCompanyId" Type="int" />
-    <Property Name="DepartureDate" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="DepartureDateFa" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="DepartureTime" Type="time" Precision="7" Nullable="false" />
-    <Property Name="DepartureStationId" Type="int" />
-    <Property Name="ArrivalTime" Type="time" Precision="7" Nullable="false" />
-    <Property Name="ArrivalStationId" Type="int" />
-    <Property Name="Duration" Type="time" Precision="7" />
-    <Property Name="WaitDuration" Type="time" Precision="7" />
-  </EntityType>
-  <EntityType Name="TourStopType">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="smallint" Nullable="false" />
-    <Property Name="Titile" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
-  </EntityType>
-  <EntityType Name="TourType">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TicketTypeID" Type="int" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="TransactionType">
+  <EntityType Name="TripType">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="TripTypeID" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Sign" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="TransportCompany">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TypeId" Type="int" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Url" Type="nvarchar(max)" />
-    <Property Name="SeatClass" Type="nvarchar" MaxLength="50" />
-    <Property Name="Cargo" Type="smallint" />
-  </EntityType>
-  <EntityType Name="TransportType">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TripTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="User">
+  <EntityType Name="Wagon">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="WagonTypeID" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="FirstName" Type="nvarchar" MaxLength="200" Nullable="false" />
-    <Property Name="LastName" Type="nvarchar" MaxLength="200" Nullable="false" />
-    <Property Name="Email" Type="nvarchar" MaxLength="50" />
-    <Property Name="TypeId" Type="int" Nullable="false" />
-    <Property Name="AgencyName" Type="nvarchar" MaxLength="50" />
-    <Property Name="PermitNumber" Type="nvarchar" MaxLength="50" />
-    <Property Name="ProvinceId" Type="int" />
-    <Property Name="IsMountainClimbingClub" Type="bit" />
-    <Property Name="PermitTypeA" Type="bit" />
-    <Property Name="PermitTypeB" Type="bit" />
-    <Property Name="PermitTypeP" Type="bit" />
-    <Property Name="ImageUrl" Type="nvarchar(max)" />
-    <Property Name="GuideNumber" Type="nvarchar" MaxLength="50" />
-    <Property Name="IsLocalGuide" Type="bit" />
-    <Property Name="LocalGuideCardUrl" Type="nvarchar(max)" />
-    <Property Name="IsCulturalGuide" Type="bit" />
-    <Property Name="CulturalGuideCardUrl" Type="nvarchar(max)" />
-    <Property Name="OtherLanguage" Type="nvarchar" MaxLength="50" />
-    <Property Name="IsActive" Type="bit" Nullable="false" />
-    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
-    <Property Name="ConfirmationCode" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="OldUserId" Type="bigint" />
-    <Property Name="AgencyConfirmed" Type="bit" />
-    <Property Name="GuideConfirmed" Type="bit" />
+    <Property Name="WagonTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WagonName" Type="nvarchar" MaxLength="100" />
+    <Property Name="WagonType" Type="int" />
+    <Property Name="Degree" Type="int" />
+    <Property Name="CompartmentCapicity" Type="int" />
+    <Property Name="Cost" Type="bigint" />
+    <Property Name="FullPrice" Type="bigint" />
+    <Property Name="RateCode" Type="int" />
+    <Property Name="ownerWagon" Type="int" />
+    <Property Name="ownerName" Type="nvarchar(max)" />
+    <Property Name="AirConditioning" Type="bit" />
+    <Property Name="Media" Type="bit" />
   </EntityType>
-  <EntityType Name="user_TB">
-    <Key>
-      <PropertyRef Name="userID" />
-    </Key>
-    <Property Name="userID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="username" Type="nvarchar" MaxLength="100" />
-    <Property Name="name" Type="nvarchar" MaxLength="200" />
-    <Property Name="tel" Type="nvarchar" MaxLength="50" />
-    <Property Name="pass" Type="nvarchar" MaxLength="50" />
-    <Property Name="type" Type="nvarchar" MaxLength="50" />
-    <Property Name="GroupRasmi" Type="nvarchar" MaxLength="100" />
-    <Property Name="faaliyat" Type="nvarchar" MaxLength="100" />
-    <Property Name="GroupName" Type="nvarchar" MaxLength="100" />
-    <Property Name="sabt" Type="nvarchar" MaxLength="50" />
-    <Property Name="ostan" Type="nvarchar" MaxLength="100" />
-    <Property Name="city" Type="nvarchar" MaxLength="100" />
-    <Property Name="semat" Type="nvarchar" MaxLength="100" />
-    <Property Name="emtiyaz" Type="nvarchar" MaxLength="100" />
-    <Property Name="address" Type="nvarchar" MaxLength="500" />
-    <Property Name="dateCreated" Type="date" />
-    <Property Name="act" Type="bit" />
-  </EntityType>
-  <EntityType Name="UserLanguages">
-    <Key>
-      <PropertyRef Name="UserId" />
-      <PropertyRef Name="LanguageId" />
-    </Key>
-    <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="LanguageId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="UserRoles">
-    <Key>
-      <PropertyRef Name="UserId" />
-      <PropertyRef Name="RoleId" />
-    </Key>
-    <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="RoleId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="UserSession">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="Tokan" Type="nvarchar" MaxLength="100" Nullable="false" />
-  </EntityType>
-  <EntityType Name="UserType">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-  </EntityType>
-  <Association Name="FK_AbuseReport_Hotel">
-    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
-    <End Role="AbuseReport" Type="Self.AbuseReport" Multiplicity="*" />
+  <Association Name="FK_Passenger_TariffCode">
+    <End Role="TariffCode" Type="Self.TariffCode" Multiplicity="0..1" />
+    <End Role="Passenger" Type="Self.Passenger" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Hotel">
-        <PropertyRef Name="Id" />
+      <Principal Role="TariffCode">
+        <PropertyRef Name="TariffCode" />
       </Principal>
-      <Dependent Role="AbuseReport">
-        <PropertyRef Name="HotelId" />
+      <Dependent Role="Passenger">
+        <PropertyRef Name="TariffCode" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Agency_City">
-    <End Role="LocCity" Type="Self.LocCity" Multiplicity="0..1" />
-    <End Role="Agency" Type="Self.Agency" Multiplicity="*" />
+  <Association Name="FK_RailWayRequest_Done">
+    <End Role="Done" Type="Self.Done" Multiplicity="0..1" />
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="LocCity">
-        <PropertyRef Name="Id" />
+      <Principal Role="Done">
+        <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="Agency">
-        <PropertyRef Name="CityId" />
+      <Dependent Role="RailWayRequest">
+        <PropertyRef Name="DoneID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Agency_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="Agency" Type="Self.Agency" Multiplicity="*" />
+  <Association Name="FK_RailWayRequest_RequestType">
+    <End Role="RequestType" Type="Self.RequestType" Multiplicity="0..1" />
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
+      <Principal Role="RequestType">
+        <PropertyRef Name="RequestTypeID" />
       </Principal>
-      <Dependent Role="Agency">
-        <PropertyRef Name="UserId" />
+      <Dependent Role="RailWayRequest">
+        <PropertyRef Name="RequestTypeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_AgencyRating_Agency">
-    <End Role="Agency" Type="Self.Agency" Multiplicity="1" />
-    <End Role="AgencyRating" Type="Self.AgencyRating" Multiplicity="*" />
+  <Association Name="FK_RailWayRequest_Sex">
+    <End Role="Sex" Type="Self.Sex" Multiplicity="0..1" />
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Agency">
-        <PropertyRef Name="Id" />
+      <Principal Role="Sex">
+        <PropertyRef Name="SexCode" />
       </Principal>
-      <Dependent Role="AgencyRating">
-        <PropertyRef Name="AgancyId" />
+      <Dependent Role="RailWayRequest">
+        <PropertyRef Name="SexCode" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_AgencyRating_Tour">
-    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
-    <End Role="AgencyRating" Type="Self.AgencyRating" Multiplicity="*" />
+  <Association Name="FK_RailWayRequest_Station">
+    <End Role="RailWayStation" Type="Self.RailWayStation" Multiplicity="0..1" />
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Tour">
-        <PropertyRef Name="Id" />
+      <Principal Role="RailWayStation">
+        <PropertyRef Name="StationID" />
       </Principal>
-      <Dependent Role="AgencyRating">
-        <PropertyRef Name="TourId" />
+      <Dependent Role="RailWayRequest">
+        <PropertyRef Name="StartStationID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_AgencyRating_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="AgencyRating" Type="Self.AgencyRating" Multiplicity="*" />
+  <Association Name="FK_RailWayRequest_Station1">
+    <End Role="RailWayStation" Type="Self.RailWayStation" Multiplicity="0..1" />
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
+      <Principal Role="RailWayStation">
+        <PropertyRef Name="StationID" />
       </Principal>
-      <Dependent Role="AgencyRating">
-        <PropertyRef Name="UserId" />
+      <Dependent Role="RailWayRequest">
+        <PropertyRef Name="EndStationID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_AgencySupervisor_Agency">
-    <End Role="Agency" Type="Self.Agency" Multiplicity="1" />
-    <End Role="AgencySupervisor" Type="Self.AgencySupervisor" Multiplicity="*" />
+  <Association Name="FK_RailWayRequest_TicketType">
+    <End Role="TicketType" Type="Self.TicketType" Multiplicity="0..1" />
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Agency">
-        <PropertyRef Name="Id" />
+      <Principal Role="TicketType">
+        <PropertyRef Name="TicketTypeID" />
       </Principal>
-      <Dependent Role="AgencySupervisor">
-        <PropertyRef Name="AgencyId" />
+      <Dependent Role="RailWayRequest">
+        <PropertyRef Name="TicketTypeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_AgencySupervisor_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="AgencySupervisor" Type="Self.AgencySupervisor" Multiplicity="*" />
+  <Association Name="FK_RailWayRequest_TripType">
+    <End Role="TripType" Type="Self.TripType" Multiplicity="0..1" />
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
+      <Principal Role="TripType">
+        <PropertyRef Name="TripTypeID" />
       </Principal>
-      <Dependent Role="AgencySupervisor">
-        <PropertyRef Name="UserId" />
+      <Dependent Role="RailWayRequest">
+        <PropertyRef Name="TripTypeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Blog_BlogTag">
-    <End Role="BlogTag" Type="Self.BlogTag" Multiplicity="0..1" />
-    <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+  <Association Name="FK_RequestLog_RailWayRequest">
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="0..1" />
+    <End Role="RequestLog" Type="Self.RequestLog" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="BlogTag">
-        <PropertyRef Name="BlogTagID" />
+      <Principal Role="RailWayRequest">
+        <PropertyRef Name="RailWayRequestID" />
       </Principal>
-      <Dependent Role="Blog">
-        <PropertyRef Name="BlogTagID" />
+      <Dependent Role="RequestLog">
+        <PropertyRef Name="RailWayRequestID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_BlogTagID_BlogCatagory">
-    <End Role="BlogCatagory" Type="Self.BlogCatagory" Multiplicity="0..1" />
-    <End Role="BlogTag" Type="Self.BlogTag" Multiplicity="*" />
+  <Association Name="FK_RequestPassenger_Passenger">
+    <End Role="Passenger" Type="Self.Passenger" Multiplicity="0..1" />
+    <End Role="RequestPassenger" Type="Self.RequestPassenger" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="BlogCatagory">
-        <PropertyRef Name="BlogCatagoryID" />
+      <Principal Role="Passenger">
+        <PropertyRef Name="PassengerID" />
       </Principal>
-      <Dependent Role="BlogTag">
-        <PropertyRef Name="BlogCatagoryID" />
+      <Dependent Role="RequestPassenger">
+        <PropertyRef Name="PassengerID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Comment_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="LocationComment" Type="Self.LocationComment" Multiplicity="*" />
+  <Association Name="FK_RequestPassenger_PassengerService">
+    <End Role="PassengerService" Type="Self.PassengerService" Multiplicity="0..1" />
+    <End Role="RequestPassenger" Type="Self.RequestPassenger" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
+      <Principal Role="PassengerService">
+        <PropertyRef Name="serviceID" />
       </Principal>
-      <Dependent Role="LocationComment">
-        <PropertyRef Name="UserId" />
+      <Dependent Role="RequestPassenger">
+        <PropertyRef Name="ServiceID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Coupon_User">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
-    <End Role="Coupon" Type="Self.Coupon" Multiplicity="*" />
+  <Association Name="FK_RequestPassenger_RailWayRequest">
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="0..1" />
+    <End Role="RequestPassenger" Type="Self.RequestPassenger" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
+      <Principal Role="RailWayRequest">
+        <PropertyRef Name="RailWayRequestID" />
       </Principal>
-      <Dependent Role="Coupon">
-        <PropertyRef Name="UserId" />
+      <Dependent Role="RequestPassenger">
+        <PropertyRef Name="RailWayRequestID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Hotel_HotelService">
-    <End Role="HotelService" Type="Self.HotelService" Multiplicity="1" />
-    <End Role="Hotel" Type="Self.Hotel" Multiplicity="*" />
+  <Association Name="FK_RWS_GoReturn">
+    <End Role="GoReturn" Type="Self.GoReturn" Multiplicity="0..1" />
+    <End Role="RWS" Type="Self.RWS" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="HotelService">
-        <PropertyRef Name="Id" />
+      <Principal Role="GoReturn">
+        <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="Hotel">
-        <PropertyRef Name="ServiceId" />
+      <Dependent Role="RWS">
+        <PropertyRef Name="GoReturnID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HotelBooking_Hotel">
-    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
-    <End Role="HotelBooking" Type="Self.HotelBooking" Multiplicity="*" />
+  <Association Name="FK_RWS_RailWayRequest">
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="0..1" />
+    <End Role="RWS" Type="Self.RWS" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Hotel">
-        <PropertyRef Name="Id" />
+      <Principal Role="RailWayRequest">
+        <PropertyRef Name="RailWayRequestID" />
       </Principal>
-      <Dependent Role="HotelBooking">
-        <PropertyRef Name="HotelId" />
+      <Dependent Role="RWS">
+        <PropertyRef Name="RailWayRequestID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HotelBooking_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="HotelBooking" Type="Self.HotelBooking" Multiplicity="*" />
+  <Association Name="FK_RWS_Scheduling">
+    <End Role="Scheduling" Type="Self.Scheduling" Multiplicity="0..1" />
+    <End Role="RWS" Type="Self.RWS" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
+      <Principal Role="Scheduling">
+        <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="HotelBooking">
-        <PropertyRef Name="UserId" />
+      <Dependent Role="RWS">
+        <PropertyRef Name="SchedulingID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HotelComment_Hotel">
-    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
-    <End Role="HotelComment" Type="Self.HotelComment" Multiplicity="*" />
+  <Association Name="FK_RWW_RailWayRequest">
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="0..1" />
+    <End Role="RWW" Type="Self.RWW" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Hotel">
-        <PropertyRef Name="Id" />
+      <Principal Role="RailWayRequest">
+        <PropertyRef Name="RailWayRequestID" />
       </Principal>
-      <Dependent Role="HotelComment">
-        <PropertyRef Name="HotelId" />
+      <Dependent Role="RWW">
+        <PropertyRef Name="WRailWayRequestID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HotelDateCost_Hotel">
-    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
-    <End Role="HotelDateCost" Type="Self.HotelDateCost" Multiplicity="*" />
+  <Association Name="FK_RWW_Scheduling">
+    <End Role="Scheduling" Type="Self.Scheduling" Multiplicity="0..1" />
+    <End Role="RWW" Type="Self.RWW" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Hotel">
-        <PropertyRef Name="Id" />
+      <Principal Role="Scheduling">
+        <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="HotelDateCost">
-        <PropertyRef Name="HotelId" />
+      <Dependent Role="RWW">
+        <PropertyRef Name="WSchedulingID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HotelDiscount_Hotel">
-    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
-    <End Role="HotelDiscount" Type="Self.HotelDiscount" Multiplicity="*" />
+  <Association Name="FK_RWW_Wagon">
+    <End Role="Wagon" Type="Self.Wagon" Multiplicity="0..1" />
+    <End Role="RWW" Type="Self.RWW" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Hotel">
-        <PropertyRef Name="Id" />
+      <Principal Role="Wagon">
+        <PropertyRef Name="WagonTypeID" />
       </Principal>
-      <Dependent Role="HotelDiscount">
-        <PropertyRef Name="HotelId" />
+      <Dependent Role="RWW">
+        <PropertyRef Name="WWagonTypeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HotelFacilities_Facility1">
-    <End Role="Facility" Type="Self.Facility" Multiplicity="1" />
-    <End Role="HotelFacilities" Type="Self.HotelFacilities" Multiplicity="*" />
+  <Association Name="FK_Scheduling_RailWayStation">
+    <End Role="RailWayStation" Type="Self.RailWayStation" Multiplicity="0..1" />
+    <End Role="Scheduling" Type="Self.Scheduling" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Facility">
-        <PropertyRef Name="Id" />
+      <Principal Role="RailWayStation">
+        <PropertyRef Name="StationID" />
       </Principal>
-      <Dependent Role="HotelFacilities">
-        <PropertyRef Name="FacilityId" />
+      <Dependent Role="Scheduling">
+        <PropertyRef Name="StartStationID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HotelFacilities_Hotel">
-    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
-    <End Role="HotelFacilities" Type="Self.HotelFacilities" Multiplicity="*" />
+  <Association Name="FK_Scheduling_RailWayStation1">
+    <End Role="RailWayStation" Type="Self.RailWayStation" Multiplicity="0..1" />
+    <End Role="Scheduling" Type="Self.Scheduling" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Hotel">
-        <PropertyRef Name="Id" />
+      <Principal Role="RailWayStation">
+        <PropertyRef Name="StationID" />
       </Principal>
-      <Dependent Role="HotelFacilities">
-        <PropertyRef Name="HotelId" />
+      <Dependent Role="Scheduling">
+        <PropertyRef Name="EndStationID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HotelImage_Hotel">
-    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
-    <End Role="HotelImage" Type="Self.HotelImage" Multiplicity="*" />
+  <Association Name="FK_SWT_Scheduling">
+    <End Role="Scheduling" Type="Self.Scheduling" Multiplicity="0..1" />
+    <End Role="SWT" Type="Self.SWT" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Hotel">
-        <PropertyRef Name="Id" />
+      <Principal Role="Scheduling">
+        <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="HotelImage">
-        <PropertyRef Name="HotelId" />
+      <Dependent Role="SWT">
+        <PropertyRef Name="SchedulingID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HotelPackage_Hotel">
-    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
-    <End Role="HotelPackage" Type="Self.HotelPackage" Multiplicity="*" />
+  <Association Name="FK_SWT_Wagon">
+    <End Role="Wagon" Type="Self.Wagon" Multiplicity="0..1" />
+    <End Role="SWT" Type="Self.SWT" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Hotel">
-        <PropertyRef Name="Id" />
+      <Principal Role="Wagon">
+        <PropertyRef Name="WagonTypeID" />
       </Principal>
-      <Dependent Role="HotelPackage">
-        <PropertyRef Name="HotelId" />
+      <Dependent Role="SWT">
+        <PropertyRef Name="WagonTypeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HotelPackage_Tour">
-    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
-    <End Role="HotelPackage" Type="Self.HotelPackage" Multiplicity="*" />
+  <Association Name="FK_TicketDetail_RailWayRequest">
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="0..1" />
+    <End Role="TicketDetail" Type="Self.TicketDetail" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Tour">
-        <PropertyRef Name="Id" />
+      <Principal Role="RailWayRequest">
+        <PropertyRef Name="RailWayRequestID" />
       </Principal>
-      <Dependent Role="HotelPackage">
-        <PropertyRef Name="TourId" />
+      <Dependent Role="TicketDetail">
+        <PropertyRef Name="RailWayRequestID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HotelSpecs_Hotel">
-    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
-    <End Role="HotelSpecs" Type="Self.HotelSpecs" Multiplicity="*" />
+  <Association Name="FK_TicketInfo_TicketInfo">
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="0..1" />
+    <End Role="TicketInfo" Type="Self.TicketInfo" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Hotel">
-        <PropertyRef Name="Id" />
+      <Principal Role="RailWayRequest">
+        <PropertyRef Name="RailWayRequestID" />
       </Principal>
-      <Dependent Role="HotelSpecs">
-        <PropertyRef Name="HotelId" />
+      <Dependent Role="TicketInfo">
+        <PropertyRef Name="RailWayRequestID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HotelSpecs_PlaceSpec">
-    <End Role="PlaceSpec" Type="Self.PlaceSpec" Multiplicity="1" />
-    <End Role="HotelSpecs" Type="Self.HotelSpecs" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="PlaceSpec">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="HotelSpecs">
-        <PropertyRef Name="SpecId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_HotelSpecs_SpecType">
-    <End Role="SpecType" Type="Self.SpecType" Multiplicity="1" />
-    <End Role="HotelSpecs" Type="Self.HotelSpecs" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SpecType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="HotelSpecs">
-        <PropertyRef Name="SpecId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Location_City">
-    <End Role="LocCity" Type="Self.LocCity" Multiplicity="1" />
-    <End Role="Location" Type="Self.Location" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LocCity">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Location">
-        <PropertyRef Name="CityId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Location_LocationType">
-    <End Role="LocationType" Type="Self.LocationType" Multiplicity="1" />
-    <End Role="Location" Type="Self.Location" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LocationType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Location">
-        <PropertyRef Name="TypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Location_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="Location" Type="Self.Location" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Location">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_LocationComment_Location">
-    <End Role="Location" Type="Self.Location" Multiplicity="1" />
-    <End Role="LocationComment" Type="Self.LocationComment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Location">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="LocationComment">
-        <PropertyRef Name="LocationId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_LocationImage_Location">
-    <End Role="Location" Type="Self.Location" Multiplicity="1" />
-    <End Role="LocationImage" Type="Self.LocationImage" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Location">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="LocationImage">
-        <PropertyRef Name="LocationId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_LocationLeaders_Location">
-    <End Role="Location" Type="Self.Location" Multiplicity="1" />
-    <End Role="LocationLeaders" Type="Self.LocationLeaders" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Location">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="LocationLeaders">
-        <PropertyRef Name="LocationId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_LocationLeaders_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="LocationLeaders" Type="Self.LocationLeaders" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="LocationLeaders">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Locations_TB_City">
-    <End Role="LocCity" Type="Self.LocCity" Multiplicity="0..1" />
-    <End Role="Locations_TB" Type="Self.Locations_TB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LocCity">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Locations_TB">
-        <PropertyRef Name="CityId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Locations_TB_LocationType">
-    <End Role="LocationType" Type="Self.LocationType" Multiplicity="0..1" />
-    <End Role="Locations_TB" Type="Self.Locations_TB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LocationType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Locations_TB">
-        <PropertyRef Name="TypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_LocationType_LocationGroup">
-    <End Role="LocationGroup" Type="Self.LocationGroup" Multiplicity="1" />
-    <End Role="LocationType" Type="Self.LocationType" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LocationGroup">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="LocationType">
-        <PropertyRef Name="GroupId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_LocCity_LocProvince">
-    <End Role="LocProvince" Type="Self.LocProvince" Multiplicity="1" />
-    <End Role="LocCity" Type="Self.LocCity" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LocProvince">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="LocCity">
-        <PropertyRef Name="ProvinceId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_LocProvince_LocCountry">
-    <End Role="LocCountry" Type="Self.LocCountry" Multiplicity="0..1" />
-    <End Role="LocProvince" Type="Self.LocProvince" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LocCountry">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="LocProvince">
-        <PropertyRef Name="CountryId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Owner_User2">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="Owner" Type="Self.Owner" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Owner">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PaymentResult_Payment">
-    <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
-    <End Role="PaymentResult" Type="Self.PaymentResult" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Payment">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="PaymentResult">
-        <PropertyRef Name="PaymentId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PlaceSpec_SpecType">
-    <End Role="SpecType" Type="Self.SpecType" Multiplicity="1" />
-    <End Role="PlaceSpec" Type="Self.PlaceSpec" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SpecType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="PlaceSpec">
-        <PropertyRef Name="TypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Post_TB_user_TB">
-    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
-    <End Role="Post_TB" Type="Self.Post_TB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="user_TB">
-        <PropertyRef Name="userID" />
-      </Principal>
-      <Dependent Role="Post_TB">
-        <PropertyRef Name="userid" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Post_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="Post" Type="Self.Post" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Post">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Station_LocCity">
-    <End Role="LocCity" Type="Self.LocCity" Multiplicity="1" />
-    <End Role="Station" Type="Self.Station" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LocCity">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Station">
-        <PropertyRef Name="CityId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Terminal_Bank">
-    <End Role="Bank" Type="Self.Bank" Multiplicity="1" />
-    <End Role="Terminal" Type="Self.Terminal" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Bank">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Terminal">
-        <PropertyRef Name="BankId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_toor_TB_Locations_TB">
-    <End Role="Locations_TB" Type="Self.Locations_TB" Multiplicity="0..1" />
-    <End Role="toor_TB" Type="Self.toor_TB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Locations_TB">
-        <PropertyRef Name="LocID" />
-      </Principal>
-      <Dependent Role="toor_TB">
-        <PropertyRef Name="LocID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_toor_TB_user_TB">
-    <End Role="user_TB" Type="Self.user_TB" Multiplicity="0..1" />
-    <End Role="toor_TB" Type="Self.toor_TB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="user_TB">
-        <PropertyRef Name="userID" />
-      </Principal>
-      <Dependent Role="toor_TB">
-        <PropertyRef Name="userID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Tour_City">
-    <End Role="LocCity" Type="Self.LocCity" Multiplicity="1" />
-    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LocCity">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Tour">
-        <PropertyRef Name="FromCityId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Tour_Hardness">
-    <End Role="Hardness" Type="Self.Hardness" Multiplicity="1" />
-    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Hardness">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Tour">
-        <PropertyRef Name="HardnessId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Tour_TourType">
-    <End Role="TourType" Type="Self.TourType" Multiplicity="1" />
-    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TourType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Tour">
-        <PropertyRef Name="TourTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Tour_TransportType">
-    <End Role="TransportType" Type="Self.TransportType" Multiplicity="1" />
-    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TransportType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Tour">
-        <PropertyRef Name="TransportTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Tour_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Tour">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Tour_User1">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
-    <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Tour">
-        <PropertyRef Name="SupervisorId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourAgencyCost_Agency">
-    <End Role="Agency" Type="Self.Agency" Multiplicity="1" />
-    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Agency">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourAgencyCost">
-        <PropertyRef Name="AgencyId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourAgencyCost_Tour">
-    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
-    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tour">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourAgencyCost">
-        <PropertyRef Name="TourId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourBookingTripper_TourAgencyCost">
-    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="0..1" />
-    <End Role="TourBookingTripper" Type="Self.TourBookingTripper" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TourAgencyCost">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourBookingTripper">
-        <PropertyRef Name="ToutCostId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourBookingTripper_TourBooking">
-    <End Role="TourBooking" Type="Self.TourBooking" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="TourBookingTripper" Type="Self.TourBookingTripper" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TourBooking">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourBookingTripper">
-        <PropertyRef Name="BookingId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourCheckout_Tour">
-    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
-    <End Role="TourCheckout" Type="Self.TourCheckout" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tour">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourCheckout">
-        <PropertyRef Name="TourId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourCoupon_Coupon1">
-    <End Role="Coupon" Type="Self.Coupon" Multiplicity="1" />
-    <End Role="TourCoupon" Type="Self.TourCoupon" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Coupon">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourCoupon">
-        <PropertyRef Name="CouponId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourCoupon_Tour">
-    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
-    <End Role="TourCoupon" Type="Self.TourCoupon" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tour">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourCoupon">
-        <PropertyRef Name="TourId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourEquipment_Equipment1">
-    <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
-    <End Role="TourEquipment" Type="Self.TourEquipment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Equipment">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourEquipment">
-        <PropertyRef Name="EquipmentId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourEquipment_Tour1">
-    <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
-    <End Role="TourEquipment" Type="Self.TourEquipment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tour">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourEquipment">
-        <PropertyRef Name="TourId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourStop_Hotel">
-    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
-    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Hotel">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourStop">
-        <PropertyRef Name="HotelId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourStop_Location">
-    <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
-    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Location">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourStop">
-        <PropertyRef Name="LocationId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourStop_LocCity">
-    <End Role="LocCity" Type="Self.LocCity" Multiplicity="1" />
-    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LocCity">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourStop">
-        <PropertyRef Name="CityId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourStop_Station">
-    <End Role="Station" Type="Self.Station" Multiplicity="0..1" />
-    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Station">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourStop">
-        <PropertyRef Name="DepartureStationId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourStop_Station1">
-    <End Role="Station" Type="Self.Station" Multiplicity="0..1" />
-    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Station">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourStop">
-        <PropertyRef Name="ArrivalStationId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourStop_Tour">
-    <End Role="Tour" Type="Self.Tour" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tour">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourStop">
-        <PropertyRef Name="TourId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourStop_TourStopType">
-    <End Role="TourStopType" Type="Self.TourStopType" Multiplicity="1" />
-    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TourStopType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourStop">
-        <PropertyRef Name="StopTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourStop_TransportCompany">
-    <End Role="TransportCompany" Type="Self.TransportCompany" Multiplicity="0..1" />
-    <End Role="TourStop" Type="Self.TourStop" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TransportCompany">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourStop">
-        <PropertyRef Name="TransportCompanyId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourStopCost_Currency">
-    <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
-    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Currency">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourAgencyCost">
-        <PropertyRef Name="CurrencyId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TourStopCost_HotelRoomType">
-    <End Role="HotelRoomType" Type="Self.HotelRoomType" Multiplicity="1" />
-    <End Role="TourAgencyCost" Type="Self.TourAgencyCost" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="HotelRoomType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TourAgencyCost">
-        <PropertyRef Name="RoomTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TransportCompany_TransportType1">
-    <End Role="TransportType" Type="Self.TransportType" Multiplicity="1" />
-    <End Role="TransportCompany" Type="Self.TransportCompany" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TransportType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TransportCompany">
-        <PropertyRef Name="TypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_User_Province">
-    <End Role="LocProvince" Type="Self.LocProvince" Multiplicity="0..1" />
-    <End Role="User" Type="Self.User" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LocProvince">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="User">
-        <PropertyRef Name="ProvinceId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_User_UserType">
-    <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
-    <End Role="User" Type="Self.User" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="UserType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="User">
-        <PropertyRef Name="TypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserLanguages_Language1">
-    <End Role="Language" Type="Self.Language" Multiplicity="1" />
-    <End Role="UserLanguages" Type="Self.UserLanguages" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Language">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserLanguages">
-        <PropertyRef Name="LanguageId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserLanguages_User1">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="UserLanguages" Type="Self.UserLanguages" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserLanguages">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserRoles_Role">
-    <End Role="Role" Type="Self.Role" Multiplicity="1" />
-    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Role">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserRoles">
-        <PropertyRef Name="RoleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserRoles_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserRoles">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserSession_User">
-    <End Role="User" Type="Self.User" Multiplicity="1" />
-    <End Role="UserSession" Type="Self.UserSession" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserSession">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityContainer Name="mrtripir_newdbModelStoreContainer">
-    <EntitySet Name="AbuseReport" EntityType="Self.AbuseReport" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Agency" EntityType="Self.Agency" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AgencyRating" EntityType="Self.AgencyRating" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AgencySupervisor" EntityType="Self.AgencySupervisor" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Blog" EntityType="Self.Blog" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="BlogCatagory" EntityType="Self.BlogCatagory" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="BlogTag" EntityType="Self.BlogTag" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Coupon" EntityType="Self.Coupon" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Facility" EntityType="Self.Facility" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="FacilityType" EntityType="Self.FacilityType" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="GlobalMeta" EntityType="Self.GlobalMeta" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Hardness" EntityType="Self.Hardness" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="HotelBooking" EntityType="Self.HotelBooking" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="HotelComment" EntityType="Self.HotelComment" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="HotelDateCost" EntityType="Self.HotelDateCost" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="HotelDiscount" EntityType="Self.HotelDiscount" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="HotelFacilities" EntityType="Self.HotelFacilities" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="HotelImage" EntityType="Self.HotelImage" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="HotelPackage" EntityType="Self.HotelPackage" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="HotelRoomType" EntityType="Self.HotelRoomType" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="HotelService" EntityType="Self.HotelService" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="HotelSpecs" EntityType="Self.HotelSpecs" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="LocationComment" EntityType="Self.LocationComment" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="LocationGroup" EntityType="Self.LocationGroup" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="LocationImage" EntityType="Self.LocationImage" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="LocationLeaders" EntityType="Self.LocationLeaders" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Locations_TB" EntityType="Self.Locations_TB" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="LocationType" EntityType="Self.LocationType" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="LocCity" EntityType="Self.LocCity" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="LocCountry" EntityType="Self.LocCountry" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="LocProvince" EntityType="Self.LocProvince" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Log_TB" EntityType="Self.Log_TB" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Owner" EntityType="Self.Owner" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="PaymentResult" EntityType="Self.PaymentResult" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="PaymentResultLog" EntityType="Self.PaymentResultLog" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="PlaceSpec" EntityType="Self.PlaceSpec" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Post_TB" EntityType="Self.Post_TB" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SpecType" EntityType="Self.SpecType" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Station" EntityType="Self.Station" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="temp" EntityType="Self.temp" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Terminal" EntityType="Self.Terminal" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="toor_TB" EntityType="Self.toor_TB" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Tour" EntityType="Self.Tour" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TourAgencyCost" EntityType="Self.TourAgencyCost" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TourBooking" EntityType="Self.TourBooking" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TourBookingTripper" EntityType="Self.TourBookingTripper" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TourCheckout" EntityType="Self.TourCheckout" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TourCoupon" EntityType="Self.TourCoupon" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TourEquipment" EntityType="Self.TourEquipment" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TourStop" EntityType="Self.TourStop" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TourStopType" EntityType="Self.TourStopType" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TourType" EntityType="Self.TourType" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TransportCompany" EntityType="Self.TransportCompany" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TransportType" EntityType="Self.TransportType" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="user_TB" EntityType="Self.user_TB" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="UserLanguages" EntityType="Self.UserLanguages" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="UserSession" EntityType="Self.UserSession" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_AbuseReport_Hotel" Association="Self.FK_AbuseReport_Hotel">
-      <End Role="Hotel" EntitySet="Hotel" />
-      <End Role="AbuseReport" EntitySet="AbuseReport" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Agency_City" Association="Self.FK_Agency_City">
-      <End Role="LocCity" EntitySet="LocCity" />
-      <End Role="Agency" EntitySet="Agency" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Agency_User" Association="Self.FK_Agency_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="Agency" EntitySet="Agency" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AgencyRating_Agency" Association="Self.FK_AgencyRating_Agency">
-      <End Role="Agency" EntitySet="Agency" />
-      <End Role="AgencyRating" EntitySet="AgencyRating" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AgencyRating_Tour" Association="Self.FK_AgencyRating_Tour">
-      <End Role="Tour" EntitySet="Tour" />
-      <End Role="AgencyRating" EntitySet="AgencyRating" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AgencyRating_User" Association="Self.FK_AgencyRating_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="AgencyRating" EntitySet="AgencyRating" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AgencySupervisor_Agency" Association="Self.FK_AgencySupervisor_Agency">
-      <End Role="Agency" EntitySet="Agency" />
-      <End Role="AgencySupervisor" EntitySet="AgencySupervisor" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AgencySupervisor_User" Association="Self.FK_AgencySupervisor_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="AgencySupervisor" EntitySet="AgencySupervisor" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Blog_BlogTag" Association="Self.FK_Blog_BlogTag">
-      <End Role="BlogTag" EntitySet="BlogTag" />
-      <End Role="Blog" EntitySet="Blog" />
-    </AssociationSet>
-    <AssociationSet Name="FK_BlogTagID_BlogCatagory" Association="Self.FK_BlogTagID_BlogCatagory">
-      <End Role="BlogCatagory" EntitySet="BlogCatagory" />
-      <End Role="BlogTag" EntitySet="BlogTag" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="LocationComment" EntitySet="LocationComment" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Coupon_User" Association="Self.FK_Coupon_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="Coupon" EntitySet="Coupon" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Hotel_HotelService" Association="Self.FK_Hotel_HotelService">
-      <End Role="HotelService" EntitySet="HotelService" />
-      <End Role="Hotel" EntitySet="Hotel" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HotelBooking_Hotel" Association="Self.FK_HotelBooking_Hotel">
-      <End Role="Hotel" EntitySet="Hotel" />
-      <End Role="HotelBooking" EntitySet="HotelBooking" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HotelBooking_User" Association="Self.FK_HotelBooking_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="HotelBooking" EntitySet="HotelBooking" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HotelComment_Hotel" Association="Self.FK_HotelComment_Hotel">
-      <End Role="Hotel" EntitySet="Hotel" />
-      <End Role="HotelComment" EntitySet="HotelComment" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HotelDateCost_Hotel" Association="Self.FK_HotelDateCost_Hotel">
-      <End Role="Hotel" EntitySet="Hotel" />
-      <End Role="HotelDateCost" EntitySet="HotelDateCost" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HotelDiscount_Hotel" Association="Self.FK_HotelDiscount_Hotel">
-      <End Role="Hotel" EntitySet="Hotel" />
-      <End Role="HotelDiscount" EntitySet="HotelDiscount" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HotelFacilities_Facility1" Association="Self.FK_HotelFacilities_Facility1">
-      <End Role="Facility" EntitySet="Facility" />
-      <End Role="HotelFacilities" EntitySet="HotelFacilities" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HotelFacilities_Hotel" Association="Self.FK_HotelFacilities_Hotel">
-      <End Role="Hotel" EntitySet="Hotel" />
-      <End Role="HotelFacilities" EntitySet="HotelFacilities" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HotelImage_Hotel" Association="Self.FK_HotelImage_Hotel">
-      <End Role="Hotel" EntitySet="Hotel" />
-      <End Role="HotelImage" EntitySet="HotelImage" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HotelPackage_Hotel" Association="Self.FK_HotelPackage_Hotel">
-      <End Role="Hotel" EntitySet="Hotel" />
-      <End Role="HotelPackage" EntitySet="HotelPackage" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HotelPackage_Tour" Association="Self.FK_HotelPackage_Tour">
-      <End Role="Tour" EntitySet="Tour" />
-      <End Role="HotelPackage" EntitySet="HotelPackage" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HotelSpecs_Hotel" Association="Self.FK_HotelSpecs_Hotel">
-      <End Role="Hotel" EntitySet="Hotel" />
-      <End Role="HotelSpecs" EntitySet="HotelSpecs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HotelSpecs_PlaceSpec" Association="Self.FK_HotelSpecs_PlaceSpec">
-      <End Role="PlaceSpec" EntitySet="PlaceSpec" />
-      <End Role="HotelSpecs" EntitySet="HotelSpecs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HotelSpecs_SpecType" Association="Self.FK_HotelSpecs_SpecType">
-      <End Role="SpecType" EntitySet="SpecType" />
-      <End Role="HotelSpecs" EntitySet="HotelSpecs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Location_City" Association="Self.FK_Location_City">
-      <End Role="LocCity" EntitySet="LocCity" />
-      <End Role="Location" EntitySet="Location" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Location_LocationType" Association="Self.FK_Location_LocationType">
-      <End Role="LocationType" EntitySet="LocationType" />
-      <End Role="Location" EntitySet="Location" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Location_User" Association="Self.FK_Location_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="Location" EntitySet="Location" />
-    </AssociationSet>
-    <AssociationSet Name="FK_LocationComment_Location" Association="Self.FK_LocationComment_Location">
-      <End Role="Location" EntitySet="Location" />
-      <End Role="LocationComment" EntitySet="LocationComment" />
-    </AssociationSet>
-    <AssociationSet Name="FK_LocationImage_Location" Association="Self.FK_LocationImage_Location">
-      <End Role="Location" EntitySet="Location" />
-      <End Role="LocationImage" EntitySet="LocationImage" />
-    </AssociationSet>
-    <AssociationSet Name="FK_LocationLeaders_Location" Association="Self.FK_LocationLeaders_Location">
-      <End Role="Location" EntitySet="Location" />
-      <End Role="LocationLeaders" EntitySet="LocationLeaders" />
-    </AssociationSet>
-    <AssociationSet Name="FK_LocationLeaders_User" Association="Self.FK_LocationLeaders_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="LocationLeaders" EntitySet="LocationLeaders" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Locations_TB_City" Association="Self.FK_Locations_TB_City">
-      <End Role="LocCity" EntitySet="LocCity" />
-      <End Role="Locations_TB" EntitySet="Locations_TB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Locations_TB_LocationType" Association="Self.FK_Locations_TB_LocationType">
-      <End Role="LocationType" EntitySet="LocationType" />
-      <End Role="Locations_TB" EntitySet="Locations_TB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_LocationType_LocationGroup" Association="Self.FK_LocationType_LocationGroup">
-      <End Role="LocationGroup" EntitySet="LocationGroup" />
-      <End Role="LocationType" EntitySet="LocationType" />
-    </AssociationSet>
-    <AssociationSet Name="FK_LocCity_LocProvince" Association="Self.FK_LocCity_LocProvince">
-      <End Role="LocProvince" EntitySet="LocProvince" />
-      <End Role="LocCity" EntitySet="LocCity" />
-    </AssociationSet>
-    <AssociationSet Name="FK_LocProvince_LocCountry" Association="Self.FK_LocProvince_LocCountry">
-      <End Role="LocCountry" EntitySet="LocCountry" />
-      <End Role="LocProvince" EntitySet="LocProvince" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Owner_User2" Association="Self.FK_Owner_User2">
-      <End Role="User" EntitySet="User" />
-      <End Role="Owner" EntitySet="Owner" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PaymentResult_Payment" Association="Self.FK_PaymentResult_Payment">
-      <End Role="Payment" EntitySet="Payment" />
-      <End Role="PaymentResult" EntitySet="PaymentResult" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PlaceSpec_SpecType" Association="Self.FK_PlaceSpec_SpecType">
-      <End Role="SpecType" EntitySet="SpecType" />
-      <End Role="PlaceSpec" EntitySet="PlaceSpec" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Post_TB_user_TB" Association="Self.FK_Post_TB_user_TB">
-      <End Role="user_TB" EntitySet="user_TB" />
-      <End Role="Post_TB" EntitySet="Post_TB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Post_User" Association="Self.FK_Post_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="Post" EntitySet="Post" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Station_LocCity" Association="Self.FK_Station_LocCity">
-      <End Role="LocCity" EntitySet="LocCity" />
-      <End Role="Station" EntitySet="Station" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Terminal_Bank" Association="Self.FK_Terminal_Bank">
-      <End Role="Bank" EntitySet="Bank" />
-      <End Role="Terminal" EntitySet="Terminal" />
-    </AssociationSet>
-    <AssociationSet Name="FK_toor_TB_Locations_TB" Association="Self.FK_toor_TB_Locations_TB">
-      <End Role="Locations_TB" EntitySet="Locations_TB" />
-      <End Role="toor_TB" EntitySet="toor_TB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_toor_TB_user_TB" Association="Self.FK_toor_TB_user_TB">
-      <End Role="user_TB" EntitySet="user_TB" />
-      <End Role="toor_TB" EntitySet="toor_TB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Tour_City" Association="Self.FK_Tour_City">
-      <End Role="LocCity" EntitySet="LocCity" />
-      <End Role="Tour" EntitySet="Tour" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Tour_Hardness" Association="Self.FK_Tour_Hardness">
-      <End Role="Hardness" EntitySet="Hardness" />
-      <End Role="Tour" EntitySet="Tour" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Tour_TourType" Association="Self.FK_Tour_TourType">
-      <End Role="TourType" EntitySet="TourType" />
-      <End Role="Tour" EntitySet="Tour" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Tour_TransportType" Association="Self.FK_Tour_TransportType">
-      <End Role="TransportType" EntitySet="TransportType" />
-      <End Role="Tour" EntitySet="Tour" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Tour_User" Association="Self.FK_Tour_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="Tour" EntitySet="Tour" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Tour_User1" Association="Self.FK_Tour_User1">
-      <End Role="User" EntitySet="User" />
-      <End Role="Tour" EntitySet="Tour" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TourAgencyCost_Agency" Association="Self.FK_TourAgencyCost_Agency">
-      <End Role="Agency" EntitySet="Agency" />
-      <End Role="TourAgencyCost" EntitySet="TourAgencyCost" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TourAgencyCost_Tour" Association="Self.FK_TourAgencyCost_Tour">
-      <End Role="Tour" EntitySet="Tour" />
-      <End Role="TourAgencyCost" EntitySet="TourAgencyCost" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TourBookingTripper_TourAgencyCost" Association="Self.FK_TourBookingTripper_TourAgencyCost">
-      <End Role="TourAgencyCost" EntitySet="TourAgencyCost" />
-      <End Role="TourBookingTripper" EntitySet="TourBookingTripper" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TourBookingTripper_TourBooking" Association="Self.FK_TourBookingTripper_TourBooking">
-      <End Role="TourBooking" EntitySet="TourBooking" />
-      <End Role="TourBookingTripper" EntitySet="TourBookingTripper" />
+  <EntityContainer Name="MrTripTModelStoreContainer">
+    <EntitySet Name="Done" EntityType="Self.Done" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="GoReturn" EntityType="Self.GoReturn" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="Passenger" EntityType="Self.Passenger" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="PassengerService" EntityType="Self.PassengerService" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="RailWayBot" EntityType="Self.RailWayBot" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="RailWayRequest" EntityType="Self.RailWayRequest" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="RailWayStation" EntityType="Self.RailWayStation" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="Ration" EntityType="Self.Ration" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="RequestLog" EntityType="Self.RequestLog" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="RequestPassenger" EntityType="Self.RequestPassenger" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="RequestType" EntityType="Self.RequestType" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="RWS" EntityType="Self.RWS" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="RWW" EntityType="Self.RWW" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="Scheduling" EntityType="Self.Scheduling" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="Sex" EntityType="Self.Sex" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="SWT" EntityType="Self.SWT" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="TariffCode" EntityType="Self.TariffCode" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="TicketDetail" EntityType="Self.TicketDetail" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="TicketInfo" EntityType="Self.TicketInfo" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="TicketType" EntityType="Self.TicketType" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="TripType" EntityType="Self.TripType" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="Wagon" EntityType="Self.Wagon" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <AssociationSet Name="FK_Passenger_TariffCode" Association="Self.FK_Passenger_TariffCode">
+      <End Role="TariffCode" EntitySet="TariffCode" />
+      <End Role="Passenger" EntitySet="Passenger" />
     </AssociationSet>
-    <AssociationSet Name="FK_TourCheckout_Tour" Association="Self.FK_TourCheckout_Tour">
-      <End Role="Tour" EntitySet="Tour" />
-      <End Role="TourCheckout" EntitySet="TourCheckout" />
+    <AssociationSet Name="FK_RailWayRequest_Done" Association="Self.FK_RailWayRequest_Done">
+      <End Role="Done" EntitySet="Done" />
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
     </AssociationSet>
-    <AssociationSet Name="FK_TourCoupon_Coupon1" Association="Self.FK_TourCoupon_Coupon1">
-      <End Role="Coupon" EntitySet="Coupon" />
-      <End Role="TourCoupon" EntitySet="TourCoupon" />
+    <AssociationSet Name="FK_RailWayRequest_RequestType" Association="Self.FK_RailWayRequest_RequestType">
+      <End Role="RequestType" EntitySet="RequestType" />
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
     </AssociationSet>
-    <AssociationSet Name="FK_TourCoupon_Tour" Association="Self.FK_TourCoupon_Tour">
-      <End Role="Tour" EntitySet="Tour" />
-      <End Role="TourCoupon" EntitySet="TourCoupon" />
+    <AssociationSet Name="FK_RailWayRequest_Sex" Association="Self.FK_RailWayRequest_Sex">
+      <End Role="Sex" EntitySet="Sex" />
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
     </AssociationSet>
-    <AssociationSet Name="FK_TourEquipment_Equipment1" Association="Self.FK_TourEquipment_Equipment1">
-      <End Role="Equipment" EntitySet="Equipment" />
-      <End Role="TourEquipment" EntitySet="TourEquipment" />
+    <AssociationSet Name="FK_RailWayRequest_Station" Association="Self.FK_RailWayRequest_Station">
+      <End Role="RailWayStation" EntitySet="RailWayStation" />
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
     </AssociationSet>
-    <AssociationSet Name="FK_TourEquipment_Tour1" Association="Self.FK_TourEquipment_Tour1">
-      <End Role="Tour" EntitySet="Tour" />
-      <End Role="TourEquipment" EntitySet="TourEquipment" />
+    <AssociationSet Name="FK_RailWayRequest_Station1" Association="Self.FK_RailWayRequest_Station1">
+      <End Role="RailWayStation" EntitySet="RailWayStation" />
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
     </AssociationSet>
-    <AssociationSet Name="FK_TourStop_Hotel" Association="Self.FK_TourStop_Hotel">
-      <End Role="Hotel" EntitySet="Hotel" />
-      <End Role="TourStop" EntitySet="TourStop" />
+    <AssociationSet Name="FK_RailWayRequest_TicketType" Association="Self.FK_RailWayRequest_TicketType">
+      <End Role="TicketType" EntitySet="TicketType" />
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
     </AssociationSet>
-    <AssociationSet Name="FK_TourStop_Location" Association="Self.FK_TourStop_Location">
-      <End Role="Location" EntitySet="Location" />
-      <End Role="TourStop" EntitySet="TourStop" />
+    <AssociationSet Name="FK_RailWayRequest_TripType" Association="Self.FK_RailWayRequest_TripType">
+      <End Role="TripType" EntitySet="TripType" />
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
     </AssociationSet>
-    <AssociationSet Name="FK_TourStop_LocCity" Association="Self.FK_TourStop_LocCity">
-      <End Role="LocCity" EntitySet="LocCity" />
-      <End Role="TourStop" EntitySet="TourStop" />
+    <AssociationSet Name="FK_RequestLog_RailWayRequest" Association="Self.FK_RequestLog_RailWayRequest">
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
+      <End Role="RequestLog" EntitySet="RequestLog" />
     </AssociationSet>
-    <AssociationSet Name="FK_TourStop_Station" Association="Self.FK_TourStop_Station">
-      <End Role="Station" EntitySet="Station" />
-      <End Role="TourStop" EntitySet="TourStop" />
+    <AssociationSet Name="FK_RequestPassenger_Passenger" Association="Self.FK_RequestPassenger_Passenger">
+      <End Role="Passenger" EntitySet="Passenger" />
+      <End Role="RequestPassenger" EntitySet="RequestPassenger" />
     </AssociationSet>
-    <AssociationSet Name="FK_TourStop_Station1" Association="Self.FK_TourStop_Station1">
-      <End Role="Station" EntitySet="Station" />
-      <End Role="TourStop" EntitySet="TourStop" />
+    <AssociationSet Name="FK_RequestPassenger_PassengerService" Association="Self.FK_RequestPassenger_PassengerService">
+      <End Role="PassengerService" EntitySet="PassengerService" />
+      <End Role="RequestPassenger" EntitySet="RequestPassenger" />
     </AssociationSet>
-    <AssociationSet Name="FK_TourStop_Tour" Association="Self.FK_TourStop_Tour">
-      <End Role="Tour" EntitySet="Tour" />
-      <End Role="TourStop" EntitySet="TourStop" />
+    <AssociationSet Name="FK_RequestPassenger_RailWayRequest" Association="Self.FK_RequestPassenger_RailWayRequest">
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
+      <End Role="RequestPassenger" EntitySet="RequestPassenger" />
     </AssociationSet>
-    <AssociationSet Name="FK_TourStop_TourStopType" Association="Self.FK_TourStop_TourStopType">
-      <End Role="TourStopType" EntitySet="TourStopType" />
-      <End Role="TourStop" EntitySet="TourStop" />
+    <AssociationSet Name="FK_RWS_GoReturn" Association="Self.FK_RWS_GoReturn">
+      <End Role="GoReturn" EntitySet="GoReturn" />
+      <End Role="RWS" EntitySet="RWS" />
     </AssociationSet>
-    <AssociationSet Name="FK_TourStop_TransportCompany" Association="Self.FK_TourStop_TransportCompany">
-      <End Role="TransportCompany" EntitySet="TransportCompany" />
-      <End Role="TourStop" EntitySet="TourStop" />
+    <AssociationSet Name="FK_RWS_RailWayRequest" Association="Self.FK_RWS_RailWayRequest">
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
+      <End Role="RWS" EntitySet="RWS" />
     </AssociationSet>
-    <AssociationSet Name="FK_TourStopCost_Currency" Association="Self.FK_TourStopCost_Currency">
-      <End Role="Currency" EntitySet="Currency" />
-      <End Role="TourAgencyCost" EntitySet="TourAgencyCost" />
+    <AssociationSet Name="FK_RWS_Scheduling" Association="Self.FK_RWS_Scheduling">
+      <End Role="Scheduling" EntitySet="Scheduling" />
+      <End Role="RWS" EntitySet="RWS" />
     </AssociationSet>
-    <AssociationSet Name="FK_TourStopCost_HotelRoomType" Association="Self.FK_TourStopCost_HotelRoomType">
-      <End Role="HotelRoomType" EntitySet="HotelRoomType" />
-      <End Role="TourAgencyCost" EntitySet="TourAgencyCost" />
+    <AssociationSet Name="FK_RWW_RailWayRequest" Association="Self.FK_RWW_RailWayRequest">
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
+      <End Role="RWW" EntitySet="RWW" />
     </AssociationSet>
-    <AssociationSet Name="FK_TransportCompany_TransportType1" Association="Self.FK_TransportCompany_TransportType1">
-      <End Role="TransportType" EntitySet="TransportType" />
-      <End Role="TransportCompany" EntitySet="TransportCompany" />
+    <AssociationSet Name="FK_RWW_Scheduling" Association="Self.FK_RWW_Scheduling">
+      <End Role="Scheduling" EntitySet="Scheduling" />
+      <End Role="RWW" EntitySet="RWW" />
     </AssociationSet>
-    <AssociationSet Name="FK_User_Province" Association="Self.FK_User_Province">
-      <End Role="LocProvince" EntitySet="LocProvince" />
-      <End Role="User" EntitySet="User" />
+    <AssociationSet Name="FK_RWW_Wagon" Association="Self.FK_RWW_Wagon">
+      <End Role="Wagon" EntitySet="Wagon" />
+      <End Role="RWW" EntitySet="RWW" />
     </AssociationSet>
-    <AssociationSet Name="FK_User_UserType" Association="Self.FK_User_UserType">
-      <End Role="UserType" EntitySet="UserType" />
-      <End Role="User" EntitySet="User" />
+    <AssociationSet Name="FK_Scheduling_RailWayStation" Association="Self.FK_Scheduling_RailWayStation">
+      <End Role="RailWayStation" EntitySet="RailWayStation" />
+      <End Role="Scheduling" EntitySet="Scheduling" />
     </AssociationSet>
-    <AssociationSet Name="FK_UserLanguages_Language1" Association="Self.FK_UserLanguages_Language1">
-      <End Role="Language" EntitySet="Language" />
-      <End Role="UserLanguages" EntitySet="UserLanguages" />
+    <AssociationSet Name="FK_Scheduling_RailWayStation1" Association="Self.FK_Scheduling_RailWayStation1">
+      <End Role="RailWayStation" EntitySet="RailWayStation" />
+      <End Role="Scheduling" EntitySet="Scheduling" />
     </AssociationSet>
-    <AssociationSet Name="FK_UserLanguages_User1" Association="Self.FK_UserLanguages_User1">
-      <End Role="User" EntitySet="User" />
-      <End Role="UserLanguages" EntitySet="UserLanguages" />
+    <AssociationSet Name="FK_SWT_Scheduling" Association="Self.FK_SWT_Scheduling">
+      <End Role="Scheduling" EntitySet="Scheduling" />
+      <End Role="SWT" EntitySet="SWT" />
     </AssociationSet>
-    <AssociationSet Name="FK_UserRoles_Role" Association="Self.FK_UserRoles_Role">
-      <End Role="Role" EntitySet="Role" />
-      <End Role="UserRoles" EntitySet="UserRoles" />
+    <AssociationSet Name="FK_SWT_Wagon" Association="Self.FK_SWT_Wagon">
+      <End Role="Wagon" EntitySet="Wagon" />
+      <End Role="SWT" EntitySet="SWT" />
     </AssociationSet>
-    <AssociationSet Name="FK_UserRoles_User" Association="Self.FK_UserRoles_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="UserRoles" EntitySet="UserRoles" />
+    <AssociationSet Name="FK_TicketDetail_RailWayRequest" Association="Self.FK_TicketDetail_RailWayRequest">
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
+      <End Role="TicketDetail" EntitySet="TicketDetail" />
     </AssociationSet>
-    <AssociationSet Name="FK_UserSession_User" Association="Self.FK_UserSession_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="UserSession" EntitySet="UserSession" />
+    <AssociationSet Name="FK_TicketInfo_TicketInfo" Association="Self.FK_TicketInfo_TicketInfo">
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
+      <End Role="TicketInfo" EntitySet="TicketInfo" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

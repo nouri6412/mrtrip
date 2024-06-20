@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="17d7eac1f4c0433c98fa0b33b39197a2" Name="Diagram1">
+        <EntityTypeShape EntityType="MrTripTModel.Done" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.GoReturn" Width="1.5" PointX="6" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.Passenger" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.PassengerService" Width="1.5" PointX="3" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.RailWayBot" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.RailWayRequest" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.RailWayStation" Width="1.5" PointX="0.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.Ration" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.RequestLog" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.RequestPassenger" Width="1.5" PointX="5.25" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.RequestType" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.RW" Width="1.5" PointX="8.25" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.RWW" Width="1.5" PointX="8.25" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.Scheduling" Width="1.5" PointX="3" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.Sex" Width="1.5" PointX="0.75" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.SWT" Width="1.5" PointX="5.25" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.TariffCode" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.TicketDetail" Width="1.5" PointX="5.25" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.TicketInfo" Width="1.5" PointX="5.25" PointY="33.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.TicketType" Width="1.5" PointX="0.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.TripType" Width="1.5" PointX="0.75" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MrTripTModel.Wagon" Width="1.5" PointX="6" PointY="39" IsExpanded="true" />
+        <AssociationConnector Association="MrTripTModel.FK_RailWayRequest_Done" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_RWS_GoReturn" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_Passenger_TariffCode" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_RequestPassenger_Passenger" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_RequestPassenger_PassengerService" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_RailWayRequest_RequestType" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_RailWayRequest_Sex" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_RailWayRequest_Station" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_RailWayRequest_Station1" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_RailWayRequest_TicketType" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_RailWayRequest_TripType" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_RequestLog_RailWayRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_RequestPassenger_RailWayRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_RWS_RailWayRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_RWW_RailWayRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_TicketDetail_RailWayRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_TicketInfo_TicketInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_Scheduling_RailWayStation" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_Scheduling_RailWayStation1" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_RWS_Scheduling" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_RWW_Scheduling" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_RWW_Wagon" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_SWT_Scheduling" ManuallyRouted="false" />
+        <AssociationConnector Association="MrTripTModel.FK_SWT_Wagon" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

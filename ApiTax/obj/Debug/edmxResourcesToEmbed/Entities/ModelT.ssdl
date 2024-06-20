@@ -1,0 +1,654 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MrTripTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Done">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="GoReturn">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ttitle" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Passenger">
+    <Key>
+      <PropertyRef Name="PassengerID" />
+    </Key>
+    <Property Name="PassengerID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BirthDate" Type="datetime" />
+    <Property Name="NationalCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="TariffCode" Type="int" />
+  </EntityType>
+  <EntityType Name="PassengerService">
+    <Key>
+      <PropertyRef Name="serviceID" />
+    </Key>
+    <Property Name="serviceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="RailWayBot">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Disconnect" Type="bit" Nullable="false" />
+    <Property Name="Stop" Type="bit" Nullable="false" />
+    <Property Name="RestartService" Type="bit" Nullable="false" />
+    <Property Name="CheckAnydesk" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RailWayRequest">
+    <Key>
+      <PropertyRef Name="RailWayRequestID" />
+    </Key>
+    <Property Name="RailWayRequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StartStationID" Type="int" />
+    <Property Name="EndStationID" Type="int" />
+    <Property Name="TicketTypeID" Type="int" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="RationCode" Type="int" />
+    <Property Name="SexCode" Type="int" />
+    <Property Name="TicketCount" Type="int" />
+    <Property Name="CoupeDoor" Type="bit" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="11" />
+    <Property Name="DoneID" Type="int" />
+    <Property Name="LimitTime" Type="time" Precision="7" />
+    <Property Name="RequestTypeID" Type="int" />
+    <Property Name="TripTypeID" Type="int" />
+    <Property Name="AlternativeSexCode" Type="int" />
+    <Property Name="message" Type="nvarchar" MaxLength="100" />
+    <Property Name="ParentRailWayRequestID" Type="int" />
+  </EntityType>
+  <EntityType Name="RailWayStation">
+    <Key>
+      <PropertyRef Name="StationID" />
+    </Key>
+    <Property Name="StationID" Type="int" Nullable="false" />
+    <Property Name="Station" Type="nvarchar" MaxLength="100" />
+    <Property Name="AlternativeStationID" Type="int" />
+  </EntityType>
+  <EntityType Name="Ration">
+    <Key>
+      <PropertyRef Name="RationCode" />
+    </Key>
+    <Property Name="RationCode" Type="int" Nullable="false" />
+    <Property Name="RationName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="RequestLog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RailWayRequestID" Type="int" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="RequestPassenger">
+    <Key>
+      <PropertyRef Name="RequestPassengerID" />
+    </Key>
+    <Property Name="RequestPassengerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PassengerID" Type="bigint" />
+    <Property Name="ServiceID" Type="int" />
+    <Property Name="RailWayRequestID" Type="int" />
+  </EntityType>
+  <EntityType Name="RequestType">
+    <Key>
+      <PropertyRef Name="RequestTypeID" />
+    </Key>
+    <Property Name="RequestTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="RWS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RailWayRequestID" Type="int" />
+    <Property Name="SchedulingID" Type="int" />
+    <Property Name="GoReturnID" Type="int" />
+    <Property Name="Priority" Type="int" />
+  </EntityType>
+  <EntityType Name="RWW">
+    <Key>
+      <PropertyRef Name="WID" />
+    </Key>
+    <Property Name="WID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WRailWayRequestID" Type="int" />
+    <Property Name="WSchedulingID" Type="int" />
+    <Property Name="WWagonTypeID" Type="int" />
+    <Property Name="WPriority" Type="int" />
+  </EntityType>
+  <EntityType Name="Scheduling">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StartStationID" Type="int" />
+    <Property Name="EndStationID" Type="int" />
+    <Property Name="StartStationMovingTime" Type="time" Precision="7" />
+    <Property Name="EndStationArrivalTime" Type="time" Precision="7" />
+    <Property Name="TrainNumber" Type="int" />
+  </EntityType>
+  <EntityType Name="Sex">
+    <Key>
+      <PropertyRef Name="SexCode" />
+    </Key>
+    <Property Name="SexCode" Type="int" Nullable="false" />
+    <Property Name="SexName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SWT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WagonTypeID" Type="int" />
+    <Property Name="SchedulingID" Type="int" />
+  </EntityType>
+  <EntityType Name="TariffCode">
+    <Key>
+      <PropertyRef Name="TariffCode" />
+    </Key>
+    <Property Name="TariffCode" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TicketDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RailWayRequestID" Type="int" />
+    <Property Name="SellSerial" Type="nvarchar" MaxLength="50" />
+    <Property Name="Row" Type="nvarchar" MaxLength="50" />
+    <Property Name="TrackId" Type="nvarchar" MaxLength="50" />
+    <Property Name="FromStationName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ExitDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="ExitDay" Type="nvarchar" MaxLength="50" />
+    <Property Name="TrainNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="ToStationName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PassengerName" Type="nvarchar" MaxLength="100" />
+    <Property Name="WagonName" Type="nvarchar" MaxLength="150" />
+    <Property Name="ExitTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="WagonNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="SeatNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="ArriveTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="TicketPrice" Type="nvarchar" MaxLength="50" />
+    <Property Name="DiscountAmount" Type="nvarchar" MaxLength="50" />
+    <Property Name="Issuer" Type="nvarchar" MaxLength="150" />
+    <Property Name="StationServices" Type="nvarchar" MaxLength="50" />
+    <Property Name="TotalPrice" Type="nvarchar" MaxLength="50" />
+    <Property Name="CancelRequest" Type="bit" />
+    <Property Name="IsCanceled" Type="bit" />
+    <Property Name="CancelDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TicketInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RailWayRequestID" Type="int" />
+    <Property Name="SellSerial" Type="nvarchar" MaxLength="50" />
+    <Property Name="FromStationName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ToStationName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ShExiteDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="ExiteTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="Degree" Type="nvarchar" MaxLength="50" />
+    <Property Name="WagonNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompartmentNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="SexName" Type="nvarchar" MaxLength="50" />
+    <Property Name="TrainNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="WagonTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="RationName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+    <Property Name="TrackID" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="TicketType">
+    <Key>
+      <PropertyRef Name="TicketTypeID" />
+    </Key>
+    <Property Name="TicketTypeID" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TripType">
+    <Key>
+      <PropertyRef Name="TripTypeID" />
+    </Key>
+    <Property Name="TripTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Wagon">
+    <Key>
+      <PropertyRef Name="WagonTypeID" />
+    </Key>
+    <Property Name="WagonTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WagonName" Type="nvarchar" MaxLength="100" />
+    <Property Name="WagonType" Type="int" />
+    <Property Name="Degree" Type="int" />
+    <Property Name="CompartmentCapicity" Type="int" />
+    <Property Name="Cost" Type="bigint" />
+    <Property Name="FullPrice" Type="bigint" />
+    <Property Name="RateCode" Type="int" />
+    <Property Name="ownerWagon" Type="int" />
+    <Property Name="ownerName" Type="nvarchar(max)" />
+    <Property Name="AirConditioning" Type="bit" />
+    <Property Name="Media" Type="bit" />
+  </EntityType>
+  <Association Name="FK_Passenger_TariffCode">
+    <End Role="TariffCode" Type="Self.TariffCode" Multiplicity="0..1" />
+    <End Role="Passenger" Type="Self.Passenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TariffCode">
+        <PropertyRef Name="TariffCode" />
+      </Principal>
+      <Dependent Role="Passenger">
+        <PropertyRef Name="TariffCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RailWayRequest_Done">
+    <End Role="Done" Type="Self.Done" Multiplicity="0..1" />
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Done">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RailWayRequest">
+        <PropertyRef Name="DoneID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RailWayRequest_RequestType">
+    <End Role="RequestType" Type="Self.RequestType" Multiplicity="0..1" />
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RequestType">
+        <PropertyRef Name="RequestTypeID" />
+      </Principal>
+      <Dependent Role="RailWayRequest">
+        <PropertyRef Name="RequestTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RailWayRequest_Sex">
+    <End Role="Sex" Type="Self.Sex" Multiplicity="0..1" />
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sex">
+        <PropertyRef Name="SexCode" />
+      </Principal>
+      <Dependent Role="RailWayRequest">
+        <PropertyRef Name="SexCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RailWayRequest_Station">
+    <End Role="RailWayStation" Type="Self.RailWayStation" Multiplicity="0..1" />
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RailWayStation">
+        <PropertyRef Name="StationID" />
+      </Principal>
+      <Dependent Role="RailWayRequest">
+        <PropertyRef Name="StartStationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RailWayRequest_Station1">
+    <End Role="RailWayStation" Type="Self.RailWayStation" Multiplicity="0..1" />
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RailWayStation">
+        <PropertyRef Name="StationID" />
+      </Principal>
+      <Dependent Role="RailWayRequest">
+        <PropertyRef Name="EndStationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RailWayRequest_TicketType">
+    <End Role="TicketType" Type="Self.TicketType" Multiplicity="0..1" />
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TicketType">
+        <PropertyRef Name="TicketTypeID" />
+      </Principal>
+      <Dependent Role="RailWayRequest">
+        <PropertyRef Name="TicketTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RailWayRequest_TripType">
+    <End Role="TripType" Type="Self.TripType" Multiplicity="0..1" />
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TripType">
+        <PropertyRef Name="TripTypeID" />
+      </Principal>
+      <Dependent Role="RailWayRequest">
+        <PropertyRef Name="TripTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestLog_RailWayRequest">
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="0..1" />
+    <End Role="RequestLog" Type="Self.RequestLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RailWayRequest">
+        <PropertyRef Name="RailWayRequestID" />
+      </Principal>
+      <Dependent Role="RequestLog">
+        <PropertyRef Name="RailWayRequestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestPassenger_Passenger">
+    <End Role="Passenger" Type="Self.Passenger" Multiplicity="0..1" />
+    <End Role="RequestPassenger" Type="Self.RequestPassenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Passenger">
+        <PropertyRef Name="PassengerID" />
+      </Principal>
+      <Dependent Role="RequestPassenger">
+        <PropertyRef Name="PassengerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestPassenger_PassengerService">
+    <End Role="PassengerService" Type="Self.PassengerService" Multiplicity="0..1" />
+    <End Role="RequestPassenger" Type="Self.RequestPassenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PassengerService">
+        <PropertyRef Name="serviceID" />
+      </Principal>
+      <Dependent Role="RequestPassenger">
+        <PropertyRef Name="ServiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestPassenger_RailWayRequest">
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="0..1" />
+    <End Role="RequestPassenger" Type="Self.RequestPassenger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RailWayRequest">
+        <PropertyRef Name="RailWayRequestID" />
+      </Principal>
+      <Dependent Role="RequestPassenger">
+        <PropertyRef Name="RailWayRequestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RWS_GoReturn">
+    <End Role="GoReturn" Type="Self.GoReturn" Multiplicity="0..1" />
+    <End Role="RWS" Type="Self.RWS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GoReturn">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RWS">
+        <PropertyRef Name="GoReturnID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RWS_RailWayRequest">
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="0..1" />
+    <End Role="RWS" Type="Self.RWS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RailWayRequest">
+        <PropertyRef Name="RailWayRequestID" />
+      </Principal>
+      <Dependent Role="RWS">
+        <PropertyRef Name="RailWayRequestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RWS_Scheduling">
+    <End Role="Scheduling" Type="Self.Scheduling" Multiplicity="0..1" />
+    <End Role="RWS" Type="Self.RWS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Scheduling">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RWS">
+        <PropertyRef Name="SchedulingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RWW_RailWayRequest">
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="0..1" />
+    <End Role="RWW" Type="Self.RWW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RailWayRequest">
+        <PropertyRef Name="RailWayRequestID" />
+      </Principal>
+      <Dependent Role="RWW">
+        <PropertyRef Name="WRailWayRequestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RWW_Scheduling">
+    <End Role="Scheduling" Type="Self.Scheduling" Multiplicity="0..1" />
+    <End Role="RWW" Type="Self.RWW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Scheduling">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RWW">
+        <PropertyRef Name="WSchedulingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RWW_Wagon">
+    <End Role="Scheduling" Type="Self.Scheduling" Multiplicity="0..1" />
+    <End Role="RWW" Type="Self.RWW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Scheduling">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RWW">
+        <PropertyRef Name="WSchedulingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Scheduling_RailWayStation">
+    <End Role="RailWayStation" Type="Self.RailWayStation" Multiplicity="0..1" />
+    <End Role="Scheduling" Type="Self.Scheduling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RailWayStation">
+        <PropertyRef Name="StationID" />
+      </Principal>
+      <Dependent Role="Scheduling">
+        <PropertyRef Name="StartStationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Scheduling_RailWayStation1">
+    <End Role="RailWayStation" Type="Self.RailWayStation" Multiplicity="0..1" />
+    <End Role="Scheduling" Type="Self.Scheduling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RailWayStation">
+        <PropertyRef Name="StationID" />
+      </Principal>
+      <Dependent Role="Scheduling">
+        <PropertyRef Name="EndStationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SWT_Scheduling">
+    <End Role="Scheduling" Type="Self.Scheduling" Multiplicity="0..1" />
+    <End Role="SWT" Type="Self.SWT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Scheduling">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SWT">
+        <PropertyRef Name="SchedulingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SWT_Wagon">
+    <End Role="Wagon" Type="Self.Wagon" Multiplicity="0..1" />
+    <End Role="SWT" Type="Self.SWT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Wagon">
+        <PropertyRef Name="WagonTypeID" />
+      </Principal>
+      <Dependent Role="SWT">
+        <PropertyRef Name="WagonTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TicketDetail_RailWayRequest">
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="0..1" />
+    <End Role="TicketDetail" Type="Self.TicketDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RailWayRequest">
+        <PropertyRef Name="RailWayRequestID" />
+      </Principal>
+      <Dependent Role="TicketDetail">
+        <PropertyRef Name="RailWayRequestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TicketInfo_TicketInfo">
+    <End Role="RailWayRequest" Type="Self.RailWayRequest" Multiplicity="0..1" />
+    <End Role="TicketInfo" Type="Self.TicketInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RailWayRequest">
+        <PropertyRef Name="RailWayRequestID" />
+      </Principal>
+      <Dependent Role="TicketInfo">
+        <PropertyRef Name="RailWayRequestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MrTripTModelStoreContainer">
+    <EntitySet Name="Done" EntityType="Self.Done" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="GoReturn" EntityType="Self.GoReturn" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="Passenger" EntityType="Self.Passenger" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="PassengerService" EntityType="Self.PassengerService" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="RailWayBot" EntityType="Self.RailWayBot" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="RailWayRequest" EntityType="Self.RailWayRequest" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="RailWayStation" EntityType="Self.RailWayStation" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="Ration" EntityType="Self.Ration" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="RequestLog" EntityType="Self.RequestLog" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="RequestPassenger" EntityType="Self.RequestPassenger" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="RequestType" EntityType="Self.RequestType" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="RWS" EntityType="Self.RWS" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="RWW" EntityType="Self.RWW" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="Scheduling" EntityType="Self.Scheduling" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="Sex" EntityType="Self.Sex" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="SWT" EntityType="Self.SWT" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="TariffCode" EntityType="Self.TariffCode" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="TicketDetail" EntityType="Self.TicketDetail" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="TicketInfo" EntityType="Self.TicketInfo" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="TicketType" EntityType="Self.TicketType" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="TripType" EntityType="Self.TripType" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <EntitySet Name="Wagon" EntityType="Self.Wagon" Schema="mrtripir_newuser3" store:Type="Tables" />
+    <AssociationSet Name="FK_Passenger_TariffCode" Association="Self.FK_Passenger_TariffCode">
+      <End Role="TariffCode" EntitySet="TariffCode" />
+      <End Role="Passenger" EntitySet="Passenger" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RailWayRequest_Done" Association="Self.FK_RailWayRequest_Done">
+      <End Role="Done" EntitySet="Done" />
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RailWayRequest_RequestType" Association="Self.FK_RailWayRequest_RequestType">
+      <End Role="RequestType" EntitySet="RequestType" />
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RailWayRequest_Sex" Association="Self.FK_RailWayRequest_Sex">
+      <End Role="Sex" EntitySet="Sex" />
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RailWayRequest_Station" Association="Self.FK_RailWayRequest_Station">
+      <End Role="RailWayStation" EntitySet="RailWayStation" />
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RailWayRequest_Station1" Association="Self.FK_RailWayRequest_Station1">
+      <End Role="RailWayStation" EntitySet="RailWayStation" />
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RailWayRequest_TicketType" Association="Self.FK_RailWayRequest_TicketType">
+      <End Role="TicketType" EntitySet="TicketType" />
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RailWayRequest_TripType" Association="Self.FK_RailWayRequest_TripType">
+      <End Role="TripType" EntitySet="TripType" />
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestLog_RailWayRequest" Association="Self.FK_RequestLog_RailWayRequest">
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
+      <End Role="RequestLog" EntitySet="RequestLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestPassenger_Passenger" Association="Self.FK_RequestPassenger_Passenger">
+      <End Role="Passenger" EntitySet="Passenger" />
+      <End Role="RequestPassenger" EntitySet="RequestPassenger" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestPassenger_PassengerService" Association="Self.FK_RequestPassenger_PassengerService">
+      <End Role="PassengerService" EntitySet="PassengerService" />
+      <End Role="RequestPassenger" EntitySet="RequestPassenger" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestPassenger_RailWayRequest" Association="Self.FK_RequestPassenger_RailWayRequest">
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
+      <End Role="RequestPassenger" EntitySet="RequestPassenger" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RWS_GoReturn" Association="Self.FK_RWS_GoReturn">
+      <End Role="GoReturn" EntitySet="GoReturn" />
+      <End Role="RWS" EntitySet="RWS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RWS_RailWayRequest" Association="Self.FK_RWS_RailWayRequest">
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
+      <End Role="RWS" EntitySet="RWS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RWS_Scheduling" Association="Self.FK_RWS_Scheduling">
+      <End Role="Scheduling" EntitySet="Scheduling" />
+      <End Role="RWS" EntitySet="RWS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RWW_RailWayRequest" Association="Self.FK_RWW_RailWayRequest">
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
+      <End Role="RWW" EntitySet="RWW" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RWW_Scheduling" Association="Self.FK_RWW_Scheduling">
+      <End Role="Scheduling" EntitySet="Scheduling" />
+      <End Role="RWW" EntitySet="RWW" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RWW_Wagon" Association="Self.FK_RWW_Wagon">
+      <End Role="Scheduling" EntitySet="Scheduling" />
+      <End Role="RWW" EntitySet="RWW" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Scheduling_RailWayStation" Association="Self.FK_Scheduling_RailWayStation">
+      <End Role="RailWayStation" EntitySet="RailWayStation" />
+      <End Role="Scheduling" EntitySet="Scheduling" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Scheduling_RailWayStation1" Association="Self.FK_Scheduling_RailWayStation1">
+      <End Role="RailWayStation" EntitySet="RailWayStation" />
+      <End Role="Scheduling" EntitySet="Scheduling" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SWT_Scheduling" Association="Self.FK_SWT_Scheduling">
+      <End Role="Scheduling" EntitySet="Scheduling" />
+      <End Role="SWT" EntitySet="SWT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SWT_Wagon" Association="Self.FK_SWT_Wagon">
+      <End Role="Wagon" EntitySet="Wagon" />
+      <End Role="SWT" EntitySet="SWT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TicketDetail_RailWayRequest" Association="Self.FK_TicketDetail_RailWayRequest">
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
+      <End Role="TicketDetail" EntitySet="TicketDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TicketInfo_TicketInfo" Association="Self.FK_TicketInfo_TicketInfo">
+      <End Role="RailWayRequest" EntitySet="RailWayRequest" />
+      <End Role="TicketInfo" EntitySet="TicketInfo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

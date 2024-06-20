@@ -1,0 +1,168 @@
+﻿@model ApiTax.Entities.TicketInfo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TicketInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SellSerial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SellSerial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FromStationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FromStationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ToStationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ToStationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShExiteDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShExiteDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExiteTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExiteTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Degree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Degree)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WagonNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WagonNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompartmentNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompartmentNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SexName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SexName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrainNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WagonTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WagonTypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Updated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Updated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrackID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrackID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RailWayRequest.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RailWayRequest.Mobile)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
