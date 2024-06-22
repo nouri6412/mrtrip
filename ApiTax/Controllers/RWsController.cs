@@ -17,12 +17,12 @@ namespace ApiTax.Controllers
         private MrTripTEntities db = new MrTripTEntities();
 
         // GET: RWs
-        public ActionResult Index(int? page, string search = "")
+        public ActionResult Index(int? page,int wid=0, string search = "")
         {
             InitRequest InitRequest = new InitRequest();
             InitRequest.init(User);
 
-            int pageSize = 15;
+            int pageSize = 50000;
             int pageIndex = 1;
 
             pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
@@ -32,7 +32,8 @@ namespace ApiTax.Controllers
                 return RedirectToAction("Login", "Home", new { });
             }
             ViewBag.page_index = pageIndex;
-            var rWS = db.RWS.Include(r => r.GoReturn).Include(r => r.RailWayRequest).Include(r => r.Scheduling);
+            ViewBag.wid = wid;
+            var rWS = db.RWS.Include(r => r.GoReturn).Include(r => r.RailWayRequest).Include(r => r.Scheduling).Where(r=>r.RailWayRequestID==wid);
             return View(rWS.OrderByDescending(r => r.ID).ToPagedList(pageIndex, pageSize));
         }
 
@@ -52,11 +53,11 @@ namespace ApiTax.Controllers
         }
 
         // GET: RWs/Create
-        public ActionResult Create()
+        public ActionResult Create(int wid=0)
         {
             ViewBag.GoReturnID = new SelectList(db.GoReturns, "ID", "Ttitle");
-            ViewBag.RailWayRequestID = new SelectList(db.RailWayRequests.OrderByDescending(r => r.RailWayRequestID).Take(50).ToList(), "RailWayRequestID", "Mobile");
             ViewBag.SchedulingID = new SelectList(db.Schedulings, "ID", "ID");
+            ViewBag.wid = wid;
             return View();
         }
 
@@ -71,12 +72,12 @@ namespace ApiTax.Controllers
             {
                 db.RWS.Add(rW);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { wid = rW.RailWayRequestID });
             }
 
             ViewBag.GoReturnID = new SelectList(db.GoReturns, "ID", "Ttitle", rW.GoReturnID);
-            ViewBag.RailWayRequestID = new SelectList(db.RailWayRequests.OrderByDescending(r => r.RailWayRequestID).Take(50).ToList(), "RailWayRequestID", "Mobile", rW.RailWayRequestID);
             ViewBag.SchedulingID = new SelectList(db.Schedulings, "ID", "ID", rW.SchedulingID);
+            ViewBag.wid = rW.RailWayRequestID;
             return View(rW);
         }
 
@@ -93,7 +94,6 @@ namespace ApiTax.Controllers
                 return HttpNotFound();
             }
             ViewBag.GoReturnID = new SelectList(db.GoReturns, "ID", "Ttitle", rW.GoReturnID);
-            ViewBag.RailWayRequestID = new SelectList(db.RailWayRequests.OrderByDescending(r => r.RailWayRequestID).Take(50).ToList(), "RailWayRequestID", "Mobile", rW.RailWayRequestID);
             ViewBag.SchedulingID = new SelectList(db.Schedulings, "ID", "ID", rW.SchedulingID);
             return View(rW);
         }
@@ -109,10 +109,9 @@ namespace ApiTax.Controllers
             {
                 db.Entry(rW).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { wid=rW.RailWayRequestID});
             }
             ViewBag.GoReturnID = new SelectList(db.GoReturns, "ID", "Ttitle", rW.GoReturnID);
-            ViewBag.RailWayRequestID = new SelectList(db.RailWayRequests.OrderByDescending(r => r.RailWayRequestID).Take(50).ToList(), "RailWayRequestID", "Mobile", rW.RailWayRequestID);
             ViewBag.SchedulingID = new SelectList(db.Schedulings, "ID", "ID", rW.SchedulingID);
             return View(rW);
         }
@@ -140,7 +139,7 @@ namespace ApiTax.Controllers
             RW rW = db.RWS.Find(id);
             db.RWS.Remove(rW);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { wid = rW.RailWayRequestID });
         }
 
         protected override void Dispose(bool disposing)

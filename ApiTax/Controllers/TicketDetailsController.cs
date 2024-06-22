@@ -17,12 +17,12 @@ namespace ApiTax.Controllers
         private MrTripTEntities db = new MrTripTEntities();
 
         // GET: TicketDetails
-        public ActionResult Index(int? page, string search = "")
+        public ActionResult Index(int? page,int wid=0, string search = "")
         {
             InitRequest InitRequest = new InitRequest();
             InitRequest.init(User);
 
-            int pageSize = 15;
+            int pageSize = 50000;
             int pageIndex = 1;
 
             pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
@@ -32,7 +32,9 @@ namespace ApiTax.Controllers
                 return RedirectToAction("Login", "Home", new { });
             }
             ViewBag.page_index = pageIndex;
-            var ticketDetails = db.TicketDetails.Include(t => t.RailWayRequest);
+            ViewBag.wid = wid;
+            var ticketDetails = db.TicketDetails.Include(t => t.RailWayRequest).Where(r => r.RailWayRequestID == wid);
+       
             return View(ticketDetails.OrderByDescending(r => r.ID).ToPagedList(pageIndex, pageSize));
         }
 
@@ -52,9 +54,9 @@ namespace ApiTax.Controllers
         }
 
         // GET: TicketDetails/Create
-        public ActionResult Create()
+        public ActionResult Create(int wid = 0)
         {
-            ViewBag.RailWayRequestID = new SelectList(db.RailWayRequests.OrderByDescending(r => r.RailWayRequestID).Take(50).ToList(), "RailWayRequestID", "Mobile");
+            ViewBag.wid = wid;
             return View();
         }
 
@@ -75,10 +77,10 @@ namespace ApiTax.Controllers
             {
                 db.TicketDetails.Add(ticketDetail);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { wid= ticketDetail.RailWayRequest});
             }
 
-            ViewBag.RailWayRequestID = new SelectList(db.RailWayRequests.OrderByDescending(r => r.RailWayRequestID).Take(50).ToList(), "RailWayRequestID", "Mobile", ticketDetail.RailWayRequestID);
+            ViewBag.wid = ticketDetail.RailWayRequest;
             return View(ticketDetail);
         }
 
@@ -115,7 +117,7 @@ namespace ApiTax.Controllers
             {
                 db.Entry(ticketDetail).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { wid = ticketDetail.RailWayRequest });
             }
             ViewBag.RailWayRequestID = new SelectList(db.RailWayRequests.OrderByDescending(r => r.RailWayRequestID).Take(50).ToList(), "RailWayRequestID", "Mobile", ticketDetail.RailWayRequestID);
             return View(ticketDetail);
@@ -144,7 +146,7 @@ namespace ApiTax.Controllers
             TicketDetail ticketDetail = db.TicketDetails.Find(id);
             db.TicketDetails.Remove(ticketDetail);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { wid = ticketDetail.RailWayRequest });
         }
 
         protected override void Dispose(bool disposing)

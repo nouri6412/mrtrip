@@ -17,12 +17,12 @@ namespace ApiTax.Controllers
         private MrTripTEntities db = new MrTripTEntities();
 
         // GET: RequestPassengers
-        public ActionResult Index(int? page, string search = "")
+        public ActionResult Index(int? page,int wid=0, string search = "")
         {
             InitRequest InitRequest = new InitRequest();
             InitRequest.init(User);
 
-            int pageSize = 15;
+            int pageSize = 50000;
             int pageIndex = 1;
 
             pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
@@ -32,7 +32,9 @@ namespace ApiTax.Controllers
                 return RedirectToAction("Login", "Home", new { });
             }
             ViewBag.page_index = pageIndex;
-            var requestPassengers = db.RequestPassengers.Include(r => r.Passenger).Include(r => r.PassengerService).Include(r => r.RailWayRequest);
+            ViewBag.wid = wid;
+            var requestPassengers = db.RequestPassengers.Include(r => r.Passenger).Include(r => r.PassengerService).Include(r => r.RailWayRequest).Where(r => r.RailWayRequestID == wid);
+
             return View(requestPassengers.OrderByDescending(r => r.RequestPassengerID).ToPagedList(pageIndex, pageSize));
         }
 
@@ -52,11 +54,10 @@ namespace ApiTax.Controllers
         }
 
         // GET: RequestPassengers/Create
-        public ActionResult Create()
+        public ActionResult Create(int wid=0)
         {
-            ViewBag.PassengerID = new SelectList(db.Passengers, "PassengerID", "Name");
             ViewBag.ServiceID = new SelectList(db.PassengerServices, "serviceID", "Title");
-            ViewBag.RailWayRequestID = new SelectList(db.RailWayRequests.OrderByDescending(r => r.RailWayRequestID).Take(50).ToList(), "RailWayRequestID", "Mobile");
+            ViewBag.wid = wid;
             return View();
         }
 
@@ -67,16 +68,29 @@ namespace ApiTax.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "RequestPassengerID,PassengerID,ServiceID,RailWayRequestID")] RequestPassenger requestPassenger)
         {
+
+            string code = Request.Form["code_melli"];
+            ViewBag.ServiceID = new SelectList(db.PassengerServices, "serviceID", "Title", requestPassenger.ServiceID);
+            ViewBag.wid = requestPassenger.RailWayRequestID;
+            ViewBag.code = code;
+
+            var passenger = db.Passengers.FirstOrDefault(r => r.NationalCode == code);
+            if (passenger == null)
+            {
+                ViewBag.ErrorMessage = "";
+                return View(requestPassenger);
+            }
+
+            requestPassenger.PassengerID = passenger.PassengerID;
+
             if (ModelState.IsValid)
             {
                 db.RequestPassengers.Add(requestPassenger);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { wid= requestPassenger .RailWayRequestID});
             }
 
-            ViewBag.PassengerID = new SelectList(db.Passengers, "PassengerID", "Name", requestPassenger.PassengerID);
-            ViewBag.ServiceID = new SelectList(db.PassengerServices, "serviceID", "Title", requestPassenger.ServiceID);
-            ViewBag.RailWayRequestID = new SelectList(db.RailWayRequests.OrderByDescending(r => r.RailWayRequestID).Take(50).ToList(), "RailWayRequestID", "Mobile", requestPassenger.RailWayRequestID);
+
             return View(requestPassenger);
         }
 
@@ -92,9 +106,8 @@ namespace ApiTax.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PassengerID = new SelectList(db.Passengers, "PassengerID", "Name", requestPassenger.PassengerID);
+            ViewBag.code = requestPassenger.Passenger.NationalCode;
             ViewBag.ServiceID = new SelectList(db.PassengerServices, "serviceID", "Title", requestPassenger.ServiceID);
-            ViewBag.RailWayRequestID = new SelectList(db.RailWayRequests.OrderByDescending(r => r.RailWayRequestID).Take(50).ToList(), "RailWayRequestID", "Mobile", requestPassenger.RailWayRequestID);
             return View(requestPassenger);
         }
 
@@ -105,15 +118,25 @@ namespace ApiTax.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "RequestPassengerID,PassengerID,ServiceID,RailWayRequestID")] RequestPassenger requestPassenger)
         {
+            string code = Request.Form["code_melli"];
+
+            var passenger = db.Passengers.FirstOrDefault(r => r.NationalCode == code);
+            ViewBag.ServiceID = new SelectList(db.PassengerServices, "serviceID", "Title", requestPassenger.ServiceID);
+            ViewBag.code = code;
+            if (passenger == null)
+            {
+                ViewBag.ErrorMessage = "";
+                return View(requestPassenger);
+            }
+  
+
             if (ModelState.IsValid)
             {
                 db.Entry(requestPassenger).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { wid = requestPassenger.RailWayRequestID });
             }
-            ViewBag.PassengerID = new SelectList(db.Passengers, "PassengerID", "Name", requestPassenger.PassengerID);
-            ViewBag.ServiceID = new SelectList(db.PassengerServices, "serviceID", "Title", requestPassenger.ServiceID);
-            ViewBag.RailWayRequestID = new SelectList(db.RailWayRequests.OrderByDescending(r => r.RailWayRequestID).Take(50).ToList(), "RailWayRequestID", "Mobile", requestPassenger.RailWayRequestID);
+
             return View(requestPassenger);
         }
 
@@ -140,7 +163,7 @@ namespace ApiTax.Controllers
             RequestPassenger requestPassenger = db.RequestPassengers.Find(id);
             db.RequestPassengers.Remove(requestPassenger);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { wid = requestPassenger.RailWayRequestID });
         }
 
         protected override void Dispose(bool disposing)

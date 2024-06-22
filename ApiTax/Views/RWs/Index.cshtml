@@ -5,6 +5,7 @@
     ViewBag.Title = "Index";
     int page1 = ViewBag.page_index;
     int index = (page1 - 1) * 15;
+    int wid = ViewBag.wid;
 }
 <div class="kt-portlet__head kt-portlet__head--lg">
     <div class="kt-portlet__head-label">
@@ -17,7 +18,7 @@
         <div class="kt-portlet__head-wrapper">
             <div class="kt-portlet__head-actions">
 
-                @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-outline-success btn-elevate btn-icon-sm" })
+                @Html.ActionLink("Create New", "Create", new { wid=wid}, new { @class = "btn btn-outline-success btn-elevate btn-icon-sm" })
 
             </div>
         </div>
@@ -30,9 +31,6 @@
         </th>
         <th>
             Priority
-        </th>
-        <th>
-            RailWayRequest
         </th>
         <th>
             Scheduling
@@ -50,14 +48,10 @@
                 @Html.DisplayFor(modelItem => item.GoReturn.Ttitle)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RailWayRequest.Mobile)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Scheduling.ID)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })
             </td>
         </tr>
