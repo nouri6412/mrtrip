@@ -77,10 +77,10 @@ namespace ApiTax.Controllers
             {
                 db.TicketDetails.Add(ticketDetail);
                 db.SaveChanges();
-                return RedirectToAction("Index", new { wid= ticketDetail.RailWayRequest});
+                return RedirectToAction("Index", new { wid= ticketDetail.RailWayRequestID});
             }
 
-            ViewBag.wid = ticketDetail.RailWayRequest;
+            ViewBag.wid = ticketDetail.RailWayRequestID;
             return View(ticketDetail);
         }
 
@@ -117,7 +117,7 @@ namespace ApiTax.Controllers
             {
                 db.Entry(ticketDetail).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", new { wid = ticketDetail.RailWayRequest });
+                return RedirectToAction("Index", new { wid = ticketDetail.RailWayRequestID });
             }
             ViewBag.RailWayRequestID = new SelectList(db.RailWayRequests.OrderByDescending(r => r.RailWayRequestID).Take(50).ToList(), "RailWayRequestID", "Mobile", ticketDetail.RailWayRequestID);
             return View(ticketDetail);
@@ -146,7 +146,7 @@ namespace ApiTax.Controllers
             TicketDetail ticketDetail = db.TicketDetails.Find(id);
             db.TicketDetails.Remove(ticketDetail);
             db.SaveChanges();
-            return RedirectToAction("Index", new { wid = ticketDetail.RailWayRequest });
+            return RedirectToAction("Index", new { wid = ticketDetail.RailWayRequestID });
         }
 
         protected override void Dispose(bool disposing)
