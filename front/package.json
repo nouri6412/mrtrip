@@ -1,0 +1,26 @@
+{
+  "name": "talavest",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@primevue/themes": "^4.2.5",
+    "primeflex": "^3.3.1",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.2.5",
+    "shabnam-font": "^5.0.0",
+    "vazir-font": "^30.1.0",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "vite": "^6.0.5",
+    "vite-plugin-vue-devtools": "^7.6.8"
+  }
+}
