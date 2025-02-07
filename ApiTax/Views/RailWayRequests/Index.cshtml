@@ -28,6 +28,9 @@
 <table class="table">
     <tr>
         <th>
+            id
+        </th>
+        <th>
             StartDate
         </th>
         <th>
@@ -84,6 +87,9 @@
     @foreach (var item in Model)
     {
 <tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.RailWayRequestID)
+    </td>
     <td>
         @utility.ToPersian(item.StartDate.HasValue ? item.StartDate.Value.ToShortDateString() : "")
     </td>

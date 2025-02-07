@@ -49,7 +49,15 @@
                 @Html.DisplayFor(modelItem => item.Scheduling.ID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Wagon.WagonName)
+                @if (item.Wagon.Cost != null)
+                {
+                <span>@item.Wagon.WagonName  @item.Wagon.Cost.ToString()</span>
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.Wagon.WagonName)
+                }
+
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.WID }) |

@@ -131,12 +131,6 @@ namespace ApiTax.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "RailWayRequestID,StartStationID,EndStationID,TicketTypeID,StartDate,EndDate,RationCode,SexCode,TicketCount,CoupeDoor,Mobile,DoneID,LimitTime,RequestTypeID,TripTypeID,AlternativeSexCode,message,ParentRailWayRequestID")] RailWayRequest railWayRequest)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(railWayRequest).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
             try
             {
                 var date = Request.Form["StartDatePersian"];
@@ -150,6 +144,12 @@ namespace ApiTax.Controllers
                 railWayRequest.EndDate = utility.ToMiladi(utility.toEnglishNumber(date.ToString()));
             }
             catch { }
+            if (ModelState.IsValid)
+            {
+                db.Entry(railWayRequest).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
             ViewBag.DoneID = new SelectList(db.Dones, "ID", "Title", railWayRequest.DoneID);
             ViewBag.RequestTypeID = new SelectList(db.RequestTypes, "RequestTypeID", "Title", railWayRequest.RequestTypeID);
             ViewBag.SexCode = new SelectList(db.Sexes, "SexCode", "SexName", railWayRequest.SexCode);

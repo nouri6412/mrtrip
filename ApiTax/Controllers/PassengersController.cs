@@ -65,6 +65,22 @@ namespace ApiTax.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PassengerID,Name,LastName,BirthDate,NationalCode,TariffCode")] Passenger passenger)
         {
+            try
+            {
+                var date = Request.Form["BirthDatePersian"];
+                passenger.BirthDate = utility.ToMiladi(utility.toEnglishNumber(date.ToString()));
+            }
+            catch { }
+
+            ViewBag.TariffCode = new SelectList(db.TariffCodes, "TariffCode1", "Title", passenger.TariffCode);
+         
+            var passenger1 = db.Passengers.FirstOrDefault(r => r.NationalCode == passenger.NationalCode);
+            if (passenger1 != null)
+            {
+                ViewBag.ErrorMessage = "";
+                return View(passenger);
+            }
+
             if (ModelState.IsValid)
             {
                 db.Passengers.Add(passenger);
@@ -72,7 +88,7 @@ namespace ApiTax.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TariffCode = new SelectList(db.TariffCodes, "TariffCode1", "Title", passenger.TariffCode);
+        
             return View(passenger);
         }
 
@@ -99,13 +115,25 @@ namespace ApiTax.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PassengerID,Name,LastName,BirthDate,NationalCode,TariffCode")] Passenger passenger)
         {
+            try
+            {
+                var date = Request.Form["BirthDatePersian"];
+                passenger.BirthDate = utility.PersianDateToDateTime(utility.toEnglishNumber(date.ToString()));
+            }
+            catch { }
+            ViewBag.TariffCode = new SelectList(db.TariffCodes, "TariffCode1", "Title", passenger.TariffCode);
+            var passenger1 = db.Passengers.FirstOrDefault(r => r.NationalCode == passenger.NationalCode && r.PassengerID!= passenger.PassengerID);
+            if (passenger1 != null)
+            {
+                ViewBag.ErrorMessage = "";
+                return View(passenger);
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(passenger).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TariffCode = new SelectList(db.TariffCodes, "TariffCode1", "Title", passenger.TariffCode);
             return View(passenger);
         }
 

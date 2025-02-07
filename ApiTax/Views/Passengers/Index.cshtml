@@ -55,7 +55,7 @@
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BirthDate)
+                @utility.ToPersian(item.BirthDate.HasValue ? item.BirthDate.Value.ToShortDateString() : "")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NationalCode)

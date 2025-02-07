@@ -56,8 +56,12 @@ namespace ApiTax.Controllers
         public ActionResult Create(int wid=0)
         {
             ViewBag.wid = wid;
-            ViewBag.WSchedulingID = new SelectList(db.Schedulings, "ID", "ID");
-            ViewBag.WWagonTypeID = new SelectList(db.Wagons, "WagonTypeID", "WagonName");
+            ViewBag.WSchedulingID = new SelectList(db.Schedulings, "ID", "TrainNumber");
+
+            var br = from br1 in db.Wagons
+                     select new { WagonTypeID = br1.WagonTypeID, WagonName = br1.WagonName + " " + br1.Cost.ToString()};
+
+            ViewBag.WWagonTypeID = new SelectList(br, "WagonTypeID", "WagonName");
             return View();
         }
 
@@ -75,8 +79,11 @@ namespace ApiTax.Controllers
                 return RedirectToAction("Index", new {wid= rWW.WRailWayRequestID });
             }
             ViewBag.wid = rWW.WRailWayRequestID;
-            ViewBag.WSchedulingID = new SelectList(db.Schedulings, "ID", "ID", rWW.WSchedulingID);
-            ViewBag.WWagonTypeID = new SelectList(db.Wagons, "WagonTypeID", "WagonName", rWW.WWagonTypeID);
+            ViewBag.WSchedulingID = new SelectList(db.Schedulings, "ID", "TrainNumber", rWW.WSchedulingID);
+
+            var br = from br1 in db.Wagons
+                     select new { WagonTypeID = br1.WagonTypeID, WagonName = br1.WagonName + " " + br1.Cost.ToString() };
+            ViewBag.WWagonTypeID = new SelectList(br, "WagonTypeID", "WagonName", rWW.WWagonTypeID);
             return View(rWW);
         }
 
@@ -92,8 +99,10 @@ namespace ApiTax.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.WSchedulingID = new SelectList(db.Schedulings, "ID", "ID", rWW.WSchedulingID);
-            ViewBag.WWagonTypeID = new SelectList(db.Wagons, "WagonTypeID", "WagonName", rWW.WWagonTypeID);
+            ViewBag.WSchedulingID = new SelectList(db.Schedulings, "ID", "TrainNumber", rWW.WSchedulingID);
+            var br = from br1 in db.Wagons
+                     select new { WagonTypeID = br1.WagonTypeID, WagonName = br1.WagonName + " " + br1.Cost.ToString() };
+            ViewBag.WWagonTypeID = new SelectList(br, "WagonTypeID", "WagonName", rWW.WWagonTypeID);
             return View(rWW);
         }
 
@@ -111,8 +120,10 @@ namespace ApiTax.Controllers
                 return RedirectToAction("Index", new { wid = rWW.WRailWayRequestID });
             }
             ViewBag.WRailWayRequestID = new SelectList(db.RailWayRequests.OrderByDescending(r => r.RailWayRequestID).Take(50).ToList(), "RailWayRequestID", "Mobile", rWW.WRailWayRequestID);
-            ViewBag.WSchedulingID = new SelectList(db.Schedulings, "ID", "ID", rWW.WSchedulingID);
-            ViewBag.WWagonTypeID = new SelectList(db.Wagons, "WagonTypeID", "WagonName", rWW.WWagonTypeID);
+            ViewBag.WSchedulingID = new SelectList(db.Schedulings, "ID", "TrainNumber", rWW.WSchedulingID);
+            var br = from br1 in db.Wagons
+                     select new { WagonTypeID = br1.WagonTypeID, WagonName = br1.WagonName + " " + br1.Cost.ToString() };
+            ViewBag.WWagonTypeID = new SelectList(br, "WagonTypeID", "WagonName", rWW.WWagonTypeID);
             return View(rWW);
         }
 

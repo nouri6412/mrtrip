@@ -34,12 +34,23 @@ namespace ApiTax.Models
 
 
         }
+        public static DateTime PersianDateToDateTime(this string persianDate)
+        {
+            PersianCalendar pc = new PersianCalendar();
 
+            var persianDateSplitedParts = persianDate.Split('/');
+            DateTime dateTime = new DateTime(int.Parse(persianDateSplitedParts[0]), int.Parse(persianDateSplitedParts[1]), int.Parse(persianDateSplitedParts[2]), pc);
+            return DateTime.Parse(dateTime.ToString(CultureInfo.CreateSpecificCulture("en-US")));
+        }
         public static DateTime ToMiladi(string date)
         {
             try
             {
-                return DateTime.Parse(date, new System.Globalization.CultureInfo("fa-IR"));
+                PersianCalendar pc = new PersianCalendar();
+
+                var persianDateSplitedParts = date.Split('/');
+                DateTime dateTime = new DateTime(int.Parse(persianDateSplitedParts[0]), int.Parse(persianDateSplitedParts[1]), int.Parse(persianDateSplitedParts[2]), pc);
+                return DateTime.Parse(dateTime.ToString(CultureInfo.CreateSpecificCulture("en-US")));
 
             }
             catch

@@ -31,6 +31,9 @@
             Passenger
         </th>
         <th>
+            کد ملی
+        </th>
+        <th>
             PassengerService
         </th>
         <th></th>
@@ -38,18 +41,21 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Passenger.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PassengerService.Title)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.RequestPassengerID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.RequestPassengerID })
-            </td>
-        </tr>
+<tr>
+    <td>
+        @item.Passenger.Name @item.Passenger.LastName
+    </td>
+    <td>
+        @item.Passenger.NationalCode
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PassengerService.Title)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.RequestPassengerID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.RequestPassengerID })
+    </td>
+</tr>
     }
 
 </table>

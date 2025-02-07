@@ -56,7 +56,8 @@ namespace ApiTax.Controllers
         public ActionResult Create(int wid=0)
         {
             ViewBag.GoReturnID = new SelectList(db.GoReturns, "ID", "Ttitle");
-            ViewBag.SchedulingID = new SelectList(db.Schedulings, "ID", "ID");
+            ViewBag.SchedulingID = new SelectList(db.Schedulings, "ID", "TrainNumber");
+            
             ViewBag.wid = wid;
             return View();
         }
@@ -76,7 +77,7 @@ namespace ApiTax.Controllers
             }
 
             ViewBag.GoReturnID = new SelectList(db.GoReturns, "ID", "Ttitle", rW.GoReturnID);
-            ViewBag.SchedulingID = new SelectList(db.Schedulings, "ID", "ID", rW.SchedulingID);
+            ViewBag.SchedulingID = new SelectList(db.Schedulings, "ID", "TrainNumber", rW.SchedulingID);
             ViewBag.wid = rW.RailWayRequestID;
             return View(rW);
         }
@@ -94,7 +95,7 @@ namespace ApiTax.Controllers
                 return HttpNotFound();
             }
             ViewBag.GoReturnID = new SelectList(db.GoReturns, "ID", "Ttitle", rW.GoReturnID);
-            ViewBag.SchedulingID = new SelectList(db.Schedulings, "ID", "ID", rW.SchedulingID);
+            ViewBag.SchedulingID = new SelectList(db.Schedulings, "ID", "TrainNumber", rW.SchedulingID);
             return View(rW);
         }
 
@@ -112,7 +113,7 @@ namespace ApiTax.Controllers
                 return RedirectToAction("Index", new { wid=rW.RailWayRequestID});
             }
             ViewBag.GoReturnID = new SelectList(db.GoReturns, "ID", "Ttitle", rW.GoReturnID);
-            ViewBag.SchedulingID = new SelectList(db.Schedulings, "ID", "ID", rW.SchedulingID);
+            ViewBag.SchedulingID = new SelectList(db.Schedulings, "ID", "TrainNumber", rW.SchedulingID);
             return View(rW);
         }
 

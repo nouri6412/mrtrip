@@ -77,7 +77,7 @@ namespace ApiTax.Controllers
             var passenger = db.Passengers.FirstOrDefault(r => r.NationalCode == code);
             if (passenger == null)
             {
-                ViewBag.ErrorMessage = "";
+                ViewBag.ErrorMessage = "کد ملی ثبت نشده است";
                 return View(requestPassenger);
             }
 
