@@ -9,7 +9,7 @@ app.use(cors());
 
 // تنظیمات Proxy
 app.use('/api', createProxyMiddleware({
-  target: 'https://airline.mrtrip.ir/api.php', // سرور اصلی
+  target: 'https://airline.mrtrip.ir/api.php',
   changeOrigin: true,
   pathRewrite: {
     '^/api': '', // حذف /api از مسیر
