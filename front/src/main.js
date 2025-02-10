@@ -12,16 +12,19 @@ import 'vazir-font/dist/Farsi-Digits/font-face-FD.css';
 import 'shabnam-font/dist/font-face.css';
 import './assets/main.css'
 import { isMobile } from './utils'
+import axios from 'axios'
+
+
+axios.interceptors.request.use(config => {
+    const token = localStorage.getItem("access_token");
+    config.headers["Authorization"] = `${token}`;
+    return config;
+});
 
 
 const app = createApp(App)
 
 app.config.globalProperties.$isMobile = isMobile
-app.config.globalProperties.$config = {
-    AppTitle: 'MrTrip',
-    api_url: 'http://194.60.231.11:7126',
-    baseUrl: 'http://localhost:5173/'
-};
 
 app.use(router)
 

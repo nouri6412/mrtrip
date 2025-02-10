@@ -1,4 +1,4 @@
-# talavest
+# mrtrip
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -27,3 +27,5 @@ npm run dev
 ```sh
 npm run build
 ```
+
+https://airline.mrtrip.ir/?airlineID=1&methodID=availability&cbSource=UGT&cbTarget=TTQ&cbAdultQty=1&cbChildQty=0&cbInfantQty=0&DepartureDate=2025-02-20
