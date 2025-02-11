@@ -11,6 +11,9 @@ import 'vazir-font/dist/font-face.css';
 import 'vazir-font/dist/Farsi-Digits/font-face-FD.css';
 import 'shabnam-font/dist/font-face.css';
 import './assets/main.css'
+import Calendar from 'primevue/calendar';
+import moment from 'moment-jalaali';
+import { faLocale } from './fa';
 import { isMobile } from './utils'
 import axios from 'axios'
 
@@ -24,9 +27,17 @@ axios.interceptors.request.use(config => {
 
 const app = createApp(App)
 
+app.config.globalProperties.$filters = {
+    jalaliDate(date) {
+      return moment(date).format('jYYYY/jMM/jDD');
+    },
+  };
+
 app.config.globalProperties.$isMobile = isMobile
 
 app.use(router)
+app.component('Calendar', Calendar);
+app.config.globalProperties.$faLocale = faLocale;
 
 const Noir = definePreset(Aura, {
     semantic: {

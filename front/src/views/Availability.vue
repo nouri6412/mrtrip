@@ -14,17 +14,18 @@
                     </div>
                     <div class="col-3">
                         <FloatLabel variant="on">
-                            <Select v-model="selectedCity" :options="cities" optionLabel="name" class="w-full"  />
+                            <Select v-model="selectedCity" :options="cities" optionLabel="name" class="w-full" />
                             <label for="username">شهر مبدا</label>
                         </FloatLabel>
                     </div>
                     <div class="col-3">
                         <FloatLabel variant="on">
-                            <DatePicker v-model="icondisplay" showIcon fluid iconDisplay="input" inputId="icondisplay" class="w-full" />
+                            <Calendar v-model="date" :locale="$faLocale" dateFormat="yy/mm/dd" />
                             <label for="username">تاریخ پرواز</label>
                         </FloatLabel>
                     </div>
                 </div>
+                <p>تاریخ انتخاب‌شده: {{ $filters.jalaliDate(date) }}</p>
             </template>
         </Card>
         <DataTable class="border-round" :value="list" :paginator="true" :rows="10">
@@ -86,6 +87,7 @@ import Card from 'primevue/card';
 import InputNumber from 'primevue/inputnumber';
 import Select from 'primevue/select';
 import DatePicker from 'primevue/datepicker';
+
 // import { useConfirm } from 'primevue/useconfirm';
 
 export default {
@@ -109,6 +111,15 @@ export default {
             displayModal: false,
             selectedUser: {},
             isEditMode: false,
+            date: null,
+            cities: [
+                { name: 'New York', code: 'NY' },
+                { name: 'Rome', code: 'RM' },
+                { name: 'London', code: 'LDN' },
+                { name: 'Istanbul', code: 'IST' },
+                { name: 'Paris', code: 'PRS' }
+            ],
+            selectedCity:null
         };
     },
     methods: {
@@ -149,14 +160,7 @@ export default {
         },
     },
     setup() {
-        const selectedCity = ref();
-        const cities = ref([
-            { name: 'New York', code: 'NY' },
-            { name: 'Rome', code: 'RM' },
-            { name: 'London', code: 'LDN' },
-            { name: 'Istanbul', code: 'IST' },
-            { name: 'Paris', code: 'PRS' }
-        ]);
+
         // const confirm = useConfirm();
         // return { confirm };
     },
