@@ -17,6 +17,11 @@ const router = createRouter({
     }
     ,
     {
+      path: '/availability',
+      name: 'availability',
+      component: () => import('../views/Availability.vue'),
+    },
+    {
       path: '/login',
       name: 'login',
       component: () => import('../views/Login.vue'),

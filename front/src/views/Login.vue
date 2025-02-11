@@ -29,6 +29,7 @@
   
 <script>
 import { ref } from 'vue';
+import { Form } from '@primevue/forms';
 import { useToast } from 'primevue/usetoast';
 import { useRouter } from 'vue-router';
 import Card from 'primevue/card';

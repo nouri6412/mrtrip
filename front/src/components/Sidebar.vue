@@ -1,17 +1,13 @@
 <template>
-  <div class="sidebar" :class="{ 'sidebar-collapsed': isCollapsed }">
-    <Button
-      icon="pi pi-bars"
-      class="p-button-text sidebar-toggle"
-      @click="toggleSidebar"
-    />
+  <div v-if="isLogin" class="sidebar" :class="{ 'sidebar-collapsed': isCollapsed }">
+    <Button icon="pi pi-bars" class="p-button-text sidebar-toggle" @click="toggleSidebar" />
     <div class="logo">
       <i class="pi pi-home"></i>
       <span v-if="!isCollapsed">داشبورد</span>
     </div>
     <nav>
-        <RouterLink to="/users">کاربران</RouterLink>
-      </nav>
+      <RouterLink to="/availability">لیست پرواز</RouterLink>
+    </nav>
   </div>
 </template>
 
@@ -24,6 +20,12 @@ export default {
   components: {
     Menu,
     Button,
+  },
+  props: {
+    isLogin: {
+      type: Boolean, // نوع داده
+      default: false // آیا این prop اجباری است؟
+    }
   },
   data() {
     return {

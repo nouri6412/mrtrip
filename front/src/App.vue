@@ -3,7 +3,7 @@
     <ProgressSpinner class="mt-4" />
   </div>
   <div v-if="!loading" class="layout-wrapper">
-    <Sidebar v-if="isLogin" />
+    <Sidebar :isLogin="isLogin" />
 
     <div class="layout-main">
 
@@ -50,6 +50,7 @@ export default {
         .then(response => {
           console.log(response.data)
           if (response.data.status == 1) {
+            console.log('salam')
             isLogin.value=true;
           }
           else{
