@@ -19,8 +19,8 @@
                         </FloatLabel>
                     </div>
                     <div class="col-3">
-                        <label for="username">تاریخ پرواز</label>
-                        <DatePicker />
+                        <!-- <label for="username">تاریخ پرواز</label> -->
+                        <DatePicker  class="w-full"/>
                     </div>
                 </div>
 
