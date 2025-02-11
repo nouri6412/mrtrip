@@ -19,13 +19,11 @@
                         </FloatLabel>
                     </div>
                     <div class="col-3">
-                        <FloatLabel variant="on">
-                            <DatePicker />
-                            <label for="username">تاریخ پرواز</label>
-                        </FloatLabel>
+                        <label for="username">تاریخ پرواز</label>
+                        <DatePicker />
                     </div>
                 </div>
-         
+
             </template>
         </Card>
         <DataTable class="border-round" :value="list" :paginator="true" :rows="10">
