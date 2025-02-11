@@ -20,12 +20,12 @@
                     </div>
                     <div class="col-3">
                         <FloatLabel variant="on">
-                            <Calendar v-model="date" :locale="$faLocale" dateFormat="yy/mm/dd" />
+                            <DatePicker />
                             <label for="username">تاریخ پرواز</label>
                         </FloatLabel>
                     </div>
                 </div>
-                <p>تاریخ انتخاب‌شده: {{ $filters.jalaliDate(date) }}</p>
+         
             </template>
         </Card>
         <DataTable class="border-round" :value="list" :paginator="true" :rows="10">
@@ -86,7 +86,8 @@ import FloatLabel from 'primevue/floatlabel';
 import Card from 'primevue/card';
 import InputNumber from 'primevue/inputnumber';
 import Select from 'primevue/select';
-import DatePicker from 'primevue/datepicker';
+import DatePicker from '@alireza-ab/vue3-persian-datepicker';
+
 
 // import { useConfirm } from 'primevue/useconfirm';
 
@@ -96,13 +97,13 @@ export default {
         Column,
         Button,
         Select,
-        DatePicker,
         FloatLabel,
         InputNumber,
         Card,
         Dialog,
         InputText,
-        ConfirmDialog,
+        DatePicker,
+        ConfirmDialog
     },
     data() {
         return {
@@ -111,7 +112,6 @@ export default {
             displayModal: false,
             selectedUser: {},
             isEditMode: false,
-            date: null,
             cities: [
                 { name: 'New York', code: 'NY' },
                 { name: 'Rome', code: 'RM' },
@@ -119,7 +119,8 @@ export default {
                 { name: 'Istanbul', code: 'IST' },
                 { name: 'Paris', code: 'PRS' }
             ],
-            selectedCity:null
+            selectedCity: null,
+            date: ''
         };
     },
     methods: {
