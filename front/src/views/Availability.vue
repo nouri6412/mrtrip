@@ -227,6 +227,14 @@ export default {
             var token = localStorage.getItem("access_token");
             var obj = { methodID: "availabilityOptions", is_iran: checked ? 'is_iran' : 'not_iran', Authorization: token };
 
+            if(selectControl=='all')
+            {
+                obj['get_airlines']=true;
+                obj['get_cities']=true;
+            }
+            else{
+                obj['get_cities']=true;
+            }
             axios.post(`${config.app.api_url}`, obj, {
                 headers: {
                     "Content-Type": "application/json"
