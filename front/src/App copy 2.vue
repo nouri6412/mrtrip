@@ -2,6 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import Header from './views/Header.vue'
 import SideBar from './views/SideBar.vue'
+import DatePicker from '@alireza-ab/vue3-persian-datepicker';
 
 </script>
 
@@ -14,6 +15,7 @@ import SideBar from './views/SideBar.vue'
       <div class="grid m-0 pr-3 pl-3">
         <div class="col-12 md:col-12 lg:col-12">
           <Header />
+          <DatePicker  class="w-full"/>
         </div>
         <div class="col-12 md:col-12 lg:col-12">
           <RouterView />

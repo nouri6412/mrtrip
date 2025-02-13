@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اسلایدر راست به چپ</title>
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    
+    <style>
+        body {
+            direction: rtl; /* تنظیم جهت کلی سایت */
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            text-align: center;
+        }
+
+        .swiper {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px 0;
+        }
+
+        .swiper-slide {
+            background: #007aff;
+            color: white;
+            text-align: center;
+            font-size: 20px;
+            line-height: 100px;
+            height: 100px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- اسلایدر -->
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">آیتم ۱</div>
+            <div class="swiper-slide">آیتم ۲</div>
+            <div class="swiper-slide">آیتم ۳</div>
+            <div class="swiper-slide">آیتم ۴</div>
+            <div class="swiper-slide">آیتم ۵</div>
+            <div class="swiper-slide">آیتم ۶</div>
+            <div class="swiper-slide">آیتم ۷</div>
+            <div class="swiper-slide">آیتم ۸</div>
+        </div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 4,  // نمایش ۴ آیتم در دسکتاپ
+            spaceBetween: 10,  // فاصله بین آیتم‌ها
+            loop: true,        // چرخش بی‌نهایت
+            autoplay: {
+                delay: 2000,     // تأخیر در تغییر اسلاید
+                disableOnInteraction: false,
+            },
+            speed: 1000,       // سرعت انیمیشن
+            direction: "rtl",  // حرکت از راست به چپ
+            breakpoints: {
+                768: { slidesPerView: 4 },  // در دسکتاپ ۴ آیتم
+                0: { slidesPerView: 1 },    // در موبایل ۱ آیتم
+            }
+        });
+    </script>
+
+</body>
+</html>

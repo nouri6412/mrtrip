@@ -40,7 +40,6 @@ import Button from 'primevue/button';
 import ProgressSpinner from 'primevue/progressspinner';
 import Toast from 'primevue/toast';
 import axios from "axios";
-
 import { config } from "../../config"
 
 export default {
@@ -83,8 +82,8 @@ export default {
         const handleSubmit = () => {
             if (validateForm()) {
                 loading.value = true;
-                const obj = { username: username.value, password: password.value,methodID:"login" };
-                
+                const obj = { username: username.value, password: password.value, methodID: "login" };
+
                 let hasError = true;
                 axios.post(`${config.app.api_url}`, obj, {
                     headers: {

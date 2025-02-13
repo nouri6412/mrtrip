@@ -10,6 +10,24 @@ a{
   text-decoration: none;
 }
 
+.p-floatlabel .pdp.rtl{
+  direction: ltr !important;
+}
+
+.pdp.rtl .pdp-group :first-child:not(.pdp-inside), .pdp.rtl .pdp-group .pdp-inside:first-child + input{
+  border-top-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    margin-left: 0px !important;
+
+    border-top-left-radius: 0.25rem;
+    border-top-left-radius: var(--radius);
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-left-radius: var(--radius);
+    margin-left: -1px;
+}
+
 @media (max-width: 767px) {
   #app {
     margin: 0 auto;
